@@ -1,0 +1,7 @@
+#!/bin/sh
+set Free=`cat /proc/meminfo | grep "MemFree" | awk -F" " '{print $2}'`
+echo $Free
+set Total=`cat /proc/meminfo | grep "MemTotal" | awk -F" " '{print $2}'`
+echo $Total
+eval $RAM=$Free/$Total
+echo -n "${RAM}%"

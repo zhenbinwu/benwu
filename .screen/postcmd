@@ -1,0 +1,2 @@
+#alias postcmd 'echo -ne "\ek\!#:\e\\"'
+alias postcmd 'echo "\ek\!#:\e\\"'

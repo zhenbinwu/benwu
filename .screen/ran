@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ ${RANDOM} -lt 6000 ]]
+then
+  echo -e "\005{= kc} (${RANDOM}%)\005{-}"
+else 
+  echo -e "\005{= km} (${RANDOM}%)\005{-}"
+fi

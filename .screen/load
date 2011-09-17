@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Return the value of an operation
+float_val()
+{
+  echo | awk 'END {print '"$1"'; }'
+}
+
+# Return status code of a comparison
+float_test()
+{
+  echo | awk 'END { exit (!  ('"$1"')); }'
+}
+
+
+CPU=` grep "model name" /proc/cpuinfo | wc -l `
+LOAD=` cat /proc/loadavg | cut -d" " -f2 `
+FRAC=`float_val "$LOAD / $CPU" `
+
+
+float_test "$FRAC >= 0.00  && $FRAC < 0.70"  &&  echo -e "\005{= kG}${LOAD}\005{-}"
+float_test "$FRAC >= 0.70  && $FRAC < 1.00"  &&  echo -e "\005{= kC}${LOAD}\005{-}"
+float_test "$FRAC >= 1.00  && $FRAC < 3.00"  &&  echo -e "\005{= kM}${LOAD}\005{-}"
+float_test "$FRAC >= 3.00"                   &&  echo -e "\005{= kR}${LOAD}\005{-}"
