@@ -1,0 +1,12 @@
+
+#Define the alias for linux
+alias ls 'ls --color'
+alias la 'ls --color -a'
+
+
+alias sr source ~/.setuproot
+
+
+#Define the alias for network connection
+alias srv21 'ssh -l cdfprd_ntp fncdfsrv21.fnal.gov'
+

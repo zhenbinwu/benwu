@@ -1,0 +1,13 @@
+echo 'Setting up cdfsoft2 6.1.6.m'
+setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
+source ~cdfsoft/cdf2.cshrc
+setup cdfsoft2 6.1.6.m
+setup dcap
+unsetenv DCACHE_IO_TUNNEL
+setup root v5_26_00 -q GCC_3_4_6
+#echo "setting USESHLIBS to 1"
+#setenv USESHLIBS 1
+#echo 'USESHLIBS =' $USESHLIBS 
+#setenv ISRSUSED 'YES'
+#echo 'ISRSUSED  =' $ISRSUSED
+echo 'CDFsoft2 6.1.4.m is ready'

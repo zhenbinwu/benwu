@@ -1,0 +1,73 @@
+##############################################################################
+##
+## .tcshrc_cdf
+##
+## Author: Zhenbin (Ben) Wu ( benwu@fnal.gov)
+##
+## This is the .tcshrc_cdf file, designed for the CDF workspace
+## Part of the code I got from internet. Thanks!
+##
+#############################################################################
+
+################## Network Aliases ###########################################
+## SSH aliases - Connection
+#  SSH aliases for nbay mechines
+alias nb1	'ssh -X nbay01.fnal.gov'
+alias nb2	'ssh -X nbay02.fnal.gov'
+alias nb3	'ssh -X nbay03.fnal.gov'
+alias nb4	'ssh -X nbay04.fnal.gov'
+alias nb5	'ssh -X nbay05.fnal.gov'
+
+#  SSH aliases for hep mechines
+alias hp1	'ssh -X hep01.baylor.edu'
+alias hp2	'ssh -X hep02.baylor.edu'
+alias hp3	'ssh -X hep03.baylor.edu'
+alias hp4	'ssh -X hep04.baylor.edu'
+
+#  SSH aliases for srv mechines ( for Top MC )
+alias s07       'ssh -t fcdfdas07.fnal.gov " cd /cdf/local/disk02/benwu/; tcsh" '
+#  SSH aliases for srv mechines ( for CDF ntupling )
+alias s20	'ssh -l cdfprd_ntp fncdfsrv20.fnal.gov'
+alias s21	'ssh -l cdfprd_ntp fncdfsrv21.fnal.gov'
+alias s22	'ssh -l cdfprd_ntp fncdfsrv22.fnal.gov'
+alias s23	'ssh -l cdfprd_ntp fncdfsrv23.fnal.gov'
+
+#  SSH aliases for srv mechines ( for CDF ntupling )
+alias lnx4	'ssh -l cdfprd fcdflnx4.fnal.gov'
+alias s15	'ssh -l cdfprd fncdfsrv15.fnal.gov'
+alias s16	'ssh -l cdfprd fncdfsrv16.fnal.gov'
+alias s17	'ssh -l cdfprd fncdfsrv17.fnal.gov'
+alias s18	'ssh -l cdfprd fncdfsrv18.fnal.gov'
+alias s31	'ssh -l cdfprd fncdfsrv31.fnal.gov'
+alias s32	'ssh -l cdfprd fncdfsrv32.fnal.gov'
+alias s33	'ssh -l cdfprd fncdfsrv33.fnal.gov'
+alias s34	'ssh -l cdfprd fncdfsrv34.fnal.gov'
+alias s35	'ssh -l cdfprd fncdfsrv35.fnal.gov'
+alias s36	'ssh -l cdfprd fncdfsrv36.fnal.gov'
+#
+# SSH aliases for my icaf account
+alias icaf      'ssh -t fcdficaf3.fnal.gov " cd /cdf/spool/benwu/; tcsh" '
+
+########################## Setup Environment ###############################
+# Setup CDF 6.1.4 for root
+alias sr 	'source $HOME/.tcsh/setup614'
+# Setup CDF development
+alias sd 	'source $HOME/.tcsh/setupdev'
+
+if (  $SHORT_HOST =~ nbay0[1-5] ) then 
+	setenv PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/bin:${PATH};
+        if ( ! ($?LD_LIBRARY_PATH)) then 
+        setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
+	endif
+	setenv CVSEIDTOR vim72
+	alias vim 'vim72 --servername benwu';
+	alias vi  'vim72 -X';
+        alias ss  'source ./source_me'
+        # Setup Root 5.26 from Sam
+        alias rr  'source $HOME/.tcsh/mythisroot.csh'
+	#alias ctags 'ctags -R --c++-kinds=+p --fields=+iaS --extra=+q'
+#	source ~samantha/mythisroot.csh;
+	setenv CCACHE_DIR /mnt/autofs/misc/nbay05.a/benwu/BenSys/var/Ccache/ccache
+	setenv CCACHE_LOGFILE /mnt/autofs/misc/nbay05.a/benwu/BenSys/var/Ccache/ccache.log
+endif
+

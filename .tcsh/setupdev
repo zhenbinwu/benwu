@@ -1,0 +1,10 @@
+echo 'Setting up cdfsoft2 development'
+setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
+source ~cdfsoft/cdf2.cshrc
+setup cdfsoft2 development
+#echo "setting USESHLIBS to 1"
+#setenv USESHLIBS 1
+#echo 'USESHLIBS =' $USESHLIBS 
+#setenv ISRSUSED 'YES'
+#echo 'ISRSUSED  =' $ISRSUSED
+echo 'CDFsoft2 development is ready'

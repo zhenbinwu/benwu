@@ -1,0 +1,52 @@
+##############################################################################
+##
+## .tcshrc_aliases
+##
+## Author: Zhenbin (Ben) Wu ( benwu@fnal.gov)
+##
+## This is the .tcshrc_aliases file, part of it from the  TCSHRC project
+## at http://tcshrc.sourceforge.net
+##
+#############################################################################
+
+################## Normal Aliases ###########################################
+## Standard aliases - conveniencle
+#  Aliases for exploring the directory
+alias ls 	'ls --color=auto'
+alias la 	'ls --color=auto -a'
+alias ll 	'ls --color=auto -hl'
+alias du 	'du -h --max-depth=1'
+
+# To be used as in "cp /etc/inetd.conf /etc/inetd.conf.`today`"
+alias today 	"date '+%d%h%y'"
+
+# Aliases for accessing the directory
+# Shows current directory
+alias . 	'pwd'
+# Goes back one directory
+alias .. 	'cd ..'
+alias ../	'cd ../'
+# Goes back two directories
+alias ... 	'cd ../..'
+alias .../	'cd ../../'
+# Goes to previous directory
+alias -		'cd -'
+# Goes to the root directory
+alias /		'cd /'
+# Goes to the home directory
+alias ~		'cd ~'
+
+# Goes to data on nbay05
+alias data      'cd ~/data/'
+alias screen    'echo $DISPLAY >! ~/.screen/X11;""screen'
+
+## Standard aliases - for typos
+# These are the most common typos made by users, even experienced ones.
+# Send me yours.
+alias maek  'make'
+alias alais 'alias'
+alias csl   'clear'
+alias sl    'ls --color'
+	
+## For ctags 
+alias ctags 'ctags --extra=+q *'
