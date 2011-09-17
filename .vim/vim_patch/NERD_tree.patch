@@ -1,0 +1,33 @@
+2847,2848c2847,2853
+<         silent! exec splitLocation . 'vertical ' . splitSize . ' new'
+<         silent! exec "edit " . t:NERDTreeBufName
+---
+>         if exists('g:Win_NERDTree')
+>             silent! exec g:Win_NERDTree . "wincmd w"
+>             silent! exec "buffer " . t:NERDTreeBufName
+>         else
+>             silent! exec splitLocation . 'vertical ' . splitSize . ' new'
+>             silent! exec "edit " . t:NERDTreeBufName
+>         endif
+2850,2851c2855,2861
+<         silent! exec splitLocation . 'vertical ' . splitSize . ' split'
+<         silent! exec "buffer " . t:NERDTreeBufName
+---
+>         if exists('g:Win_NERDTree')
+>             silent! exec g:Win_NERDTree . "wincmd w"
+>             silent! exec "buffer " . t:NERDTreeBufName
+>         else
+>             silent! exec splitLocation . 'vertical ' . splitSize . ' split'
+>             silent! exec "buffer " . t:NERDTreeBufName
+>         endif 
+4058a4069,4078
+> " Used by winmanager {{{1
+> let g:NERDTree_title = "[NERDTree]"
+> function! NERDTree_Start()
+>     exe 'NERDTree'
+> endfunction
+> 
+> function! NERDTree_IsValid()
+>     return 1
+> endfunction
+> 

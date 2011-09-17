@@ -1,0 +1,4 @@
+99c99
+< 	let s:C_LocalTemplateFile     = $HOME.'/.vim/c-support/templates/Templates'
+---
+> 	let s:C_LocalTemplateFile     = $HOME.'/.vim/bundle/C-Support/c-support/templates/Templates'

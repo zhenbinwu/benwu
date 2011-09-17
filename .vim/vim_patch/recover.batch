@@ -1,0 +1,8 @@
+43c43,44
+< 	let p = confirm("Swap File found: Diff buffer? ", "&Yes\n&No")
+---
+> 	"let p = confirm("Swap File found: Diff buffer? ", "&Yes\n&No")
+> 	let p = confirm("Swap File found: Diff buffer? ", "&Yes\n&No\n&Delete", 2)
+48a50,51
+> 	elseif p == 3
+> 	    let v:swapchoice = 'd'
