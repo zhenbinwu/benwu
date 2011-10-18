@@ -87,7 +87,6 @@ if v:version < '702'
   call add(g:pathogen_disabled, 'XPtemplate')
   call add(g:pathogen_disabled, 'FuzzyFinder')
   call add(g:pathogen_disabled, 'L9')
-"  call add(g:pathogen_disabled, 'Cscope')
 endif
 
 call pathogen#runtime_append_all_bundles()
@@ -168,7 +167,8 @@ if has("gui_running")
  "set background=dark
 else
   set t_Co=256
-  colorscheme autumn
+  au FileType c colorscheme anotherdark
+  ""colorscheme pyte
   "set background=dark
 endif
 
@@ -249,7 +249,6 @@ map <leader>tm :tabmove
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h/..<cr>
 map <leader>d :cd %:p:h<cr>
-map <leader>dd :g/.*__func__.*__FILE__.*__LINE__.*/d<cr>
 
 """"""""""""""""""""""""""""""
 " => Statusline
@@ -307,10 +306,13 @@ imap <silent> <leader>x <ESC>xi
 " Maping Keys compile the C++ program and get into quickfix
 map <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
 map <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
-
 map <F7> <Esc>:cp<CR>
 map <F8> <Esc>:cn<CR>
 
+imap <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
+imap <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
+imap <F7> <Esc>:cp<CR>
+imap <F8> <Esc>:cn<CR>
 """""""""""""""""""""""""""""""""""""""""""
 " Buf Command
 """""""""""""""""""""""""""""""""""""""""'
@@ -340,7 +342,7 @@ map <leader>sl z=
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:netrw_winsize = 25
 
-if( match(hostname(), 'nbay') >=0 )
+if(has('gdb'))
   """""""""""""""""""""""""""""""""""""
   " GDB Setting 
   """""""""""""""""""""""""""""""""""""

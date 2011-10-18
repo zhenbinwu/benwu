@@ -18,6 +18,7 @@ let s:d_standsfor = 'edition'
 let s:e_standsfor = 'editor'
 let s:h_standsfor = 'howpublished'
 let s:i_standsfor = 'institution'
+let s:l_standsfor = 'collaboration'
 let s:k_standsfor = 'isbn'
 let s:j_standsfor = 'journal'
 let s:m_standsfor = 'month'
@@ -218,7 +219,8 @@ function BibT(type, options, prompt)
 
 		if exists('s:'.field.'_standsfor')
 			let field_name = s:{field}_standsfor
-			let retval = retval.field_name." = {<++>},\n"
+			let retval = retval.field_name." = \"<++>\",\n"
+			""let retval = retval.field_name." = {<++>},\n"
 		endif
 
 		let i = i + 1
@@ -236,14 +238,16 @@ function BibT(type, options, prompt)
 				break
 			endif
 
-			let retval = retval.field_name." = {<++>},\n"
+			let retval = retval.field_name." = \"<++>\",\n"
+			""let retval = retval.field_name." = {<++>},\n"
 
 			let i = i + 1
 		endwhile
 
 	endif
 
-	let retval = retval.'otherinfo = {<++>}'."\n"
+	let retval = retval.'otherinfo = "<++>"'."\n"
+	""let retval = retval.'otherinfo = {<++>}'."\n"
 	let retval = retval."}<++>"."\n"
 
 	return IMAP_PutTextWithMovement(retval)
