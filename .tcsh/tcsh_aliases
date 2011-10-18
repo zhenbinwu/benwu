@@ -47,6 +47,9 @@ alias maek  'make'
 alias alais 'alias'
 alias csl   'clear'
 alias sl    'ls --color'
+alias quota 'quota -s'
+alias df    'df -h'
+alias top   'top -i'
 	
 ## For ctags 
 alias ctags 'ctags --extra=+q *'
