@@ -19,6 +19,17 @@ imap <C-U> <Plug>Tex_InsertItemOnThisLine
 
 "" imap .<CR> <C-R>set b:Imap_FreezeImap=1
 
+fun! FreezeImap() "{{{
+	if IMAP_GetVal('Imap_FreezeImap', 0) == 1
+      let b:Imap_FreezeImap=0
+    else 
+      let b:Imap_FreezeImap=1
+	endif
+endfunction "}}}
+
+imap <leader>i <ESC>:call FreezeImap()<CR>a
+map <leader>i <ESC>:call FreezeImap()<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
