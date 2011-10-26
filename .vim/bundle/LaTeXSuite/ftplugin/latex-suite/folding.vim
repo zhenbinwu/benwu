@@ -365,6 +365,11 @@ function! TexFoldTextFunction()
 				" :FIXME: this does not work when \label contains a
 				" newline or a }-character
 				let label = substitute(label, '\([^}]*\)}.*$', '\1', '')
+			elseif getline(i) =~ '\\begin{frame}'
+				let label = matchstr(getline(i), '\\begin{frame}\[\zs[^\]]*')
+				let label = substitute(label, '\zs\]{.*}[^}]*$', '', '')
+				let caption = matchstr(getline(i), '\\begin{frame}\[\zs[^{]*\]{\zs.*')
+				let caption = substitute(caption , '\([^}]*\)}.*$', '\1', '')
 			end
 
 			let i = i + 1
