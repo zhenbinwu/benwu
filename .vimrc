@@ -40,7 +40,7 @@
 "     > MarksBrowser ( V0.9    2011_01_29 ) 
 "     > Recover      ( V0.11   2011_01_29 ) 
 "     > Toggle       ( V0.5    2011_02_09 )
-"     > Pathogen     ( V1.3    2011_05_30 ) 
+"     > Pathogen     ( V2.0    2011_10_26 ) 
 "     > DirDiff      ( V1.1.3  2011_05_31 )
 "     > Indent_py    ( V0.3    2011_07_24 )
 "     > Python_fn    ( V1.13   2011_07_24 )
@@ -89,7 +89,7 @@ if v:version < '702'
   call add(g:pathogen_disabled, 'L9')
 endif
 
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 filetype plugin on
 filetype indent on
 
