@@ -517,12 +517,13 @@ let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_CompileRule_dvi = 'latex -src-specials --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
 "let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_pdf='pdflatex -src-specials -interaction=nonstopmode $*' 
+let g:Tex_CompileRule_pdf='pdflatex -shell-escape -src-specials -interaction=nonstopmode $*' 
 ""let g:Tex_ViewRule_pdf='acroread'
 let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
 let g:Tex_ViewRule_dvi='xdvi'
 let g:Tex_ViewRule_ps='gv'
 let g:Tex_UseEditorSettingInDVIViewer=1
+let g:Tex_FoldedEnvironments='frame'
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Conque Term
