@@ -368,7 +368,7 @@ function! TexFoldTextFunction()
 			elseif getline(i) =~ '\\begin{frame}'
 				let label = matchstr(getline(i), '\\begin{frame}\[\zs[^\]]*')
 				let label = substitute(label, '\zs\]{.*}[^}]*$', '', '')
-				let caption = matchstr(getline(i), '\\begin{frame}\[\zs[^{]*\]{\zs.*')
+				let caption = matchstr(getline(i), '\\begin{frame}[^{]*{\zs.*')
 				let caption = substitute(caption , '\([^}]*\)}.*$', '\1', '')
 			end
 
