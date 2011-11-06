@@ -37,3 +37,88 @@ map <leader>i <ESC>:call FreezeImap()<CR>
 call IMAP(' wbb', ' $Wb\bar{b}$', 'tex')
 call IMAP(' wcc', ' $Wc\bar{c}$', 'tex')
 call IMAP(' ttbar', ' $t\bar{t}$', 'tex')
+
+"let g:Tex_DefaultTargetFormat='pdf'
+function! CheckBeamer() "{{{
+
+	" For package files without \begin and \end{document}, we might be told to
+	" search from beginning to end.
+	if a:0 < 2
+		0
+		let beginline = search('\\begin{document}', 'W')
+		let endline = search('\\end{document}', 'W')
+		0
+	else
+		let beginline = a:1
+		let endline = a:2
+	endif
+
+	" Scan the file. First open up all the folds, because the command
+	" /somepattern
+	" issued in a closed fold _always_ goes to the first match.
+    let erm = v:errmsg
+	silent! normal! ggVGzO
+    let v:errmsg = erm
+
+	" The wrap trick enables us to match \usepackage on the first line as
+	" well.
+	let wrap = 'w'
+	while search('^\s*\\documentclass\_.\{-}{\_.\+}', wrap)
+		let wrap = 'W'
+
+		if line('.') > beginline 
+			break
+		endif
+
+		let saveUnnamed = @"
+		let saveA = @a
+
+		" If there are options, then find those.
+		if getline('.') =~ '\\documentclass\[.\{-}\]'
+			let options = matchstr(getline('.'), '\\documentclass\[\zs.\{-}\ze\]')
+		elseif getline('.') =~ '\\documentclass\['
+			" Entering here means that the user has split the \usepackage
+			" across newlines. Therefore, use yank.
+            exec "normal! /{\<CR>\"ayi}"
+			let options = @a
+		else
+			let options = ''
+		endif
+
+		" The following statement puts the stuff between the { }'s of a
+		" \usepackage{stuff,foo} into @a. Do not use matchstr() and the like
+		" because we can have things split across lines and such.
+           exec "normal! f{\"ayiB\<CR>"
+
+		" now remove all whitespace from @a. We need to remove \n and \r
+		" because we can encounter stuff like
+		" \usepackage{pack1,
+		"             newpackonanotherline}
+		let @a = substitute(@a, "[ \t\n\r]", '', 'g')
+
+		" Now we have something like pack1,pack2,pack3 with possibly commas
+		" and stuff before the first package and after the last package name.
+		" Remove those.
+		let @a = substitute(@a, '\(^\W*\|\W*$\)', '', 'g')
+
+		" This gets us a string like 'pack1,pack2,pack3'
+		" TODO: This will contain duplicates if the user has duplicates.
+		"       Should we bother taking care of this?
+		let b:Tex_package_detected = @a
+
+		" Finally convert @a into something like '"pack1","pack2"'
+		let @a = substitute(@a, '^\|$', '"', 'g')
+		let @a = substitute(@a, ',', '","', 'g')
+
+		" restore @a
+		let @a = saveA
+		let @" = saveUnnamed
+	endwhile
+    
+    if b:Tex_package_detected == 'beamer'
+      let g:Tex_DefaultTargetFormat='pdf'
+    else 
+      let g:Tex_DefaultTargetFormat='dvi'
+    endif
+endfunction "}}}
+call CheckBeamer()
