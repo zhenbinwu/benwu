@@ -1,7 +1,9 @@
 if( match(hostname(), 'nbay') >=0 )
   map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -I/cdf/code/cdfsoft/products/root/v5_26_00-GCC_3_4_6/Linux+2.6/include\ -I/mnt/autofs/misc/nbay05.a/benwu/BenSys/include\ -o\ %:r.exe\ % <CR>:make<CR>:cw<CR><CR>
-else 
+elseif( match(hostname(), 'ThinkPad') >=0 )
   map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -I/home/benwu/BenSys/include\ -o\ %:r.exe\ % <CR>:make<CR>:cw<CR><CR>
+else
+  map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -o\ %:r.exe\ % <CR>:make<CR>:cw<CR><CR>
 endif
 
 
