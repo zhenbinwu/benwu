@@ -32,7 +32,7 @@
 "
 " Plugins_Included:
 "     ------> Common Plugins 
-"     > SuperTab     ( V1.6    2011_10_27 ) 
+"     > SuperTab     ( V1.7    2011_11_06 ) 
 "     > TagList      ( V4.5    2011_01_29 ) 
 "     > Calendar     ( V2.5    2011_01_29 ) 
 "     > LargeFile    ( V4      2011_01_29 ) 
@@ -68,7 +68,7 @@
 "     > Taskpaper        ( v0.6        2011_05_29 )
 "     > Cscope           ( V1          2011_01_30 )
 "     > Pydiction        ( V1.2        2011_07_24 )
-"     > Pythond_ifold    ( V2.9        2011_07_24 )
+"     > Python_ifold     ( V2.9        2011_07_24 )
 "     > NERD_Commenter   ( V2.3.0      2011_11_06 ) 
 
 
