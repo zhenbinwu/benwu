@@ -115,10 +115,12 @@ function! CheckBeamer() "{{{
 		let @" = saveUnnamed
 	endwhile
     
-    if b:Tex_package_detected == 'beamer'
-      let g:Tex_DefaultTargetFormat='pdf'
-    else 
-      let g:Tex_DefaultTargetFormat='dvi'
+    if exists("b:Tex_package_detected")
+      if b:Tex_package_detected == 'beamer'
+        let g:Tex_DefaultTargetFormat='pdf'
+      else 
+        let g:Tex_DefaultTargetFormat='dvi'
+      endif
     endif
 endfunction "}}}
 call CheckBeamer()
