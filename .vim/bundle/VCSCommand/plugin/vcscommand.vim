@@ -1331,7 +1331,7 @@ nnoremap <silent> <Plug>VCSVimDiff :VCSVimDiff<CR>
 
 let s:defaultMappings = [
 			\['a', 'VCSAdd'],
-			\['c', 'VCSCommit'],
+			\['C', 'VCSCommit'],
 			\['D', 'VCSDelete'],
 			\['d', 'VCSDiff'],
 			\['G', 'VCSClearAndGotoOriginal'],
