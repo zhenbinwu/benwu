@@ -12,17 +12,17 @@
 ################## Network Aliases ###########################################
 ## SSH aliases - Connection
 #  SSH aliases for nbay mechines
-alias nb1	'ssh -X nbay01.fnal.gov'
-alias nb2	'ssh -X nbay02.fnal.gov'
-alias nb3	'ssh -X nbay03.fnal.gov'
-alias nb4	'ssh -X nbay04.fnal.gov'
-alias nb5	'ssh -X nbay05.fnal.gov'
+alias nb1	'ssh -CX nbay01.fnal.gov'
+alias nb2	'ssh -CX nbay02.fnal.gov'
+alias nb3	'ssh -CX nbay03.fnal.gov'
+alias nb4	'ssh -CX nbay04.fnal.gov'
+alias nb5	'ssh -CX nbay05.fnal.gov'
 
 #  SSH aliases for hep mechines
-alias hp1	'ssh -X hep01.baylor.edu'
-alias hp2	'ssh -X hep02.baylor.edu'
-alias hp3	'ssh -X hep03.baylor.edu'
-alias hp4	'ssh -X hep04.baylor.edu'
+alias hp1	'ssh -CX hep01.baylor.edu'
+alias hp2	'ssh -CX hep02.baylor.edu'
+alias hp3	'ssh -CX hep03.baylor.edu'
+alias hp4	'ssh -CX hep04.baylor.edu'
 
 #  SSH aliases for srv mechines ( for Top MC )
 alias s07       'ssh -t fcdfdas07.fnal.gov " cd /cdf/local/disk02/benwu/; tcsh" '

@@ -1,9 +1,5 @@
 XPTemplate priority=lang mark=`~
 
-"XPT frac " frac{..}{..}
-"\frac{`a~}{`b~}
-"..XPT
-
 let s:f = g:XPTfuncs()
 
 XPTvar $TRUE          1
@@ -81,16 +77,16 @@ XPT block " \begin{block}{..} .. \end{block}
     `cursor~
 \end{block}
 
+XPT frac " frac{..}{..}
+\frac{`a~}{`b~}
+..XPT
+
 XPT lbl " label{..}
-\label{`cursor~}<++>
+\label{`cursor~}
 ..XPT
 
 XPT ref " ref{..}
-\ref{`cursor~}<++>
-..XPT
-
-XPT usepackage " usepackage{..}
-\usepackage{`cursor~}<++>
+\ref{`cursor~}
 ..XPT
 
 XPT integral " int_..^..
@@ -130,7 +126,7 @@ XPT slide " begin{slide} .. end{slide}
 ..XPT
 
 XPT documentclass " documentclass[..]{..}
-XSET kind=Choose(['article','book','beamer', 'report', 'letter','slides'])
+XSET kind=Choose(['article','book','report', 'letter','slides'])
 \documentclass[`size~11~pt]{`kind~}
 ..XPT
 
@@ -167,5 +163,4 @@ XPT as_ wraponly=wrapped " SEL{..}
 XPT with_ wraponly=wrapped " \\.. {SEL}
 \\`cursor~{`wrapped~}
 ..XPT
-
 

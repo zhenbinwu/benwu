@@ -32,7 +32,7 @@
 "
 " Plugins_Included:
 "     ------> Common Plugins 
-"     > SuperTab     ( V1.4    2011_01_29 ) 
+"     > SuperTab     ( V1.6    2011_10_27 ) 
 "     > TagList      ( V4.5    2011_01_29 ) 
 "     > Calendar     ( V2.5    2011_01_29 ) 
 "     > LargeFile    ( V4      2011_01_29 ) 
@@ -41,7 +41,7 @@
 "     > Recover      ( V0.11   2011_01_29 ) 
 "     > Toggle       ( V0.5    2011_02_09 )
 "     > Pathogen     ( V2.0    2011_10_26 ) 
-"     > DirDiff      ( V1.1.3  2011_05_31 )
+"     > DirDiff      ( V1.1.4  2011_10_27 )
 "     > Indent_py    ( V0.3    2011_07_24 )
 "     > Python_fn    ( V1.13   2011_07_24 )
 "     > Pydoc        ( V1.3.6  2011_07_24 )
@@ -53,10 +53,10 @@
 "     > WinManager       ( V2.3        2011_01_29 ) 
 "     > BufExplorer      ( V7.2.8      2011_01_29 ) 
 "     > Align            ( V35/41      2011_01_29 ) 
-"     > VCSCommand       ( V1.99.42    2011_01_29 ) 
-"     > XPtemplate       ( V0.4.8-1031 2011_01_29 ) 
-"     > C-Support        ( V5.13       2011_01_29 ) 
-"     > Conque Shell     ( V2.0        2011_01_29 ) 
+"     > VCSCommand       ( V1.99.45    2011_10_27 ) 
+"     > XPtemplate       ( V0.4.8-0707 2011_10_27 ) 
+"     > C-Support        ( V5.15.1     2011_10_27 ) 
+"     > Conque Shell     ( V2.2        2011_10_27 ) 
 "     > LaTeX-Suite      ( V1.5        2011_01_29 ) 
 "     > ColorSamplerPack ( V8.03       2011_01_29 ) 
 "     > OmniCppComplete  ( V0.41       2011_01_29 ) 
@@ -512,7 +512,8 @@ au FileType c let dictionary=g:C_Dictionary_File
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex' 
-let g:Tex_DefaultTargetFormat='pdf'
+let g:Tex_DefaultTargetFormat='dvi'
+"let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
 let g:Tex_CompileRule_dvi = 'latex -src-specials --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
