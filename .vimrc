@@ -55,7 +55,7 @@
 "     > Align            ( V35/41      2011_01_29 ) 
 "     > VCSCommand       ( V1.99.45    2011_10_27 ) 
 "     > XPtemplate       ( V0.4.8-0707 2011_10_27 ) 
-"     > C-Support        ( V5.15.1     2011_10_27 ) 
+"     > C-Support        ( V5.16       2011_11_06 ) 
 "     > Conque Shell     ( V2.2        2011_10_27 ) 
 "     > LaTeX-Suite      ( V1.5        2011_01_29 ) 
 "     > ColorSamplerPack ( V8.03       2011_01_29 ) 
