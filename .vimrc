@@ -204,7 +204,7 @@ set smartindent  "Smart indet
 set cindent     " C indent
 
 set wrap "Wrap lines
-set formatoptions+=nmM
+set formatoptions+=mM
 set isfname-==
 
 "map <leader>t2 :setlocal shiftwidth=2<cr>
@@ -525,7 +525,7 @@ let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
 let g:Tex_ViewRule_dvi='xdvi'
 let g:Tex_ViewRule_ps='gv'
 let g:Tex_UseEditorSettingInDVIViewer=1
-let g:Tex_FoldedEnvironments='frame'
+let g:Tex_FoldedEnvironments=',frame'
 
 """""""""""""""""""""""""""""""""""""""""""""""
 " Conque Term
