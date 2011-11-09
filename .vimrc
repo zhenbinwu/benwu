@@ -434,6 +434,8 @@ let Tlist_File_Fold_Auto_Close = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 set updatetime=2000
 set tags=tags;/
+let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels;r:refs;f:frames'
+map <silent> <F9> :TlistToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 " Calendar
