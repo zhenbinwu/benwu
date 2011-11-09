@@ -124,3 +124,16 @@ function! CheckBeamer() "{{{
     endif
 endfunction "}}}
 call CheckBeamer()
+
+" If buffer modified, update the date in the file
+" Restores cursor and window position using save_cursor variable.
+function! LastModified()
+  if &modified
+    let save_cursor = getpos(".")
+    keepjumps exe '1,' . line("$") . 's#^\(\\date{\).*\(}\)#\1' .
+          \ strftime('%b %d, %Y') . '\2#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfun
+autocmd BufWritePre *.tex call LastModified()
