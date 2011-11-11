@@ -79,9 +79,9 @@ command! -nargs=1 -complete=customlist,C_StyleList               CStyle         
 " ---------- KEY MAPPINGS : MENU ENTRIES -------------------------------------
 " ---------- comments menu  ------------------------------------------------
 "
- noremap    <buffer>  <silent>  <LocalLeader>cl         :call C_LineEndComment()<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cl    <Esc>:call C_LineEndComment()<CR>
-vnoremap    <buffer>  <silent>  <LocalLeader>cl    <Esc>:call C_MultiLineEndComments()<CR>a
+ "noremap    <buffer>  <silent>  <LocalLeader>cl         :call C_LineEndComment()<CR>
+"inoremap    <buffer>  <silent>  <LocalLeader>cl    <Esc>:call C_LineEndComment()<CR>
+"vnoremap    <buffer>  <silent>  <LocalLeader>cl    <Esc>:call C_MultiLineEndComments()<CR>a
 "
 nnoremap    <buffer>  <silent>  <LocalLeader>cj         :call C_AdjustLineEndComm()<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>cj         :call C_AdjustLineEndComm()<CR>
@@ -92,10 +92,10 @@ inoremap    <buffer>  <silent>  <LocalLeader>cj    <Esc>:call C_AdjustLineEndCom
  noremap    <buffer>  <silent>  <LocalLeader>c*         :call C_CodeToCommentC()<CR>:nohlsearch<CR>j
 vnoremap    <buffer>  <silent>  <LocalLeader>c*         :call C_CodeToCommentC()<CR>:nohlsearch<CR>j
 
- noremap    <buffer>  <silent>  <LocalLeader>cc         :call C_CodeToCommentCpp()<CR>:nohlsearch<CR>j
-vnoremap    <buffer>  <silent>  <LocalLeader>cc    <Esc>:call C_CodeToCommentCpp()<CR>:nohlsearch<CR>j
- noremap    <buffer>  <silent>  <LocalLeader>co         :call C_CommentToCode()<CR>:nohlsearch<CR>
-vnoremap    <buffer>  <silent>  <LocalLeader>co    <Esc>:call C_CommentToCode()<CR>:nohlsearch<CR>
+ "noremap    <buffer>  <silent>  <LocalLeader>cc         :call C_CodeToCommentCpp()<CR>:nohlsearch<CR>j
+"vnoremap    <buffer>  <silent>  <LocalLeader>cc    <Esc>:call C_CodeToCommentCpp()<CR>:nohlsearch<CR>j
+ "noremap    <buffer>  <silent>  <LocalLeader>co         :call C_CommentToCode()<CR>:nohlsearch<CR>
+"vnoremap    <buffer>  <silent>  <LocalLeader>co    <Esc>:call C_CommentToCode()<CR>:nohlsearch<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>cfr        :call C_InsertTemplate("comment.frame")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>cfu        :call C_InsertTemplate("comment.function")<CR>
