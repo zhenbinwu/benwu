@@ -1,10 +1,10 @@
 <+	+>	!comp!	!exe!
 %        File: !comp!expand("%:p:t")!comp!
 %     Created: !comp!strftime("%a %b %d %I:00 %p %Y ").substitute(strftime('%Z'), '\<\(\w\)\(\w*\)\>\(\W\|$\)', '\1', 'g')!comp!
-%
+% Description:  <++>
 \documentclass{beamer}
-\usetheme[pageofpages=of,% String used between the current page and the total page count.
-bullet=circle,% Use circles instead of squares for bullets.
+\usetheme[bullet=circle,% Use circles instead of squares for bullets.
+%pageofpages=of,% String used between the current page and the total page count.
 titleline=true,% Show a line below the frame title.
 alternativetitlepage=true,% Use the fancy title page.
 titlepagelogo=BaylorPhysicsLogo,% Logo for the first page.
@@ -17,10 +17,10 @@ titlepagelogo=BaylorPhysicsLogo,% Logo for the first page.
 \usetikzlibrary{shadows}
 \usetikzlibrary{shapes}
 
-\title{<++><++>}
+\title{<++>}
 \author{Zhenbin Wu}
 \institute{Baylor University}
-\date{Oct 11, 2011}
+\date{\today}
 
 % The log drawn in the upper right corner.
 \logo{\includegraphics[height=0.12\paperheight]{baylor_logo}}
@@ -33,6 +33,5 @@ titlepagelogo=BaylorPhysicsLogo,% Logo for the first page.
 \begin{frame}{<+Title+>}
 <+Content+>
 \end{frame}
-
 
 \end{document}
