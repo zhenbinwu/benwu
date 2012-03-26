@@ -77,9 +77,9 @@ XPT block " \begin{block}{..} .. \end{block}
     `cursor~
 \end{block}
 
-XPT frac " frac{..}{..}
-\frac{`a~}{`b~}
-..XPT
+"XPT frac " frac{..}{..}
+"\frac{`a~}{`b~}
+"..XPT
 
 XPT lbl " label{..}
 \label{`cursor~}
@@ -142,10 +142,10 @@ XPT beg " begin{..} .. end{..}
 
 XPT columns " \begin{columns}...
 \begin{columns}
-    \begin{column}[l]{`size~5cm~}
+    \begin{column}[l]{`size~0.62~\textwidth}
     \end{column}`...~
 
-    \begin{column}[l]{`size~5cm~}
+    \begin{column}[l]{`size~0.38~\textwidth}
     \end{column}`...~
     `cursor~
 \end{columns}
