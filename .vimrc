@@ -168,8 +168,8 @@ if has("gui_running")
  "set background=dark
 else
   set t_Co=256
-  au FileType c colorscheme anotherdark
-  ""colorscheme pyte
+  "au FileType c colorscheme anotherdark
+  colorscheme wombat256
   "set background=dark
 endif
 
