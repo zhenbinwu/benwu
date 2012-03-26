@@ -67,7 +67,7 @@ alias st  'source ./setupSingleTopNNRoot5.csh '
 
 if (  $SHORT_HOST =~ nbay0[1-5] ) then 
 	setenv PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/bin:${PATH};
-        if ( ! ($?LD_LIBRARY_PATH)) then 
+    if ( ! ($?LD_LIBRARY_PATH)) then 
         setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
 	endif
 	setenv CVSEIDTOR vim72
@@ -81,3 +81,11 @@ if (  $SHORT_HOST =~ nbay0[1-5] ) then
 	setenv CCACHE_LOGFILE /mnt/autofs/misc/nbay05.a/benwu/BenSys/var/Ccache/ccache.log
 endif
 
+if (  $SHORT_HOST =~ ThinkPad ) then 
+	setenv PATH $HOME/BenSys/bin:${PATH};
+    if ( ! ($?LD_LIBRARY_PATH)) then 
+        setenv LD_LIBRARY_PATH $HOME/BenSys/lib/
+	endif
+	setenv CVSEIDTOR vim
+    alias rr  'source $HOME/.tcsh/mythisroot.csh'
+endif
