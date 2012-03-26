@@ -25,6 +25,8 @@ if ($LOGNAME == "benwu") then
 	#        special   for cdf interactive shells
 	source $HOME/.tcsh/tcsh_cdf
 
+	#        special   for root
+	source $HOME/.tcsh/mythisroot.csh
 endif
 
 
