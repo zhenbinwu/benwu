@@ -11,8 +11,8 @@
 #set ARGS=($_)
 #set THIS="`dirname ${ARGS[2]}`"
 #setenv ROOTSYS "`(cd ${THIS}/..;pwd)`"
-setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
-setenv ROOTSYS "/data/nbay04/c/samantha/root/"
+setenv LD_LIBRARY_PATH  $HOME/BenSys/lib/root/
+setenv ROOTSYS "${HOME}/BenSys/root/"
 
 set path = ($ROOTSYS/bin $path)
 
