@@ -290,6 +290,12 @@ XPT outcopy hint=Using\ an\ iterator\ to\ outout\ to\ stdout
 std::copy(`list^.begin(), `list^.end(), std::ostream_iterator<`std::string^>(std::cout, \"\\n\"));
 ..XPT
 
+XPT ft wrap " for (iterator = begin; !=;++)
+for(`type^::iterator `i^=`class^.begin(); `i^!=`class^.end(); `i^++)
+{
+    `cursor^
+}
+
 XPT boosth hint=Boost\ header\ file\ inclusion
 // The boost libraries don't compile well at warning level 4.
 // No big surprise here... boost pushes the limits of compilers
