@@ -17,7 +17,7 @@ XPTinclude
 " ================================= Snippets ===================================
 
 XPT graphics wrap=content hint=[color]...[/color]
-\includegraphics[height=`0.3^\textheight, keepaspectratio]{`content^}<++>
+\includegraphics[width=`0.9^\textwidth, keepaspectratio]{`content^}<++>
 
 
 XPT tikzpicture " \begin{tikzpicture}{..} .. \end{tikzpicture}
