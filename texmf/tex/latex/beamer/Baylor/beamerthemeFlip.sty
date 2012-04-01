@@ -1,0 +1,84 @@
+% Main style file for the BEAMER FLIP THEME; version 1.0
+% Copyright 2010 by Flip Tanedo
+% This file may be distributed and/or modified
+% 	1. under the LaTeX Project Public License and/or
+% 	2. under the GNU Public License.
+%
+% Comments: This is still a work in progress.
+% A good way to present: http://www.cs.hmc.edu/~oneill/freesoftware/pdftokeynote.html
+
+\usepackage{beamerthemesplit}
+
+
+
+\mode<presentation>
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemeFlip}}
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemeFlip}}
+
+\DeclareOptionBeamer{bigpagenumber}{\PassOptionsToPackage{bigpagenumber}{beamerouterthemeFlip}}
+\DeclareOptionBeamer{topline}[true]{\PassOptionsToPackage{topline=#1}{beamerouterthemeFlip}}
+\DeclareOptionBeamer{shadow}[true]{\PassOptionsToPackage{shadow=#1}{beamerinnerthemeFlip}}
+
+\newif\ifbeamer@Flip@dark		% Also defined in beamercolortheme, is this problematic?
+\beamer@Flip@darkfalse			% I wonder if these are local variables.
+\DeclareOptionBeamer{dark}{
+	\beamer@Flip@darktrue
+	\PassOptionsToPackage{dark}{beamercolorthemeFlip}
+	}
+
+
+\DeclareOptionBeamer{wallpaper}{\def\beamer@Flip@wallpaper{#1}}
+\ExecuteOptionsBeamer{wallpaper} % Default value is empty
+%% This construction is a kludge, it doesn't work quite well when the option is null
+
+
+\ProcessOptionsBeamer
+
+\useinnertheme{Flip}
+\useoutertheme{Flip}
+\usecolortheme{Flip}
+
+
+% BACKGROUND
+% \usebackgroundtemplate{
+% \includegraphics[width=\paperwidth,height=\paperheight]{white_upperleft.png}
+% } % Note, BG image is more naturally placed in Sidebar Right
+%
+% \setbeamercolor{background canvas}{bg=blue} % Just an example
+
+% \ifbeamer@Flip@dark
+% % Original Lankton Keynote motif
+% % Colors defined in beamercolorthemeFlip
+% \setbeamertemplate{background canvas}[vertical shading][bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+% \else
+% 	\beamertemplateshadingbackground{blue!5}{yellow!7}
+% 	% Beamer will change the normal text structure background color based on this command
+% \fi	
+
+
+\ifbeamer@Flip@dark
+	\setbeamertemplate{background canvas}[vertical shading][bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+\else
+	\beamertemplateshadingbackground{blue!5}{yellow!7}
+\fi
+
+\if \beamer@Flip@wallpaper\@empty
+\else%
+	\usebackgroundtemplate{
+	\includegraphics[width=\paperwidth,
+	height=\paperheight]{\beamer@Flip@wallpaper}
+	}
+\fi
+%% Again: this construction is really a kludge. It seems to misbehave if I put anything
+%% in the "if" section. I don't know how I feel about this.
+
+
+
+% \setbeamertemplate{background canvas}[vertical shading][bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+
+
+%% Turn off PDF navigation symbols... who uses these, anyway?
+\setbeamertemplate{navigation symbols}{}
+
+\mode<all>
+\endinput
