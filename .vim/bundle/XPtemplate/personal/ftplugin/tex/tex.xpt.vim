@@ -32,5 +32,9 @@ XSET kind=Choose(['article','book','report', 'letter','slides'])
 
 
 XPT usepackage " usepackage{..}
-\usepackage{`cursor~}<++>
+\usepackage{`cursor^}<++>
+..XPT
+
+XPT ref " ref{..}
+\ref{`cursor^}<++>
 ..XPT

@@ -101,4 +101,4 @@ map <buffer> <silent> <Leader>td <Plug>ToggleDone
 map <buffer> <silent> <Leader>tx <Plug>ToggleCancelled
 map <buffer> <silent> <Leader>tc <Plug>ShowContext
 map <buffer> <silent> <Leader>ta <Plug>ShowAll
-map <buffer> <silent> <Leader>tp <Plug>FoldAllProjects
+map <buffer> <silent> <Leader>tf <Plug>FoldAllProjects
