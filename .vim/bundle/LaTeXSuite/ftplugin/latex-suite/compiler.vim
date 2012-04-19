@@ -160,6 +160,7 @@ function! Tex_RunLaTeX()
 
 	let dir = expand("%:p:h").'/'
 	let s:origdir = fnameescape(getcwd())
+	let g:Tex_Origdir = fnameescape(getcwd())
 	call Tex_CD(expand("%:p:h"))
 
 	let initTarget = s:target
@@ -210,7 +211,7 @@ function! Tex_RunLaTeX()
 	let s:origwinnum = winnr()
 	call Tex_SetupErrorWindow()
 
-	exe 'cd '.s:origdir
+	exe 'cd '.g:Tex_Origdir
 	call Tex_Debug("-Tex_RunLaTeX", "comp")
 endfunction
 

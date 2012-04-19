@@ -10,7 +10,7 @@ XPTinclude
 
 
 XPT #inc		" include <>
-#include <`^.h>
+#include <`^>
 
 
 XPT #include_user	" include ""

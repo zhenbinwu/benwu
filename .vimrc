@@ -69,6 +69,7 @@
 "     > Cscope           ( V1          2011_01_30 )
 "     > Pydiction        ( V1.2        2011_07_24 )
 "     > Python_ifold     ( V2.9        2011_07_24 )
+"     > Inccomplete      ( V1.6.29     2012_04_18 )
 "     > NERD_Commenter   ( V2.3.0      2011_11_06 ) 
 
 
@@ -83,7 +84,6 @@ set nocompatible
 set history=5000
 
 let g:pathogen_disabled = []
-""if( match(hostname(), 'nbay') >=0 )
 if v:version < '702'
   call add(g:pathogen_disabled, 'XPtemplate')
   call add(g:pathogen_disabled, 'FuzzyFinder')
@@ -110,7 +110,7 @@ imap <leader>w :w!<cr>
 map <leader>e :e! ~/.vimrc<cr>
 
 " Fast reloading of the ~/.vimrc
-map <leader>ss :w <CR> :source ~/.vimrc<CR>
+map <leader>ss :w <CR> :source %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -165,19 +165,17 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
   colorscheme peaksea
- "set background=dark
 else
-  set t_Co=256
-  "au FileType c colorscheme anotherdark
-  colorscheme wombat256
-  "set background=dark
+  if &term == 'linux'
+    colorscheme anotherdark
+  else
+    set t_Co=256
+    colorscheme wombat256
+  endif
 endif
 
-set encoding=utf8
-try
-    lang en_US
-catch
-endtry
+let &termencoding = &encoding
+set encoding=utf-8
 
 set ffs=unix,dos,mac "Default file types
 
@@ -522,9 +520,16 @@ let g:Tex_CompileRule_dvi = 'latex -src-specials --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
 "let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
 let g:Tex_CompileRule_pdf='pdflatex -shell-escape -src-specials -interaction=nonstopmode $*' 
-""let g:Tex_ViewRule_pdf='acroread'
-let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
-let g:Tex_ViewRule_dvi='xdvi'
+if &term == 'linux'
+  """ For framebuffer only
+  let g:Tex_ViewRule_pdf='fbgs'
+  let g:Tex_ViewRule_dvi='dvifb'
+  let g:Tex_ExecuteUNIXViewerInForeground = 1 "For dvifb 
+else
+  "let g:Tex_ViewRule_pdf='acroread'
+  let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
+  let g:Tex_ViewRule_dvi='xdvi'
+endif
 let g:Tex_ViewRule_ps='gv'
 let g:Tex_UseEditorSettingInDVIViewer=1
 let g:Tex_FoldedEnvironments=',frame'
@@ -585,7 +590,7 @@ let g:pyflakes_use_quickfix = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pep8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pep8_map='<F5>'
+let g:pep8_map='<F4>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Elog
@@ -610,8 +615,13 @@ let g:DirDiffExcludes = "CVS, objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,
 let g:DirDiffIgnore = "Id:,Revision:,Date:"
 let g:DirDiffWindowSize = 14
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pythoncomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd filetype python set omnifunc=pythoncomplete#Complete
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Inccomplete
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:inccomplete_addclosebracket='no'
+let g:inccomplete_appendslash = 1

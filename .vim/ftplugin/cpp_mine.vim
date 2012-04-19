@@ -3,7 +3,7 @@ if( match(hostname(), 'nbay') >=0 )
 elseif( match(hostname(), 'ThinkPad') >=0 )
   map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -I/home/benwu/BenSys/include/root\ -I/home/benwu/BenSys/include\ -o\ %:r.exe\ % <CR>:make<CR>:cw<CR><CR>
 else
-  map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -o\ %:r.exe\ % <CR>:make<CR>:cw<CR><CR>
+  map <F4> <Esc>:w!<CR>:set makeprg=g++\ -g\ -Wall\ -o\ %:r\ % <CR>:make<CR>:cw<CR><CR>
 endif
 
 
@@ -68,3 +68,4 @@ fun! Showexe() "{{{
 endfunction "}}}
 
 set tags+=~/.vim/ftplugin/cpp_tags
+set tags+=~/.vim/ftplugin/boost_tags
