@@ -157,7 +157,7 @@ syntax enable "Enable syntax hl
 "--?>   set guifont=Monospace\ 10
 set shell=/bin/tcsh
 
-"set t_Co=256
+set t_Co=256
 ""colorscheme leo
 
 
@@ -252,8 +252,9 @@ map <leader>d :cd %:p:h<cr>
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
-" Always hide the statusline
+" Always show the statusline
 set laststatus=2
+set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w%q\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -625,3 +626,4 @@ autocmd filetype python set omnifunc=pythoncomplete#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:inccomplete_addclosebracket='no'
 let g:inccomplete_appendslash = 1
+
