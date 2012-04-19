@@ -38,7 +38,7 @@ call IMAP(' wbb', ' $Wb\bar{b}$', 'tex')
 call IMAP(' wcc', ' $Wc\bar{c}$', 'tex')
 call IMAP(' ttbar', ' $t\bar{t}$', 'tex')
 
-"let g:Tex_DefaultTargetFormat='pdf'
+" Detect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
 function! CheckBeamer() "{{{
 
 	" For package files without \begin and \end{document}, we might be told to
@@ -127,7 +127,7 @@ call CheckBeamer()
 
 " If buffer modified, update the date in the file
 " Restores cursor and window position using save_cursor variable.
-function! LastModified()
+function! LastModified() "{{{
   if &modified
     let save_cursor = getpos(".")
     keepjumps exe '1,' . line("$") . 's#^\(\\date{\).*\(}\)#\1' .
@@ -135,5 +135,5 @@ function! LastModified()
     call histdel('search', -1)
     call setpos('.', save_cursor)
   endif
-endfun
+endfun "}}}
 autocmd BufWritePre *.tex call LastModified()

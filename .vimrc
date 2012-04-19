@@ -157,8 +157,6 @@ syntax enable "Enable syntax hl
 "--?>   set guifont=Monospace\ 10
 set shell=/bin/tcsh
 
-set t_Co=256
-""colorscheme leo
 
 
 if has("gui_running")
