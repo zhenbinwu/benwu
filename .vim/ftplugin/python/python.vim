@@ -40,5 +40,5 @@ EOF
 
 
 
-map <C-D> :w<Esc>mwG:!python %<cr>
-imap <C-D> :w<Esc>mwG:!python %<cr>
+map <F5> :w<Esc>mwG:!python %<cr>
+imap <F5> :w<Esc>mwG:!python %<cr>

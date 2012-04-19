@@ -3516,7 +3516,7 @@ let	s:Cpp_CStandardLibsClean	= C_CleanDirNameList( s:Cpp_CStandardLibs )
 
 function! C_IncludesInsert ( arg, List )
 	if index( a:List, a:arg ) >= 0
-		exe 'normal a#include <'.a:arg.'>'
+		exe 'normal o#include <'.a:arg.'>'
 	else
 		echomsg "entry '".a:arg."' does not exist"
 	endif
