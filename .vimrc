@@ -584,6 +584,8 @@ let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 " => Pyflakes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:pyflakes_use_quickfix = 0
+let g:pyflakes_autostart = 0
+map <F3> :PyflakesToggle<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
