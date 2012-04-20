@@ -2743,9 +2743,9 @@ if g:NERDCreateDefaultMappings
     call s:CreateMaps('<plug>NERDCommenterToEOL',      '<leader>c$')
     call s:CreateMaps('<plug>NERDCommenterAppend',     '<leader>cl')
 
-    if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
-        nmap <leader>ca <plug>NERDCommenterAltDelims
-    endif
+    "if !hasmapto('<plug>NERDCommenterAltDelims', 'n')
+        "nmap <leader>ca <plug>NERDCommenterAltDelims
+    "endif
 endif
 
 
