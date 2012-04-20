@@ -15,7 +15,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Display tab number in tabline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
-function MyTabLine()
+function! MyTabLine()
   let s = ''
   let t = tabpagenr()
   let i = 1
@@ -59,12 +59,11 @@ set tabline=%!MyTabLine()
 " Map for switching between the last two tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 au TabLeave * :let g:last_tab=tabpagenr()
-fu! <sid>LastTab()
+function! <sid>LastTab()
   if !exists("g:last_tab")
     return
   endif
   exe "tabn" g:last_tab
 endfu
 
-nmap <silent> <C-@> :call <sid>LastTab()<CR>
-
+nmap <silent> <leader>tt :call <sid>LastTab()<CR>
