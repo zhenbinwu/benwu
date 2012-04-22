@@ -396,7 +396,7 @@ map <silent> <F9> :TlistToggle<CR>
 " Calendar
 """"""""""""""""""""""""""""""""""""""""""""""
 let g:calendar_diary = "~/.daily_note"
-nmap <unique> <Leader>ch <Plug>CalendarH
+nmap <silent> <Leader>cah <Plug>CalendarH
 
 """"""""""""""""""""""""""""""""""""""""
 " WinManager Setting
@@ -513,8 +513,14 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
+let g:fuf_modesDisable = []
+let g:fuf_mrufile_maxItem = 400
+let g:fuf_mrucmd_maxItem = 400
 nmap fff <ESC>:FufFile<CR>
 nmap ffb <ESC>:FufBuffer<CR>
+nmap ffd <ESC>:FufDir<CR>
+nmap ffm <ESC>:FufMruFile<CR>
+nmap ffl <ESC>:FufLine<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
