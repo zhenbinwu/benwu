@@ -30,13 +30,7 @@ if ($LOGNAME == "benwu") then
 endif
 
 
-#Definition of the CVS
-setenv CVSROOT :pserver:anonymous@cdfcvs.fnal.gov:/cdf/code/cdfcvs/run2
-setenv CVS_RSH ssh
-setenv CVSEDITOR "vi"
-
-
-#set -f path = ( $path /sbin )
-#set -f path = ( $path /usr/sbin )
-#set -l path = ( $path /usr/local/sbin )
-
+if (-f ~/.tcsh/tcsh_color) then
+   set color
+   setenv LS_COLORS `awk '! /^#|^$|\t/ {printf $1"="$2":"}' ~/.tcsh/tcsh_color`
+endif

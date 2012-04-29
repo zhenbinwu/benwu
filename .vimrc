@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: Zhenbin Wu <benwu@fnal.gov>
 " 
 " Annoucement: In this vimrc, I got lots of ideas from different places. 
@@ -164,7 +164,7 @@ if has("gui_running")
   set t_Co=256
   colorscheme peaksea
 else
-  if &term == 'linux'
+  if &term == 'linux' || &term == 'jfbterm'
     colorscheme anotherdark
   else
     set t_Co=256
@@ -203,10 +203,6 @@ set wrap "Wrap lines
 set formatoptions+=mM
 set isfname-==
 
-"map <leader>t2 :setlocal shiftwidth=2<cr>
-"map <leader>t4 :setlocal shiftwidth=4<cr>
-"map <leader>t8 :setlocal shiftwidth=4<cr>
-
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
@@ -226,7 +222,6 @@ nnoremap <expr>   gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 set foldmethod=marker
 " Map space to / (search) and c-space to ? (backgwards search)
 map <tab> :tabnext <ESC>
-map <S-tab> :tabprevious <ESC>
 map <silent> <leader><cr> :noh<cr>
 map <silent> <leader>fo :set foldmethod=syntax<CR>
   		
@@ -352,6 +347,12 @@ if(has('gdb'))
   map <silent> <leader>gdb :run macros/gdb_mappings.vim<CR>
   let g:vimgdb_debug_file=""
 endif
+
+""""""""""""""""""""""""""""""""""""""""""""""
+"" Map for dict with the word under cursor
+""""""""""""""""""""""""""""""""""""""""""""""
+noremap <leader>l mayiw`a:exe "!dict " . @" . "" <CR>
+
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "   								+
@@ -571,8 +572,6 @@ com! -nargs=? Elog :tabedit http://hep05.baylor.edu/elog/benwu/<args>
 let g:task_paper_date_format = "%Y-%m-%d  %H:%M:%S"
 com! -nargs=0 Task :tabedit ~/.daily_note/${USER}.taskpaper 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -590,4 +589,14 @@ autocmd filetype python set omnifunc=pythoncomplete#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:inccomplete_addclosebracket='no'
 let g:inccomplete_appendslash = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => EasyMotion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCEGHIMNOPQRTUVWXYZ1234567890SLDFJK'
+let g:EasyMotion_mapping_w = '<leader>w'
+let g:EasyMotion_mapping_W = '<leader>W'
+let g:EasyMotion_mapping_b = '<leader>b'
+let g:EasyMotion_mapping_B = '<leader>B'
+
 
