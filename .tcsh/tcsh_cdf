@@ -23,6 +23,7 @@ alias hp1	'ssh -CX hep01.baylor.edu'
 alias hp2	'ssh -CX hep02.baylor.edu'
 alias hp3	'ssh -CX hep03.baylor.edu'
 alias hp4	'ssh -CX hep04.baylor.edu'
+alias hp5	'ssh -CX hep05.baylor.edu'
 
 #  SSH aliases for srv mechines ( for Top MC )
 alias s07       'ssh -t fcdfdas07.fnal.gov " cd /cdf/local/disk02/benwu/; tcsh" '
@@ -88,4 +89,19 @@ if (  $SHORT_HOST =~ ThinkPad ) then
 	endif
 	setenv CVSEIDTOR vim
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
+endif
+if (  $SHORT_HOST =~ hep0[1-5] ) then 
+	setenv PATH /home/benwu/BenSys/bin:${PATH};
+    if ( ! ($?LD_LIBRARY_PATH)) then 
+        setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib/
+	endif
+	setenv CVSEIDTOR vim73
+	alias vim 'vim73 --servername benwu --remote ';
+	alias vi  'vim73 -X ';
+    # Setup Root 5.26 from Sam
+#alias rr  'source $HOME/.tcsh/mythisroot.csh'
+	#alias ctags 'ctags -R --c++-kinds=+p --fields=+iaS --extra=+q'
+#	source ~samantha/mythisroot.csh;
+#	setenv CCACHE_DIR /mnt/autofs/misc/nbay05.a/benwu/BenSys/var/Ccache/ccache
+#	setenv CCACHE_LOGFILE /mnt/autofs/misc/nbay05.a/benwu/BenSys/var/Ccache/ccache.log
 endif
