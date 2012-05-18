@@ -31,12 +31,6 @@ imap <leader>i <ESC>:call FreezeImap()<CR>a
 map <leader>i <ESC>:call FreezeImap()<CR>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Some IMAP for HEP 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call IMAP(' wbb', ' $Wb\bar{b}$', 'tex')
-call IMAP(' wcc', ' $Wc\bar{c}$', 'tex')
-call IMAP(' ttbar', ' $t\bar{t}$', 'tex')
 
 " Detect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
 function! CheckBeamer() "{{{
@@ -137,3 +131,109 @@ function! LastModified() "{{{
   endif
 endfun "}}}
 autocmd BufWritePre *.tex call LastModified()
+
+" Read in all the included file or package used, find out all the
+" def and newcommand. Map the input 
+" 
+function! GetCustomLatexCommands() "{{{
+
+python << EOF
+import os
+import os.path
+import re
+
+
+def getCMD(line):
+    commands = []
+    tmp = re.search(r"\\def\\([^\{].*?)\s*{(.*?)}", line)
+    if tmp != None:
+        cmd = tmp.group(1)
+        argc = tmp.group(2)
+        commands.append((cmd, argc))
+    tmp = re.search(r"\\newcommand{\\(.*?)}\s*{(.*?)}", line)
+    if tmp != None:
+        cmd = tmp.group(1)
+        argc = tmp.group(2)
+        commands.append((cmd, argc))
+    return commands
+
+def readFile(p):
+    """Reads a file and extracts custom commands"""
+    f = open(p)
+    commands = []
+    for _line in f:
+        line = _line.strip()
+        # search for included files
+        tmp = re.search(r"(input|include){(.*)}", line)
+        if tmp != None:
+            path = tmp.group(2)
+            newpath = os.path.join(os.path.dirname(p), path)
+            if os.path.exists(newpath) and os.path.isfile(newpath):
+                commands.extend(readFile(newpath))
+            elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
+                commands.extend(readFile(newpath+".tex"))
+        tmpCMD = getCMD(line)
+        if tmpCMD != []:
+            commands.append(tmpCMD)
+
+        # search for usepackage 
+        tmp = re.search(r"(usepackage){(.*)}", line)
+        if tmp != None:
+            path = tmp.group(2)
+            newpath = os.path.join(os.path.dirname(p), path)
+            if os.path.exists(newpath) and os.path.isfile(newpath):
+                commands.extend(readFile(newpath))
+            elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
+                commands.extend(readFile(newpath+".tex"))
+            elif os.path.exists(newpath+".sty") and os.path.isfile(newpath+".sty"):
+                commands.extend(readFile(newpath+".sty"))
+        tmpCMD = getCMD(line)
+        if tmpCMD != []:
+            commands.append(tmpCMD)
+
+    return commands
+
+def getMain(path, startingpoint = None):
+    """Goes folders upwards until it finds a *.latexmain file"""
+    if startingpoint==None:
+        startingpoint = path
+    files = []
+    if os.path.isdir(path):
+        files = os.listdir(path)
+    files = [os.path.join(path, s) for s in files if s.split(".")[-1] == "latexmain"]
+    if len(files) >= 1:
+        return os.path.splitext(files[0])[0]
+    if os.path.dirname(path) != path:
+        return getMain(os.path.dirname(path), startingpoint)
+    return startingpoint
+
+def GetCustomLatexCommands():
+    """Reads all custom commands and adds them to givm"""
+    import vim
+    cmds = readFile(getMain(vim.current.buffer.name))
+    for cmd in cmds:
+        todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0][0], cmd[0][0])
+        vim.command(todo)
+        #vim.command("inoreabbrev %s \%s"%(cmd[0][0],cmd[0][0]))
+        #vim.command('let g:Tex_Com_%s="\\\\%s%s <++>"'%(cmd, cmd, "{<++>}"*argc))
+
+GetCustomLatexCommands()
+
+EOF
+endfunction "}}}
+
+autocmd BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Some IMAP for HEP 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Abbreviate for my thesis
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+iabbrev st   single top
+iabbrev tchan  $t$-channel
+iabbrev schan  $s$-channel
+iabbrev wtchan $Wt$-channel
+" abbreviate for def defined in Preamble.sty
+" Definitions
