@@ -143,6 +143,8 @@ import re
 
 def getCMD(line):
     commands = []
+    if len(line) == 0 or line[0] == '%':
+        return commands
     tmp = re.search(r"\\def\\([^\{].*?)\s*{(.*?)}", line)
     if tmp != None:
         cmd = tmp.group(1)
