@@ -30,8 +30,6 @@ endfunction "}}}
 imap <leader>i <ESC>:call FreezeImap()<CR>a
 map <leader>i <ESC>:call FreezeImap()<CR>
 
-
-
 " Detect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
 function! CheckBeamer() "{{{
 
@@ -163,6 +161,13 @@ def readFile(p):
     commands = []
     for _line in f:
         line = _line.strip()
+        if re.search(r"\\begin{document}", line) != None:
+            break;
+
+        tmpCMD = getCMD(line)
+        if tmpCMD != []:
+            commands.append(tmpCMD)
+
         # search for included files
         tmp = re.search(r"(input|include){(.*)}", line)
         if tmp != None:
@@ -172,9 +177,6 @@ def readFile(p):
                 commands.extend(readFile(newpath))
             elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
                 commands.extend(readFile(newpath+".tex"))
-        tmpCMD = getCMD(line)
-        if tmpCMD != []:
-            commands.append(tmpCMD)
 
         # search for usepackage 
         tmp = re.search(r"(usepackage){(.*)}", line)
@@ -187,9 +189,6 @@ def readFile(p):
                 commands.extend(readFile(newpath+".tex"))
             elif os.path.exists(newpath+".sty") and os.path.isfile(newpath+".sty"):
                 commands.extend(readFile(newpath+".sty"))
-        tmpCMD = getCMD(line)
-        if tmpCMD != []:
-            commands.append(tmpCMD)
 
     return commands
 
@@ -222,7 +221,7 @@ GetCustomLatexCommands()
 EOF
 endfunction "}}}
 
-autocmd BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
+autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
