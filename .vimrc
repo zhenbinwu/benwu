@@ -3,7 +3,7 @@
 " 
 " Annoucement: In this vimrc, I got lots of ideas from different places. 
 " 	       Great thanks to all the sources!!
-" 	1. Standard vimrc_example:
+" 	    1. Standard vimrc_example:
 "          Modify for the vimrc_example.vim of vim71
 "       2. Customizing common vim from easwy
 "          URL: http://easwy.com/blog/
@@ -47,6 +47,7 @@
 "     > Pydoc        ( V1.3.6  2011_07_24 )
 "     > Pep8         ( V0.3.1  2011_07_24 ) 
 "     > Pythoncomplete(V0.9    2011_09_01 )
+"     > SrollColors  ( V0719   2012_05_09 )
 "
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
@@ -71,6 +72,8 @@
 "     > Python_ifold     ( V2.9        2011_07_24 )
 "     > Inccomplete      ( V1.6.29     2012_04_18 )
 "     > NERD_Commenter   ( V2.3.0      2011_11_06 ) 
+"     > Repeat           ( V1.0        2012_05_09 ) 
+"     > Surrond          ( V1.90       2012_05_09 ) 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,11 +103,6 @@ set autoread
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
-
-	
-" Fast saving
-imap <leader>w :w!<cr>
-
 
 " Fast editing of the .vimrc
 map <leader>e :e! ~/.vimrc<cr>
@@ -161,14 +159,18 @@ set shell=/bin/tcsh
 
 if has("gui_running")
   set guioptions-=T
+  set guioptions-=m
+  set guioptions-=r
+  set nocursorline
   set t_Co=256
-  colorscheme peaksea
+  colorscheme wombat256
 else
   if &term == 'linux' || &term == 'jfbterm'
     colorscheme anotherdark
   else
     set t_Co=256
     colorscheme wombat256
+    "colorscheme zmrok
   endif
 endif
 
@@ -243,6 +245,7 @@ map <leader>tm :tabmove
 map <leader>cd :cd %:p:h/..<cr>
 map <leader>d :cd %:p:h<cr>
 
+map <F10> :redraw!<cr>
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
@@ -599,4 +602,12 @@ let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
 let g:EasyMotion_mapping_B = '<leader>B'
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YankRing
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:yankring_history_dir = '$HOME/.vim/'
+let g:yankring_history_file = '.vim_yankring_history_file'
+let g:yankring_min_element_length = 2
+let g:yankring_paste_using_g=0
+let g:yankring_default_menu_mode = 0
+nnoremap <silent> <leader>y :YRShow<CR>
