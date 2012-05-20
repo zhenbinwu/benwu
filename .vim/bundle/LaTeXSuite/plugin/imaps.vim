@@ -179,9 +179,10 @@ function! IMAP(lhs, rhs, ft, ...)
 	endif
 
 	" map only the last character of the left-hand side.
-	if lastLHSChar == ' '
-		let lastLHSChar = '<space>'
-	end
+	" This will cause problems for iabbrev, remove the mapping of space
+	"if lastLHSChar == ' '
+		"let lastLHSChar = '<space>'
+	"end
 	exe 'inoremap <silent>'
 				\ escape(lastLHSChar, '|')
 				\ '<C-r>=<SID>LookupCharacter("' .
