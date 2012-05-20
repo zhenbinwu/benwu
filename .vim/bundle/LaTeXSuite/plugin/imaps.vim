@@ -462,7 +462,7 @@ endfunction
 " etc.
 
 " jumping forward and back in insert mode.
-imap <silent> <Plug>IMAP_JumpForward    <c-r>=IMAP_Jumpfunc('', 0)<CR><ESC>:nohl<CR>a
+imap <silent> <Plug>IMAP_JumpForward    <c-r>=IMAP_Jumpfunc('', 0)<CR>
 imap <silent> <Plug>IMAP_JumpBack       <c-r>=IMAP_Jumpfunc('b', 0)<CR>
 
 " jumping in normal mode
