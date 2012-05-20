@@ -168,9 +168,9 @@ else
   if &term == 'linux' || &term == 'jfbterm'
     colorscheme anotherdark
   else
-    set t_Co=256
-    colorscheme wombat256
-    "colorscheme zmrok
+    "set t_Co=256
+    "colorscheme wombat256
+    colorscheme zmrok
   endif
 endif
 
@@ -601,6 +601,8 @@ let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
 let g:EasyMotion_mapping_B = '<leader>B'
+let g:EasyMotion_mapping_f = '<leader>f'
+let g:EasyMotion_mapping_F = '<leader>F'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing
