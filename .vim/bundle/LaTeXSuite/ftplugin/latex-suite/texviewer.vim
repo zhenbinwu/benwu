@@ -887,6 +887,7 @@ function! Tex_StartCiteCompletion()
 
     bot split __OUTLINE__
 	exec Tex_GetVarValue('Tex_OutlineWindowHeight', 15).' wincmd _'
+	setlocal cursorline
 
 	exec 'python Tex_BibFile = bibtools.BibFile("""'.bibfiles.'""")'
 	exec 'python Tex_BibFile.addfilter("key ^'.s:prefix.'")'
