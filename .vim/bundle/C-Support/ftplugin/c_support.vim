@@ -3625,7 +3625,7 @@ if has("autocmd")
 		"-------------------------------------------------------------------------------
 		" template styles are the default settings
 		"-------------------------------------------------------------------------------
-		autocmd BufNewFile  * if &filetype =~ '\(c\|cpp\)' && expand("%:e") !~ 'ii\?' |
+		autocmd VimEnter,BufNewFile  * if &filetype =~ '\(c\|cpp\)' && expand("%:e") !~ 'ii\?' |
 					\     call C_InsertTemplateWrapper() | endif
 		"
 	else
