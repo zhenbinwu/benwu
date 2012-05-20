@@ -145,12 +145,12 @@ def getCMD(line):
     commands = []
     if len(line) == 0 or line[0] == '%':
         return commands
-    tmp = re.search(r"\\def\\([^\{].*?)\s*{(.*?)}", line)
+    tmp = re.search(r"^\\def\\([^\{].*?)\s*{(.*?)}", line)
     if tmp != None:
         cmd = tmp.group(1)
         argc = tmp.group(2)
         commands.append((cmd, argc))
-    tmp = re.search(r"\\newcommand{\\(.*?)}\s*{(.*?)}", line)
+    tmp = re.search(r"^\\newcommand{\\(.*?)}\s*{(.*?)}", line)
     if tmp != None:
         cmd = tmp.group(1)
         argc = tmp.group(2)
@@ -180,17 +180,17 @@ def readFile(p):
             elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
                 commands.extend(readFile(newpath+".tex"))
 
-        # search for usepackage 
-        tmp = re.search(r"(usepackage){(.*)}", line)
-        if tmp != None:
-            path = tmp.group(2)
-            newpath = os.path.join(os.path.dirname(p), path)
-            if os.path.exists(newpath) and os.path.isfile(newpath):
-                commands.extend(readFile(newpath))
-            elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
-                commands.extend(readFile(newpath+".tex"))
-            elif os.path.exists(newpath+".sty") and os.path.isfile(newpath+".sty"):
-                commands.extend(readFile(newpath+".sty"))
+        ## search for usepackage 
+        #tmp = re.search(r"(usepackage){(.*)}", line)
+        #if tmp != None:
+        #    path = tmp.group(2)
+        #    newpath = os.path.join(os.path.dirname(p), path)
+        #    if os.path.exists(newpath) and os.path.isfile(newpath):
+        #        commands.extend(readFile(newpath))
+        #    elif os.path.exists(newpath+".tex") and os.path.isfile(newpath+".tex"):
+        #        commands.extend(readFile(newpath+".tex"))
+        #    elif os.path.exists(newpath+".sty") and os.path.isfile(newpath+".sty"):
+        #        commands.extend(readFile(newpath+".sty"))
 
     return commands
 
@@ -228,13 +228,11 @@ autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Abbreviate for my thesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iabbrev st   single top
+iabbrev st     single top
+iabbrev cdf    CDF
 iabbrev tchan  $t$-channel
 iabbrev schan  $s$-channel
 iabbrev wtchan $Wt$-channel
-" abbreviate for def defined in Preamble.sty
-" Definitions
