@@ -35,6 +35,26 @@ XPT usepackage " usepackage{..}
 \usepackage{`cursor^}<++>
 ..XPT
 
-XPT ref " ref{..}
+XPT r " ref{..}
 \ref{`cursor^}<++>
+..XPT
+
+XPT rf " ref{..}
+\ref{fig:`cursor^}<++>
+..XPT
+
+XPT rs " ref{..}
+\ref{s:`cursor^}<++>
+..XPT
+
+XPT rss " ref{..}
+\ref{ss:`cursor^}<++>
+..XPT
+
+XPT rq " ref{..}
+\ref{eq:`cursor^}<++>
+..XPT
+
+XPT rt " ref{..}
+\ref{table:`cursor^}<++>
 ..XPT
