@@ -119,12 +119,22 @@ let s:{'unpublished'}_optional1="y"
 let s:{'unpublished'}_optional2="m"
 let s:{'unpublished'}_retval = '@UNPUBLISHED{' . s:key . ','."\n"
 
+"" For CDFNote, both public and internal
+let s:{'cdfnote'}_required="atyn" " r is school
+let s:{'cdfnote'}_retval = '@CDFNOTE{CDF' . s:key . ','."\n"
+let s:{'cdfpub'}_required="atyn" " r is school
+let s:{'cdfpub'}_retval = '@CDFPUB{CDF' . s:key . ','."\n"
+
 " }}}
 
 if exists('s:done')
 	finish
 endif
 let s:done = 1
+
+"" For CDFNote, both public and internal
+call IMAP ('BBC', "\<C-r>=BibT('cdfnote', '', 0)\<CR>", 'bib')
+call IMAP ('BBP', "\<C-r>=BibT('cdfpub', '', 0)\<CR>", 'bib')
 
 call IMAP ('BBB', "\<C-r>=BibT('', '', 0)\<CR>", 'bib')
 call IMAP ('BBL', "\<C-r>=BibT('', 'o', 0)\<CR>", 'bib')
