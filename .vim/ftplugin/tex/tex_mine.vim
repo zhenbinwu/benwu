@@ -11,13 +11,12 @@ set iskeyword+=:
 ""this behavior, you will need to set  >
 set winaltkeys=no
 
+
 ""The Alt key is hard to map within Xterm. So I have to re-map other key 
 imap <C-L> <Plug>Tex_LeftRight
 imap <C-B> <Plug>Tex_MathBF
 imap <C-D> <Plug>Tex_MathCal
 imap <C-U> <Plug>Tex_InsertItemOnThisLine
-
-"" imap .<CR> <C-R>set b:Imap_FreezeImap=1
 
 fun! FreezeImap() "{{{
 	if IMAP_GetVal('Imap_FreezeImap', 0) == 1
@@ -228,10 +227,12 @@ autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Abbreviate for my thesis
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iabbrev st     single top
+iabbrev xs     cross section
 iabbrev cdf    CDF
 iabbrev tchan  $t$-channel
 iabbrev schan  $s$-channel
