@@ -143,7 +143,8 @@ class Bibliography(dict):
             if self['author']:
                 s += 'AU %(author)s\n' % self
             for k, v in self.iteritems():
-                if k not in ['title', 'author', 'bibtype', 'key', 'id', 'file', 'body', 'bodytext']:
+                if k not in ['title', 'author', 'bibtype', 'key', 'id',
+                             'file', 'body', 'bodytext', 'number', 'year']:
                     s += 'MI %s: %s\n' % (k, v)
 
             return s.rstrip()
