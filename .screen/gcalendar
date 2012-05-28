@@ -1,0 +1,16 @@
+#! /bin/sh
+
+# Return status code of a comparison
+float_test()
+{
+  echo | awk 'END { exit (!  ('"$1"')); }'
+}
+
+if which gcalcli &> /dev/null; then
+  time=$(gcalcli remind 60 'echo %s' | head -1 | cut -d' ' -f5)
+
+  float_test "$time <= 60  && $time > 30"  && echo -e "\005{= kG}Event \005{-}"
+  float_test "$time <= 30  && $time > 10"  && echo -e "\005{= kW}Event \005{-}"
+  float_test "$time <= 10  && $time > 2 "  && echo -e "\005{= kY}Event \005{-}"
+  float_test "$time <= 2"                  && echo -e "\005{= kR}Event \005{-}"
+fi

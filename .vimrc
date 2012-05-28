@@ -92,6 +92,9 @@ if v:version < '702'
   call add(g:pathogen_disabled, 'FuzzyFinder')
   call add(g:pathogen_disabled, 'L9')
 endif
+if v:version < '703'
+  call add(g:pathogen_disabled, 'Gundo')
+endif
 
 call pathogen#infect()
 filetype plugin on
@@ -354,7 +357,18 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""
 "" Map for dict with the word under cursor
 """"""""""""""""""""""""""""""""""""""""""""""
-noremap <leader>l mayiw`a:exe "!dict " . @" . "" <CR>
+noremap <leader>u mayiw`a:exe "!dict " . @" . "" <CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""
+"" New From Vim 7.3
+""""""""""""""""""""""""""""""""""""""""""""""
+if v:version >= '703'
+  set undodir=$HOME/.vim/undo
+  set undofile
+  map <silent> <F9> :GundoToggle<CR>
+  let g:gundo_width = 35
+endif
 
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -394,7 +408,6 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 set updatetime=2000
 set tags=tags;/
 let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels;r:refs;f:frames'
-map <silent> <F9> :TlistToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 " Calendar
@@ -612,4 +625,19 @@ let g:yankring_history_file = '.vim_yankring_history_file'
 let g:yankring_min_element_length = 2
 let g:yankring_paste_using_g=0
 let g:yankring_default_menu_mode = 0
+let g:yankring_ignore_operator = 'g~ gu gU ! = gq g? > < zf g@'
+let g:yankring_max_element_length = 524288 " 0.5M
 nnoremap <silent> <leader>y :YRShow<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Indent_Guide
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indent_guides_guide_size=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VimIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimim_cloud = 'sogou,2'  
+let g:vimim_toggle = 'pinyin,sogou' 

@@ -212,10 +212,11 @@ def GetCustomLatexCommands():
     import vim
     cmds = readFile(getMain(vim.current.buffer.name))
     for cmd in cmds:
-        todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0][0], cmd[0][0])
-        vim.command(todo)
-        #vim.command("inoreabbrev %s \%s"%(cmd[0][0],cmd[0][0]))
-        #vim.command('let g:Tex_Com_%s="\\\\%s%s <++>"'%(cmd, cmd, "{<++>}"*argc))
+        if cmd[0][0].find('#') == -1:
+            todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0][0], cmd[0][0])
+            vim.command(todo)
+            #vim.command("inoreabbrev %s \%s"%(cmd[0][0],cmd[0][0]))
+            #vim.command('let g:Tex_Com_%s="\\\\%s%s <++>"'%(cmd, cmd, "{<++>}"*argc))
 
 GetCustomLatexCommands()
 
@@ -233,6 +234,8 @@ autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iabbrev st     single top
 iabbrev xs     cross section
+iabbrev mc     Monte Carlo
+iabbrev sm     Standard Model
 iabbrev cdf    CDF
 iabbrev tchan  $t$-channel
 iabbrev schan  $s$-channel

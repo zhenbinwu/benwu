@@ -56,5 +56,5 @@ XPT rq " ref{..}
 ..XPT
 
 XPT rt " ref{..}
-\ref{table:`cursor^}<++>
+\ref{tab:`cursor^}<++>
 ..XPT
