@@ -69,11 +69,12 @@ bind  lockscreen
 # TERMINAL Display
 # ------------------------------------------------------------------------------
 backtick 3 90 90 $HOME/.screen/load
+backtick 1 90 90 $HOME/.screen/gcalendar
 
 # turn sending of screen messages to hardstatus off
 hardstatus alwayslastline
 # use this for the hard status string
-hardstatus string '%{= kG}[ %{G}%H %3` %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%c %{g}]'
+hardstatus string '%{= kG}[ %{G}%H %3` %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%c %1`%{g}]'
 
 # Set the caption 
 caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
