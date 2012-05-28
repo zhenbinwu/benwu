@@ -19,18 +19,37 @@ XPTinclude
 
 XPT bc " CDF Internal Note
 @CDFNOTE{CDF`number^,
-  author = "`cursor^",
-  title = "<++>",
-  year = "<++>",
-  number = "`number^",
-  otherinfo = "<++>"
+      author = "`cursor^",
+      title = "<++>",
+      year = "<++>",
+      number = "`number^",
+      otherinfo = "<++>"
 }<++>
 
-XPT bp " CDF Internal Note
+
+XPT bp " CDF Public Note
 @CDFPUB{CDF`number^,
-  author = "`cursor^",
-  title = "<++>",
-  year = "<++>",
-  number = "`number^",
-  otherinfo = "<++>"
+      author = "`cursor^",
+      title = "<++>",
+      year = "<++>",
+      number = "`number^",
+      otherinfo = "<++>"
+}<++>
+
+XPT bbc " CDF Internal Note (SPIRE Style)
+@CDFNOTE{CDF`number^,
+            author         = "`cursor^",
+            title          = "<++>",
+            year           = "<++>",
+            number         = "`number^",
+            otherinfo      = "<++>"
+}<++>
+
+XPT bbp " CDF Public Note (SPIRE Style)
+@CDFPUB{CDF`number^,
+            author         = "`cursor^",
+            title          = "<++>",
+            year           = "<++>",
+            number         = "`number^",
+            otherinfo      = "<++>"
 }<++>
