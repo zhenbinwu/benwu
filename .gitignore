@@ -1,0 +1,16 @@
+## Ignore the whole home directory
+* 
+## Expect what we care about
+!.vimrc
+!.vim/*
+
+!.tcshrc
+!.tcsh/*
+
+!.screenrc
+!.screen/*
+
+!.ctags
+!texmf/*
+## ignore all the vim undo file
+.vim/undo/*
