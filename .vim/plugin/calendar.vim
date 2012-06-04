@@ -1221,6 +1221,8 @@ function! s:CalendarDiary(day, month, year, week, dir)
   " load the file
   exe "sp " . sfile
   setlocal ft=calendar
+  setlocal nowrap
+  setlocal comments=:#
   let dir = getbufvar(vbufnr, "CalendarDir")
   let vyear = getbufvar(vbufnr, "CalendarYear")
   let vmnth = getbufvar(vbufnr, "CalendarMonth")
@@ -1326,3 +1328,54 @@ hi def link CalWeeknm   Comment
 hi def link CalToday    Directory
 hi def link CalHeader   Special
 hi def link CalMemo     Identifier
+
+fun! SyncGcanledar() "{{{
+    if executable("gcalcli")
+python << EOF
+
+import re,vim
+import os
+from datetime import date 
+
+def SubmitSyn(date):
+    if len(vim.current.buffer) == 0:
+        pass
+    else: 
+        print range(len(vim.current.buffer))
+        for i in range(len(vim.current.buffer)):
+            line = vim.current.buffer[i].strip()
+            if len(line) == 0:
+                continue
+            if line[0] == '#':
+                pass
+            else:
+                event="\"%s %s\"" % (date.strftime("%Y/%m/%d"), line)
+                os.popen("gcalcli quick %s" % event)
+                vim.current.buffer[i] ="#%s" % line
+        
+
+def ToRun():
+    path=vim.current.buffer.name
+
+    calendar_diary = vim.eval("g:calendar_diary")
+    temp = re.search(r"\~\/(.*)", calendar_diary)
+    calendar_diary="%s/%s" % (os.environ['HOME'], temp.group(1))
+    find=re.escape(calendar_diary)+r"/([^/].*)/([^/].*)/([^/].*)\.cal"
+    temp = re.search(find, path, re.IGNORECASE)
+    if temp == None:
+        return
+    fdate = date(int(temp.group(1)), int(temp.group(2)),
+                         int(temp.group(3)))
+    if fdate < date.today():
+        pass
+    else:
+        SubmitSyn(fdate)
+
+ToRun()
+EOF
+
+    endif
+  
+endfunction "}}}
+
+au BufWritePost *.cal call SyncGcanledar()
