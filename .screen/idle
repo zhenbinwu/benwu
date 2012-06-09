@@ -1,0 +1,4 @@
+/home/benwu/.screen/tty-clock/tty-clock -sc &
+sleep 20m
+kill -s KILL $!
+screen -X detach
