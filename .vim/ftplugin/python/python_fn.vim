@@ -45,44 +45,44 @@ if exists("b:loaded_py_ftplugin")
 endif
 let b:loaded_py_ftplugin = 1
 
-map  ]t   :PBoB<CR>
-vmap ]t   :<C-U>PBOB<CR>m'gv``
-map  ]e   :PEoB<CR>
-vmap ]e   :<C-U>PEoB<CR>m'gv``
+map <buffer>   ]t   :PBoB<CR>
+vmap <buffer>  ]t   :<C-U>PBOB<CR>m'gv``
+map <buffer>   ]e   :PEoB<CR>
+vmap <buffer>  ]e   :<C-U>PEoB<CR>m'gv``
 
-map  ]v   ]tV]e
-map  ]<   ]tV]e<
-vmap ]<   <
-map  ]>   ]tV]e>
-vmap ]>   >
+map <buffer>   ]v   ]tV]e
+map <buffer>   ]<   ]tV]e<
+vmap <buffer>  ]<   <
+map <buffer>   ]>   ]tV]e>
+vmap <buffer>  ]>   >
 
-map  ,cc   :call PythonCommentSelection()<CR>
-vmap ,cc   :call PythonCommentSelection()<CR>
-map  ,co   :call PythonUncommentSelection()<CR>
-vmap ,co   :call PythonUncommentSelection()<CR>
+""map <buffer>   ,cc   :call PythonCommentSelection()<CR>
+""vmap <buffer>  ,cc   :call PythonCommentSelection()<CR>
+""map <buffer>   ,co   :call PythonUncommentSelection()<CR>
+""vmap <buffer>  ,co   :call PythonUncommentSelection()<CR>
 
-map  ]c   :call PythonSelectObject("class")<CR>
-map  ]d   :call PythonSelectObject("function")<CR>
+map <buffer>   ]c   :call PythonSelectObject("class")<CR>
+map <buffer>   ]d   :call PythonSelectObject("function")<CR>
 
-map  ]<up>    :call PythonNextLine(-1)<CR>
-map  ]<down>  :call PythonNextLine(1)<CR>
+map <buffer>   ]<up>    :call PythonNextLine(-1)<CR>
+map <buffer>   ]<down>  :call PythonNextLine(1)<CR>
 " You may prefer use <s-up> and <s-down>... :-)
 
 " jump to previous class
-map  ]J   :call PythonDec("class", -1)<CR>
-vmap ]J   :call PythonDec("class", -1)<CR>
+map <buffer>   ]J   :call PythonDec("class", -1)<CR>
+vmap <buffer>  ]J   :call PythonDec("class", -1)<CR>
 
 " jump to next class
-map  ]j   :call PythonDec("class", 1)<CR>
-vmap ]j   :call PythonDec("class", 1)<CR>
+map <buffer>   ]j   :call PythonDec("class", 1)<CR>
+vmap <buffer>  ]j   :call PythonDec("class", 1)<CR>
 
 " jump to previous function
-map  ]F   :call PythonDec("function", -1)<CR>
-vmap ]F   :call PythonDec("function", -1)<CR>
+map <buffer>   ]F   :call PythonDec("function", -1)<CR>
+vmap <buffer>  ]F   :call PythonDec("function", -1)<CR>
 
 " jump to next function
-map  ]f   :call PythonDec("function", 1)<CR>
-vmap ]f   :call PythonDec("function", 1)<CR>
+map <buffer>   ]f   :call PythonDec("function", 1)<CR>
+vmap <buffer>  ]f   :call PythonDec("function", 1)<CR>
 
 
 
