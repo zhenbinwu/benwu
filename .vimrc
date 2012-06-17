@@ -32,7 +32,7 @@
 "
 " Plugins_Included:
 "     ------> Common Plugins 
-"     > SuperTab     ( V1.7    2011_11_06 ) 
+"     > SuperTab     ( V2.0    2012_06_17 ) 
 "     > TagList      ( V4.5    2011_01_29 ) 
 "     > Calendar     ( V2.5    2011_01_29 ) 
 "     > LargeFile    ( V4      2011_01_29 ) 
