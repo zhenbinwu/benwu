@@ -71,9 +71,10 @@
 "     > Pydiction        ( V1.2        2011_07_24 )
 "     > Python_ifold     ( V2.9        2011_07_24 )
 "     > Inccomplete      ( V1.6.29     2012_04_18 )
-"     > NERD_Commenter   ( V2.3.0      2011_11_06 ) 
+"     > NERD_Commenter   ( V2.3.0      2012_06_17 ) 
 "     > Repeat           ( V1.0        2012_05_09 ) 
 "     > Surrond          ( V1.90       2012_05_09 ) 
+"     > Tagbar           ( V2.4        2012_06_17 ) 
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,13 +249,15 @@ map <leader>tm :tabmove
 map <leader>cd :cd %:p:h/..<cr>
 map <leader>d :cd %:p:h<cr>
 
-map <F10> :redraw!<cr>
+map <F9> :redraw!<cr>
+nnoremap <leader>p :set invpaste paste?<CR>
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
 " Always show the statusline
 set laststatus=2
-set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w%q\ %=\ Line:%l\/%L\ Column:%c%V\ %P
+"set statusline=%<\ \[%n:%Y]%{fugitive#statusline()}\ %f%m%r%h%w%q\ %=\ Line:%l\/%L\ Column:%c%V\ %P
+set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -357,7 +360,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""
 "" Map for dict with the word under cursor
 """"""""""""""""""""""""""""""""""""""""""""""
-noremap <leader>u mayiw`a:exe "!dict " . @" . "" <CR>
+noremap <leader>o mayiw`a:exe "!kdict " . @" . "" <CR>
+"noremap <leader>o mayiw`a:exe "!dict " . @" . "" <CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -366,8 +370,9 @@ noremap <leader>u mayiw`a:exe "!dict " . @" . "" <CR>
 if v:version >= '703'
   set undodir=$HOME/.vim/undo
   set undofile
-  map <silent> <F9> :GundoToggle<CR>
+  map <silent> <F11> :GundoToggle<CR>
   let g:gundo_width = 35
+  let g:gundo_close_on_revert = 1
 endif
 
 
@@ -494,6 +499,17 @@ let g:Tex_CompileRule_dvi = 'latex -src-specials --interaction=nonstopmode $*'
 let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
 "let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
 let g:Tex_CompileRule_pdf='pdflatex -shell-escape -src-specials -interaction=nonstopmode $*' 
+let g:Tex_IgnoredWarnings=
+    \"Underfull\n".
+    \"Overfull\n".
+    \"specifier changed to\n".
+    \"You have requested\n".
+    \"Missing number, treated as zero.\n".
+    \"There were undefined references\n".
+    \"Citation %.%# undefined\n".
+    \"LaTex Font Warning:"
+let g:Tex_IgnoreLevel = 8
+
 if &term == 'linux'
   """ For framebuffer only
   let g:Tex_ViewRule_pdf='fbgs'
@@ -564,7 +580,7 @@ let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pyflakes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pyflakes_use_quickfix = 0
+let g:pyflakes_use_quickfix = 1
 let g:pyflakes_autostart = 0
 autocmd FileType python map <F3> :PyflakesToggle<cr>
 
@@ -609,7 +625,7 @@ let g:inccomplete_appendslash = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCEGHIMNOPQRTUVWXYZ1234567890SLDFJK'
+let g:EasyMotion_keys = '1234567890abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
 let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
@@ -641,3 +657,8 @@ let g:indent_guides_guide_size=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:vimim_cloud = 'sogou,2'  
 let g:vimim_toggle = 'pinyin,sogou' 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <F10>  :TagbarToggle<CR>
