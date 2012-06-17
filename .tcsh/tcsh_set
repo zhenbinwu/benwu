@@ -200,37 +200,39 @@ set echo_style=both
 ## Execute command after changing directory.
 ### This changes the title bar/icon description of the console window.
 setenv SHORT_HOST `echo $HOST | cut -f 1 -d. `
-switch ( $TERM )
-     case "dtterm*":         # dtterm
-     case "xterm*":          # xterm
-             alias seticon 'echo -n "\033]1;\!*\007"'
-	     alias sethead 'echo -n "\033]2;\!*\007"'
-	     alias cwdcmd  'sethead "${SHORT_HOST} : ${PWD}"'
-	     sethead ${SHORT_HOST} - ${PWD}
-	     seticon ${SHORT_HOST}
-	     breaksw;
-      case "sun*":            # SunView cmdtool/shelltool
-             alias seticon 'echo -n "\033]L\!*\033\\"'
-             alias sethead 'echo -n "\033]l\!*\033\\"'
-             alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
-             breaksw;
-      case "vt[24]20*":       # TNVT and SecureCRT (Windows clients)
-             alias seticon 'echo -n ""'
-             alias sethead 'echo -n "\033]0;\!*\007\033\\"'
-             alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
-             breaksw;
-      case "network":
-             unalias cwdcmd
-             breaksw;
-      case "screen":
-	     set tperiod = 2
-	     alias periodic 'setenv DISPLAY `cat ~/.screen/X11`'
-             breaksw;
-     default:
-             alias seticon echo -n ""
-             alias sethead echo -n ""
-             unalias cwdcmd
-endsw
+if ( ($?TERM)) then  ##For at which doesn't define TERM
+  switch ( $TERM )
+       case "dtterm*":         # dtterm
+       case "xterm*":          # xterm
+               alias seticon 'echo -n "\033]1;\!*\007"'
+           alias sethead 'echo -n "\033]2;\!*\007"'
+           alias cwdcmd  'sethead "${SHORT_HOST} : ${PWD}"'
+           sethead ${SHORT_HOST} - ${PWD}
+           seticon ${SHORT_HOST}
+           breaksw;
+        case "sun*":            # SunView cmdtool/shelltool
+               alias seticon 'echo -n "\033]L\!*\033\\"'
+               alias sethead 'echo -n "\033]l\!*\033\\"'
+               alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
+               breaksw;
+        case "vt[24]20*":       # TNVT and SecureCRT (Windows clients)
+               alias seticon 'echo -n ""'
+               alias sethead 'echo -n "\033]0;\!*\007\033\\"'
+               alias cwdcmd  'sethead "${SHORT_HOST} - ${PWD}"'
+               breaksw;
+        case "network":
+               unalias cwdcmd
+               breaksw;
+        case "screen":
+           set tperiod = 2
+           alias periodic 'setenv DISPLAY `cat ~/.screen/X11`'
+               breaksw;
+       default:
+               alias seticon echo -n ""
+               alias sethead echo -n ""
+               unalias cwdcmd
+  endsw
+endif
 ###
 ###### Generic command to set the title bar of the console window to
 ##### show the hostname and current directory.

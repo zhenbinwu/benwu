@@ -25,7 +25,7 @@ XPT sp hint=Smart\ pointer\ usage
 `const ^std::tr1::shared_ptr<`type^>& `cursor^
 ..XPT
 
-XPT class hint=Class\ declaration
+XPT hclass hint=Class\ declaration\ in\ file
 //
 // Class: `fileRoot()^
 // Author: `$author^ (`$email^)

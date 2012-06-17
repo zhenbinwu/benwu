@@ -369,7 +369,7 @@ endif
 			      nodtdlib static nostdinc undef)"/ \
 		 	c/-l/f:*.a/ \
 		 	n/*/f:*.{c,C,cc,o,a,s,i}/
-    complete g++ 	n/*/f:*.{C,cc,cpp, C+,o,s,i}/
+    complete g++ 	n/*/f:*.{C,cc,cpp,C+,o,s,i}/
     complete CC 	n/*/f:*.{C,cc,cpp,o,s,i}/
     complete rm 	c/--/"(directory force interactive verbose \
 			recursive help version)"/ c/-/"(d f i v r R -)"/ \
@@ -1294,6 +1294,7 @@ endif
 			n/-c*f/x:'<new_tar_file, device_file, or "-">'/ \
 			n/{-[Adrtux]z*f,--file}/f:*.{tar.gz,tgz}/ \
 			n/{-[Adrtux]Z*f,--file}/f:*.{tar.Z,taz}/ \
+			n/{-[Adrtux]j*f,--file}/f:*.{tar.bz2}/ \
 			n/{-[Adrtux]*f,--file}/f:*.tar/ \
 			N/{-xz*f,--file}/'`tar -tzf $:-1`'/ \
 			N/{-xZ*f,--file}/'`tar -tZf $:-1`'/ \
@@ -1480,7 +1481,7 @@ complete apt-cache \
 ################################################################################
 if(-X gcalcli) then
  complete gcalcli \
-   'p/1/(lit  search agenda calw calm quick import remind)'/ \
+   'p/1/(list  search agenda calw calm quick import remind)'/ \
    'c/--/(help version config user pw cal 24hr details ignore-started width \
    cal-owner-color date-color border-color tsv cal-editor-color cal-contributor-color \
    cal-read-color cal-freebusy-color mon nc)/' 

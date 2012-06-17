@@ -1,0 +1,28 @@
+#!/bin/csh
+
+set texfile=0
+
+if ($#argv == 0) then
+  set file=""
+endif
+
+foreach arg ($*)
+  if ( "$arg" =~ [-]* ) then
+     continue
+  endif
+
+  set file=`basename $arg | awk -F. '{print $NF}'`
+  foreach tex (tex bib bst sty)
+    if ($file == $tex) then
+      set texfile=1
+    endif
+  end
+end
+
+
+
+if ($texfile == 1) then
+  ${CVSEIDTOR} --servername benwu $* 
+else
+  ${CVSEIDTOR} -X $* 
+endif

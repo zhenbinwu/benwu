@@ -1341,7 +1341,6 @@ def SubmitSyn(date):
     if len(vim.current.buffer) == 0:
         pass
     else: 
-        print range(len(vim.current.buffer))
         for i in range(len(vim.current.buffer)):
             line = vim.current.buffer[i].strip()
             if len(line) == 0:

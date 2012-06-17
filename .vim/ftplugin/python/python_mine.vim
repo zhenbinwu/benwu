@@ -39,8 +39,8 @@ vim.command( 'map <C-F8> :py RemoveBreakpoints()<cr>')
 EOF
 
 
-map <F5> :w<cr>:!python %<cr>
-imap <F5> <Esc>:w<cr>:!python %<cr>
+map <buffer> <F5> :w<cr>:!python %<cr>
+imap <buffer> <F5> <Esc>:w<cr>:!python %<cr>
 
 map ,ch :call SetColorColumn()<CR>
 function! SetColorColumn()

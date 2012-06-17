@@ -12,6 +12,8 @@ XPTinclude
 XPT #inc		" include <>
 #include <`^>
 
+XPT #ib		" include <>
+#include <boost/`^>
 
 XPT #include_user	" include ""
 XSET me=fileRoot()

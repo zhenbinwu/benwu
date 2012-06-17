@@ -192,13 +192,24 @@ XSET arg*|post=ExpandInsideEdge( ',$SPop', '' )
 XPT python " #!$PYTHON_EXC
 XSET encoding=Echo(&fenc != '' ? &fenc : &enc)
 #!`$PYTHON_EXC^
-# coding: `encoding^
+# encoding: `encoding^
 
+# File        : `file()^
+# Author      : `$author^
+# Contact     : `$email^
+# Date        : `date()^
+#
+# Description : `cursor^
 ..XPT
 
-XPT shebang alias=python
+XPT shebang #! python
+XSET encoding=Echo(&fenc != '' ? &fenc : &enc)
+#!`$PYTHON_EXC^
+# encoding: `encoding^
+`cursor^
+..XPT
 
-XPT sb alias=python
+XPT sb alias=shebang
 
 
 XPT p " pass
