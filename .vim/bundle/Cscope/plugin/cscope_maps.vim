@@ -35,6 +35,7 @@ function SetCscope()
 
     if filereadable("cscope.out")
         cs add cscope.out  
+        let g:CscopePath = getcwd()
     endif
 
     execute "cd " . curdir
@@ -59,12 +60,14 @@ endif
 
     " add any cscope database in current directory
     if filereadable("cscope.out")
+        let g:CscopePath = getcwd()
         cs add cscope.out  
     " else add the database pointed to by environment variable 
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
+        let g:CscopePath = getcwd()
     else 
-	call SetCscope()
+        call SetCscope()
     endif
 
 
