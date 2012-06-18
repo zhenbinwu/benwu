@@ -3274,7 +3274,8 @@ function! s:Tlist_Window_Open_File(win_ctrl, filename, tagpat)
 
         " If the line is inside a fold, open the fold
         if foldclosed('.') != -1
-            .foldopen
+            ".foldopen
+            normal! zv
         endif
     endif
 
