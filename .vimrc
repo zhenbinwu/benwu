@@ -174,7 +174,11 @@ else
   else
     "set t_Co=256
     "colorscheme wombat256
-    colorscheme zmrok
+    if( match(hostname(), 'hep') >=0 )
+      colorscheme benwu
+    else 
+      colorscheme zmrok
+    endif
   endif
 endif
 
@@ -405,14 +409,14 @@ if( match(hostname(), 'nbay') >=0 )
 else 
   let Tlist_Ctags_Cmd='/usr/bin/ctags'
 endif
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Auto_Open = 0
-let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Exit_OnlyWindow         = 1
+let Tlist_Use_SingleClick         = 1
+let Tlist_Auto_Open               = 0
+let Tlist_File_Fold_Auto_Close    = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
+let tlist_tex_settings            = 'latex;s:sections;g:graphics;l:labels;r:refs;f:frames'
 set updatetime=2000
 set tags=tags;/
-let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels;r:refs;f:frames'
 
 """"""""""""""""""""""""""""""""""""""""""""""
 " Calendar
@@ -439,11 +443,11 @@ let g:bufExplorerSortBy='mru'
 """"""""""""""""""""""""""""""""""
 " XPTemplate
 """"""""""""""""""""""""""""""
-let g:xptemplate_key = '<C-\>' 
-let g:xptemplate_nav_next = '<C-j>' 
-let g:xptemplate_nav_prev = '<C-k>' 
-let g:xptemplate_brace_complete = '([{"' 
-let g:xptemplate_vars = "SParg=&$author=Ben Wu&$email=benwu@fnal.gov"
+let g:xptemplate_key            = '<C-\>'
+let g:xptemplate_nav_next       = '<C-j>'
+let g:xptemplate_nav_prev       = '<C-k>'
+let g:xptemplate_brace_complete = '([{"'
+let g:xptemplate_vars           = "SParg  = &$author = Ben Wu&$email = benwu@fnal.gov"
 
 """"""""""""""""""""""""""""""
 " ShowMarks setting
@@ -491,15 +495,15 @@ au FileType c let dictionary=g:C_Dictionary_File
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex' 
-let g:Tex_DefaultTargetFormat='dvi'
-"let g:Tex_DefaultTargetFormat='pdf'
+let g:tex_flavor                = 'latex'
+let g:Tex_DefaultTargetFormat   = 'dvi'
+"let g:Tex_DefaultTargetFormat  = 'pdf'
 "let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
-let g:Tex_CompileRule_dvi = 'latex -src-specials --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
-"let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_pdf='pdflatex -shell-escape -src-specials -interaction=nonstopmode $*' 
-let g:Tex_IgnoredWarnings=
+let g:Tex_CompileRule_dvi       = 'latex -src-specials --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps        = 'dvips -Ppdf -o $*.ps $*.dvi'
+"let g:Tex_CompileRule_pdf      = 'ps2pdf $*.ps'
+let g:Tex_CompileRule_pdf       = 'pdflatex -shell-escape -src-specials -interaction=nonstopmode $*'
+let g:Tex_IgnoredWarnings       =
     \"Underfull\n".
     \"Overfull\n".
     \"specifier changed to\n".
@@ -508,7 +512,7 @@ let g:Tex_IgnoredWarnings=
     \"There were undefined references\n".
     \"Citation %.%# undefined\n".
     \"LaTex Font Warning:"
-let g:Tex_IgnoreLevel = 8
+let g:Tex_IgnoreLevel           = 8
 
 if &term == 'linux'
   """ For framebuffer only
@@ -530,9 +534,9 @@ let g:Tex_FoldedEnvironments=',frame'
 nmap <silent> <leader>sh :ConqueTermSplit tcsh<CR>
 nmap <silent> <leader>sv :ConqueTermVSplit tcsh<CR>
 nmap <silent> <leader>st :ConqueTermTab tcsh<CR>
-let g:ConqueTerm_CWInsert = 1
-let g:ConqueTerm_SendVisKey = '<F9>'
-let g:ConqueTerm_TERM = 'xterm'
+let g:ConqueTerm_CWInsert      = 1
+let g:ConqueTerm_SendVisKey    = '<F9>'
+let g:ConqueTerm_TERM          = 'xterm'
 let g:ConqueTerm_ReadUnfocused = 1
 
 
@@ -546,9 +550,9 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
-let g:fuf_modesDisable = []
+let g:fuf_modesDisable    = []
 let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem = 400
+let g:fuf_mrucmd_maxItem  = 400
 nmap fff <ESC>:FufFile<CR>
 nmap ffb <ESC>:FufBuffer<CR>
 nmap ffd <ESC>:FufDir<CR>
@@ -565,9 +569,9 @@ nmap ffl <ESC>:FufLine<CR>
 """""""""""""""""''
 " Alternate 
 """""""""""""""""""""""'
-let g:alternateSearchPath = 'sfr:../source,sfr:./Powheg,sfr:../src,sfr:../include,sfr:../inc,sfr:../, sfr:./BWWH/'
+let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../'
 let g:alternateNoDefaultAlternate = 0
-let g:alternateExtensions_CPP = "inc,h,hh,H,HPP,hpp"
+let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
 nmap <Leader>a :A<CR>
 imap <Leader>a <ESC>:A<CR>
 
@@ -593,7 +597,7 @@ let g:pep8_map='<F4>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Elog
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:netrw_http_cmd = "elinks"
+let g:netrw_http_cmd  = "elinks"
 let g:netrw_http_xcmd = "-dump -dump-width 400 -no-references -no-numbering >"
 com! -nargs=? Elog :tabedit http://hep05.baylor.edu/elog/benwu/<args>
 
@@ -607,8 +611,8 @@ com! -nargs=0 Task :tabedit ~/.daily_note/${USER}.taskpaper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:DirDiffExcludes = "CVS, objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
-let g:DirDiffIgnore = "Id:,Revision:,Date:"
+let g:DirDiffExcludes   = "CVS, objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
+let g:DirDiffIgnore     = "Id:,Revision:,Date:"
 let g:DirDiffWindowSize = 14
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -636,12 +640,12 @@ let g:EasyMotion_mapping_F = '<leader>F'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:yankring_history_dir = '$HOME/.vim/'
-let g:yankring_history_file = '.vim_yankring_history_file'
+let g:yankring_history_dir        = '$HOME/.vim/'
+let g:yankring_history_file       = '.vim_yankring_history_file'
 let g:yankring_min_element_length = 2
-let g:yankring_paste_using_g=0
-let g:yankring_default_menu_mode = 0
-let g:yankring_ignore_operator = 'g~ gu gU ! = gq g? > < zf g@'
+let g:yankring_paste_using_g      = 0
+let g:yankring_default_menu_mode  = 0
+let g:yankring_ignore_operator    = 'g~ gu gU ! = gq g? > < zf g@'
 let g:yankring_max_element_length = 524288 " 0.5M
 nnoremap <silent> <leader>y :YRShow<CR>
 
@@ -655,10 +659,16 @@ let g:indent_guides_guide_size=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VimIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimim_cloud = 'sogou,2'  
-let g:vimim_toggle = 'pinyin,sogou' 
+let g:vimim_cloud  = 'sogou,2'
+let g:vimim_toggle = 'pinyin,sogou'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <F10>  :TagbarToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Align
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>ab	<Plug>AM_abox
+map <Leader>ac	<Plug>AM_acom

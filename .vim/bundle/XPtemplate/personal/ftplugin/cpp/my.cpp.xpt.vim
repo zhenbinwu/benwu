@@ -45,21 +45,24 @@ public:
 };
 ..XPT
 
-XPT hfun hint=Member\ function\ declaration
-/**
- * `functionName^
- *
- * `cursor^
- */
-`int^ `functionName^(`argument^`...^, `arg^`...^)` const^;
-..XPT
-
 XPT css hint=const\ std::string&
 const std::string& `cursor^
 ..XPT
 
 XPT ft wrap " for (iterator = begin; !=;++)
-for(`type^::iterator `i^=`class^.begin(); `i^!=`class^.end(); `i^++)
+for(`type^::iterator `i^=`class^.begin();
+    `i^!=`class^.end(); `i^++)
 {
     `cursor^
 }
+
+XPT fu hint=function\ definition
+XSET class|post=S(V(), '.*[^:]', '&::', '')
+// ===  FUNCTION  ============================================================
+//         Name:  `class^`name^
+//  Description:  `comment^
+// ===========================================================================
+`int^ `class^`name^(`param^`...^, `param^`...^)` const^
+{
+    `cursor^
+}       // -----  end of function `class^`name^  -----

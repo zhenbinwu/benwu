@@ -430,15 +430,6 @@ std::replace(`seq^.begin(), `seq^.end(), `predicate^, `newvalue^)
 XPT sort hint=std::sort\(seq.begin,\ seq.end,\ predicate\)
 std::replace(`seq^.begin(), `seq^.end(), `predicate^)
 
-
-XPT fun hint=function\ definition
-XSET class|post=S(V(), '.*[^:]', '&::', '')
-`int^ `class^`name^(`param^`...^, `param^`...^)` const^
-{
-    `cursor^
-}
-
-
 XPT funh hint=function\ declaration
 `int^ `class^`name^(`param^`...^, `param^`...^)` const^;
 
