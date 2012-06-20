@@ -447,7 +447,7 @@ let g:xptemplate_key            = '<C-\>'
 let g:xptemplate_nav_next       = '<C-j>'
 let g:xptemplate_nav_prev       = '<C-k>'
 let g:xptemplate_brace_complete = '([{"'
-let g:xptemplate_vars           = "SParg  = &$author = Ben Wu&$email = benwu@fnal.gov"
+let g:xptemplate_vars           = "SParg=&$author=Ben Wu&$email=benwu@fnal.gov"
 
 """"""""""""""""""""""""""""""
 " ShowMarks setting
