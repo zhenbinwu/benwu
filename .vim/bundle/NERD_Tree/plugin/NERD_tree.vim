@@ -1123,7 +1123,7 @@ function! s:TreeFileNode.open()
                 else
                     call s:exec('wincmd p')
                 endif
-                exec ("edit " . self.path.str({'format': 'Edit'}))
+                exec ("silent edit " . self.path.str({'format': 'Edit'}))
             catch /^Vim\%((\a\+)\)\=:E37/
                 call s:putCursorInTreeWin()
                 throw "NERDTree.FileAlreadyOpenAndModifiedError: ". self.path.str() ." is already open and modified."
@@ -1179,7 +1179,7 @@ function! s:TreeFileNode.openSplit()
 
     " Open the new window
     try
-        exec(splitMode." sp " . self.path.str({'format': 'Edit'}))
+        exec("silent".splitMode." sp " . self.path.str({'format': 'Edit'}))
     catch /^Vim\%((\a\+)\)\=:E37/
         call s:putCursorInTreeWin()
         throw "NERDTree.FileAlreadyOpenAndModifiedError: ". self.path.str() ." is already open and modified."
@@ -1204,6 +1204,14 @@ endfunction
 function! s:TreeFileNode.openVSplit()
     if b:NERDTreeType ==# "secondary"
         exec "vnew " . self.path.str({'format': 'Edit'})
+        return
+    endif
+
+    if exists("g:Win_NERDTree")
+        " Attempt to go to adjacent window
+        let s:main = GetCurrentMainWindow()
+        exe s:main . 'wincmd w'
+        exec "silent vsplit " . self.path.str({'format': 'Edit'})
         return
     endif
 

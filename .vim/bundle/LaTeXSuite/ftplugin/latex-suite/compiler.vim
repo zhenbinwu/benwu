@@ -274,7 +274,7 @@ function! Tex_ViewLaTeX()
 						\ (s:viewer == "xdvi" || s:viewer == "xdvik")
 
 				let execString = s:viewer.' -bg white -hush -editor "vim73 --servername '.v:servername.
-							\ ' --remote-silent +\%l \%f" $*.dvi'
+							\ ' --remote-silent +\%l \%f" $*.dvi >& /dev/null'
 
 			elseif Tex_GetVarValue('Tex_UseEditorSettingInDVIViewer') == 1 &&
 						\ s:viewer == "kdvi"
@@ -382,7 +382,7 @@ function! Tex_ForwardSearchLaTeX()
 
 				let execString = 'silent! !'.viewer.' -name xdvi -bg white -hl red -hush -sourceposition "'.line('.').' '.expand("%").'"'.
 							\ ' -s 3 -editor "vim73 --servername '.v:servername.' --remote-silent +\%l \%f" '.
-							\ mainfnameRoot.'.dvi'
+							\ mainfnameRoot.'.dvi >& /dev/null'
 
 			elseif viewer == "kdvi"
 

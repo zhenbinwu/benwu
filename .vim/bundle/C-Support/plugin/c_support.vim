@@ -2606,7 +2606,8 @@ function! C_Help( type )
 		endif
 
 		set filetype=man
-		silent exe ":%!".s:C_Man." ".catalog." ".item
+		silent exe ":Man ".catalog." ".item
+		"silent exe ":%!".s:C_Man." ".catalog." ".item
 
 		if s:MSWIN
 			call s:C_RemoveSpecialCharacters()
@@ -2865,7 +2866,7 @@ function! C_Style ( style )
 		let s:C_ActualStyleLast	= s:C_ActualStyle
 		let s:C_ActualStyle	= lstyle
 		if len( s:C_ActualStyle ) > 1 && s:C_ActualStyle != s:C_ActualStyleLast
-			echomsg "template style is '".lstyle."'"
+			"echomsg "template style is '".lstyle."'"
 		endif
 	else
 		echomsg "style '".lstyle."' does not exist"

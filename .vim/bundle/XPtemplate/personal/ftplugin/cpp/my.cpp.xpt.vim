@@ -60,9 +60,9 @@ XPT fu hint=function\ definition
 XSET class|post=S(V(), '.*[^:]', '&::', '')
 // ===  FUNCTION  ============================================================
 //         Name:  `class^`name^
-//  Description:  `comment^
+//  Description:  `cursor^
 // ===========================================================================
 `int^ `class^`name^(`param^`...^, `param^`...^)` const^
 {
-    `cursor^
+    <+code+>
 }       // -----  end of function `class^`name^  -----
