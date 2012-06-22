@@ -92,8 +92,12 @@ class MakePrg:
         self.map_set = Set()
         self.key_map = {}
         ## Get the available path
-        self.path_list = ['./']
+        self.path_list = ['.']
+        ## Get open file list
+        ## Unfortunately I need this to prevent mulitple load
+        self.file_list = []
         self.local_inc = ''
+        self.local_src = ''
         self.dict = vim.eval("g:alternateExtensionsDict")
         self.__init_key__()
         self.__init_path__()
@@ -157,55 +161,71 @@ class MakePrg:
         filename = include.split('.')[0]
         extension = include.split('.')[1]
 
+        found_header = False  # Whether we found header
         ## Include all the file with filename in available path
         for path in self.path_list:
             ## Find included file
-            if os.path.isfile(path + "/" + include):
+            if os.path.isfile(path + "/" + include) \
+               and self.Check_FileList(include):
                 cmd_local = '%s' % (path + "/" + include)
                 if path != './':
                     self.local_inc += "-I%s\ " % path
+                found_header = True
                 file = open(cmd_local, 'r')
                 self.Makeprg(file.readlines())
                 file.close()
                 break
 
-            ## Not exactly needed this
-            ################################################################
-            #  ## Start to find the alternative
-            #  found_alter = False  # Whether we found alternative
-            #  for alter in self.dict[extension].split(','):
-            #      if os.path.isfile(path + "/" + filename + '.' + alter):
-            #          cmd_local = '%s' % (path + "/" + filename + '.' + alter)
-            #          found_alter = True
-            #          file = open(cmd_local, 'r')
-            #          self.Makeprg(file.readlines())
-            #          file.close()
-            #          break
+        if found_header:
+            ## Start to find the local source
+            found_src = False  # Whether we found another source file
+            for path in self.path_list:
+                for alter in self.dict[extension].split(','):
+                    if os.path.isfile(path + "/" + filename + '.' + alter) \
+                    and self.Check_FileList(filename + '.' + alter):
+                        found_src = True
+                        cmd_local = '%s' % (path + "/" + filename + '.' + alter)
+                        self.local_src += '\ %s' % cmd_local
+                        file = open(cmd_local, 'r')
+                        self.Makeprg(file.readlines())
+                        file.close()
+                        break
 
-            #  ## If one alternative found, then should be enough
-            #  if found_alter:
-            #      continue
+                ## If one alternative found, then should be enough
+                if found_src:
+                    continue
 
-            #  ## In case not, lets reverse the dict from alternate.vim
-            #  for key, var in self.dict.iteritems():
-            #      if var.split(',').count(extension) != 0:
-            #          if os.path.isfile(path + "/" + filename + '.' + key):
-            #              cmd_local = '%s' % (path + "/" + filename + '.' + key)
-            #              found_alter = True
-            #              file = open(cmd_local, 'r')
-            #              self.Makeprg(file.readlines())
-            #              file.close()
-            #              break
+                ## In case not, lets reverse the dict from alternate.vim
+                for key, var in self.dict.iteritems():
+                    if var.split(',').count(extension) != 0:
+                        if os.path.isfile(path + "/" + filename + '.' + key) \
+                        and self.Check_FileList(filename + '.' + key):
+                            found_src = True
+                            cmd_local = '%s' % (path + "/" + filename + '.' + key)
+                            self.local_src += '\ %s' % cmd_local
+                            file = open(cmd_local, 'r')
+                            self.Makeprg(file.readlines())
+                            file.close()
+                            break
+
+    def Check_FileList(self, file):
+        if file in self.file_list:
+            return False
+        else:
+            self.file_list.append(file)
+            return True
 
     def Auto_Makeprg(self, buffer):
         global BOOST_INCLUDE
         global BOOST_LIB
 
+        self.file_list.append(vim.current.buffer.name.split('/')[-1])
         self.Makeprg(buffer)
 
         vim.command('w!')
         cmd = "setlocal makeprg="
         cmd += "g++\ -g\ -Wall\ "
+        cmd += self.local_inc
 
         for key in self.map_set:
             if key == 'pthread':
@@ -223,10 +243,10 @@ class MakePrg:
                 ## Env BOOST_ROOT point to the directory
                 try:
                     BOOST_ROOT = os.environ["BOOST_ROOT"]
-                    if os.path.isdir(BOOST_ROOT+"/boost"):
-                        cmd += "-I%s\ " % (BOOST_ROOT+"/boost")
-                    if os.path.isdir(BOOST_ROOT+"/stage/lib"):
-                        cmd += "-L%s\ " % (BOOST_ROOT+"/stage/lib")
+                    if os.path.isdir(BOOST_ROOT):
+                        cmd += "-I%s\ " % BOOST_ROOT
+                    if os.path.isdir(BOOST_ROOT + "/stage/lib"):
+                        cmd += "-L%s\ " % (BOOST_ROOT + "/stage/lib")
                 except KeyError:
                     ## User BOOST header directory
                     if BOOST_INCLUDE != '':
@@ -249,8 +269,8 @@ class MakePrg:
             elif re.match('boost_*', key):
                 cmd += "-l%s\ " % key
 
-        cmd += self.local_inc
         cmd += "-o\ %:r\ %"
+        cmd += self.local_src
 
         try:
             vim.command(cmd.strip())
