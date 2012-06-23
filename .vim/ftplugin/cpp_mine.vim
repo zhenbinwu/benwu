@@ -60,7 +60,7 @@ fun! Showexe() "{{{
 endfunction "}}}
 
 set tags+=~/.vim/ftplugin/cpp_tags
-set tags+=~/.vim/ftplugin/boost_tags
+"set tags+=~/.vim/ftplugin/boost_tags
 
 fun! AutoMake() "{{{
 python << EOF
@@ -79,7 +79,10 @@ import os
 import vim
 from sets import Set
 
-
+### Define the C++ compiler to be used
+CXX           = 'g++'
+### Define the C++ flags
+CXXFLAGS      = '-g -Wall'
 ## Define for boost path, could be path or env variable
 BOOST_INCLUDE = '~/BenSys/boost/'
 BOOST_LIB = '~/BenSys/lib/boost/'
@@ -158,8 +161,8 @@ class MakePrg:
 
     def AddLocal(self, include):
         ## split into filename and extension
-        filename = include.split('.')[0]
-        extension = include.split('.')[1]
+        filename = include[:include.rfind('.')]
+        extension = include[include.rfind('.')+1:]
 
         found_header = False  # Whether we found header
         ## Include all the file with filename in available path
@@ -168,7 +171,7 @@ class MakePrg:
             if os.path.isfile(path + "/" + include) \
                and self.Check_FileList(include):
                 cmd_local = '%s' % (path + "/" + include)
-                if path != './':
+                if not re.match("^\.[/]*$", path):
                     self.local_inc += "-I%s\ " % path
                 found_header = True
                 file = open(cmd_local, 'r')
@@ -179,6 +182,7 @@ class MakePrg:
         if found_header:
             ## Start to find the local source
             found_src = False  # Whether we found another source file
+            filename = filename[filename.rfind('/')+1:]
             for path in self.path_list:
                 for alter in self.dict[extension].split(','):
                     if os.path.isfile(path + "/" + filename + '.' + alter) \
@@ -216,6 +220,8 @@ class MakePrg:
             return True
 
     def Auto_Makeprg(self, buffer):
+        global CXX
+        global CXXFLAGS
         global BOOST_INCLUDE
         global BOOST_LIB
 
@@ -224,7 +230,10 @@ class MakePrg:
 
         vim.command('w!')
         cmd = "setlocal makeprg="
-        cmd += "g++\ -g\ -Wall\ "
+
+        ### Set the MakePrg
+        compiler = CXX.strip()+' '+CXXFLAGS.strip()+' '
+        cmd += compiler.replace(' ', '\ ')
         cmd += self.local_inc
 
         for key in self.map_set:
@@ -280,6 +289,7 @@ class MakePrg:
 todo = MakePrg()
 todo.Auto_Makeprg(vim.current.buffer)
 EOF
+"5sleep
 silent make
 redraw!
 " Open cwindow
