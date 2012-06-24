@@ -63,6 +63,8 @@ set tags+=~/.vim/ftplugin/cpp_tags
 "set tags+=~/.vim/ftplugin/boost_tags
 
 fun! AutoMake() "{{{
+  "" Get to the original file location
+  cd %:p:h
 python << EOF
 # File        : make.py
 # Author      : Ben Wu
@@ -85,7 +87,7 @@ CXX           = 'g++'
 CXXFLAGS      = '-g -Wall'
 ## Define for boost path, could be path or env variable
 BOOST_INCLUDE = '~/BenSys/boost/'
-BOOST_LIB = '~/BenSys/lib/boost/'
+BOOST_LIB = '~/BenSys/boost/stage/lib/'
 ## Additional file path beside from g:alternateSearchPath
 FILE_PATH = ''
 
@@ -99,6 +101,7 @@ class MakePrg:
         ## Get open file list
         ## Unfortunately I need this to prevent mulitple load
         self.file_list = []
+        self.is_main = False
         self.local_inc = ''
         self.local_src = ''
         self.dict = vim.eval("g:alternateExtensionsDict")
@@ -113,11 +116,11 @@ class MakePrg:
         ## Additional Boost libraries needed to load
         self.key_map['boost_date_time'] = "boost\/date_time*"
         self.key_map['boost_chrono'] = "boost\/chrono*"
+
         self.key_map['boost_exception'] = "boost\/exception*"
         self.key_map['boost_filesystem'] = "boost\/filesystem*"
         self.key_map['boost_locale'] = "boost\/locale*"
         self.key_map['boost_iostreams'] = "boost\/iostreams*"
-        #key_map['boost_graph'] = "boost\/graph*" No sure, haven't used it yet
         self.key_map['boost_mpi'] = "boost\/mpi*"
         self.key_map['boost_program_options'] = "boost\/program_options*"
         self.key_map['boost_python'] = "boost\/python*"
@@ -127,6 +130,12 @@ class MakePrg:
         ## Chrono need system
         self.key_map['boost_system'] = "boost\/(system|chrono)\w*"
         self.key_map['boost_thread'] = "boost\/thread*"
+        self.key_map['boost_unit_test_framework'] = "boost\/test\/unit_test\.hpp"
+        #key_map['boost_graph'] = "boost\/graph*" No sure, haven't used it yet
+        ## Don't understand math_tr1, may just use boost::math
+        # self.key_map['boost_math_tr1'] = "boost\/math\/tr1\.hpp"
+        # self.key_map['boost_math_tr1f'] = "boost\/math\/tr1\.hpp"
+        # self.key_map['boost_math_tr1l'] = "boost\/math\/tr1\.hpp"
 
     def __init_path__(self):
         global FILE_PATH
@@ -157,6 +166,7 @@ class MakePrg:
                 None and include.group(1).find("boost/") == -1:
                     self.AddLocal(include.group(1))
             elif re.search(r"\s*main\s.*\(.*\)\s*", line):
+                self.is_main = True
                 break
 
     def AddLocal(self, include):
@@ -245,16 +255,18 @@ class MakePrg:
                 include = os.popen('root-config --cflags').read().strip()
                 include += ' '
                 cmd += include.replace(' ', '\ ')
-                lib = os.popen('root-config --glibs').read().strip()
-                lib += ' '
-                cmd += lib.replace(' ', '\ ')
+                if self.is_main:
+                    lib = os.popen('root-config --glibs').read().strip()
+                    lib += ' '
+                    cmd += lib.replace(' ', '\ ')
             elif key == 'boost':
                 ## Env BOOST_ROOT point to the directory
                 try:
                     BOOST_ROOT = os.environ["BOOST_ROOT"]
                     if os.path.isdir(BOOST_ROOT):
                         cmd += "-I%s\ " % BOOST_ROOT
-                    if os.path.isdir(BOOST_ROOT + "/stage/lib"):
+                    if os.path.isdir(BOOST_ROOT + "/stage/lib") \
+                      and self.is_main:
                         cmd += "-L%s\ " % (BOOST_ROOT + "/stage/lib")
                 except KeyError:
                     ## User BOOST header directory
@@ -267,7 +279,7 @@ class MakePrg:
                             cmd += "-I%s\ " % BOOST_INCLUDE
 
                     ## User BOOST Libs directory
-                    if BOOST_LIB != '':
+                    if BOOST_LIB != '' and self.is_main:
                         try:
                             BOOST_LIB = os.environ[BOOST_LIB]
                         except KeyError:
@@ -275,11 +287,14 @@ class MakePrg:
                         if os.path.isdir(BOOST_LIB):
                             cmd += "-L%s\ " % BOOST_LIB
 
-            elif re.match('boost_*', key):
+            elif re.match('boost_*', key) and self.is_main:
                 cmd += "-l%s\ " % key
 
-        cmd += "-o\ %:r\ %"
-        cmd += self.local_src
+        if self.is_main:
+            cmd += "-o\ %:r\ %"
+            cmd += self.local_src
+        else:
+            cmd += "-c\ %"
 
         try:
             vim.command(cmd.strip())
@@ -290,6 +305,7 @@ todo = MakePrg()
 todo.Auto_Makeprg(vim.current.buffer)
 EOF
 "5sleep
+cclose
 silent make
 redraw!
 " Open cwindow
@@ -303,4 +319,6 @@ if empty(tlist)
   echomsg "Compiled Successfully!"
   echohl None
 endif
+
+cd -
 endfunction "}}}
