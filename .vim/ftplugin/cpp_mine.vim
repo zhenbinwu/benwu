@@ -66,6 +66,7 @@ fun! AutoMake() "{{{
   "" Get to the original file location
   cd %:p:h
   cclose
+  call setqflist([])
   update
 python << EOF
 # File        : make.py
@@ -88,9 +89,9 @@ MAKEMAIN = True
 ### Define the C++ compiler to be used
 CXX           = 'g++'
 ### Define the C++ flags
-CXXFLAGS      = '-g -Wall'
+CXXFLAGS      = '-g -Wall -fpic'
 ### Define the C++ flags
-LDFLAGS      = '-g -O -Wall -fPIC'
+LDFLAGS      = '-g -O -Wall'
 
 ## Additional file path beside from g:alternateSearchPath
 FILE_PATH = ''
@@ -139,6 +140,7 @@ class MakePrg:
         self.key_map['boost_regex'] = "boost\/regex*"
         self.key_map['boost_serialization'] = "boost\/serialization*"
         self.key_map['boost_signal'] = "boost\/signal*"
+        self.key_map['boost_wave'] = "boost\/wave*"
         ## Chrono need system
         self.key_map['boost_system'] = "boost\/(system|chrono)\w*"
         self.key_map['boost_thread'] = "boost\/thread*"
@@ -244,6 +246,7 @@ class MakePrg:
             return True
 
     def Auto_Makeprg(self, buffer):
+        global MAKEMAIN
         global CXX
         global CXXFLAGS
         global LDFLAGS
@@ -258,11 +261,13 @@ class MakePrg:
             self.to_link = self.time.check_link(self.local_src)
         if self.is_main and not MAKEMAIN:
             self.to_link = True;
+        if self.is_main and len(self.local_src) == 0:
+            self.to_link = True;
          
         cmd = "setlocal makeprg="
 
         compiler = CXX.strip()+' '
-        if not MAKEMAIN:
+        if not MAKEMAIN or len(self.local_src) == 0 and self.is_main:
             flags = Set()
             [flags.add(x) for x in CXXFLAGS.split(' ')]
             [flags.add(x) for x in LDFLAGS.split(' ')]
@@ -348,6 +353,7 @@ class MakePrg:
         global MAKEMAIN
 
         self.time.addMain(vim.current.buffer.name.split('/')[-1])
+        self.time.new_local = ''
         self.to_link = self.time.check_link(self.local_src)
         if not MAKEMAIN or not self.to_link:
             return None
@@ -415,7 +421,6 @@ class MakePrg:
             print "Error from Vim"
             
 
-
 class TimeStamp:
     def __init__(self):
         self.file={}
@@ -437,8 +442,8 @@ class TimeStamp:
 
     def _print(self):
         for key, val in self.file.items():
-            print "=========  %s :" % key
-            for key2, val2 in val.items():
+            print "=========  %s : %d" % (key, len(val.items()))
+            for key2,val2 in val.items():
                 print "        %s = %s " % (key+"."+key2, val2)
            
     def NeedCom(self, filename):
@@ -461,7 +466,7 @@ class TimeStamp:
             return True
 
         obtime = self.file[filename]['o']
-        needcom = False;
+        needcom = False
         for var in self.file[filename].itervalues():
             if var > obtime:
                 needcom = True;
@@ -534,42 +539,110 @@ class ObjFile():
         return None
 
 def CleanObj():
+    import glob
     ### After run , move all the locale obj files to obj dir
-    ojpath =ObjFile().ojpath
-    for _objfile in os.popen("ls *.o").readlines():
-        objfile = _objfile.strip()
-        os.system("mv "+objfile+ " " + ojpath)
+    lcobj = glob.glob('*.o')
+    if len(lcobj) != 0:
+        ojpath = ObjFile().ojpath
+        for objfile in lcobj:
+            os.system("mv "+objfile+ " " + ojpath)
 
+def ColorEcho(Status, cmd ):
+    termCol = { 'default':'0', 'black':'30', 'red':'31', 'green':'32', \
+               'yellow':'33', 'blue':'34', 'magenta':'35', 'cyan':'36',\
+               'white':'37'}
+
+    Message = "silent "
+    ## Blue for current step
+    if Status == "Compile":
+        Message += "!clear; echo; echo -en \"> \e[4;"
+        Message += termCol['yellow']+"mCompiling\e[0m : "
+    elif Status == "Link":
+        Message += "!echo; echo -en \"> \e[4;"
+        Message += termCol['yellow']+"mLinking\e[0m : "
+
+    lcmd = cmd.split(' ')
+    col_map = {}
+    target = -1
+    found_target = False
+    found_source = False
+
+    for i,v in enumerate(lcmd):
+        ### Use default color for all
+        col_map[v] = 'default'
+        ### High the compiler with cyan
+        if i == 0:
+            col_map[v]='blue'
+        ### We care about the inputs
+        if v == '-o':
+            found_target = True
+            target = i
+            continue
+        if v == '-c':
+            found_source = True
+            target = i
+            continue
+        ### The target file in red
+        if found_target and i == target + 1:
+            col_map[v]='red'
+        ### The source file in green
+        if found_target and i > target + 1:
+            col_map[v]='green'
+        if found_source and i > target:
+            col_map[v]='green'
+        if v.find('-l')== 0:
+            temp = '-l'
+            ### Highlight the linking library in magenta
+            temp += "\e[" + termCol['magenta'] + 'm'
+            temp += v[v.find('-l')+2:]
+            lcmd[i] = temp
+            col_map[temp] = 'default'
+        if v.find('-I')== 0:
+            temp = '-I'
+            ### Highlight the linking library in magenta
+            temp += "\e[" + termCol['cyan'] + 'm'
+            temp += v[v.find('-I')+2:]
+            lcmd[i] = temp
+            col_map[temp] = 'default'
+
+    out = ''
+    for item in lcmd:
+        out += "\e[" + termCol[col_map[item]]+'m'+item+' '
+    Message += out
+    Message += "\";tput sgr0; echo ;"
+
+    if os.environ["SHELL"] == '/bin/tcsh':
+        Message = Message.replace("echo -en", "echo -n")
+
+    return Message
 
 todo = MakePrg()
 if todo.Auto_Makeprg(vim.current.buffer):
-    #print "====================== Compiling"
-    #vim.command('echo &makeprg')
-    #vim.command('5sleep')
+    Message = ColorEcho("Compile", vim.eval("&makeprg"))
+    vim.command(Message)
     vim.command('silent make')
     CleanObj()
     vim.command('redraw!')
+    if len(vim.eval("getqflist()")) == 0:
+        vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
+        vim.command("echohl GreenBar")
+        vim.command("echomsg \"Compiled Successfully!\"")
+        vim.command("echohl None")
 if MAKEMAIN and todo.is_main and \
     len(todo.local_src) != 0 and \
     len(vim.eval("getqflist()")) == 0:
     todo.Auto_Linkprg(vim.current.buffer)
-    #print "====================== Linking "
-    #vim.command('echo &makeprg')
-    #vim.command('5sleep')
+    Message = ColorEcho("Link", vim.eval("&makeprg"))
+    vim.command(Message)
     vim.command('silent make')
+    vim.command('redraw!')
+    if len(vim.eval("getqflist()")) == 0:
+        vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
+        vim.command("echohl GreenBar")
+        vim.command("echomsg \"Linked Successfully!\"")
+        vim.command("echohl None")
 EOF
-redraw!
 " Open cwindow
 cwindow
-let tlist=getqflist() ", 'get(v:val, ''bufnr'')')
-if empty(tlist)
-  if !hlexists('GreenBar')
-    hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen
-  endif
-  echohl GreenBar
-  echomsg "Compiled Successfully!"
-  echohl None
-endif
-
 cd -
 endfunction "}}}
