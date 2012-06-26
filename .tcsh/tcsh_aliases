@@ -38,7 +38,6 @@ alias ~		'cd ~'
 
 # Goes to data on nbay05
 alias data      'cd ~/data/'
-alias screen    'echo $DISPLAY >! ~/.screen/X11;""screen'
 
 ## Standard aliases - for typos
 # These are the most common typos made by users, even experienced ones.
