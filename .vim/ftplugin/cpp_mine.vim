@@ -142,8 +142,9 @@ class MakePrg:
         self.key_map['boost_signal'] = "boost\/signal*"
         self.key_map['boost_wave'] = "boost\/wave*"
         ## Chrono need system
-        self.key_map['boost_system'] = "boost\/(system|chrono)\w*"
+        self.key_map['boost_system'] = "boost\/(system|chrono|timer)\w*"
         self.key_map['boost_thread'] = "boost\/thread*"
+        self.key_map['boost_timer'] = "boost\/timer*"
         self.key_map['boost_unit_test_framework'] = "boost\/test\/unit_test\.hpp"
         #key_map['boost_graph'] = "boost\/graph*" No sure, haven't used it yet
         ## Don't understand math_tr1, may just use boost::math
@@ -281,10 +282,11 @@ class MakePrg:
 
         cmd += compiler.replace(' ', '\ ')
         cmd += ''.join(self.local_inc)
+        libs = ''
 
         for key in self.map_set:
             if key == 'pthread' and self.to_link:
-                cmd += "-lpthread\ "
+                libs += "-lpthread\ "
             elif key == 'root':
                 if os.system('which root-config >& /dev/null') != 0:
                     continue
@@ -294,7 +296,7 @@ class MakePrg:
                 if self.to_link:
                     lib = os.popen('root-config --glibs').read().strip()
                     lib += ' '
-                    cmd += lib.replace(' ', '\ ')
+                    libs += lib.replace(' ', '\ ')
             elif key == 'boost':
                 ## Env BOOST_ROOT point to the directory
                 try:
@@ -324,19 +326,25 @@ class MakePrg:
                             cmd += "-L%s\ " % BOOST_LIB
 
             elif re.match('boost_*', key) and self.to_link:
-                cmd += "-l%s\ " % key
+                libs += "-l%s\ " % key
 
+
+        if len(libs) != 0:
+            libs = "\ "+libs[:libs.rfind("\ ")]
         ## single main file
         if self.is_main and len(self.local_src) == 0:
             cmd += "-o\ %:r\ %"
+            cmd += libs
         ## need extra source, two methods 
         elif self.is_main and MAKEMAIN:   
             cmd += self.time.check_main(self.local_src)
         elif self.is_main and not MAKEMAIN:
             cmd += "-o\ %:r\ %"
             cmd += self.local_src
+            cmd += libs
         else:
             cmd += "-c\ %"
+            cmd += libs
 
         try:
             vim.command(cmd.strip())
@@ -365,10 +373,12 @@ class MakePrg:
 
         cmd += compiler.replace(' ', '\ ')
         cmd += ''.join(self.local_inc)
+        ## The order of libs matters
+        libs = ''
 
         for key in self.map_set:
             if key == 'pthread' and self.to_link:
-                cmd += "-lpthread\ "
+                libs += "-lpthread\ "
             elif key == 'root':
                 if os.system('which root-config >& /dev/null') != 0:
                     continue
@@ -378,7 +388,7 @@ class MakePrg:
                 if self.to_link:
                     lib = os.popen('root-config --glibs').read().strip()
                     lib += ' '
-                    cmd += lib.replace(' ', '\ ')
+                    libs += lib.replace(' ', '\ ')
             elif key == 'boost':
                 ## Env BOOST_ROOT point to the directory
                 try:
@@ -408,12 +418,17 @@ class MakePrg:
                             cmd += "-L%s\ " % BOOST_LIB
 
             elif re.match('boost_*', key) and self.to_link:
-                cmd += "-l%s\ " % key
+                libs += "-l%s\ " % key
 
+
+        if len(libs) != 0:
+            libs = "\ "+libs[:libs.rfind("\ ")]
         if self.is_main:
             cmd += self.time.get_objlist()
+            cmd += libs
         else:
             cmd += "-c\ %"
+            cmd += libs
 
         try:
             vim.command(cmd.strip())
@@ -611,7 +626,7 @@ def ColorEcho(Status, cmd ):
     Message += out
     Message += "\";tput sgr0; echo ;"
 
-    if os.environ["SHELL"] == '/bin/tcsh':
+    if os.environ["SHELL"].find('tcsh') != -1:
         Message = Message.replace("echo -en", "echo -n")
 
     return Message
@@ -620,6 +635,7 @@ todo = MakePrg()
 if todo.Auto_Makeprg(vim.current.buffer):
     Message = ColorEcho("Compile", vim.eval("&makeprg"))
     vim.command(Message)
+    #vim.command('silent !echo ;fortune')
     vim.command('silent make')
     CleanObj()
     vim.command('redraw!')

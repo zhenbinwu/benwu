@@ -569,7 +569,9 @@ nmap ffl <ESC>:FufLine<CR>
 """""""""""""""""''
 " Alternate 
 """""""""""""""""""""""'
-let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../'
+let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../
+            \sfr:./source,sfr:./src,sfr:./include,sfr:./inc,sfr:./'
+
 let g:alternateNoDefaultAlternate = 0
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
 nmap <Leader>a :A<CR>
