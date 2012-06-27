@@ -75,10 +75,12 @@ function! s:Toggle()
     nmap <silent> <C-A> :call gdb("createvar " . expand("<cword>"))<CR>
 
     " Open Tag List 
-    nmap <silent> <F12> :TlistToggle<CR> 
+    nmap <silent> <F12> :TlistToggle<CR>
     map <silent> <leader>gdb :call <SID>ExitGdb()<CR>
 
+    echohl ErrorMsg
     echo "gdb keys mapped"
+    echohl None
 
     let s:winNo = bufwinnr(s:bufNo)
     exec s:winNo . "wincmd w"
