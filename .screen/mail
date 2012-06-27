@@ -28,13 +28,9 @@ def ChkIMAP(address, user, password):
     signal.alarm(1)
     server = imaplib.IMAP4_SSL(address)
     signal.alarm(0)
-    server.socket().settimeout(0.5)
-    try:
-        server.login(user, decPasswd(password))
-        server.select("INBOX", readonly=1)
-        (retcode, messages) = server.search(None, '(UNSEEN)')
-    except server.socket().timeout:
-        retcode = 'Close'
+    server.login(user, decPasswd(password))
+    server.select("INBOX", readonly=1)
+    (retcode, messages) = server.search(None, '(UNSEEN)')
     new_mail = 0
     if retcode == 'OK':
         if messages == ['']:
