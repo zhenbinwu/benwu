@@ -81,6 +81,7 @@ function! s:Toggle()
     while w <= winnr('$')
       if bufname(winbufnr(w)) == "gdb-variables" 
         let main = w
+        break
       endif
       let w += 1
     endwhile
@@ -152,6 +153,9 @@ function! s:Toggle()
     echo "gdb keys mapped"
     echohl None
 
+    "let s:winNo = bufwinnr(s:bufNo)
+    "exec s:winNo . "wincmd w"
+
     " Restore vim defaults
   else
     let s:gdb_k = 1
@@ -205,6 +209,8 @@ function! s:Breakpoint(cmd)
     endif
 endfunction
 
+let s:bufNo = bufnr("%")
+call s:Toggle()
 
 function! s:ExitGdb()
     let s:bufNo = bufnr("gdb-variables")
@@ -227,5 +233,3 @@ function! s:ExitGdb()
     redraw!
 endfunction
 
-let s:bufNo = bufnr("%")
-call s:Toggle()
