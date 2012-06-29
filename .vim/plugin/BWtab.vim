@@ -55,6 +55,7 @@ endfunction
 
 set tabline=%!MyTabLine()
 
+set guitablabel=%N\|%n\ %M%t
 """""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map for switching between the last two tabs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""

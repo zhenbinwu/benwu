@@ -364,8 +364,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>mi   <Esc>:call C_InsertTemplate("c
  noremap    <buffer>  <silent>  <LocalLeader>ai        :call C_InsertTemplate("cpp.accessor-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>ai   <Esc>:call C_InsertTemplate("cpp.accessor-implementation")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>ttc        :call C_InsertTemplate("cpp.template-class-definition")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ttc   <Esc>:call C_InsertTemplate("cpp.template-class-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>ta        :call C_InsertTemplate("cpp.template-class-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ta   <Esc>:call C_InsertTemplate("cpp.template-class-definition")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>tcn       :call C_InsertTemplate("cpp.template-class-using-new-definition")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tcn  <Esc>:call C_InsertTemplate("cpp.template-class-using-new-definition")<CR>
 
@@ -389,9 +389,9 @@ inoremap    <buffer>  <silent>  <LocalLeader>ec   <Esc>:call C_InsertTemplate("c
 vnoremap    <buffer>  <silent>  <LocalLeader>tr   <Esc>:call C_InsertTemplate("cpp.try-catch", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tr   <Esc>:call C_InsertTemplate("cpp.try-catch")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>ca        :call C_InsertTemplate("cpp.catch")<CR>
-vnoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C_InsertTemplate("cpp.catch", "v")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C_InsertTemplate("cpp.catch")<CR>
+ "noremap    <buffer>  <silent>  <LocalLeader>ca        :call C_InsertTemplate("cpp.catch")<CR>
+"vnoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C_InsertTemplate("cpp.catch", "v")<CR>
+"inoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C_InsertTemplate("cpp.catch")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>c.        :call C_InsertTemplate("cpp.catch-points")<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C_InsertTemplate("cpp.catch-points", "v")<CR>
