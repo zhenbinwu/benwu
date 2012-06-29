@@ -102,3 +102,28 @@ if (  $SHORT_HOST =~ hep0[1-4] ) then
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
 	#alias ctags 'ctags -R --c++-kinds=+p --fields=+iaS --extra=+q'
 endif
+
+if (  $SHORT_HOST =~ TOSHIBA ) then 
+	setenv PATH $HOME/BenSys/bin:${PATH};
+    #if ( ! ($?LD_LIBRARY_PATH)) then 
+        setenv LD_LIBRARY_PATH $HOME/BenSys/lib/:$HOME/BenSys/boost/stage/lib/
+	#endif
+	setenv CVSEIDTOR vim73
+    alias vi  'source $HOME/.tcsh/vitex';
+    alias rr  'source $HOME/.tcsh/mythisroot.csh'
+    alias root 'root -b'
+    #alias rr 'source /home/benwu/BenSys/root5/bin/thisroot.sh'
+    ## Aliases for fbi
+    alias fbi 'fbi'
+    alias fbgs 'fbgs -xxl -c'
+    alias fbb 'fbi --fitwidth -P *.tiff'
+    alias fbp 'fbi -a -t 3 *.jpg'
+    alias mplayer 'sudo mplayer -framedrop'
+
+    ## Aliases 
+    alias mn 'sudo mount /dev/sdb1 /mnt/usb'
+    alias um 'sudo umount /mnt/usb'
+    alias sd 'sudo shutdown -P +5'
+endif
+
+
