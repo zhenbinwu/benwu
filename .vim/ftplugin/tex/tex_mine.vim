@@ -235,8 +235,12 @@ autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 iabbrev st     single top
 iabbrev xs     cross section
 iabbrev mc     Monte Carlo
+iabbrev me     matrix element
 iabbrev sm     Standard Model
 iabbrev cdf    CDF
 iabbrev tchan  $t$-channel
 iabbrev schan  $s$-channel
 iabbrev wtchan $Wt$-channel
+iabbrev 2t2    2 $\to$ 2
+iabbrev 2t3    2 $\to$ 3
+

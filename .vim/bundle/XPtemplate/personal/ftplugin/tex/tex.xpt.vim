@@ -25,15 +25,15 @@ XPT tikzpicture " \begin{tikzpicture}{..} .. \end{tikzpicture}
     `cursor^
 \end{tikzpicture}
  
-XPT documentclass " documentclass[..]{..}
-XSET kind=Choose(['article','book','report', 'letter','slides'])
-\documentclass[`size~11~pt]{`kind~}
-..XPT
+"XPT documentclass " documentclass[..]{..}
+"XSET kind=Choose(['article','book','report', 'letter','slides'])
+"\documentclass[`size~11~pt]{`kind~}
+"..XPT
 
 
-XPT usepackage " usepackage{..}
-\usepackage{`cursor^}<++>
-..XPT
+"XPT usepackage " usepackage{..}
+"\usepackage{`cursor^}<++>
+"..XPT
 
 XPT r " ref{..}
 \ref{`cursor^}<++>
@@ -41,6 +41,10 @@ XPT r " ref{..}
 
 XPT rf " ref{..}
 \ref{fig:`cursor^}<++>
+..XPT
+
+XPT srf " ref{..}
+\subref{fig:`cursor^}<++>
 ..XPT
 
 XPT rs " ref{..}
@@ -58,3 +62,10 @@ XPT rq " ref{..}
 XPT rt " ref{..}
 \ref{tab:`cursor^}<++>
 ..XPT
+
+XPT underline " \underline{text}
+\underline{`cursor^}<++>
+..XPT
+
+
+

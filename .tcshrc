@@ -13,6 +13,7 @@
 if ($LOGNAME == "benwu") then
 	#        aliases   for interactive shells
 	source $HOME/.tcsh/tcsh_aliases
+
 	#        settings  for interactive shells
 	source $HOME/.tcsh/tcsh_set
 
@@ -26,7 +27,8 @@ if ($LOGNAME == "benwu") then
 	source $HOME/.tcsh/tcsh_cdf
 
 	#        special   for root
-	source $HOME/.tcsh/mythisroot.csh
+    source $HOME/.tcsh/mythisroot.csh
+
 endif
 
 

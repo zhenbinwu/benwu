@@ -6,36 +6,90 @@ if ! has("gdb")
     finish
 endif
 
-let s:gdb_k = 1
+if !exists("g:gdbvar_width")
+  let g:gdbvar_width = 30
+endif
 
+let s:gdb_k = 1
+let s:gdbvar_win_maximized = 0
+
+" map vimGdb keys
 nmap <F11> :call <SID>Toggle()<CR>
+
+
+" Gdbvar_Window_Zoom
+" Zoom (maximize/minimize) the gdbvar window
+function! s:Gdbvar_Window_Zoom()
+    if s:gdbvar_win_maximized
+        " Restore the window back to the previous size
+        exe 'vert resize ' . g:gdbvar_width
+        let s:gdbvar_win_maximized = 0
+    else
+        " Set the window size to the maximum possible without closing other
+        " windows
+        vert resize
+        let s:gdbvar_win_maximized = 1
+    endif
+endfunction
+
+
+fun! s:Debug_File() "{{{
+  let s:vimgdb_debug_file = ""
+  let Exe  = "./".expand("%:r").".exe"
+  let Run  = "./".expand("%:r")
+
+  if executable(Exe) && !executable(Run)
+    let s:vimgdb_debug_file = Exe
+  endif
+  if !executable(Exe) && executable(Run)
+    let s:vimgdb_debug_file = Run
+  endif
+
+  if executable(Exe) && executable(Run)
+    if getftime(Exe) >= getftime(Run) 
+      let s:vimgdb_debug_file = Exe
+    else
+      let s:vimgdb_debug_file = Run
+    endif
+  endif
+endfunction "}}}
 
 " Toggle between vim default and custom mappings
 function! s:Toggle()
   if s:gdb_k
     let s:gdb_k = 0
+
     if  !exists("g:vimgdb_debug_file")
-      let g:vimgdb_debug_file=""
-    elseif g:vimgdb_debug_file ==""
+      let g:vimgdb_debug_file = ""
+    endif
+
+    if g:vimgdb_debug_file == ""
+      call s:Debug_File()
       call inputsave()
-      let g:vimgdb_debug_file = input("File: ","","file")
+      if s:vimgdb_debug_file != ""
+        let g:vimgdb_debug_file = input("File: ", s:vimgdb_debug_file ,"file")
+      else
+        let g:vimgdb_debug_file = input("File: ", "" ,"file")
+      endif
       call inputrestore()
-      echo g:vimgdb_debug_file
       call gdb("file ".  g:vimgdb_debug_file)
     endif
+
 
     let main = 0
     let w = 1
     while w <= winnr('$')
       if bufname(winbufnr(w)) == "gdb-variables" 
         let main = w
+        break
       endif
       let w += 1
     endwhile
 
     if main == 0
-      exec "belowright 20vsplit gdb-variables"
+      exec "silent belowright ". g:gdbvar_width . "vsplit gdb-variables"
       setlocal nonumber
+      nnoremap <buffer> <silent> x :call <SID>Gdbvar_Window_Zoom()<CR>
     endif
     unlet w main
 
@@ -71,19 +125,36 @@ function! s:Toggle()
     " print value referenced by word at cursor
     nmap <silent> <C-X> :call gdb("print *" . expand("<cword>"))<CR>
 
-    " print value referenced by word at cursor
+    " display value at cursor
     nmap <silent> <C-A> :call gdb("createvar " . expand("<cword>"))<CR>
+
+    " display value referenced by word at cursor 
+    " M stand for in memory :-)
+    nmap <silent> <C-M> :call gdb("createvar *" . expand("<cword>"))<CR>
 
     " Open Tag List 
     nmap <silent> <F12> :TlistToggle<CR>
     map <silent> <leader>gdb :call <SID>ExitGdb()<CR>
 
+    if exists("g:tagbar_left")
+      let s:tagbar_left = g:tagbar_left
+      let g:tagbar_left = 1
+    endif
+
+    if exists("g:tagbar_width")
+      let s:tagbar_width = g:tagbar_width
+      let g:tagbar_width = 30
+    endif
+
+    let s:winNo = bufwinnr(s:bufNo)
+    exec s:winNo . "wincmd w"
+
     echohl ErrorMsg
     echo "gdb keys mapped"
     echohl None
 
-    let s:winNo = bufwinnr(s:bufNo)
-    exec s:winNo . "wincmd w"
+    "let s:winNo = bufwinnr(s:bufNo)
+    "exec s:winNo . "wincmd w"
 
     " Restore vim defaults
   else
@@ -109,8 +180,10 @@ function! s:Toggle()
     nunmap <C-B>
     nunmap <C-E>
     nunmap <C-P>
+    vunmap <C-P>
     nunmap <C-X>
-    map <silent> <F12> :WMToggle<CR>
+    nunmap <C-A>
+    nunmap <C-M>
     map <silent> <leader>gdb :call <SID>ExitGdb()<CR>
 
     echohl ErrorMsg
@@ -137,7 +210,6 @@ function! s:Breakpoint(cmd)
 endfunction
 
 let s:bufNo = bufnr("%")
-" map vimGdb keys
 call s:Toggle()
 
 function! s:ExitGdb()
@@ -146,6 +218,18 @@ function! s:ExitGdb()
     call gdb("quit")
     let s:gdb_k = 0
     call s:Toggle()
+    let g:vimgdb_debug_file = ""
     map <silent> <leader>gdb :run macros/gdb_mappings.vim<CR>
+    map <silent> <F12> :WMToggle<CR>
+
+    if exists("g:tagbar_left")
+      let g:tagbar_left = s:tagbar_left 
+    endif
+
+    if exists("g:tagbar_width")
+      let g:tagbar_width = s:tagbar_width 
+    endif
+
+    redraw!
 endfunction
 
