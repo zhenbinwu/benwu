@@ -62,11 +62,13 @@ endif
 nmap <script> <silent> <unique> <Leader>le :BufExplorer<CR>
 nmap <script> <silent> <unique> <Leader>ls :BufExplorerHorizontalSplit<CR>
 nmap <script> <silent> <unique> <Leader>lv :BufExplorerVerticalSplit<CR>
+nmap <script> <silent> <unique> <Leader>lt :BufExplorerTab<CR>
 
 " Create commands {{{1
 command! BufExplorer :call StartBufExplorer(has ("gui") ? "drop" : "hide edit")
 command! BufExplorerHorizontalSplit :call BufExplorerHorizontalSplit()
 command! BufExplorerVerticalSplit :call BufExplorerVerticalSplit()
+command! BufExplorerTab :call BufExplorerTab()
 
 " BESet {{{1
 function! s:BESet(var, default)
@@ -330,6 +332,11 @@ function! BufExplorerHorizontalSplit()
   exec "BufExplorer"
 endfunction
 
+" BufExplorerTab {{{1
+function! BufExplorerTab()
+  let s:splitMode = "tabnew"
+  exec "BufExplorer"
+endfunction
 " BufExplorerVerticalSplit {{{1
 function! BufExplorerVerticalSplit()
   let s:splitMode = "vsp"

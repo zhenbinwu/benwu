@@ -369,7 +369,7 @@ endif
 			      nodtdlib static nostdinc undef)"/ \
 		 	c/-l/f:*.a/ \
 		 	n/*/f:*.{c,C,cc,o,a,s,i}/
-    complete g++ 	n/*/f:*.{C,cc,cpp,C+,o,s,i}/
+    complete g++ 	n/*/f:*.{C,cc,cpp,o,s,i}/
     complete CC 	n/*/f:*.{C,cc,cpp,o,s,i}/
     complete rm 	c/--/"(directory force interactive verbose \
 			recursive help version)"/ c/-/"(d f i v r R -)"/ \

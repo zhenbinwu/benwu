@@ -65,7 +65,6 @@
 "     > Matchit          ( V1.13.2     2011_01_29 )
 "     > FuzzyFinder      ( V4.2.2      2011_01_30 )
 "     > A                ( V2.18       2011_05_08 )
-"     > Fswitch          ( V0.93       2011_05_08 )
 "     > Taskpaper        ( v0.6        2011_05_29 )
 "     > Cscope           ( V1          2011_01_30 )
 "     > Pydiction        ( V1.2        2011_07_24 )
@@ -112,7 +111,7 @@ let g:mapleader = ","
 map <leader>e :e! ~/.vimrc<cr>
 
 " Fast reloading of the ~/.vimrc
-map <leader>ss :w <CR> :source %<CR>
+au FileType vim map <leader>ss :w <CR> :source %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -165,6 +164,7 @@ if has("gui_running")
   set guioptions-=T
   set guioptions-=m
   set guioptions-=r
+  set guioptions-=L
   set nocursorline
   set t_Co=256
   colorscheme wombat256
@@ -263,7 +263,6 @@ set laststatus=2
 "set statusline=%<\ \[%n:%Y]%{fugitive#statusline()}\ %f%m%r%h%w%q\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,13 +312,13 @@ imap <silent> <leader>x <ESC>xi
 " Maping Keys compile the C++ program and get into quickfix
 map <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
 map <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
-map <F7> <Esc>:cp<CR>
-map <F8> <Esc>:cn<CR>
+map <F7> <Esc>:cp<CR>zv
+map <F8> <Esc>:cn<CR>zv
 
 imap <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
 imap <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
-imap <F7> <Esc>:cp<CR>
-imap <F8> <Esc>:cn<CR>
+imap <F7> <Esc>:cp!<CR>zv
+imap <F8> <Esc>:cn!<CR>zv
 """""""""""""""""""""""""""""""""""""""""""
 " Buf Command
 """""""""""""""""""""""""""""""""""""""""'
@@ -353,9 +352,9 @@ if(has('gdb'))
   """""""""""""""""""""""""""""""""""""
   " GDB Setting 
   """""""""""""""""""""""""""""""""""""
-  set gdbprg=gdb	        	" set GDB invocation string (default 'gdb')
+  set gdbprg=gdb	        " set GDB invocation string (default 'gdb')
   set previewheight=12		" set gdb window initial height
-  set asm=0				" don't show any assembly stuff
+  set asm=0				    " don't show any assembly stuff
   "usource key mappings listed in this
   map <silent> <leader>gdb :run macros/gdb_mappings.vim<CR>
   let g:vimgdb_debug_file=""
@@ -376,6 +375,7 @@ if v:version >= '703'
   set undofile
   map <silent> <F11> :GundoToggle<CR>
   let g:gundo_width = 35
+  let g:gundo_preview_height = 20
   let g:gundo_close_on_revert = 1
 endif
 
@@ -569,7 +569,8 @@ nmap ffl <ESC>:FufLine<CR>
 """""""""""""""""''
 " Alternate 
 """""""""""""""""""""""'
-let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../'
+let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../,
+      \sfr:./source,sfr:./src,sfr:./include,sfr:./inc' 
 let g:alternateNoDefaultAlternate = 0
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
 nmap <Leader>a :A<CR>
@@ -654,7 +655,7 @@ nnoremap <silent> <leader>y :YRShow<CR>
 " => Indent_Guide
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indent_guides_guide_size=1
-
+nmap <buffer> <silent> <Leader>ig <Plug>IndentGuidesToggle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VimIM
