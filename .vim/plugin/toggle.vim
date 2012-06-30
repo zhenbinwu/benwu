@@ -67,7 +67,7 @@
 let s:save_cpo = &cpo
 set cpo&vim
 
-imap <C-T> <C-O>:call Toggle()<CR>
+"imap <C-T> <C-O>:call Toggle()<CR>
 nmap = :call Toggle()<CR>
 "vmap = <ESC>:call Toggle()<CR>
 
@@ -92,6 +92,40 @@ function! s:Toggle_changeString(string, beginPos, endPos, newString)
   return strpart(a:string, 0, a:beginPos) . a:newString . strpart(a:string, a:endPos+1)
 endfunction
 " }}}
+
+" Get a sequence of characters that describe a motion. {{{
+function! s:Toggle_GetMotion(char)
+  let motion = ""
+  let c = nr2char(getchar())
+  echon c
+  " In some contexts, such as "yy", a particular character counts as a motion.
+  if c == a:char
+    return c
+  endif
+  " Capture any sequence of digits (a count) and mode modifiers.
+  " :help o_v
+  while c =~ "[vV[:digit:]\<C-V>]"
+    let motion = motion . c
+    let c = nr2char(getchar())
+    echon c
+  endwhile
+  " Most motions are a single character, but some two-character motions start
+  " with 'g'.  For example,
+  " :help gj
+  if c =~ "[][gfFtT]"
+    let motion = motion . c
+    let c = nr2char(getchar())
+    echon c
+  endif
+  " Text objects start with 'a' or 'i'.  :help text-objects
+  " Jump to a mark with "'" or "`".  :help 'a
+  if c =~ "[ai'`]"
+    let motion = motion . c
+    let c = nr2char(getchar())
+    echon c
+  endif
+  return motion . c
+endfun  "}}}
 
 function! Toggle() "{{{
     " save values which we have to change temporarily:
@@ -285,9 +319,12 @@ function! Toggle() "{{{
     endif " toggleDone?}}}
 
     if s:toggleDone == 0
-      echohl WarningMsg
-      echo "Can't toggle word under cursor, word is not in list." 
-      echohl None
+      unmap =
+      echon "Indenting  =" 
+      let s:temp = s:Toggle_GetMotion("=")
+      redraw!
+      execute "normal! =" . s:temp
+      nmap = :call Toggle()<CR>
     endif
 
     " unlet used variables to save memory {{{
@@ -296,14 +333,15 @@ function! Toggle() "{{{
     unlet! s:cline
     unlet! s:foundSpace
     unlet! s:cuc "}}}
-    
+
     "restore saved values
     call cursor(s:lineNo,s:columnNo)
     unlet s:lineNo
     unlet s:columnNo
-endfunction " }}}
+  endfunction " }}}
 
-let &cpo = s:save_cpo
-unlet s:save_cpo
 
-" vim:fdm=marker commentstring="%s
+  let &cpo = s:save_cpo
+  unlet s:save_cpo
+
+  " vim:fdm=marker commentstring="%s
