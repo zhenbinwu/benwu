@@ -872,6 +872,11 @@ function! s:VCSCommit(bang, message)
 			throw 'Unknown VCS type:  ' . vcsType
 		endif
 
+        if vcsType == "git" && exists(":Gcommit")
+            Gcommit
+            throw 'Gcommit'
+        endif
+
 		let originalBuffer = VCSCommandGetOriginalBuffer(bufnr('%'))
 
 		" Handle the commit message being specified.  If a message is supplied, it
@@ -903,6 +908,8 @@ function! s:VCSCommit(bang, message)
 		$
 		setlocal nomodified
 		silent do VCSCommand User VCSBufferCreated
+    catch /^Gcommit/
+        return
 	catch
 		call s:ReportError(v:exception)
 		return -1
