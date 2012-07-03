@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# File        : mail
+# Author      : Ben Wu
+# Contact     : benwu@fnal.gov
+# Date        : 2012 Jun 06
+#
+# Description : This python script will check the number of new emails through
+# IMAP. The password protected using RSA key pairs. Only the private key
+# should be find in the current directory and should not be viewed by others.
+
+
+def decPasswd(password):
+    from Crypto.PublicKey import RSA
+    from os import path
+    private_file = path.abspath(".") + "/private.pem"
+    f = open(private_file, 'r')
+    private_key = f.read()
+    key = RSA.importKey(private_key)
+    passfile = path.abspath(".") + "/" + password
+    return key.decrypt(open(passfile, 'rb').read())
+
+
+def ChkIMAP(address, user, password):
+    import imaplib
+    import signal
+    signal.alarm(2)
+    server = imaplib.IMAP4_SSL(address)
+    signal.alarm(0)
+    server.login(user, decPasswd(password))
+    server.select("INBOX", readonly=1)
+    (retcode, messages) = server.search(None, '(UNSEEN)')
+    new_mail = 0
+    if retcode == 'OK':
+        if messages == ['']:
+            pass
+        else:
+            new_mail = len(messages[0].split(' '))
+    server.close()
+    server.logout()
+    return new_mail
+
+
+def MultiMail():
+    baymail = ChkIMAP("mail.baylor.edu", "zhenbin_wu", "Baylor")
+    gmail = ChkIMAP("imap.gmail.com", "zhenbinwu", "Gmail")
+    if baymail == None:
+        baymail = 0
+    if gmail == None:
+        gmail = 0
+    if baymail * gmail == 0:
+        if baymail:
+            return  "[\005{= kY} Email \005{g}]"
+        if gmail:
+            return  "[\005{= kR} Email \005{g}]"
+    else:
+        return PrMul(baymail, gmail)
+
+
+def PrMul(baymail, gmail):
+    toPrint = "[ EM:"
+    toPrint += "\005{Y}%d" % baymail
+    toPrint += "\005{-}|"
+    toPrint += "\005{R}%d" % gmail
+    toPrint += " \005{-}]"
+    return toPrint
+
+if __name__ == "__main__":
+    out = MultiMail()
+    #out = "[\005{= kY} Email \005{g}]"
+    import datetime
+    time = str(datetime.datetime.now())
+    print "%s : %s " % (time, out)
