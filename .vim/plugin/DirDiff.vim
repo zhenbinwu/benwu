@@ -507,7 +507,7 @@ function! <SID>CloseDiffWindows()
         bd!
         " User may just have one window opened, we may not need to close
         " the second diff window
-        if (&diff)
+        if (&diff || b:git_dir !=# '')
             call <SID>AskIfModified()
             bd!
         endif
