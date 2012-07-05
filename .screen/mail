@@ -1,70 +1,60 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-# File        : mail
+# File        : test.py
 # Author      : Ben Wu
 # Contact     : benwu@fnal.gov
-# Date        : 2012 Jun 06
+# Date        : 2012 Jul 02
 #
-# Description : This python script will check the number of new emails through
-# IMAP. The password protected using RSA key pairs. Only the private key
-# should be find in the current directory and should not be viewed by others.
+# Description : Since the checkmail could cause a small pause of the screen,
+# I now separate it out from the screen update. Screen will run this script to
+# read from the status file for email info. And it would send the checkmail
+# job as independent process (thanks to setsid) in parallel with running
+# screen. Now this should be running smoothly with the scarification that the
+# email will be know after 10 mins instead of 5 now.
 
+import os
+import subprocess
+import re
+import datetime
 
-def decPasswd(password):
-    from Crypto.PublicKey import RSA
-    from os import path
-    private_file = path.abspath(".") + "/private.pem"
-    f = open(private_file, 'r')
-    private_key = f.read()
-    key = RSA.importKey(private_key)
-    passfile = path.abspath(".") + "/" + password
-    return key.decrypt(open(passfile, 'rb').read())
-
-
-def ChkIMAP(address, user, password):
-    import imaplib
-    import signal
-    signal.alarm(1)
-    server = imaplib.IMAP4_SSL(address)
-    signal.alarm(0)
-    server.login(user, decPasswd(password))
-    server.select("INBOX", readonly=1)
-    (retcode, messages) = server.search(None, '(UNSEEN)')
-    new_mail = 0
-    if retcode == 'OK':
-        if messages == ['']:
-            pass
-        else:
-            new_mail = len(messages[0].split(' '))
-    server.close()
-    server.logout()
-    return new_mail
-
-
-def MultiMail():
-    baymail = ChkIMAP("mail.baylor.edu", "zhenbin_wu", "Baylor")
-    gmail = ChkIMAP("imap.gmail.com", "zhenbinwu", "Gmail")
-    if baymail == None:
-        baymail = 0
-    if gmail == None:
-        gmail = 0
-    if baymail * gmail == 0:
-        if baymail:
-            print  "[\005{= kY} Email \005{g}]"
-        if gmail:
-            print  "[\005{= kR} Email \005{g}]"
-    else:
-        PrMul(baymail, gmail)
-
-
-def PrMul(baymail, gmail):
-    toPrint = "[ EM:"
-    toPrint += "\005{Y}%d" % baymail
-    toPrint += "\005{-}|"
-    toPrint += "\005{R}%d" % gmail
-    toPrint += " \005{-}]"
-    print toPrint
 
 if __name__ == "__main__":
-    MultiMail()
+    ## Predefine delta, for the case the status file is empty, it would send
+    ## out a new checkmail
+    delta = datetime.timedelta(minutes = 5)
+
+    ## Touch status if it does not exist
+    if not os.access("status", os.R_OK):
+        os.system("touch status")
+
+    try:
+        f = open("status", 'r')
+        line = f.readline()
+        echo = re.match('.*(\[.*\])$', line.strip())
+        if echo == None:
+            echo = "None"
+        else:
+            echo = echo.group(1)
+
+        s = re.sub('\..*', '', line).strip()
+        t = datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
+        delta =  datetime.datetime.now() - t
+        f.close()
+    except:
+        proc = subprocess.Popen( '~/.screen/checkmail > status', shell=True, preexec_fn = os.setsid ) 
+    finally:
+        if delta > datetime.timedelta(minutes = 20):
+            p = subprocess.Popen( '~/.screen/checkmail', shell = True,
+                                   stdout=subprocess.PIPE)
+            out = p.stdout.read()
+            echo = re.match('.*(\[.*\])$', out)
+            if echo == None:
+                echo = "None"
+            else:
+                echo = echo.group(1)
+                print echo
+        else:
+            if echo != "None":
+                print echo
+            proc = subprocess.Popen( '~/.screen/checkmail > status', shell=True, preexec_fn = os.setsid ) 

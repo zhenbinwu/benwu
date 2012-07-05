@@ -431,6 +431,7 @@ let g:winManagerWindowLayout = 'TagList,NERDTree|BufExplorer'
 let g:winManagerWidth = 30
 let g:persistentBehaviour = 0
 let g:defaultExplorer = 0
+let g:nerdtree_open_cmd = 'gnome-open'
 map <silent> <F12> :WMToggle<CR>
 
 """"""""""""""""""""""""""""""
