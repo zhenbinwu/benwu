@@ -1,10 +1,7 @@
-" this is mostly a matter of taste. but LaTeX looks good with just a bit
+"this is mostly a matter of taste. but LaTeX looks good with just a bit
 " of indentation.
 set sw=2
-" TIP: if you write your \label's as \label{fig:something}, then if you
-" type in \ref{fig: and press <C-n> you will automatically cycle through
-" all the figure labels. Very useful!
-set iskeyword+=:
+
 
 ""By default, typing Alt-<key> in Vim takes focus to the menu bar if a menu
 ""with the hotkey <key> exists. If in your case, there are conflicts due to
@@ -225,6 +222,17 @@ endfunction "}}}
 
 autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 
+let g:tagbar_type_tex = {
+      \ 'ctagstype' : 'latex',
+      \ 'kinds'     : [
+      \ 's:sections',
+      \ 'g:graphics:0:0',
+      \ 'l:labels',
+      \ 'r:refs:1:0',
+      \ 'p:pagerefs:1:0'
+      \ ],
+      \ 'sort'    : 0,
+      \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,4 +251,6 @@ iabbrev schan  $s$-channel
 iabbrev wtchan $Wt$-channel
 iabbrev 2t2    2 $\to$ 2
 iabbrev 2t3    2 $\to$ 3
+iabbrev >      $>$
+iabbrev <      $<$
 
