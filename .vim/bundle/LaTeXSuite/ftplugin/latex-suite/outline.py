@@ -91,7 +91,10 @@ def getSectionLabels_Root(lineinfo, section_prefix, label_prefix):
             if prev_env == 'figure':
                 cm = re.search(r'\caption(\[.*?\]\s*)?{(.*?)}', prev_txt)
                 if cm:
-                    prev_txt = cm.group(2)
+                    if cm.group(1) != None:
+                        prev_txt = cm.group(1)
+                    else:
+                        prev_txt = cm.group(2)
 
             # print a nice formatted text entry like so
             #
