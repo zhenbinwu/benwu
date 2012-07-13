@@ -64,7 +64,7 @@ set tags+=~/.vim/ftplugin/cpp_tags
 
 fun! AutoMake() "{{{
   "" Get to the original file location
-  cd %:p:h
+  lcd %:p:h
   cclose
   call setqflist([])
   update
@@ -86,6 +86,8 @@ from sets import Set
 
 ### Define to compile the main in two steps
 MAKEMAIN = True
+### Whether to read fortune while compiling
+FORTUNE = True
 ### Define the C++ compiler to be used
 CXX           = 'g++'
 ### Define the C++ flags
@@ -124,7 +126,7 @@ class MakePrg:
     def __init_key__(self):
         ## Define pattern for different type
         self.key_map['root'] = "T\w*"
-        self.key_map['pthread'] = "pthread[\.h]."
+        self.key_map['pthread'] = "pthread[\.h].|boost\/flyweight\.hpp"
         self.key_map['boost'] = "boost\/\w*"
         ## Additional Boost libraries needed to load
         self.key_map['boost_date_time'] = "boost\/date_time*"
@@ -139,10 +141,10 @@ class MakePrg:
         self.key_map['boost_python'] = "boost\/python*"
         self.key_map['boost_regex'] = "boost\/regex*"
         self.key_map['boost_serialization'] = "boost\/serialization*"
-        self.key_map['boost_signal'] = "boost\/signal*"
+        self.key_map['boost_signals'] = "boost\/signals*"
         self.key_map['boost_wave'] = "boost\/wave*"
         ## Chrono need system
-        self.key_map['boost_system'] = "boost\/(system|chrono|timer)\w*"
+        self.key_map['boost_system'] = "boost\/(system|chrono|timer|asio)\w*"
         self.key_map['boost_thread'] = "boost\/thread*"
         self.key_map['boost_timer'] = "boost\/timer*"
         self.key_map['boost_unit_test_framework'] = "boost\/test\/unit_test\.hpp"
@@ -631,13 +633,35 @@ def ColorEcho(Status, cmd ):
 
     return Message
 
+def fortune():
+    import tempfile
+    temf = tempfile.mkstemp()[1]
+    #temf = os.popen('tempfile').read().strip()
+    vimc = "silent !echo ;"
+    vimc += "fortune -s"
+    vimc += "| tee " + temf
+    vim.command(vimc)
+    vim.command("silent !echo ;")
+    f = ''.join(open(temf, 'r').readlines())
+    fl=len(f)
+    return fl/20
+
 todo = MakePrg()
 if todo.Auto_Makeprg(vim.current.buffer):
     Message = ColorEcho("Compile", vim.eval("&makeprg"))
     vim.command(Message)
-    #vim.command('silent !echo ;fortune')
-    vim.command('silent make')
-    CleanObj()
+    if FORTUNE :
+        import timeit
+        ft = fortune()
+        t = timeit.Timer("vim.command('silent make')", "import vim").timeit(1)
+        t += timeit.Timer("CleanObj()", "from __main__ import CleanObj").timeit(1)
+        if ft - int(t) > 0 :
+            wait = ft - int(t)
+            tosleep = "silent !sleep " + str(wait)
+            vim.command(tosleep)
+    else:
+        vim.command('silent make')
+        CleanObj()
     vim.command('redraw!')
     if len(vim.eval("getqflist()")) == 0:
         vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
@@ -660,5 +684,5 @@ if MAKEMAIN and todo.is_main and \
 EOF
 " Open cwindow
 cwindow
-cd -
+lcd -
 endfunction "}}}

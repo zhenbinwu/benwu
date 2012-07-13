@@ -64,7 +64,7 @@ XPT rt " ref{..}
 ..XPT
 
 XPT underline " \underline{text}
-\underline{`cursor^}<++>
+\ul{`cursor^}<++>
 ..XPT
 
 

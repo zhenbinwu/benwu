@@ -32,9 +32,3 @@ fun! Showexe() "{{{
 endfunction "}}}
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Man
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-runtime ftplugin/man.vim
-autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
-noremap <buffer> <silent> <leader>k :Man <C-R>=expand("<cword>")<CR><CR>

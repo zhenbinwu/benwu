@@ -9,6 +9,7 @@ endif
 
 foreach arg ($*)
   if ( "$arg" =~ [-]* ) then
+     set targs = ($targs $arg)
      continue
   endif
 

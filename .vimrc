@@ -97,6 +97,7 @@ if v:version < '703'
 endif
 
 call pathogen#infect()
+
 filetype plugin on
 filetype indent on
 
@@ -379,11 +380,19 @@ if v:version >= '703'
   let g:gundo_close_on_revert = 1
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Man
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("unix")
+  runtime ftplugin/man.vim
+  autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
+  noremap <buffer> <silent> <leader>k :Man <C-R>=expand("<cword>")<CR><CR>
+endif
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-"   								+
-"                        Plugin Setting  			+
-"   								+
+"   							                            	+
+"                        Plugin Setting             			+
+"   							                            	+
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -674,3 +683,10 @@ nmap <silent> <F10>  :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>ab	<Plug>AM_abox
 map <Leader>ac	<Plug>AM_acom
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VCSCommand
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup VCSCommand
+  au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
+augroup END

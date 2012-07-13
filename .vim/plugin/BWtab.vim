@@ -27,10 +27,11 @@ function! MyTabLine()
     let s .= ' '
     let s .= i . ':'
     "let s .= winnr . '/' . tabpagewinnr(i,'$')
-    let s .= tabpagewinnr(i,'$')
+    "let s .= tabpagewinnr(i,'$')
+    let bufnr = buflist[winnr - 1]
+	let s .= bufnr
     let s .= ' %*'
     let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-    let bufnr = buflist[winnr - 1]
     if getbufvar(bufnr, "&modified")
       let s .= '+'
     endif

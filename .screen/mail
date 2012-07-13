@@ -22,14 +22,17 @@ import datetime
 if __name__ == "__main__":
     ## Predefine delta, for the case the status file is empty, it would send
     ## out a new checkmail
-    delta = datetime.timedelta(minutes = 5)
+    delta = datetime.timedelta(minutes=5)
+
+    ## Status file name
+    statfile = os.path.expanduser("~/.screen/status")
 
     ## Touch status if it does not exist
-    if not os.access("status", os.R_OK):
-        os.system("touch status")
+    if not os.access(statfile, os.R_OK):
+        os.system("touch " + statfile)
 
     try:
-        f = open("status", 'r')
+        f = open(statfile, 'r')
         line = f.readline()
         echo = re.match('.*(\[.*\])$', line.strip())
         if echo == None:
@@ -39,15 +42,19 @@ if __name__ == "__main__":
 
         s = re.sub('\..*', '', line).strip()
         t = datetime.datetime.strptime(s, '%Y-%m-%d %H:%M:%S')
-        delta =  datetime.datetime.now() - t
+        delta = datetime.datetime.now() - t
         f.close()
     except:
-        proc = subprocess.Popen( '~/.screen/checkmail > status', shell=True, preexec_fn = os.setsid ) 
+        proc = subprocess.Popen('/home/benwu/.screen/checkmail > ' \
+                            + statfile, shell=True, preexec_fn=os.setsid)
     finally:
-        if delta > datetime.timedelta(minutes = 20):
-            p = subprocess.Popen( '~/.screen/checkmail', shell = True,
-                                   stdout=subprocess.PIPE)
+        if delta > datetime.timedelta(minutes=20):
+            p = subprocess.Popen('/home/benwu/.screen/checkmail', \
+                                 shell=True, stdout=subprocess.PIPE)
             out = p.stdout.read()
+            f = open(statfile, 'w')
+            f.write(out)
+            f.close()
             echo = re.match('.*(\[.*\])$', out)
             if echo == None:
                 echo = "None"
@@ -57,4 +64,5 @@ if __name__ == "__main__":
         else:
             if echo != "None":
                 print echo
-            proc = subprocess.Popen( '~/.screen/checkmail > status', shell=True, preexec_fn = os.setsid ) 
+            proc = subprocess.Popen('/home/benwu/.screen/checkmail > ' \
+                            + statfile, shell=True, preexec_fn=os.setsid)
