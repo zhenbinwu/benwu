@@ -222,6 +222,20 @@ endfunction "}}}
 
 autocmd VimEnter,BufNewFile,BufRead *.tex :call GetCustomLatexCommands()
 
+" Easy section jumping from http://vim.wikia.com/wiki/Section_jump_in_Latex
+noremap <buffer> <silent> ]] :<c-u>call TexJump2Section( v:count1, '' )<CR>zvzz
+noremap <buffer> <silent> [[ :<c-u>call TexJump2Section( v:count1, 'b' )<CR>zvzz
+function! TexJump2Section( cnt, dir ) "{{{
+  let i = 0
+  let pat = '^\\\(part\|chapter\|\(sub\)*section\|paragraph\)\>\|\%$\|\%^'
+  let flags = 'W' . a:dir
+  while i < a:cnt && search( pat, flags ) > 0
+    let i = i+1
+  endwhile
+  let @/ = pat
+endfunction "}}}
+
+" Tagbar support
 let g:tagbar_type_tex = {
       \ 'ctagstype' : 'latex',
       \ 'kinds'     : [
