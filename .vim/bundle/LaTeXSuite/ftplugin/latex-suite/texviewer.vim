@@ -782,8 +782,8 @@ function! Tex_StartOutlineCompletion()
     let &cmdheight = _cmdheight
     let &lazyredraw = _lazyredraw
 
-	nnoremap <Plug>Tex_JumpToNextLabelEntry :call search('^>\s.*$', 'W')<CR>zv<CR>z.
-	nnoremap <Plug>Tex_JumpToPrevLabelEntry :call search('^>\s.*$', 'bW')<CR>zv<CR>z.
+	nnoremap <Plug>Tex_JumpToNextLabelEntry :call search('^>\s.*$', 'W')<CR>zvz.
+	nnoremap <Plug>Tex_JumpToPrevLabelEntry :call search('^>\s.*$', 'bW')<CR>zvz.
 	nmap <buffer> <silent> n 		<Plug>Tex_JumpToNextLabelEntry
 	nmap <buffer> <silent> p 		<Plug>Tex_JumpToPrevLabelEntry
 
