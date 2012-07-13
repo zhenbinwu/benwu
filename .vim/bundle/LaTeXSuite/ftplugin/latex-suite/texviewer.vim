@@ -777,9 +777,15 @@ function! Tex_StartOutlineCompletion()
 	" once the buffer is initialized, go back to the original settings.
 	setlocal nomodifiable
 	setlocal nomodified
+	setlocal cursorline
     let &report = _report
     let &cmdheight = _cmdheight
     let &lazyredraw = _lazyredraw
+
+	nnoremap <Plug>Tex_JumpToNextLabelEntry :call search('^>\s.*$', 'W')<CR>zv<CR>z.
+	nnoremap <Plug>Tex_JumpToPrevLabelEntry :call search('^>\s.*$', 'bW')<CR>zv<CR>z.
+	nmap <buffer> <silent> n 		<Plug>Tex_JumpToNextLabelEntry
+	nmap <buffer> <silent> p 		<Plug>Tex_JumpToPrevLabelEntry
 
 endfunction " }}}
 " Tex_SetupOutlineSyntax: sets up the syntax items for the outline {{{
