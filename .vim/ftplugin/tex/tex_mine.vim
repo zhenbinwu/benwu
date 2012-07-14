@@ -131,6 +131,11 @@ autocmd BufWritePre *.tex call LastModified()
 " 
 function! GetCustomLatexCommands() "{{{
 
+" Don't run this for fugitive files
+if expand ('%:p') =~? "^fugitive://.*.tex"
+  return
+endif
+
 python << EOF
 import os
 import os.path
@@ -144,13 +149,11 @@ def getCMD(line):
     tmp = re.search(r"^\\def\\([^\{].*?)\s*{(.*?)}", line)
     if tmp != None:
         cmd = tmp.group(1)
-        argc = tmp.group(2)
-        commands.append((cmd, argc))
-    tmp = re.search(r"^\\newcommand{\\(.*?)}\s*{(.*?)}", line)
+        commands.append(cmd)
+    tmp = re.search(r"^\\newcommand{\\(.*?)}\s*", line)
     if tmp != None:
         cmd = tmp.group(1)
-        argc = tmp.group(2)
-        commands.append((cmd, argc))
+        commands.append(cmd)
     return commands
 
 def readFile(p):
@@ -209,8 +212,8 @@ def GetCustomLatexCommands():
     import vim
     cmds = readFile(getMain(vim.current.buffer.name))
     for cmd in cmds:
-        if cmd[0][0].find('#') == -1:
-            todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0][0], cmd[0][0])
+        if cmd[0].find('#') == -1:
+            todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0], cmd[0])
             vim.command(todo)
             #vim.command("inoreabbrev %s \%s"%(cmd[0][0],cmd[0][0]))
             #vim.command('let g:Tex_Com_%s="\\\\%s%s <++>"'%(cmd, cmd, "{<++>}"*argc))
