@@ -250,6 +250,12 @@ let g:tagbar_type_tex = {
       \ ],
       \ 'sort'    : 0,
       \ }
+
+" Add more surround support for latex
+" From cheat sheat, \textit{*} form handles spacing better then {\it *} form
+let g:surround_{char2nr("t")} = "\\textit{\r}"
+let g:surround_{char2nr("s")} = "\\textsc{\r}"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Some IMAP for HEP 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

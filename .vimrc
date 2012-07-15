@@ -74,6 +74,9 @@
 "     > Repeat           ( V1.0        2012_05_09 ) 
 "     > Surrond          ( V1.90       2012_05_09 ) 
 "     > Tagbar           ( V2.4        2012_06_17 ) 
+"     > Fugitive         ( V1.2        2012_06_18 )
+"     > Gitv             ( V1.1        2012_07_14 )
+"     > TextObj          ( V0.3.12     2012_07_15 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -295,6 +298,8 @@ inoremap <silent> <C-k> <C-o>k
 inoremap <silent> <C-l> <C-o>l
 inoremap <silent> <C-g> <C-o>j
 
+imap <silent> <leader>x <ESC>xi
+
 fun! CopyLine()
 	let line=line('.')
 	let col =col('.')
@@ -304,7 +309,13 @@ fun! CopyLine()
 	call cursor(line2, col)
 endfun
 
-imap <silent> <leader>x <ESC>xi
+"This allows for change paste motion cp{motion}
+nmap <silent> cp :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+    silent exe "normal! `[v`]\"_c"
+    silent exe "normal! p"
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => QuickFix
@@ -509,10 +520,12 @@ let g:tex_flavor                = 'latex'
 let g:Tex_DefaultTargetFormat   = 'dvi'
 "let g:Tex_DefaultTargetFormat  = 'pdf'
 "let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
+let g:Tex_FormatDependency_pdf  = 'dvi,pdf'
 let g:Tex_CompileRule_dvi       = 'latex -src-specials --interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps        = 'dvips -Ppdf -o $*.ps $*.dvi'
+"let g:Tex_CompileRule_ps       = 'dvips -Ppdf -o $*.ps $*.dvi'
 "let g:Tex_CompileRule_pdf      = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_pdf       = 'pdflatex -shell-escape -src-specials -interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf       = 'dvipdfm $*.dvi'
+"let g:Tex_CompileRule_pdf      = 'pdflatex -shell-escape -src-specials -interaction=nonstopmode $*'
 let g:Tex_IgnoredWarnings       =
     \"Underfull\n".
     \"Overfull\n".
@@ -640,7 +653,8 @@ let g:inccomplete_appendslash = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_keys = '1234567890abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
+let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
+"let g:EasyMotion_keys = '1234567890abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
 let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
