@@ -473,6 +473,12 @@ endif
 if !exists('CCTreeKeyDepthMinus')
     let g:CCTreeKeyDepthMinus = '<C-\>-'
 endif
+if !exists('CCTreeKeySourceDepthPlus')
+    let g:CCTreeKeySourceDepthPlus = '<C-\>='
+endif
+if !exists('CCTreeKeySourceDepthMinus')
+    let g:CCTreeKeySourceDepthMinus = '<C-\>-'
+endif
 " }}}
 " {{{ CCTree UI settings
 if !exists('CCTreeOrientation')
@@ -2072,7 +2078,9 @@ let s:CCTreeUtils = {}
 function! s:CCTreeUtils.mDetectDB(class)
     if a:class == s:DBClasses.cctreexref
         if filereadable(g:CCTreeDb)
-        return g:CCTreeDb
+            return g:CCTreeDb
+        elseif filereadable(g:CscopePath . '/cscope.out')
+            return g:CscopePath . '/' . g:CCTreeDb
         endif
     elseif a:class == s:DBClasses.cscopeid
         if filereadable(g:CCTreeCscopeDb)
@@ -2379,7 +2387,9 @@ let s:CCTreeKeyMappings = {
                     \ 'CTreeCompress': g:CCTreeKeyCompressTree,
                     \ 'CTreeQuit': g:CCTreeKeyQuitTree,
                     \ 'CTreeDepthMinus': g:CCTreeKeyDepthMinus,
-                    \ 'CTreeDepthPlus': g:CCTreeKeyDepthPlus
+                    \ 'CTreeDepthPlus': g:CCTreeKeyDepthPlus,
+                    \ 'CTreeSourceDepthMinus': g:CCTreeKeySourceDepthMinus,
+                    \ 'CTreeSourceDepthPlus': g:CCTreeKeySourceDepthPlus
                     \}
 " }}}
 " {{{ CCTreeWindow
@@ -2822,6 +2832,23 @@ function! s:CCTreeBufferKeyMappingsCreate(kmaps)
                                     \ ' :CCTreeRecurseDepthMinus<CR>'
 endfunction
 
+" Keymappings used common to source files and CCTree window
+function! s:CCTreeSourceKeyMappingsCreate(kmaps)
+     let func_expr = '<SNR>'.s:sid.'CCTreeWindowGetHiKeyword()'
+     exec 'nnoremap <buffer> <silent> '.a:kmaps.CTreeR.' :CCTreeTraceReverse <C-R>='.
+                                                  \ func_expr.'<CR><CR>:wincmd p<CR>'
+     exec 'nnoremap <buffer> <silent> '.a:kmaps.CTreeF.' :CCTreeTraceForward <C-R>='
+                                                \ .func_expr.'<CR><CR>:wincmd p<CR>'
+
+     exec 'nnoremap <silent> '.a:kmaps.CTreeWSave. ' :CCTreeWindowSaveCopy<CR>'
+     exec 'nnoremap <silent> '.a:kmaps.CTreeWToggle. ' :CCTreeWindowToggle<CR>'
+
+     exec 'nnoremap <buffer> <silent> '.a:kmaps.CTreeSourceDepthPlus.
+                                    \ ' :CCTreeRecurseDepthPlus<CR>:wincmd p<CR>'
+     exec 'nnoremap <buffer> <silent> '.a:kmaps.CTreeSourceDepthMinus.
+                                    \ ' :CCTreeRecurseDepthMinus<CR>:wincmd p<CR>'
+endfunction
+
 augroup CCTreeMaps
 au!
 " Header files get detected as cpp?
@@ -2829,7 +2856,7 @@ au!
 " syntax files
 " For now, use this hack to make *.h files work
 autocmd FileType *   if &ft == 'c'|| &ft == 'cpp' |
-                   \ call s:CCTreeBufferKeyMappingsCreate(s:CCTreeKeyMappings)|
+                   \ call s:CCTreeSourceKeyMappingsCreate(s:CCTreeKeyMappings)|
                    \ endif
 augroup END
 

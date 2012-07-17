@@ -322,7 +322,7 @@ function! Toggle() "{{{
       unmap =
       echon "Indenting  =" 
       let s:temp = s:Toggle_GetMotion("=")
-      redraw!
+      redraw
       execute "normal! =" . s:temp
       nmap = :call Toggle()<CR>
     endif

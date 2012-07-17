@@ -24,6 +24,11 @@ fun! s:CCTree() "{{{
     return ""
   endif
 
+  let g:CCTreeKeyDepthPlus = '='
+  let g:CCTreeKeyDepthMinus = '-'
+  let g:CCTreeKeySourceDepthPlus = '<C-\>='
+  let g:CCTreeKeySourceDepthMinus = '<C-\>-'
+
   execute 'source' . a:CctreeVim
   let g:CCTreeUseUTF8Symbols = 1 
   ""Perl interface is typically faster than native Vimscript.
@@ -48,17 +53,18 @@ fun! s:CCTree() "{{{
   "" Map locally again
 
   exec 'nnoremap <buffer> <silent> '.g:CCTreeKeyTraceReverseTree.' :CCTreeTraceReverse <C-R>=
-        \expand("<cword>")<CR><CR>'
+        \expand("<cword>")<CR><CR>:wincmd p<CR>'
   exec 'nnoremap <buffer> <silent> '.g:CCTreeKeyTraceForwardTree.' :CCTreeTraceForward <C-R>=
-        \expand("<cword>")<CR><CR>'
+        \expand("<cword>")<CR><CR>:wincmd p<CR>'
 
   exec 'nnoremap <silent> '.g:CCTreeKeySaveWindow. ' :CCTreeWindowSaveCopy<CR>'
   exec 'nnoremap <silent> '.g:CCTreeKeyToggleWindow. ' :CCTreeWindowToggle<CR>'
 
-  exec 'nnoremap <buffer> <silent> '.g:CCTreeKeyDepthPlus.
-        \ ' :CCTreeRecurseDepthPlus<CR>'
-  exec 'nnoremap <buffer> <silent> '.g:CCTreeKeyDepthMinus.
-        \ ' :CCTreeRecurseDepthMinus<CR>'
+  exec 'nnoremap <buffer> <silent> '.g:CCTreeKeySourceDepthPlus.
+        \ ' :CCTreeRecurseDepthPlus<CR>:wincmd p<CR>'
+  exec 'nnoremap <buffer> <silent> '.g:CCTreeKeySourceDepthMinus.
+        \ ' :CCTreeRecurseDepthMinus<CR>:wincmd p<CR>'
+
 endfunction "}}}
 
 command! -nargs=0 CCTree               call s:CCTree()

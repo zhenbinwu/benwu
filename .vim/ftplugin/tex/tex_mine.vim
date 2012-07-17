@@ -8,6 +8,12 @@ set sw=2
 ""this behavior, you will need to set  >
 set winaltkeys=no
 
+"" Vim provides a command-line completion as the shell complete. It uses
+"" suffixes to lower the priority and wildignore to complete ignore files
+set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb
+"set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb,*.latexmain
+"" suffixes order by the input orders, let's put might be useful files first
+set suffixes+=\.sty,\.cls,\.bst,\.log,\.aux,\.bbl,\.blg,\.idx,\.out,\.toc,\.lof
 
 ""The Alt key is hard to map within Xterm. So I have to re-map other key 
 imap <C-L> <Plug>Tex_LeftRight
@@ -266,7 +272,7 @@ let g:surround_{char2nr("s")} = "\\textsc{\r}"
 iabbrev st     single top
 iabbrev xs     cross section
 iabbrev mc     Monte Carlo
-iabbrev me     matrix element
+"iabbrev me     matrix element
 iabbrev sm     Standard Model
 iabbrev cdf    CDF
 iabbrev tchan  $t$-channel
