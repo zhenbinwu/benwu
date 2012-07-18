@@ -3133,10 +3133,11 @@ function! C_JumpCtrlJ ()
 		call setline( match, substitute( getline('.'), s:C_TemplateJumpTarget1.'\|'.s:C_TemplateJumpTarget2, '', '' ) )
 	else
 		" try to jump behind parenthesis or strings in the current line 
-		if match( getline(".")[col(".") - 1], "[\]})\"'`]"  ) != 0
-			call search( "[\]})\"'`]", '', line(".") )
-		endif
-		normal l
+		"if match( getline(".")[col(".") - 1], "[\]})\"'`]"  ) != 0
+			"call search( "[\]})\"'`]", '', line(".") )
+      "normal l
+		"endif
+    normal j
 	endif
 	return ''
 endfunction    " ----------  end of function C_JumpCtrlJ  ----------

@@ -258,7 +258,7 @@ map <leader>cd :cd %:p:h/..<cr>
 map <leader>d :cd %:p:h<cr>
 
 map <F9> :redraw!<cr>
-nnoremap <leader>p :set invpaste paste?<CR>
+nnoremap <leader>p :set invpaste paste?<CR>i
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
@@ -296,7 +296,6 @@ inoremap <silent> <C-b> <Backspace>
 inoremap <silent> <C-h> <C-o>h
 inoremap <silent> <C-k> <C-o>k
 inoremap <silent> <C-l> <C-o>l
-inoremap <silent> <C-g> <C-o>j
 
 imap <silent> <leader>x <ESC>xi
 
@@ -397,7 +396,6 @@ endif
 if has("unix")
   runtime ftplugin/man.vim
   autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
-  noremap <buffer> <silent> <leader>k :Man <C-R>=expand("<cword>")<CR><CR>
 endif
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -452,6 +450,7 @@ let g:winManagerWidth = 30
 let g:persistentBehaviour = 0
 let g:defaultExplorer = 0
 let g:nerdtree_open_cmd = 'gnome-open'
+exe 'nnoremap gb :!' . g:nerdtree_open_cmd . ' <cfile> &<CR><CR>'
 map <silent> <F12> :WMToggle<CR>
 
 """"""""""""""""""""""""""""""

@@ -218,7 +218,7 @@ def GetCustomLatexCommands():
     import vim
     cmds = readFile(getMain(vim.current.buffer.name))
     for cmd in cmds:
-        if cmd[0].find('#') == -1:
+        if re.match(r'^[\w]+$', cmd[0]) != None:
             todo = 'iabbrev <buffer> {0} \{1}'.format(cmd[0], cmd[0])
             vim.command(todo)
             #vim.command("inoreabbrev %s \%s"%(cmd[0][0],cmd[0][0]))

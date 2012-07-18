@@ -416,6 +416,7 @@ function! IMAP_Jumpfunc(direction, inclusive)
 
 	" If we didn't find any placeholders return quietly.
 	if searchString != '' && !search(searchString, a:direction)
+		normal j
 		return ''
 	endif
 
