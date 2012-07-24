@@ -132,6 +132,8 @@ function! s:GundoSettingsGraph()"{{{
     setlocal filetype=gundo
     setlocal nolist
     setlocal nonumber
+    setlocal winfixwidth
+    setlocal winfixheight
     setlocal norelativenumber
     setlocal nowrap
     call s:GundoSyntaxGraph()
@@ -148,6 +150,8 @@ function! s:GundoSettingsPreview()"{{{
     setlocal nonumber
     setlocal norelativenumber
     setlocal nowrap
+    setlocal winfixwidth
+    setlocal winfixheight
     setlocal foldlevel=20
     setlocal foldmethod=diff
     call s:GundoMapPreview()

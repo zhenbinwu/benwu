@@ -325,6 +325,7 @@ function! Toggle() "{{{
       redraw
       execute "normal! =" . s:temp
       nmap = :call Toggle()<CR>
+      echo 
     endif
 
     " unlet used variables to save memory {{{

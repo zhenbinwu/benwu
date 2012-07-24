@@ -48,6 +48,7 @@
 "     > Pep8         ( V0.3.1  2011_07_24 ) 
 "     > Pythoncomplete(V0.9    2011_09_01 )
 "     > SrollColors  ( V0719   2012_05_09 )
+"     > Repmo        ( V0.5    2012_07_24 )
 "
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
@@ -225,6 +226,18 @@ set isfname-==
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
 " When you press gv you vimgrep after the selected text
 vnoremap <silent> gv :call VisualSearch('gv')<CR>
 nnoremap <expr>   gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -374,8 +387,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""
 "" Map for dict with the word under cursor
 """"""""""""""""""""""""""""""""""""""""""""""
-noremap <leader>o mayiw`a:exe "!kdict " . @" . "" <CR>
-"noremap <leader>o mayiw`a:exe "!dict " . @" . "" <CR>
+noremap <leader>o mayiw`a:exe "!kdict " . @" . "" <CR><CR>
+"noremap <leader>o mayiw`a:exe "!dict " . @" . "" <CR><CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -395,8 +408,33 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("unix")
   runtime ftplugin/man.vim
-  autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap q :quit<CR>
+  autocmd FileType man setlocal ro nonumber nolist fdm=indent fdn=2 sw=4 foldlevel=2 | nmap <buffer> q :quit<CR>
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Preview Window Zoom
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufWinEnter * call PreviewMap()
+
+fun! PreviewMap() "{{{
+  if &pvw
+    nnoremap <buffer> <silent> q :pclose<CR>
+    let s:preview_win_maximized = 0
+    nnoremap <buffer> <silent> x :call <SID>PreviewZoom()<CR>
+  endif
+endfunction "}}}
+fun! s:PreviewZoom() "{{{
+    if s:preview_win_maximized
+        " Restore the window back to the previous size
+        exe 'resize ' . &previewheight
+        let s:preview_win_maximized = 0
+    else
+        " Set the window size to the maximum possible without closing other
+        " windows
+        resize
+        let s:preview_win_maximized = 1
+    endif
+endfunction "}}}
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "   							                            	+
@@ -703,3 +741,11 @@ map <Leader>ac	<Plug>AM_acom
 augroup VCSCommand
   au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
 augroup END
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Repmo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:repmo_key = '\'
+let g:repmo_revkey = 'g\'
+let g:repmo_mapmotions = "j|k <C-E>|<C-Y> zh|zl "
