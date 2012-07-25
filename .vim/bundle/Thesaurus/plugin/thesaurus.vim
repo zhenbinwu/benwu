@@ -18,11 +18,13 @@
 " =============================================================================
 " }}}
 
-if exists("g:loaded_thes") && g:loaded_thes
+if exists("g:loaded_thesaurus") && g:loaded_thesaurus
     finish
 endif
 
-let g:loaded_thes = 1
+let g:loaded_thesaurus = 1
+let s:thesaurus_height = 20
+let s:thesaurus_win_maximized = 0
 
 
 fun! ReadThesaurus() "{{{
@@ -30,7 +32,7 @@ fun! ReadThesaurus() "{{{
    let s:thes_word = expand('<cword>')
 
    " Open a new window, keep the alternate so this doesn't clobber it. 
-   keepalt 20split __Thesaurus__
+   exec "keepalt " . s:thesaurus_height . "split __Thesaurus__"
    setlocal modifiable
    " Show cursor word in status line
    exe "setlocal statusline=Thesaurus:" . s:thes_word
@@ -63,6 +65,7 @@ fun! ReadThesaurus() "{{{
    " Map <CR> and <C-\> for inserting words
    nnoremap <buffer> <silent> <CR> :call <SID>EnterSynonym()<CR>
    nnoremap <buffer> <silent> <C-\> :call <SID>InsertWord(expand('<cword>'))<CR>
+   nnoremap <buffer> <silent> x :call <SID>Thesaurus_Window_Zoom()<CR>
 endfun   "}}}
 
 function! UseSynonym(type, action) "{{{
@@ -265,5 +268,19 @@ function! s:InsertWord(word) "{{{
     execute "normal edbxi" . a:word
 endfunction "}}}
 
+" Zoom (maximize/minimize) the thesaurus window
+function! s:Thesaurus_Window_Zoom()
+    if s:thesaurus_win_maximized
+        " Restore the window back to the previous size
+        exe 'resize ' . s:thesaurus_height
+        let s:thesaurus_win_maximized = 0
+    else
+        " Set the window size to the maximum possible without closing other
+        " windows
+        resize
+        let s:thesaurus_win_maximized= 1
+    endif
+endfunction
+
 " Map the K key to the ReadThesaurus function
-nnoremap <buffer> K :call ReadThesaurus()<CR><CR>
+nnoremap <silent> <leader>r :call ReadThesaurus()<CR><CR>

@@ -14,3 +14,5 @@
 !texmf/*
 ## ignore all the vim undo file
 .vim/undo/*
+tags
+*.pyc
