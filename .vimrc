@@ -691,13 +691,16 @@ let g:inccomplete_appendslash = 1
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
-"let g:EasyMotion_keys = '1234567890abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
 let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
 let g:EasyMotion_mapping_B = '<leader>B'
 let g:EasyMotion_mapping_f = '<leader>f'
 let g:EasyMotion_mapping_F = '<leader>F'
+let g:EasyMotion_mapping_n = '<leader>n'
+let g:EasyMotion_mapping_N = '<leader>N'
+let g:EasyMotion_mapping_j = '<leader>j'
+let g:EasyMotion_mapping_k = '<leader>k'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing
@@ -710,7 +713,6 @@ let g:yankring_default_menu_mode  = 0
 let g:yankring_ignore_operator    = 'g~ gu gU ! = gq g? > < zf g@'
 let g:yankring_max_element_length = 524288 " 0.5M
 nnoremap <silent> <leader>y :YRShow<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Indent_Guide
@@ -742,10 +744,10 @@ augroup VCSCommand
   au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
 augroup END
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Repmo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:repmo_key = '\'
 let g:repmo_revkey = 'g\'
-let g:repmo_mapmotions = "j|k <C-E>|<C-Y> zh|zl "
+let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
+      \])|[) ]{|[{ ]m|[m ](|[( ]}|[} ]s|[s ]c|[c"
