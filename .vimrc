@@ -49,6 +49,7 @@
 "     > Pythoncomplete(V0.9    2011_09_01 )
 "     > SrollColors  ( V0719   2012_05_09 )
 "     > Repmo        ( V0.5    2012_07_24 )
+"     > Ambicomplete ( V0.2a   2012_08_11 )
 "
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
@@ -210,11 +211,11 @@ set smarttab
 set linebreak
 set textwidth=78
 
-set autoindent "Auto indent
-set smartindent  "Smart indet
+set autoindent  " Auto indent
+set smartindent " Smart indet
 set cindent     " C indent
 
-set wrap "Wrap lines
+set wrap        " Wrap lines
 set formatoptions+=mM
 set isfname-==
 
@@ -750,4 +751,9 @@ augroup END
 let g:repmo_key = '\'
 let g:repmo_revkey = 'g\'
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
-      \])|[) ]{|[{ ]m|[m ](|[( ]}|[} ]s|[s ]c|[c"
+      \](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => AmbiCompletion
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set completefunc=g:AmbiCompletion

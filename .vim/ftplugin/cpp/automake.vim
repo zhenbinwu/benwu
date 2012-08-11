@@ -1,73 +1,91 @@
-map  <buffer> <F4> :call AutoMake()<CR><CR>
-map  <buffer> <F5> :call Runexe()<CR>
-map  <buffer> <F6> :call Showexe()<CR>
-map  <buffer> <leader>rr :w<cr>:!root -l  %<CR>
-imap <buffer> <leader>rr <Esc>:w<CR>:!root -l  %<CR>
-map  <buffer> <leader>dd :g/.*__func__.*__FILE__.*__LINE__.*/d<cr>:nohl<cr>
-
-fun! Runexe() "{{{
-  let Exe  = "./".expand("%:r").".exe"
-  let Run  = "./".expand("%:r")
-  if executable(Exe) && !executable(Run)
-    exe		"!".Exe
-  endif
-  if !executable(Exe) && executable(Run)
-    exe		"!".Run
-  endif
-
-  if executable(Exe) && executable(Run)
-    if getftime(Exe) >= getftime(Run) 
-      exe		"!".Exe
-    else
-      exe		"!".Run
-    endif
-  endif
-endfunction "}}}
-
-fun! Showexe() "{{{
-  let Exe  = "./".expand("%:r").".exe"
-  let Run  = "./".expand("%:r")
-  if executable(Exe) && !executable(Run)
-    call inputsave()
-    let name = input(':!'.Exe.' ')
-    call inputrestore()
-    let ExeSrc = ":!".Exe." ".name
-    exe         ExeSrc
-  endif
-  if !executable(Exe) && executable(Run)
-    call inputsave()
-    let name = input(':!'.Run.' ')
-    call inputrestore()
-    let RunSrc = ":!".Run." ".name
-    exe         RunSrc
-  endif
-
-  if executable(Exe) && executable(Run)
-    if getftime(Exe) >= getftime(Run) 
-      call inputsave()
-      let name = input(':!'.Exe.' ')
-      call inputrestore()
-      let ExeSrc = ":!".Exe." ".name
-      exe         ExeSrc
-    else
-      call inputsave()
-      let name = input(':!'.Run.' ')
-      call inputrestore()
-      let RunSrc = ":!".Run." ".name
-      exe         RunSrc
-    endif
-  endif
-endfunction "}}}
-
-set tags+=~/.vim/ftplugin/cpp_tags
-"set tags+=~/.vim/ftplugin/boost_tags
-
 fun! AutoMake() "{{{
-  "" Get to the original file location
-  lcd %:p:h
+
+  if g:AutoMake == "compile init"
+python << EOF
+def Main():
+    if todo.Auto_Makeprg(vim.current.buffer):
+        Message = ColorEcho("Compile", vim.eval("&makeprg"))
+        vim.command(Message)
+        vim.command("let g:AutoMake = 'compile fuck'" )
+        if FORTUNE :
+            try: 
+                MakeFortune()
+            except KeyboardInterrupt:   
+                pass
+        else:
+            try:
+                vim.command('silent make')
+                CleanObj()
+                vim.command("let g:AutoMake = 'compile done'" )
+            except KeyboardInterrupt:   
+                pass
+        vim.command('redraw!')
+        if len(vim.eval("getqflist()")) == 0:
+            vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
+            vim.command("echohl GreenBar")
+            vim.command("echomsg \"Compiled Successfully!\"")
+            vim.command("echohl None")
+    if MAKEMAIN and todo.is_main and \
+        len(todo.local_src) != 0 and \
+        len(vim.eval("getqflist()")) == 0:
+        todo.Auto_Linkprg(vim.current.buffer)
+        Message = ColorEcho("Link", vim.eval("&makeprg"))
+        vim.command(Message)
+        vim.command('silent make')
+        vim.command('redraw!')
+        if len(vim.eval("getqflist()")) == 0:
+            vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
+            vim.command("echohl GreenBar")
+            vim.command("echomsg \"Linked Successfully!\"")
+            vim.command("echohl None")
+
+if __name__ == "__main__":
+    try:
+        Main()
+        vim.command(" let g:AutoMake = 'Done'" )
+    except: 
+        pass
+EOF
+  endif
+
+  if g:AutoMake == "Compile done"
+python << EOF
+if MAKEMAIN and todo.is_main and \
+    len(todo.local_src) != 0 and \
+    len(vim.eval("getqflist()")) == 0:
+    todo.Auto_Linkprg(vim.current.buffer)
+    Message = ColorEcho("Link", vim.eval("&makeprg"))
+    vim.command(Message)
+    vim.command('silent make')
+    vim.command('redraw!')
+    if len(vim.eval("getqflist()")) == 0:
+        vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
+        vim.command("echohl GreenBar")
+        vim.command("echomsg \"Linked Successfully!\"")
+        vim.command("echohl None")
+
+EOF
+  endif
+
+
+endfunction "}}}
+
+fun! MapAutoMake() "{{{
+  silent !rm obj/*
+  silent !rm ./test2
+
+  "" Start fresh
   cclose
   call setqflist([])
   update
+
+  "" What is this for?
+  cd %:p:h
+
+  "" Use this string to identify the steps
+  let g:AutoMake = ""
+
+"Wrapper of python {{{
 python << EOF
 # File        : make.py
 # Author      : Ben Wu
@@ -638,51 +656,62 @@ def fortune():
     temf = tempfile.mkstemp()[1]
     #temf = os.popen('tempfile').read().strip()
     vimc = "silent !echo ;"
-    vimc += "fortune -s"
+    vimc += "fortune -l zh"
     vimc += "| tee " + temf
     vim.command(vimc)
-    vim.command("silent !echo ;")
     f = ''.join(open(temf, 'r').readlines())
     fl=len(f)
-    return fl/20
+    return fl/10
 
-todo = MakePrg()
-if todo.Auto_Makeprg(vim.current.buffer):
-    Message = ColorEcho("Compile", vim.eval("&makeprg"))
-    vim.command(Message)
-    if FORTUNE :
-        import timeit
-        ft = fortune()
+def MakeFortune():
+    import timeit
+    ft = fortune()
+    try:
         t = timeit.Timer("vim.command('silent make')", "import vim").timeit(1)
         t += timeit.Timer("CleanObj()", "from __main__ import CleanObj").timeit(1)
-        if ft - int(t) > 0 :
-            wait = ft - int(t)
-            tosleep = "silent !sleep " + str(wait)
+    except:   
+        vim.command("silent !echo \"Fuck with compiling. Enter Ctrl-C to continue ... \"")
+        raise
+    if ft - int(t) > 0 :
+        wait = ft - int(t)
+        vim.command("silent !echo \"Done with compiling. Enter Ctrl-C to continue ... \"")
+
+        if len(vim.eval("getqflist()")) == 0:
+            vim.command("let g:AutoMake = 'compile done'" )
+
+        tosleep = "silent !sleep " + str(wait)
+        try:
             vim.command(tosleep)
-    else:
-        vim.command('silent make')
-        CleanObj()
-    vim.command('redraw!')
-    if len(vim.eval("getqflist()")) == 0:
-        vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
-        vim.command("echohl GreenBar")
-        vim.command("echomsg \"Compiled Successfully!\"")
-        vim.command("echohl None")
-if MAKEMAIN and todo.is_main and \
-    len(todo.local_src) != 0 and \
-    len(vim.eval("getqflist()")) == 0:
-    todo.Auto_Linkprg(vim.current.buffer)
-    Message = ColorEcho("Link", vim.eval("&makeprg"))
-    vim.command(Message)
-    vim.command('silent make')
-    vim.command('redraw!')
-    if len(vim.eval("getqflist()")) == 0:
-        vim.command("hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen")
-        vim.command("echohl GreenBar")
-        vim.command("echomsg \"Linked Successfully!\"")
-        vim.command("echohl None")
+        except KeyboardInterrupt:   
+            raise
+
+if vim.eval("g:AutoMake") == "":
+    todo = MakePrg()
+    vim.command("let g:AutoMake = 'compile init'" )
+
 EOF
-" Open cwindow
-cwindow
-lcd -
+"" End of python }}}
+
+  try 
+    call AutoMake()
+  catch /.*/
+    5sleep
+    if g:AutoMake == "compile fuck"
+      echoMsg "Compile interrupt!!"
+    elseif g:AutoMake == "compile done"
+      if empty(getqflist())
+        call AutoMake()
+      else 
+        cwindow
+      endif
+    endif
+    redraw!
+    echo g:AutoMake
+    5sleep
+  endtry
+
+  cd -
+
 endfunction "}}}
+
+map  <F4> :call MapAutoMake()<CR>

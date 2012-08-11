@@ -10,16 +10,16 @@ set winaltkeys=no
 
 "" Vim provides a command-line completion as the shell complete. It uses
 "" suffixes to lower the priority and wildignore to complete ignore files
-set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb
+"set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb
 "set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb,*.latexmain
 "" suffixes order by the input orders, let's put might be useful files first
 set suffixes+=\.sty,\.cls,\.bst,\.log,\.aux,\.bbl,\.blg,\.idx,\.out,\.toc,\.lof
 
 ""The Alt key is hard to map within Xterm. So I have to re-map other key 
-imap <C-L> <Plug>Tex_LeftRight
-imap <C-B> <Plug>Tex_MathBF
-imap <C-D> <Plug>Tex_MathCal
-imap <C-U> <Plug>Tex_InsertItemOnThisLine
+imap <buffer> <C-L> <Plug>Tex_LeftRight
+imap <buffer> <C-B> <Plug>Tex_MathBF
+imap <buffer> <C-D> <Plug>Tex_MathCal
+imap <buffer> <C-U> <Plug>Tex_InsertItemOnThisLine
 
 fun! FreezeImap() "{{{
 	if IMAP_GetVal('Imap_FreezeImap', 0) == 1
