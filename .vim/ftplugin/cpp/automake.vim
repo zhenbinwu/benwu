@@ -71,8 +71,6 @@ EOF
 endfunction "}}}
 
 fun! MapAutoMake() "{{{
-  silent !rm obj/*
-  silent !rm ./test2
 
   "" Start fresh
   cclose
@@ -656,7 +654,7 @@ def fortune():
     temf = tempfile.mkstemp()[1]
     #temf = os.popen('tempfile').read().strip()
     vimc = "silent !echo ;"
-    vimc += "fortune -l zh"
+    vimc += "fortune "
     vimc += "| tee " + temf
     vim.command(vimc)
     f = ''.join(open(temf, 'r').readlines())
