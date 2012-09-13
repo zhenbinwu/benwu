@@ -79,6 +79,7 @@
 "     > Fugitive         ( V1.2        2012_06_18 )
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
+"     > RelOps           ( V1.0        2012_09_13 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -222,11 +223,7 @@ set isfname-==
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
-" Really useful!
-"  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
-
+" In visual mode when you press * or # to search for the current selection
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -311,7 +308,6 @@ inoremap <silent> <C-h> <C-o>h
 inoremap <silent> <C-k> <C-o>k
 inoremap <silent> <C-l> <C-o>l
 
-imap <silent> <leader>x <ESC>xi
 
 fun! CopyLine()
 	let line=line('.')
@@ -424,6 +420,7 @@ fun! PreviewMap() "{{{
     nnoremap <buffer> <silent> x :call <SID>PreviewZoom()<CR>
   endif
 endfunction "}}}
+
 fun! s:PreviewZoom() "{{{
     if s:preview_win_maximized
         " Restore the window back to the previous size
@@ -582,7 +579,8 @@ if &term == 'linux'
   let g:Tex_ExecuteUNIXViewerInForeground = 1 "For dvifb 
 else
   "let g:Tex_ViewRule_pdf='acroread'
-  let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
+  let g:Tex_ViewRule_pdf='xpdf'
+  "let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
   let g:Tex_ViewRule_dvi='xdvi'
 endif
 let g:Tex_ViewRule_ps='gv'
@@ -649,7 +647,6 @@ let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 let g:pyflakes_use_quickfix = 1
 let g:pyflakes_autostart = 0
 autocmd FileType python map <F3> :PyflakesToggle<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pep8
@@ -719,7 +716,6 @@ nnoremap <silent> <leader>y :YRShow<CR>
 " => Indent_Guide
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indent_guides_guide_size=1
-nmap <buffer> <silent> <Leader>ig <Plug>IndentGuidesToggle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VimIM
