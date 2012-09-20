@@ -165,8 +165,6 @@ syntax enable "Enable syntax hl
 "--?>   set guifont=Monospace\ 10
 set shell=/bin/tcsh
 
-
-
 if has("gui_running")
   set guioptions-=T
   set guioptions-=m
@@ -193,7 +191,6 @@ let &termencoding = &encoding
 set encoding=utf-8
 
 set ffs=unix,dos,mac "Default file types
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files and backups
@@ -433,6 +430,9 @@ fun! s:PreviewZoom() "{{{
         let s:preview_win_maximized = 1
     endif
 endfunction "}}}
+
+map <C-W>[ <C-W>g<C-]>
+map <C-W>{ <C-W>g}
 
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "   							                            	+
