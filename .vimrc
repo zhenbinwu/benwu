@@ -80,6 +80,7 @@
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
 "     > RelOps           ( V1.0        2012_09_13 )
+"     > Sideways         ( V0.0.2      2012_10_08 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -115,7 +116,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast editing of the .vimrc
-map <leader>e :e! ~/.vimrc<cr>
+map <leader>v :e! ~/.vimrc<cr>
 
 " Fast reloading of the ~/.vimrc
 au FileType vim map <leader>ss :w <CR> :source %<CR>
@@ -321,6 +322,9 @@ function! ChangePaste(type, ...)
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
 endfunction
+
+nnoremap gs :exec "normal i".nr2char(getchar())."\e"<CR>
+nnoremap ga :exec "normal a".nr2char(getchar())."\e"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -688,17 +692,33 @@ let g:inccomplete_appendslash = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
+let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzsldfjk'
+"let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
 let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
 let g:EasyMotion_mapping_B = '<leader>B'
+let g:EasyMotion_mapping_e = '<leader>e'
+let g:EasyMotion_mapping_E = '<leader>E'
 let g:EasyMotion_mapping_f = '<leader>f'
 let g:EasyMotion_mapping_F = '<leader>F'
 let g:EasyMotion_mapping_n = '<leader>n'
 let g:EasyMotion_mapping_N = '<leader>N'
 let g:EasyMotion_mapping_j = '<leader>j'
 let g:EasyMotion_mapping_k = '<leader>k'
+imap <leader>w  <ESC><leader>w
+imap <leader>W  <ESC><leader>W
+imap <leader>b  <ESC><leader>b
+imap <leader>B  <ESC><leader>B
+imap <leader>e  <ESC><leader>e
+imap <leader>E  <ESC><leader>E
+imap <leader>f  <ESC><leader>f
+imap <leader>F  <ESC><leader>F
+imap <leader>n  <ESC><leader>n
+imap <leader>N  <ESC><leader>N
+imap <leader>j  <ESC><leader>j
+imap <leader>k  <ESC><leader>k
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing
@@ -753,3 +773,10 @@ let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[
 " => AmbiCompletion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completefunc=g:AmbiCompletion
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Sideways
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap gj :SidewaysLeft<cr>
+nnoremap gk :SidewaysRight<cr>
