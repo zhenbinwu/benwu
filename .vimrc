@@ -54,7 +54,7 @@
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
 "     > WinManager       ( V2.3        2011_01_29 ) 
-"     > BufExplorer      ( V7.2.8      2011_01_29 ) 
+"     > BufExplorer      ( V7.3.0      2012_10_09 ) 
 "     > Align            ( V35/41      2011_01_29 ) 
 "     > VCSCommand       ( V1.99.45    2011_10_27 ) 
 "     > XPtemplate       ( V0.4.8-0707 2011_10_27 ) 
@@ -499,6 +499,11 @@ map <silent> <F12> :WMToggle<CR>
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerSortBy='mru'
+nmap <script> <silent> <unique> <Leader>le :BufExplorer<CR>
+nmap <script> <silent> <unique> <Leader>ls :BufExplorerHorizontalSplit<CR>
+nmap <script> <silent> <unique> <Leader>lv :BufExplorerVerticalSplit<CR>
+nmap <script> <silent> <unique> <Leader>lt :BufExplorerTab<CR>
+
 
 """"""""""""""""""""""""""""""""""
 " XPTemplate
