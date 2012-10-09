@@ -1,0 +1,32 @@
+[h2]Vi problem I need to fixed:[/h2]
+[list] 
+[*] Alternative: shuold be further improve to search directory in three levels,
+  up, current and down. Also it would be nice to have WHAM style support
+
+[*] AutoMake: Clear up the code and add the final version to git 
+
+[*] Vimgdb: How to interact with the debugging program
+
+[*] Repmo: How can it be used for my defined mapping? noremap? 
+
+[*] Fugitive: Gdiff doesnt work with tex file?
+
+[*] Thesauras: Open thesaurus in only one window
+
+[*] Speeddating: Add chinese support for increasing
+
+[*] CSupport: Add autoload support for speeding up
+
+[*] Locator: How to map gl to show all the comment block with function in CPP
+
+[*] Cpp_autoinclude : auto include only works for code with main and dont have
+its header files, otherwise use the correction header file for adding the
+includes. 
+[/list]
+
+
+
+[h2]Free mapping[/h2]
+,g ,h ,q ,u ,x ,z
+
+
