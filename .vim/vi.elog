@@ -22,11 +22,19 @@
 [*] Cpp_autoinclude : auto include only works for code with main and dont have
 its header files, otherwise use the correction header file for adding the
 includes. 
+
+[*] map "gc" to add a word in normal mode by using space to return to normal
+mode.
+
+[*] Substitile or search with complicated pattern would be very useful but
+also very difficult to remember the command. So it would be nice to have local
+file that keep track of this command and can be execuated every time we
+needed. And maybe also can keep a list of the sub commands.
+
+[*] 农历 needs further improvments for festival and jieqi
 [/list]
 
 
 
 [h2]Free mapping[/h2]
 ,g ,h ,q ,u ,x ,z
-
-
