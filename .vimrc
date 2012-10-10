@@ -323,6 +323,37 @@ function! ChangePaste(type, ...)
     silent exe "normal! p"
 endfunction
 
+"Inserting word quickly in normal mode
+"Same keystroke as i<ESC>, but saving the movement to <ESC>
+function! InsertWord()
+  let l:user_word = input("Insert something then hit ENTER: ")
+
+  let l:current = getpos(".")
+  normal b
+  let l:currentb = getpos(".")
+  normal e
+  let l:currente = getpos(".")
+  call setpos('.', l:current)
+
+  if l:current[2] > l:currentb[2] && l:current[2] < l:currente[2] 
+    "echo "middle"
+    execute "normal i".l:user_word
+  endif
+			
+  if l:current[2] > l:currentb[2] && l:current[2] > l:currente[2] 
+    "echo "begin"
+    execute "normal i".l:user_word." "
+  endif
+
+  if l:current[2] > l:currentb[2] && l:current[2] == l:currente[2] 
+    "echo "end"
+    execute "normal a ".l:user_word
+  endif
+endfunction
+
+nnoremap gc :call InsertWord()<CR>
+
+"Inserting a character quickly in normal mode
 nnoremap gs :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ga :exec "normal a".nr2char(getchar())."\e"<CR>
 
