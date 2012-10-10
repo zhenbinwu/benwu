@@ -1368,6 +1368,8 @@ let s:monthName = ["一月","二月","三月","四月","五月","六月","七月
 " 农历节日 *表示放假日
  "let lFtv =[ "0101*春节", "0102*初二", "0115 元宵节", "0505*端午节", "0707 七夕情人节", "0715 中元节", "0815*中秋节", "0909 重阳节", "1208 腊八节", "1223 小年", "0100*除夕"] 
 
+let s:BWFtv =[ [1, 1, "*春节"], [1, 2, "*初二"], [1, 15, "元宵节"], [5, 5, "*端午节"], [7, 7, "七夕节"], [7, 15, "中元节"], [8, 15, "*中秋节"], [9, 9, "重阳节"], [12, 8, "腊八节"], [12, 23, "小年"], [1, 0, "*除夕"]]
+
 " /*****************************************************************************
 " 日期计算
 " *****************************************************************************/
@@ -1489,6 +1491,12 @@ function! s:Lunar(y,m,d)
     "echo i %%Month
     let nongliDay = offset + 1
     "echo nongliDay %% day
+    let nongliFest = s:GetFestival(i, nongliDay)
+    if nongliFest == "0"
+      let nongliFest = ""
+    else
+      let nongliFest = " [".nongliFest."]"
+    endif
     if nongliDay == 10
         let nongliDay = s:nStr2[0].s:nStr2[1]
     elseif nongliDay == 20
@@ -1505,8 +1513,16 @@ function! s:Lunar(y,m,d)
         let cY=s:GetCyclical(a:y-1900+36)
     endif
 
-    return cY.'年'.nongliMonth.nongliDay
+    return cY.'年'.nongliMonth.nongliDay.nongliFest
 endfunction
+
+fun! s:GetFestival(m, r) "{{{
+  for fest in s:BWFtv
+    if fest[0] == a:m && fest[1] == a:r
+      return fest[2]
+    endif
+  endfor
+endfunction "}}}
 
 function! s:GetYearDays(y)
     let i = 0

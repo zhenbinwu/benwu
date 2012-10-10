@@ -28,7 +28,7 @@ also very difficult to remember the command. So it would be nice to have local
 file that keep track of this command and can be execuated every time we
 needed. And maybe also can keep a list of the sub commands.
 
-[*] 农历 needs further improvments for festival and jieqi
+[*] 农历 needs further improvments for jieqi
 
 [*] In help file, map q to close the help window
 [/list]
