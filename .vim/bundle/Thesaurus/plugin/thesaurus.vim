@@ -31,8 +31,22 @@ fun! ReadThesaurus() "{{{
    " Assign current word under cursor to a script variable
    let s:thes_word = expand('<cword>')
 
-   " Open a new window, keep the alternate so this doesn't clobber it. 
-   exec "keepalt " . s:thesaurus_height . "split __Thesaurus__"
+
+   let s:thesaurus_window = -1
+   for bufnr in tabpagebuflist()					
+     if bufname(bufnr) == "__Thesaurus__"
+       let s:thesaurus_window = bufwinnr(bufnr)
+     endif
+   endfor
+
+   if s:thesaurus_window == -1
+     " Open a new window, keep the alternate so this doesn't clobber it. 
+     exec "keepalt " . s:thesaurus_height . "split __Thesaurus__"
+   else
+     exec s:thesaurus_window . "wincmd w"
+   endif
+
+
    setlocal modifiable
    " Show cursor word in status line
    exe "setlocal statusline=Thesaurus:" . s:thes_word
@@ -284,3 +298,4 @@ endfunction
 
 " Map the K key to the ReadThesaurus function
 nnoremap <silent> <leader>r :call ReadThesaurus()<CR><CR>
+

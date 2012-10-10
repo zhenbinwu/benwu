@@ -11,8 +11,6 @@
 
 [*] Fugitive: Gdiff doesnt work with tex file?
 
-[*] Thesauras: Open thesaurus in only one window
-
 [*] Speeddating: Add chinese support for increasing
 
 [*] CSupport: Add autoload support for speeding up
@@ -28,16 +26,16 @@ also very difficult to remember the command. So it would be nice to have local
 file that keep track of this command and can be execuated every time we
 needed. And maybe also can keep a list of the sub commands.
 
-[*] 农历 needs further improvments for jieqi
+[*] 农历 needs further improvments for 节气
 
 [*] In help file, map q to close the help window
 [/list]
 
 
 
-[h2]Free mapping[/h2]
+[h2]Free mapping in normal mode[/h2]
 ,g ,h ,q ,u ,x ,z
-
+gn gy gz
 
 [h2]Sourcing time[/h2]
 018.685  018.685: sourcing /home/benwu/.vim/bundle/C-Support/plugin/c_support.vim
