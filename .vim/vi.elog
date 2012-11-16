@@ -31,14 +31,16 @@ needed. And maybe also can keep a list of the sub commands.
 [*] In help file, map q to close the help window
 [/list]
 
-
-
 [h2]Free mapping in normal mode[/h2]
-,g ,h ,q ,u ,x ,z
+<leader>: g, h, q, u, x, z
 gn gy gz
+
+[h2]Free mapping in insert mode[/h2]
+<leader>: d, g, q, (r), s, t, v, x, y, z
 
 [h2]Sourcing time[/h2]
 018.685  018.685: sourcing /home/benwu/.vim/bundle/C-Support/plugin/c_support.vim
 016.892  006.815: sourcing /home/benwu/.vim/bundle/FuzzyFinder/plugin/fuf.vim
 013.273  012.668: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/fold.vim
 013.103  013.103: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/lastpat.vim
+

@@ -289,7 +289,7 @@ function! Tex_ViewLaTeX()
 
 		else
 
-			let execString = s:viewer.' $*.'.s:target
+			let execString = s:viewer.' $*.'.s:target.' >& /dev/null'
 
 		endif
 

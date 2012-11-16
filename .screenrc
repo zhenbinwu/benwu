@@ -69,7 +69,7 @@ bind  lockscreen
 # TERMINAL Display
 # ------------------------------------------------------------------------------
 backtick 3 90  90   $HOME/.screen/load
-backtick 1 90  90   $HOME/.screen/gcalendar
+backtick 1 300 300  $HOME/.screen/gcalendar
 backtick 2 300 300  $HOME/.screen/mail
 
 # turn sending of screen messages to hardstatus off

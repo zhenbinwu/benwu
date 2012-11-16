@@ -362,10 +362,6 @@ XPT bindmem hint=boost::bind\ member\ function
 boost::bind(&`class^::`function^, `instance^, `param^`...^, `param^`...^)
 
 
-XPT vec hint=std::vector<type>
-std::vector<`type^>
-
-
 XPT map hint=std::map<typeA,\ typeB>
 std::map<`typeA^, `typeB^>
 

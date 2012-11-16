@@ -67,5 +67,10 @@ XPT underline " \underline{text}
 \ul{`cursor^}<++>
 ..XPT
 
+XPT subfigure " \subfigure
+\subfigure[]{
+\includegraphics[width=`0.9^\textwidth, keepaspectratio]{`content^}
+\label{fig:`cursor^}
+}<++>
 
 

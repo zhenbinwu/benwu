@@ -13,7 +13,7 @@ set winaltkeys=no
 "set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb
 "set wildignore+=*.dvi,*.pdf,*.eps,*.png,*.bb,*.latexmain
 "" suffixes order by the input orders, let's put might be useful files first
-set suffixes+=\.sty,\.cls,\.bst,\.log,\.aux,\.bbl,\.blg,\.idx,\.out,\.toc,\.lof
+set suffixes+=\.sty,\.cls,\.bst,\.lot,\.log,\.aux,\.bbl,\.blg,\.idx,\.out,\.toc,\.lof,\.dvi,\.pdf
 
 ""The Alt key is hard to map within Xterm. So I have to re-map other key 
 imap <buffer> <C-L> <Plug>Tex_LeftRight
@@ -24,15 +24,19 @@ imap <buffer> <C-U> <Plug>Tex_InsertItemOnThisLine
 fun! FreezeImap() "{{{
 	if IMAP_GetVal('Imap_FreezeImap', 0) == 1
       let b:Imap_FreezeImap=0
+      silent iunmap <buffer> <C-L>
+      imap <buffer> <C-L> <Plug>Tex_LeftRight
     else 
       let b:Imap_FreezeImap=1
+      silent iunmap <buffer> <C-L>
+      imap <buffer> <C-L> <C-o>l
 	endif
 endfunction "}}}
 
-imap <leader>i <ESC>:call FreezeImap()<CR>a
-map <leader>i <ESC>:call FreezeImap()<CR>
-
-" Detect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
+imap <buffer> <leader>i <ESC>:call FreezeImap()<CR>a
+map <buffer> <leader>i <ESC>:call FreezeImap()<CR>
+     
+" Det<buffer> ect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
 function! CheckBeamer() "{{{
 
 	" For package files without \begin and \end{document}, we might be told to
@@ -112,8 +116,6 @@ function! CheckBeamer() "{{{
     if exists("b:Tex_package_detected")
       if b:Tex_package_detected == 'beamer'
         let g:Tex_DefaultTargetFormat='pdf'
-      else 
-        let g:Tex_DefaultTargetFormat='dvi'
       endif
     endif
 endfunction "}}}

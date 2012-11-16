@@ -11,6 +11,6 @@ if which gcalcli &> /dev/null; then
 
   float_test "$time <= 30  && $time > 20"  && echo -e "Event "
   float_test "$time <= 20  && $time > 10"  && echo -e "\005{= kW}Event "
-  float_test "$time <= 10  && $time > 2 "  && echo -e "\005{= kY}Event "
-  float_test "$time <= 2"                  && echo -e "\005{= kR}Event "
+  float_test "$time <= 10  && $time > 5 "  && echo -e "\005{= kY}Event "
+  float_test "$time <= 5"                  && echo -e "\005{= kR}Event "
 fi

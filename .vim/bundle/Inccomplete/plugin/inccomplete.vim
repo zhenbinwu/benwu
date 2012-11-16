@@ -1,6 +1,6 @@
 " Name:    inccomplete
-" Author:  xaizek <xaizek@gmail.com>
-" Version: 1.6.29
+" Author:  xaizek <xaizek@lavabit.com>
+" Version: 1.6.31
 " License: Same terms as Vim itself (see :help license)
 "
 " See :help inccomplete for documentation.
@@ -59,8 +59,7 @@ endfunction
 " we do.
 function! ICCompleteInc(bracket)
     if a:bracket == '/' || a:bracket == '\'
-        if getline('.') =~ '^\s*#\s*include\s*["<][">]*$'
-        "if getline('.') =~ '^\s*#\s*include\s*["<][^">]*$'
+        if getline('.') =~ '^\s*#\s*include\s*["<][^">]*$'
             return a:bracket."\<c-x>\<c-o>"
         endif
     endif
@@ -139,6 +138,11 @@ function! ICComplete(findstart, base)
             endif
 
             if isdirectory(l:increc[0].'/'.l:increc[1])
+                let l:slashidx = strridx(l:increc[1], l:sl2)
+                if l:increc[1][l:slashidx + 1] == '.'
+                    continue
+                endif
+
                 let l:strend = g:inccomplete_appendslash ? l:sl2 : ''
                 let l:slash = l:sl2
             else
@@ -201,7 +205,8 @@ function! s:ICFilterIncLst(user, inclst, base)
 
     " filter by filename
     let l:filebegin = a:base[strridx(a:base, l:sl2) + 1:]
-    let l:inclst = filter(copy(a:inclst), 'v:val[1] =~ "^".l:filebegin')
+    let l:inclst = filter(copy(a:inclst),
+                        \ '!empty(v:val[1]) && v:val[1] =~ "^".l:filebegin')
 
     " correct slashes in paths
     if l:sl1 == '/'
