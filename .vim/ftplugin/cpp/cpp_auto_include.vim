@@ -28,9 +28,8 @@ endif
 
 let g:loaded_cpp_auto_include = "true"
 
-"autocmd BufWritePre /tmp/**.cc :ruby CppAutoInclude::process
-"autocmd BufWritePre /tmp/**.cpp :ruby CppAutoInclude::process
-autocmd BufWritePre *.C :ruby CppAutoInclude::process
+
+
 
 ruby << EOF
 module VIM
@@ -172,4 +171,16 @@ module CppAutoInclude
 end
 EOF
 
-" vim: nowrap
+fun! AutoInclude() "{{{
+  let hasmain = search('\s*main\s*([^()]*', 'nw')
+  if hasmain == 0
+    return 
+  endif
+  let srh_file = "^#include\\s*[<\"]".expand("%:t:r")."\.*[>\"]"
+  if search(srh_file, 'nw') != 0
+    return 
+  end
+  ruby CppAutoInclude::process
+endfunction "}}}
+
+autocmd BufWritePre * :call AutoInclude()
