@@ -15,8 +15,6 @@
 
 [*] CSupport: Add autoload support for speeding up
 
-[*] Locator: How to map gl to show all the comment block with function in CPP
-
 [*] Cpp_autoinclude : auto include only works for code with main and dont have
 its header files, otherwise use the correction header file for adding the
 includes. 

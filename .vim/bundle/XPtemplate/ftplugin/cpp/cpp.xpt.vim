@@ -28,7 +28,7 @@ XPTvar $CS   //
 
 XPTinclude
       \ _common/common
-      \ _comment/singleDouble
+      \ _comment/cpp.like
       \ _condition/c.like
       \ _func/c.like
       \ _loops/c.while.like

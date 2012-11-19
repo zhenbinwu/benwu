@@ -77,11 +77,23 @@ let s:dItem_vim_function = {
 let s:dItem_asterisk_section = {
          \     'detect_type' : 'section',
          \     'detect_data' : {
-         \        'regexp' : '\v\s{0,5}\*{10,}\n[^{]+\n\s*\"*\s*\*\s{0,5}\*{10,}',
+         \        'regexp' : '\v\s{0,5}\*{10,}\n([^{]+\n)+\s*\"*\s*\*\s{0,5}\*{10,}',
          \     },
          \     'echo_type'   : 'func',
          \     'echo_data' : {
          \        'func_name' : 'Locator_EchoItem_AsteriskSection',
+         \     },
+         \     'flags'   : 'c',
+         \  }
+
+let s:cpp_comment_section = {
+         \     'detect_type' : 'section',
+         \     'detect_data' : {
+         \        'regexp' : '\v\s{0,5}\/\/\-{10,}\n(\/\/\s[^{]+\n)+\/\/\s{0,5}\-{10,}',
+         \     },
+         \     'echo_type'   : 'func',
+         \     'echo_data' : {
+         \        'func_name' : 'Locator_EchoItem_CppCommentSection',
          \     },
          \     'flags'   : 'c',
          \  }
@@ -140,6 +152,10 @@ let g:locator_items = {
          \           {
          \              'name' : 'func',
          \              'data' : s:dItem_C_func,
+         \           },
+         \           {
+         \              'name' : 'cpp_comment',
+         \              'data' : s:cpp_comment_section,
          \           },
          \        ]
          \     },
@@ -279,6 +295,14 @@ function! Locator_EchoItem_AsteriskSection(iLineNum)
    call <SID>SetHL("None")
 endfunction
 
+function! Locator_EchoItem_CppCommentSection(iLineNum)
+   let iLineNum = a:iLineNum + 1
+   let sLine = getline(iLineNum)
+   let sSectName = substitute(sLine, '\v^[^A-Za-z0-9_\/](.*)', '\1', '')
+   call <SID>SetHL(g:locator_hl_section)
+   echon "*** [ ".sSectName." ] ***"
+   call <SID>SetHL("None")
+endfunction
 
 
 " **********************************************************************************

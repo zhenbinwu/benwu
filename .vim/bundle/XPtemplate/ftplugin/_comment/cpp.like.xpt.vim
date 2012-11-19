@@ -9,5 +9,23 @@ XPTvar $CR   */
 
 XPTvar $CS  //
 
-XPTinclude
-      \ _comment/singleDouble
+"XPTinclude
+      "\ _comment/singleDouble
+
+let s:f = g:XPTfuncs()
+fun! s:f._xCommentMidIndent()
+    let l = self.GetVar( '$CL' )
+    let m = self.GetVar( '$CM' )
+    
+    if len( l ) <= len( m )
+        return ''
+    else
+        return '      '[ : len( l ) - len( m ) - 1 ]
+    endif
+endfunction
+XPT _d_commentDoc hidden wrap	" $CL$CM ..
+`$CL^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^
+`$_xCommentMidIndent$CM `cursor^
+`$_xCommentMidIndent$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CM^`$CR^ 
+
+XPT commentDoc   alias=_d_commentDoc

@@ -2903,6 +2903,218 @@ function! C_OpenFold ( mode )
 endfunction    " ----------  end of function C_OpenFold  ----------
 
 "------------------------------------------------------------------------------
+"  C_InsertTemplateNoIndent     {{{1
+"  insert a template from the template dictionary
+"  do macro expansion
+"------------------------------------------------------------------------------
+function! C_InsertTemplateNoIndent ( key, ... )
+
+	if s:C_TemplatesLoaded == 'no'
+		call C_RereadTemplates('no')        
+	endif
+
+	if !has_key( s:C_Template[s:C_ActualStyle], a:key ) &&
+	\  !has_key( s:C_Template['default'], a:key )
+		echomsg "style '".a:key."' / template '".a:key
+	\        ."' not found. Please check your template file in '".s:C_GlobalTemplateDir."'"
+		return
+	endif
+
+	if &foldenable 
+		let	foldmethod_save	= &foldmethod
+		set foldmethod=manual
+	endif
+  "------------------------------------------------------------------------------
+  "  insert the user macros
+  "------------------------------------------------------------------------------
+
+	" use internal formatting to avoid conficts when using == below
+	"
+	let	equalprg_save	= &equalprg
+	set equalprg=
+
+  let mode  = s:C_Attribute[a:key]
+
+	" remove <SPLIT> and insert the complete macro
+	"
+	if a:0 == 0
+		let val = C_ExpandUserMacros (a:key)
+		if empty(val)
+			return
+		endif
+		let val	= C_ExpandSingleMacro( val, '<SPLIT>', '' )
+
+		if mode == 'below'
+			call C_OpenFold('below')
+			let pos1  = line(".")+1
+			put  =val
+			let pos2  = line(".")
+			" proper indenting
+			exe ":".pos1
+			let ins	= pos2-pos1+1
+			"exe "normal ".ins."=="
+			"
+		elseif mode == 'above'
+			let pos1  = line(".")
+			put! =val
+			let pos2  = line(".")
+			" proper indenting
+			exe ":".pos1
+			let ins	= pos2-pos1+1
+			"exe "normal ".ins."=="
+			"
+		elseif mode == 'start'
+			normal gg
+			call C_OpenFold('start')
+			let pos1  = 1
+			put! =val
+			let pos2  = line(".")
+			" proper indenting
+			exe ":".pos1
+			let ins	= pos2-pos1+1
+			"exe "normal ".ins."=="
+			"
+		elseif mode == 'append'
+			if &foldenable && foldclosed(".") >= 0
+				echohl WarningMsg | echomsg s:MsgInsNotAvail  | echohl None
+				exe "set foldmethod=".foldmethod_save
+				return
+			else
+				let pos1  = line(".")
+				put =val
+				let pos2  = line(".")-1
+				exe ":".pos1
+				:join!
+			endif
+			"
+		elseif mode == 'insert'
+			if &foldenable && foldclosed(".") >= 0
+				echohl WarningMsg | echomsg s:MsgInsNotAvail  | echohl None
+				exe "set foldmethod=".foldmethod_save
+				return
+			else
+				let val   = substitute( val, '\n$', '', '' )
+				let currentline	= getline( "." )
+				let pos1  = line(".")
+				let pos2  = pos1 + count( split(val,'\zs'), "\n" )
+				" assign to the unnamed register "" :
+				exe 'normal! a'.val
+				" reformat only multiline inserts and previously empty lines
+				if pos2-pos1 > 0 || currentline =~ ''
+					exe ":".pos1
+					let ins	= pos2-pos1+1
+					"exe "normal ".ins."=="
+				endif
+			endif
+			"
+		endif
+		"
+	else
+		"
+		" =====  visual mode  ===============================
+		"
+		if  a:1 == 'v'
+			let val = C_ExpandUserMacros (a:key)
+			let val	= C_ExpandSingleMacro( val, s:C_TemplateJumpTarget2, '' )
+			if empty(val)
+				return
+			endif
+
+			if match( val, '<SPLIT>\s*\n' ) >= 0
+				let part	= split( val, '<SPLIT>\s*\n' )
+			else
+				let part	= split( val, '<SPLIT>' )
+			endif
+
+			if len(part) < 2
+				let part	= [ "" ] + part
+				echomsg 'SPLIT missing in template '.a:key
+			endif
+			"
+			" 'visual' and mode 'insert':
+			"   <part0><marked area><part1>
+			" part0 and part1 can consist of several lines
+			"
+			if mode == 'insert'
+				let pos1  = line(".")
+				let pos2  = pos1
+				let	string= @*
+				let replacement	= part[0].string.part[1]
+				" remove trailing '\n'
+				let replacement   = substitute( replacement, '\n$', '', '' )
+				exe ':s/'.string.'/'.replacement.'/'
+			endif
+			"
+			" 'visual' and mode 'below':
+			"   <part0>
+			"   <marked area>
+			"   <part1>
+			" part0 and part1 can consist of several lines
+			"
+			if mode == 'below'
+
+				:'<put! =part[0]
+				:'>put  =part[1]
+
+				let pos1  = line("'<") - len(split(part[0], '\n' ))
+				let pos2  = line("'>") + len(split(part[1], '\n' ))
+				""			echo part[0] part[1] pos1 pos2
+				"			" proper indenting
+				exe ":".pos1
+				let ins	= pos2-pos1+1
+				"exe "normal ".ins."=="
+			endif
+			"
+		endif		" ---------- end visual mode
+	endif
+
+	" restore formatter programm
+	let &equalprg	= equalprg_save
+
+  "------------------------------------------------------------------------------
+  "  position the cursor
+  "------------------------------------------------------------------------------
+  exe ":".pos1
+  let mtch = search( '<CURSOR>\|{CURSOR}', 'c', pos2 )
+	if mtch != 0
+		let line	= getline(mtch)
+		if line =~ '<CURSOR>$\|{CURSOR}$'
+			call setline( mtch, substitute( line, '<CURSOR>\|{CURSOR}', '', '' ) )
+			if  a:0 != 0 && a:1 == 'v' && getline(".") =~ '^\s*$'
+				normal J
+			else
+				if getpos(".")[2] < len(getline(".")) || mode == 'insert'
+					:startinsert
+				else
+					:startinsert!
+				endif
+			endif
+		else
+			call setline( mtch, substitute( line, '<CURSOR>\|{CURSOR}', '', '' ) )
+			:startinsert
+		endif
+	else
+		" to the end of the block; needed for repeated inserts
+		if mode == 'below'
+			exe ":".pos2
+		endif
+  endif
+
+  "------------------------------------------------------------------------------
+  "  marked words
+  "------------------------------------------------------------------------------
+	" define a pattern to highlight
+	call C_HighlightJumpTargets ()
+
+	if &foldenable 
+		" restore folding method
+		exe "set foldmethod=".foldmethod_save
+		normal zv
+	endif
+
+endfunction    " ----------  end of function C_InsertTemplateNoIndent ----------
+
+"------------------------------------------------------------------------------
 "  C_InsertTemplate     {{{1
 "  insert a template from the template dictionary
 "  do macro expansion

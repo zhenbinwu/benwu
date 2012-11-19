@@ -97,19 +97,19 @@ vnoremap    <buffer>  <silent>  <LocalLeader>c*         :call C_CodeToCommentC()
  "noremap    <buffer>  <silent>  <LocalLeader>co         :call C_CommentToCode()<CR>:nohlsearch<CR>
 "vnoremap    <buffer>  <silent>  <LocalLeader>co    <Esc>:call C_CommentToCode()<CR>:nohlsearch<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>cfr        :call C_InsertTemplate("comment.frame")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>cfu        :call C_InsertTemplate("comment.function")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>cme        :call C_InsertTemplate("comment.method")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>ccl        :call C_InsertTemplate("comment.class")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>cfdi       :call C_InsertTemplate("comment.file-description")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>cfdh       :call C_InsertTemplate("comment.file-description-header")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>cfr        :call C_InsertTemplateNoIndent("comment.frame")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>cfu        :call C_InsertTemplateNoIndent("comment.function")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>cme        :call C_InsertTemplateNoIndent("comment.method")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>ccl        :call C_InsertTemplateNoIndent("comment.class")<CR>
+"noremap    <buffer>  <silent>  <LocalLeader>cfdi       :call C_InsertTemplateNoIndent("comment.file-description")<CR>
+"noremap    <buffer>  <silent>  <LocalLeader>cfdh       :call C_InsertTemplateNoIndent("comment.file-description-header")<CR>
 
-inoremap    <buffer>  <silent>  <LocalLeader>cfr   <Esc>:call C_InsertTemplate("comment.frame")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cfu   <Esc>:call C_InsertTemplate("comment.function")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cme   <Esc>:call C_InsertTemplate("comment.method")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ccl   <Esc>:call C_InsertTemplate("comment.class")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cfdi  <Esc>:call C_InsertTemplate("comment.file-description")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cfdh  <Esc>:call C_InsertTemplate("comment.file-description-header")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>cfr   <Esc>:call C_InsertTemplateNoIndent("comment.frame")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>cfu   <Esc>:call C_InsertTemplateNoIndent("comment.function")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>cme   <Esc>:call C_InsertTemplateNoIndent("comment.method")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ccl   <Esc>:call C_InsertTemplateNoIndent("comment.class")<CR>
+"inoremap    <buffer>  <silent>  <LocalLeader>cfdi  <Esc>:call C_InsertTemplateNoIndent("comment.file-description")<CR>
+"inoremap    <buffer>  <silent>  <LocalLeader>cfdh  <Esc>:call C_InsertTemplateNoIndent("comment.file-description-header")<CR>
 
 " noremap    <buffer>  <silent>  <LocalLeader>cd    <Esc>:call C_InsertDateAndTime('d')<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cd    <Esc>:call C_InsertDateAndTime('d')<CR>a

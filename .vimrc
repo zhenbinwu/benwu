@@ -103,6 +103,7 @@ if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
 
+call add(g:pathogen_disabled, 'FuzzyFinder')
 call pathogen#infect()
 
 filetype plugin on
@@ -173,7 +174,7 @@ if has("gui_running")
   set guioptions-=L
   set nocursorline
   set t_Co=256
-  colorscheme wombat256
+  colorscheme harlequin
 else
   if &term == 'linux' || &term == 'jfbterm'
     colorscheme anotherdark
@@ -504,7 +505,7 @@ let Tlist_Auto_Open               = 0
 let Tlist_File_Fold_Auto_Close    = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let tlist_tex_settings            = 'latex;s:sections;g:graphics;l:labels;r:refs;f:frames'
-set updatetime=2000
+set updatetime=1000
 set tags=tags;/
 
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -560,8 +561,8 @@ let showmarks_hlline_upper = 1
 
 " For showmarks plugin
 "hi ShowMarksHLl ctermbg=Yellow ctermfg=Black guibg=#FFDB72 guifg=Black
-hi ShowMarksHLl ctermbg=lightcyan  ctermfg=Black guibg=#FFDB72 guifg=Black
-hi ShowMarksHLu ctermbg=Magenta ctermfg=Black guibg=#FFB3FF guifg=Black
+"hi ShowMarksHLl ctermbg=lightcyan  ctermfg=Black guibg=#FFDB72 guifg=Black
+"hi ShowMarksHLu ctermbg=Magenta ctermfg=Black guibg=#FFB3FF guifg=Black
 
 imap <silent> <Leader>mt <Esc><Leader>mt i
 imap <silent> <Leader>mo <Esc><Leader>mo i
@@ -574,8 +575,6 @@ imap <silent> <Leader>mm <Esc><Leader>mm i
 """""""""""""""""""""""""""""""
 nmap <silent> <leader>mk :MarksBrowser<CR>
 imap <silent> <Leader>mk <Esc>:MarksBrowser<CR>
-
-
 
 """"""""""""""""""""""""""""""""""""""""'
 " C Support
@@ -618,8 +617,8 @@ if &term == 'linux'
   let g:Tex_ViewRule_dvi='dvifb'
   let g:Tex_ExecuteUNIXViewerInForeground = 1 "For dvifb 
 else
-  "let g:Tex_ViewRule_pdf='acroread'
-  let g:Tex_ViewRule_pdf='xpdf'
+  let g:Tex_ViewRule_pdf='acroread'
+  "let g:Tex_ViewRule_pdf='xpdf'
   "let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
   let g:Tex_ViewRule_dvi='xdvi'
 endif
@@ -803,13 +802,12 @@ augroup END
 let g:repmo_key = '\'
 let g:repmo_revkey = 'g\'
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
-      \](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
+      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AmbiCompletion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set completefunc=g:AmbiCompletion
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Sideways

@@ -19,8 +19,9 @@ XPTinclude
 XPTvar $CL  /*
 XPTvar $CM   *
 XPTvar $CR   */
-XPTinclude
-      \ _comment/doubleSign
+
+"XPTinclude
+      "\ _comment/doubleSign
 
 XPTinclude
       \ _condition/c.like
