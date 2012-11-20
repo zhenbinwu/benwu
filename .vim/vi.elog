@@ -13,12 +13,6 @@
 
 [*] Speeddating: Add chinese support for increasing
 
-[*] CSupport: Add autoload support for speeding up
-
-[*] Cpp_autoinclude : auto include only works for code with main and dont have
-its header files, otherwise use the correction header file for adding the
-includes. 
-
 [*] Substitile or search with complicated pattern would be very useful but
 also very difficult to remember the command. So it would be nice to have local
 file that keep track of this command and can be execuated every time we

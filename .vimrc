@@ -103,7 +103,6 @@ if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
 
-call add(g:pathogen_disabled, 'FuzzyFinder')
 call pathogen#infect()
 
 filetype plugin on
@@ -179,12 +178,11 @@ else
   if &term == 'linux' || &term == 'jfbterm'
     colorscheme anotherdark
   else
-    "set t_Co=256
-    "colorscheme wombat256
     if( match(hostname(), 'hep') >=0 )
       colorscheme benwu
     else 
-      colorscheme zmrok
+      set t_Co=256
+      colorscheme harlequin
     endif
   endif
 endif
@@ -802,7 +800,7 @@ augroup END
 let g:repmo_key = '\'
 let g:repmo_revkey = 'g\'
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
-      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
+      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c n|N"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AmbiCompletion

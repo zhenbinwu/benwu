@@ -672,8 +672,8 @@ EOS
 function! PHCursorHold()
     " only python is supported {{{
     if (!exists('b:current_syntax') || (b:current_syntax != 'python'))
-	let w:PHStatusLine = ''
-	return
+      let w:PHStatusLine = ''
+      return
     endif
     " }}}
     

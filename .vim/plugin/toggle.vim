@@ -59,10 +59,10 @@
 " v0.1, 1 Feb 2004
 "   - first Version to be distributed... (not yet on vim.org)
 
-" if exists("loaded_toggle")
-"     finish
-" endif
-" let loaded_toggle=1
+if exists("g:loaded_toggle")
+  finish
+endif
+let g:loaded_toggle=1
 
 let s:save_cpo = &cpo
 set cpo&vim
@@ -128,221 +128,221 @@ function! s:Toggle_GetMotion(char)
 endfun  "}}}
 
 function! Toggle() "{{{
-    " save values which we have to change temporarily:
-    let s:lineNo = line(".")
-    let s:columnNo = col(".")
+  " save values which we have to change temporarily:
+  let s:lineNo = line(".")
+  let s:columnNo = col(".")
 
-    " Gather information needed later
-    let s:cline = getline(".")
-    let s:charUnderCursor = strpart(s:cline, s:columnNo-1, 1)
+  " Gather information needed later
+  let s:cline = getline(".")
+  let s:charUnderCursor = strpart(s:cline, s:columnNo-1, 1)
 
-    let s:toggleDone = 0
-    " 1. Check if the single Character has to be toggled {{{
-    if (s:charUnderCursor == "+")
-        execute "normal r-"
-        let s:toggleDone = 1
-    elseif (s:charUnderCursor == "-")
-        execute "normal r+"
-        let s:toggleDone = 1
-    elseif (s:charUnderCursor == "<")
-        execute "normal r>"
-        let s:toggleDone = 1
-    elseif (s:charUnderCursor == ">")
-        execute "normal r<"
-        let s:toggleDone = 1
-    endif " }}}
+  let s:toggleDone = 0
+  " 1. Check if the single Character has to be toggled {{{
+  if (s:charUnderCursor == "+")
+    execute "normal r-"
+    let s:toggleDone = 1
+  elseif (s:charUnderCursor == "-")
+    execute "normal r+"
+    let s:toggleDone = 1
+  elseif (s:charUnderCursor == "<")
+    execute "normal r>"
+    let s:toggleDone = 1
+  elseif (s:charUnderCursor == ">")
+    execute "normal r<"
+    let s:toggleDone = 1
+  endif " }}}
 
-    " 2. Check if cursor is on an number. If so, search & toggle sign{{{
-    if (s:toggleDone == 0)
-         if s:charUnderCursor =~ "\\d"
-            " is a number!
-            " search for the sign of the number
-            let s:colTemp = s:columnNo-1
-            let s:foundSpace = 0
-            let s:spacePos = -1
-            while ((s:colTemp >= 0) && (s:toggleDone == 0))
-                let s:cuc = strpart(s:cline, s:colTemp, 1)
-                if (s:cuc == "+")
-                    let s:ncline = s:Toggle_changeChar(s:cline, s:colTemp, "-")
-                    call setline(s:lineNo, s:ncline)
-                    let s:toggleDone = 1
-                elseif (s:cuc == "-")
-                    let s:ncline = s:Toggle_changeChar(s:cline, s:colTemp, "+")
-                    call setline(s:lineNo, s:ncline)
-                    let s:toggleDone = 1
-                elseif (s:cuc == " ")
-                    let s:foundSpace = 1
-                    " Save spacePos only if there wasn't one already, so sign
-                    " is directly before number if there are several spaces
-                    if (s:spacePos == -1) 
-                      let s:spacePos = s:colTemp
-                    endif
-                elseif (s:cuc !~ "\\s" && s:foundSpace == 1)
-                    " space already found earlier, now there's something other
-                    " than space
-                    " -> the number didn't have a sign. insert - and keep a space
-                    let s:ncline = s:Toggle_changeChar(s:cline, s:spacePos, " -")
-                    call setline(s:lineNo, s:ncline)
-                    let s:toggleDone = 1
-                elseif (s:cuc !~ "\\d" && s:cuc !~ "\\s")
-                    " any non-digit, non-space character -> insert a - sign
-                    let s:ncline = s:Toggle_insertChar(s:cline, s:colTemp+1, "-")
-                    call setline(s:lineNo, s:ncline)
-                    let s:toggleDone = 1
-                endif
-                let s:colTemp = s:colTemp - 1
-            endwhile
-            if (s:toggleDone == 0)
-                " no sign found. insert at beginning of line:
-                let s:ncline = "-" . s:cline
-                call setline(s:lineNo, s:ncline)
-                let s:toggleDone = 1
-            endif
-        endif " is a number under the cursor?
-    endif " toggleDone?}}}
-    
-    " 3. Check if cursor is on one-or two-character symbol"{{{
-    if s:toggleDone == 0
-      let s:nextChar = strpart(s:cline, s:columnNo, 1)
-      let s:prevChar = strpart(s:cline, s:columnNo-2, 1)
-
-      "" toggle || <-> && 
-      if s:charUnderCursor == "|"
-        if s:prevChar == "|"
-          execute "normal r&hr&"
+  " 2. Check if cursor is on an number. If so, search & toggle sign{{{
+  if (s:toggleDone == 0)
+    if s:charUnderCursor =~ "\\d"
+      " is a number!
+      " search for the sign of the number
+      let s:colTemp = s:columnNo-1
+      let s:foundSpace = 0
+      let s:spacePos = -1
+      while ((s:colTemp >= 0) && (s:toggleDone == 0))
+        let s:cuc = strpart(s:cline, s:colTemp, 1)
+        if (s:cuc == "+")
+          let s:ncline = s:Toggle_changeChar(s:cline, s:colTemp, "-")
+          call setline(s:lineNo, s:ncline)
           let s:toggleDone = 1
-        elseif s:nextChar == "|"
-          execute "normal r&lr&"
+        elseif (s:cuc == "-")
+          let s:ncline = s:Toggle_changeChar(s:cline, s:colTemp, "+")
+          call setline(s:lineNo, s:ncline)
           let s:toggleDone = 1
-        else
-          execute "normal r&"
+        elseif (s:cuc == " ")
+          let s:foundSpace = 1
+          " Save spacePos only if there wasn't one already, so sign
+          " is directly before number if there are several spaces
+          if (s:spacePos == -1) 
+            let s:spacePos = s:colTemp
+          endif
+        elseif (s:cuc !~ "\\s" && s:foundSpace == 1)
+          " space already found earlier, now there's something other
+          " than space
+          " -> the number didn't have a sign. insert - and keep a space
+          let s:ncline = s:Toggle_changeChar(s:cline, s:spacePos, " -")
+          call setline(s:lineNo, s:ncline)
           let s:toggleDone = 1
-        end
-      end
-      "" toggle && <-> || 
-      if s:charUnderCursor == "&"
-        if s:prevChar == "&"
-          execute "normal r|hr|"
+        elseif (s:cuc !~ "\\d" && s:cuc !~ "\\s")
+          " any non-digit, non-space character -> insert a - sign
+          let s:ncline = s:Toggle_insertChar(s:cline, s:colTemp+1, "-")
+          call setline(s:lineNo, s:ncline)
           let s:toggleDone = 1
-        elseif s:nextChar == "&"
-          execute "normal r|lr|"
-          let s:toggleDone = 1
-        else
-          execute "normal r|"
-          let s:toggleDone = 1
-        end
-      end
-
-      "" toggle == <-> !=
-      if (s:charUnderCursor == "=" )
-	if s:prevChar == "!"
-	  execute "normal r=hr="
-	  let s:toggleDone = 1
-	elseif s:nextChar == "="
-	  execute "normal r!lr="
-	  let s:toggleDone = 1
-	elseif s:prevChar == "="
-	  execute "normal r=hr!"
-	  let s:toggleDone = 1
-	end
-      end
-      if (s:charUnderCursor == "!")
-	if s:nextChar == "="
-	  execute "normal r="
-	  let s:toggleDone = 1
-	end
-      end
-
-      "" toggle -= <-> +=
-      if (s:charUnderCursor == "=" )
-	if s:prevChar == "-"
-	  execute "normal r=hr+"
-	  let s:toggleDone = 1
-	elseif s:prevChar == "+"
-	  execute "normal r=hr-"
-	  let s:toggleDone = 1
-	end
-      end
-
-    endif"}}}
-
-    " 4. Check if complete word can be toggled {{{
-    if (s:toggleDone == 0)
-        let s:wordUnderCursor_tmp = ''
-"                 
-        let s:wordUnderCursor = expand("<cword>")
-        if (s:wordUnderCursor ==? "true")
-            let s:wordUnderCursor_tmp = "false"
-            let s:toggleDone = 1
-        elseif (s:wordUnderCursor ==? "false")
-            let s:wordUnderCursor_tmp = "true"
-            let s:toggleDone = 1
-
-        elseif (s:wordUnderCursor ==? "on")
-            let s:wordUnderCursor_tmp = "off"
-            let s:toggleDone = 1
-        elseif (s:wordUnderCursor ==? "off")
-            let s:wordUnderCursor_tmp = "on"
-            let s:toggleDone = 1
-
-        elseif (s:wordUnderCursor ==? "yes")
-            let s:wordUnderCursor_tmp = "no"
-            let s:toggleDone = 1
-        elseif (s:wordUnderCursor ==? "no")
-            let s:wordUnderCursor_tmp = "yes"
-            let s:toggleDone = 1
-        elseif (s:wordUnderCursor ==? "define")
-            let s:wordUnderCursor_tmp = "undef"
-            let s:toggleDone = 1
-        elseif (s:wordUnderCursor ==? "undef")
-            let s:wordUnderCursor_tmp = "define"
-            let s:toggleDone = 1
         endif
+        let s:colTemp = s:colTemp - 1
+      endwhile
+      if (s:toggleDone == 0)
+        " no sign found. insert at beginning of line:
+        let s:ncline = "-" . s:cline
+        call setline(s:lineNo, s:ncline)
+        let s:toggleDone = 1
+      endif
+    endif " is a number under the cursor?
+  endif " toggleDone?}}}
 
-         " preserve case (provided by Jan Christoph Ebersbach)
-         if s:toggleDone
-             if strpart (s:wordUnderCursor, 0) =~ '^\u*$'
-                 let s:wordUnderCursor = toupper (s:wordUnderCursor_tmp)
-             elseif strpart (s:wordUnderCursor, 0, 1) =~ '^\u$'
-                 let s:wordUnderCursor = toupper (strpart (s:wordUnderCursor_tmp, 0, 1)).strpart (s:wordUnderCursor_tmp, 1)
-             else
-                 let s:wordUnderCursor = s:wordUnderCursor_tmp
-             endif
-         endif
+  " 3. Check if cursor is on one-or two-character symbol"{{{
+  if s:toggleDone == 0
+    let s:nextChar = strpart(s:cline, s:columnNo, 1)
+    let s:prevChar = strpart(s:cline, s:columnNo-2, 1)
 
-        " if wordUnderCursor is changed, set the new line
-        if (s:toggleDone == 1)
-            execute "normal ciw" . s:wordUnderCursor
-            let s:toggleDone = 1
-        endif
+    "" toggle || <-> && 
+    if s:charUnderCursor == "|"
+      if s:prevChar == "|"
+        execute "normal r&hr&"
+        let s:toggleDone = 1
+      elseif s:nextChar == "|"
+        execute "normal r&lr&"
+        let s:toggleDone = 1
+      else
+        execute "normal r&"
+        let s:toggleDone = 1
+      end
+    end
+    "" toggle && <-> || 
+    if s:charUnderCursor == "&"
+      if s:prevChar == "&"
+        execute "normal r|hr|"
+        let s:toggleDone = 1
+      elseif s:nextChar == "&"
+        execute "normal r|lr|"
+        let s:toggleDone = 1
+      else
+        execute "normal r|"
+        let s:toggleDone = 1
+      end
+    end
 
-    endif " toggleDone?}}}
+    "" toggle == <-> !=
+    if (s:charUnderCursor == "=" )
+      if s:prevChar == "!"
+        execute "normal r=hr="
+        let s:toggleDone = 1
+      elseif s:nextChar == "="
+        execute "normal r!lr="
+        let s:toggleDone = 1
+      elseif s:prevChar == "="
+        execute "normal r=hr!"
+        let s:toggleDone = 1
+      end
+    end
+    if (s:charUnderCursor == "!")
+      if s:nextChar == "="
+        execute "normal r="
+        let s:toggleDone = 1
+      end
+    end
 
-    if s:toggleDone == 0
-      unmap =
-      echon "Indenting  =" 
-      let s:temp = s:Toggle_GetMotion("=")
-      redraw
-      execute "normal! =" . s:temp
-      nmap = :call Toggle()<CR>
-      echo 
+    "" toggle -= <-> +=
+    if (s:charUnderCursor == "=" )
+      if s:prevChar == "-"
+        execute "normal r=hr+"
+        let s:toggleDone = 1
+      elseif s:prevChar == "+"
+        execute "normal r=hr-"
+        let s:toggleDone = 1
+      end
+    end
+
+  endif"}}}
+
+  " 4. Check if complete word can be toggled {{{
+  if (s:toggleDone == 0)
+    let s:wordUnderCursor_tmp = ''
+    "                 
+    let s:wordUnderCursor = expand("<cword>")
+    if (s:wordUnderCursor ==? "true")
+      let s:wordUnderCursor_tmp = "false"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "false")
+      let s:wordUnderCursor_tmp = "true"
+      let s:toggleDone = 1
+
+    elseif (s:wordUnderCursor ==? "on")
+      let s:wordUnderCursor_tmp = "off"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "off")
+      let s:wordUnderCursor_tmp = "on"
+      let s:toggleDone = 1
+
+    elseif (s:wordUnderCursor ==? "yes")
+      let s:wordUnderCursor_tmp = "no"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "no")
+      let s:wordUnderCursor_tmp = "yes"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "define")
+      let s:wordUnderCursor_tmp = "undef"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "undef")
+      let s:wordUnderCursor_tmp = "define"
+      let s:toggleDone = 1
     endif
 
-    " unlet used variables to save memory {{{
-    unlet! s:charUnderCursor
-    unlet! s:toggleDone
-    unlet! s:cline
-    unlet! s:foundSpace
-    unlet! s:cuc "}}}
+    " preserve case (provided by Jan Christoph Ebersbach)
+    if s:toggleDone
+      if strpart (s:wordUnderCursor, 0) =~ '^\u*$'
+        let s:wordUnderCursor = toupper (s:wordUnderCursor_tmp)
+      elseif strpart (s:wordUnderCursor, 0, 1) =~ '^\u$'
+        let s:wordUnderCursor = toupper (strpart (s:wordUnderCursor_tmp, 0, 1)).strpart (s:wordUnderCursor_tmp, 1)
+      else
+        let s:wordUnderCursor = s:wordUnderCursor_tmp
+      endif
+    endif
 
-    "restore saved values
-    call cursor(s:lineNo,s:columnNo)
-    unlet s:lineNo
-    unlet s:columnNo
-  endfunction " }}}
+    " if wordUnderCursor is changed, set the new line
+    if (s:toggleDone == 1)
+      execute "normal ciw" . s:wordUnderCursor
+      let s:toggleDone = 1
+    endif
+
+  endif " toggleDone?}}}
+
+  if s:toggleDone == 0
+    unmap =
+    echon "Indenting  =" 
+    let s:temp = s:Toggle_GetMotion("=")
+    redraw
+    execute "normal! =" . s:temp
+    nmap = :call Toggle()<CR>
+    echo 
+  endif
+
+  " unlet used variables to save memory {{{
+  unlet! s:charUnderCursor
+  unlet! s:toggleDone
+  unlet! s:cline
+  unlet! s:foundSpace
+  unlet! s:cuc "}}}
+
+  "restore saved values
+  call cursor(s:lineNo,s:columnNo)
+  unlet s:lineNo
+  unlet s:columnNo
+endfunction " }}}
 
 
-  let &cpo = s:save_cpo
-  unlet s:save_cpo
+let &cpo = s:save_cpo
+unlet s:save_cpo
 
-  " vim:fdm=marker commentstring="%s
+" vim:fdm=marker commentstring="%s

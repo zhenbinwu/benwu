@@ -1449,7 +1449,7 @@ let s:defaultMappings = [
 			\['N', 'VCSSplitAnnotate'],
 			\['n', 'VCSAnnotate'],
 			\['q', 'VCSRevert'],
-			\['r', 'VCSReview'],
+			\['R', 'VCSReview'],
 			\['s', 'VCSStatus'],
 			\['U', 'VCSUnlock'],
 			\['u', 'VCSUpdate'],
