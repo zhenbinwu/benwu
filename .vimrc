@@ -81,6 +81,7 @@
 "     > TextObj          ( V0.3.12     2012_07_15 )
 "     > RelOps           ( V1.0        2012_09_13 )
 "     > Sideways         ( V0.0.2      2012_10_08 )
+"     > Powerline        ( V#beta      2012_11_22 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -811,3 +812,9 @@ set completefunc=g:AmbiCompletion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap gj :SidewaysLeft<cr>
 nnoremap gk :SidewaysRight<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Powerline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Powerline_theme = 'benwu'
+let g:Powerline_colorscheme = 'benwu'

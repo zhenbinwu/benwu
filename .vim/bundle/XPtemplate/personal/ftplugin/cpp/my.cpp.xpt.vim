@@ -66,3 +66,7 @@ XSET class|post=S(V(), '.*[^:]', '&::', '')
 {
     <+code+>
 }       // -----  end of function `class^`name^  -----
+
+
+XPT << hint=<<""
+<< "`content^" `cursor^

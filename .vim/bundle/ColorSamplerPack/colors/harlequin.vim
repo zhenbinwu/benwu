@@ -191,7 +191,7 @@ if has("spell")
 endif
 
 call s:HighlightX('VisualNOS',      '', s:greys[4], '', '')
-call s:HighlightX('Visual',         '', s:greys[4], '', '')
+call s:HighlightX('Visual',         '', s:greys[2], '', '')
 call s:Highlight('Search',          s:black, s:gold, '', '')
 call s:Highlight('IncSearch',       s:black, s:sunny, '', '')
 
