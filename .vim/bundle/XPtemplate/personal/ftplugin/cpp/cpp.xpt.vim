@@ -329,26 +329,6 @@ XPT dc wrap=value hint=dynamic_cast<>\(\)
 dynamic_cast<`to_type^>(`value^)
 
 
-XPT { wrap=code hint={\ indented\ code\ block\ }
-{
-    `code^
-}
-
-
-XPT {_ wrap=code hint={\ inline\ code\ block\ }
-{ `code^ }
-
-
-XPT \( wrap=code hint=\(\ indented\ code\ block\ \)
-(
-    `code^
-)
-
-
-XPT \(_ wrap=code hint=\(\ inline\ code\ block\ \)
-( `code^ )
-
-
 XPT bindf hint=boost::bind\ function\ call
 boost::bind(`function^, `param^`...^, `param^`...^)
 

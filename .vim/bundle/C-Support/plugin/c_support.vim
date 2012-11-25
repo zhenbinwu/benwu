@@ -54,8 +54,8 @@ let g:C_Version= "5.16"  							" version number of this script; do not change
     "call C#CreateGuiMenus()
   "endif
   "
-  nmap  <unique>  <silent>  <Leader>lcs   :call C#CreateGuiMenus()<CR>
-  nmap  <unique>  <silent>  <Leader>ucs   :call C#RemoveGuiMenus()<CR>
+  "nmap  <unique>  <silent>  <Leader>lcs   :call C#CreateGuiMenus()<CR>
+  "nmap  <unique>  <silent>  <Leader>ucs   :call C#RemoveGuiMenus()<CR>
   "
 "------------------------------------------------------------------------------
 "  Automated header insertion

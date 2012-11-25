@@ -865,3 +865,8 @@ nnoremap gk :SidewaysRight<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:Powerline_theme = 'benwu'
 let g:Powerline_colorscheme = 'benwu'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERD_Commenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <leader>cl <ESC><leader>cl

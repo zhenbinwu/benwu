@@ -54,14 +54,11 @@ XPT all  " ..begin, ..end,
 
 
 XPT vector " std::vector<..> ..;
-std::vector<`type^> `var^;
-`cursor^
+std::vector<`type^> `var^;`cursor^
 
 
 XPT map " std::map<..,..> ..;
-std::map<`typeKey^,`val^>   `name^;
-`cursor^
-
+std::map<`typeKey^,`val^>   `name^;`cursor^
 
 XPT class   " class ..
 class `className^
