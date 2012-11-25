@@ -55,7 +55,7 @@
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
 "     > WinManager       ( V2.3        2011_01_29 ) 
 "     > BufExplorer      ( V7.3.0      2012_10_09 ) 
-"     > Align            ( V35/41      2011_01_29 ) 
+"     > Align            ( V36/42      2012_11_25 ) 
 "     > VCSCommand       ( V1.99.45    2011_10_27 ) 
 "     > XPtemplate       ( V0.4.8-0707 2011_10_27 ) 
 "     > C-Support        ( V5.16       2011_11_06 ) 
@@ -82,6 +82,7 @@
 "     > RelOps           ( V1.0        2012_09_13 )
 "     > Sideways         ( V0.0.2      2012_10_08 )
 "     > Powerline        ( V#beta      2012_11_22 )
+"     > Locator          ( V1.3        2012_11_25 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -529,10 +530,10 @@ map <silent> <F12> :WMToggle<CR>
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
 let g:bufExplorerSortBy='mru'
-nmap <script> <silent> <unique> <Leader>le :BufExplorer<CR>
-nmap <script> <silent> <unique> <Leader>ls :BufExplorerHorizontalSplit<CR>
-nmap <script> <silent> <unique> <Leader>lv :BufExplorerVerticalSplit<CR>
-nmap <script> <silent> <unique> <Leader>lt :BufExplorerTab<CR>
+nmap <silent> <Leader>le :BufExplorer<CR>
+nmap <silent> <Leader>ls :BufExplorerHorizontalSplit<CR>
+nmap <silent> <Leader>lv :BufExplorerVerticalSplit<CR>
+nmap <silent> <Leader>lt :BufExplorerTab<CR>
 
 
 """"""""""""""""""""""""""""""""""
@@ -558,9 +559,8 @@ let showmarks_hlline_lower = 1
 let showmarks_hlline_upper = 1 
 
 " For showmarks plugin
-"hi ShowMarksHLl ctermbg=Yellow ctermfg=Black guibg=#FFDB72 guifg=Black
-"hi ShowMarksHLl ctermbg=lightcyan  ctermfg=Black guibg=#FFDB72 guifg=Black
-"hi ShowMarksHLu ctermbg=Magenta ctermfg=Black guibg=#FFB3FF guifg=Black
+hi ShowMarksHLl ctermbg=lightcyan  ctermfg=Black guibg=#FFDB72 guifg=Black
+hi ShowMarksHLu ctermbg=Magenta ctermfg=Black guibg=#FFB3FF guifg=Black
 
 imap <silent> <Leader>mt <Esc><Leader>mt i
 imap <silent> <Leader>mo <Esc><Leader>mo i
@@ -581,6 +581,7 @@ let g:C_MapLeader = ','
 let g:C_Styles = { '*.c,*.h' : 'default', '*.C,*.cc,*.cpp,*.hh' : 'CPP' }
 au FileType c let dictionary=g:C_Dictionary_File
 ""set dictionary=/usr/share/dict/words 
+let g:C_LineEndCommColDefault    = 35
 
 """""""""""""""""""""""""""""""""""""""""'
 " Vim Latex_Suite
@@ -646,15 +647,34 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
-let g:fuf_modesDisable    = []
+
+let g:fuf_modesDisable = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem  = 400
-nmap fff <ESC>:FufFile<CR>
-nmap ffb <ESC>:FufBuffer<CR>
-nmap ffd <ESC>:FufDir<CR>
-nmap ffm <ESC>:FufMruFile<CR>
-nmap ffl <ESC>:FufLine<CR>
-
+nnoremap <silent> gnb :FufBuffer<CR>
+nnoremap <silent> gnf :FufFile<CR>
+nnoremap <silent> gnd :FufDir<CR>
+nnoremap <silent> gnn :FufMruFile<CR>
+nnoremap <silent> gnm :FufMruFileInCwd<CR>
+nnoremap <silent> gnc :FufMruCmd<CR>
+nnoremap <silent> gnj :FufJumpList<CR>
+nnoremap <silent> gnh :FufChangeList<CR>
+nnoremap <silent> gnk :FufBookmarkFile<CR>
+nnoremap <silent> gna :FufBookmarkFileAdd<CR>
+nnoremap <silent> gnr :FufBookmarkDir<CR>
+nnoremap <silent> gni :FufBookmarkDirAdd<CR>
+nnoremap <silent> gnt :FufTag<CR>
+nnoremap <silent> gnw :FufTagWithCursorWord<CR>
+nnoremap <silent> gne :FufBufferTag<CR>
+nnoremap <silent> gn[ :FufBufferTagWithCursorWord!<CR>
+nnoremap <silent> gnl :FufBufferTagAll<CR>
+nnoremap <silent> gn] :FufBufferTagAllWithCursorWord!<CR>
+nnoremap <silent> gng :FufTaggedFile<CR>
+nnoremap <silent> gnx :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> gnz :FufFileWithFullCwd<CR>
+nnoremap <silent> gno :FufDirWithCurrentBufferDir<CR>
+nnoremap <silent> gnp :FufDirWithFullCwd<CR>
+"gn: q s u v  y 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
@@ -784,8 +804,35 @@ nmap <silent> <F10>  :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>ab	<Plug>AM_abox
-map <Leader>ac	<Plug>AM_acom
+" Complex C-code alignment maps: 
+map <unique> <Leader>ab   <Plug>AM_abox
+map <unique> <Leader>ac   <Plug>AM_adcom
+map <unique> <Leader>ad   <Plug>AM_adec
+map <unique> <Leader>af   <Plug>AM_afnc
+map <unique> <Leader>an   <Plug>AM_anum
+map <unique> <Leader>au   <Plug>AM_aunum
+map <unique> <Leader>ae   <Plug>AM_aenum
+" character-based right-justified alignment maps 
+map <unique> <Leader>r| <Plug>AM_T|
+map <unique> <Leader>r#   <Plug>AM_T#
+map <unique> <Leader>r,   <Plug>AM_T,o
+map <unique> <Leader>rs,  <Plug>AM_Ts,
+map <unique> <Leader>r:   <Plug>AM_T:
+map <unique> <Leader>r;   <Plug>AM_T;
+map <unique> <Leader>r<   <Plug>AM_T<
+map <unique> <Leader>r=   <Plug>AM_T=
+map <unique> <Leader>r?   <Plug>AM_T?
+map <unique> <Leader>r@   <Plug>AM_T@
+map <unique> <Leader>rW@  <Plug>AM_TW@
+map <unique> <Leader>rb   <Plug>AM_Tab
+map <unique> <Leader>rp   <Plug>AM_Tsp
+map <unique> <Leader>r~   <Plug>AM_T~
+" character-based left-justified alignment maps
+map <unique> <Leader>ta   <Plug>AM_tab
+map <unique> <Leader>tl   <Plug>AM_tml
+map <unique> <Leader>tp   <Plug>AM_tsp
+map <unique> <Leader>tq   <Plug>AM_tsq
+map <unique> <Leader>t&   <Plug>AM_tt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VCSCommand

@@ -24,19 +24,31 @@ needed. And maybe also can keep a list of the sub commands.
 
 [*] BufExplorer, q will close the bufexplorer window also
 
-[*] Tagbar, display the current tag based on whether the function is inside or
-out
+[*] Tagbar, display the current tag based on whether the function is inside or out
+
+[*] Algin, '<Plug>AM_adef' align without space between # and define
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
 <leader>: g, h, q, u, x, z
-gn gy 
+gy 
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z
 
 [h2]Sourcing time[/h2]
-018.685  018.685: sourcing /home/benwu/.vim/bundle/C-Support/plugin/c_support.vim
-016.892  006.815: sourcing /home/benwu/.vim/bundle/FuzzyFinder/plugin/fuf.vim
-013.273  012.668: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/fold.vim
-013.103  013.103: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/lastpat.vim
+005.338  005.338: sourcing /home/benwu/.vim/bundle/VCSCommand/plugin/vcscommand.vim
+005.583  005.583: sourcing /home/benwu/.vim/bundle/NERD_Tree/plugin/NERD_tree.vim
+005.673  000.335: sourcing /home/benwu/.vim/bundle/VCSCommand/plugin/vcsbzr.vim
+005.727  005.727: sourcing /home/benwu/.vim/bundle/C-Support/autoload/C.vim
+006.431  006.431: sourcing /home/benwu/.vim/bundle/YankRing/plugin/yankring.vim
+006.446  000.719: sourcing /home/benwu/.vim/bundle/C-Support/plugin/c_support.vim
+008.212  008.212: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/pair.vim
+008.380  008.380: sourcing /home/benwu/.vim/bundle/NERD_Commenter/plugin/NERD_commenter.vim
+009.679  006.762: sourcing /home/benwu/.vim/bundle/XPtemplate/plugin/xptemplate.vim
+009.680  009.680: sourcing /home/benwu/.vim/bundle/VimIM/plugin/vimim.vim
+010.043  010.043: sourcing /home/benwu/.vim/plugin/showmarks.vim
+010.349  000.670: sourcing /home/benwu/.vim/bundle/XPtemplate/plugin/xpt.plugin.highlight.vim
+011.443  010.728: sourcing /home/benwu/.vim/bundle/ColorSamplerPack/colors/harlequin.vim
+013.167  005.327: sourcing /home/benwu/.vim/bundle/FuzzyFinder/plugin/fuf.vim
+013.748  012.748: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/lastpat.vim
