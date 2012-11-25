@@ -27,6 +27,10 @@ needed. And maybe also can keep a list of the sub commands.
 [*] Tagbar, display the current tag based on whether the function is inside or out
 
 [*] Algin, '<Plug>AM_adef' align without space between # and define
+
+[*] Vimtips, plugin that can obtain the example script from the vimtips.txt
+and put it in a temp buffer. After the user edited the command, then a map can
+send the command to execute for the main file
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
