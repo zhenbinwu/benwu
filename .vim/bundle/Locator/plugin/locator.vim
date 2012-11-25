@@ -61,6 +61,19 @@ let s:dItem_C_func = {
          \     'flags'   : 'C',
          \  }
 
+let s:dItem_Cpp_constr_destr = {
+         \     'detect_type' : 'matchable',
+         \     'detect_data' : {
+         \        'start_regexp' : '\v^\s*([a-zA-Z0-9_]+)[ \t\n]*\:\:[ \t\n]*\~{0,1}[ \t\n]*\1[ \t\n]*\(([^{;]|[\n])+[ \t\n]*\{',
+         \        'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
+         \     },
+         \     'echo_type'   : 'func',
+         \     'echo_data' : {
+         \        'func_name' : 'Locator_EchoItem_Cpp_ConstrDestr',
+         \     },
+         \     'flags'   : 'C',
+         \  }
+
 let s:dItem_vim_function = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
@@ -83,9 +96,41 @@ let s:dItem_asterisk_section = {
          \     'echo_data' : {
          \        'func_name' : 'Locator_EchoItem_AsteriskSection',
          \     },
-         \     'flags'   : 'c',
+         \     'flags'       : 'c',
+         \     'priority'    : 0,
          \  }
 
+" section like:
+"
+" /* private       */
+let s:dItem_access_mode_section = {
+         \     'detect_type' : 'section',
+         \     'detect_data' : {
+         \        'regexp' : '\v^\/\*\s*(public|protected|private|friendly)\s*\*\/',
+         \     },
+         \     'echo_type'   : 'func',
+         \     'echo_data' : {
+         \        'func_name' : 'Locator_EchoItem_AccessModeSection',
+         \     },
+         \     'flags'   : 'c',
+         \     'priority'    : 10,
+         \  }
+
+" section like:
+"
+" private:
+let s:dItem_access_mode_real_section = {
+         \     'detect_type' : 'section',
+         \     'detect_data' : {
+         \        'regexp' : '\v^\s*(public|protected|private|friendly|slots|signals)(\s+(slots|signals)){0,1}\s*\:',
+         \     },
+         \     'echo_type'   : 'func',
+         \     'echo_data' : {
+         \        'func_name' : 'Locator_EchoItem_AccessModeRealSection',
+         \     },
+         \     'flags'   : 'C',
+         \     'priority'    : -1,
+         \  }
 let s:cpp_comment_section = {
          \     'detect_type' : 'section',
          \     'detect_data' : {
@@ -121,6 +166,10 @@ let g:locator_items = {
          \              'name' : 'asterisk_section',
          \              'data' : s:dItem_asterisk_section,
          \           },
+         \           {
+         \              'name' : 'access_mode_section',
+         \              'data' : s:dItem_access_mode_section,
+         \           },
          \        ]
          \     },
          \     'java' : {
@@ -154,6 +203,14 @@ let g:locator_items = {
          \              'data' : s:dItem_C_func,
          \           },
          \           {
+         \              'name' : 'access_mode_real_section',
+         \              'data' : s:dItem_access_mode_real_section,
+         \           },
+         \           {
+         \              'name' : 'constr_destr',
+         \              'data' : s:dItem_Cpp_constr_destr,
+         \           },
+         \           {
          \              'name' : 'cpp_comment',
          \              'data' : s:cpp_comment_section,
          \           },
@@ -169,16 +226,9 @@ let g:locator_items = {
          \     },
          \  }
 
-
-         "\           {
-         "\              'name' : 'dash_section',
-         "\              'data' : s:dItem_dash_1line_section,
-         "\           },
-
-
 let s:cur_items = []
 
-let g:iLocatorVersion = 120
+let g:iLocatorVersion = 130
 let g:loaded_locator  = 1
 
 
@@ -249,12 +299,55 @@ function! Locator_EchoItem_C_Func(iLineNum)
    let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)(\S+\s*)(\(.*)')
 
    if len(myMatch) > 0
-      call <SID>SetHL(g:locator_hl_func_the_rest)
+      if myMatch[3] =~ '\:\:'
+         " C++ function-member
+         let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)([^:]+\s*)(\:\:\s*){0,1}(\S+\s*){0,1}(\(.*)')
+
+         if len(myMatch) > 0
+            call <SID>SetHL(g:locator_hl_func_the_rest)
+            echon myMatch[2]
+            call <SID>SetHL(g:locator_hl_class)
+            echon myMatch[3]
+            call <SID>SetHL(g:locator_hl_func_the_rest)
+            echon myMatch[4]
+            call <SID>SetHL(g:locator_hl_func_name)
+            echon myMatch[5]
+            call <SID>SetHL(g:locator_hl_func_the_rest)
+            echon myMatch[6]
+            call <SID>SetHL("None")
+
+         endif
+      else
+         " usual function
+         call <SID>SetHL(g:locator_hl_func_the_rest)
+         echon myMatch[2]
+         call <SID>SetHL(g:locator_hl_func_name)
+         echon myMatch[3]
+         call <SID>SetHL(g:locator_hl_func_the_rest)
+         echon myMatch[4]
+         call <SID>SetHL("None")
+
+      endif
+   endif
+endfunction
+
+function! Locator_EchoItem_Cpp_ConstrDestr(iLineNum)
+   "call <SID>SetHL("WarningMsg")
+   let sLine = getline(a:iLineNum)
+
+   let myMatch = matchlist(sLine, '\v(\s*)(\S+\s*)(\:\:\s*)(\S+\s*)(\(.*)')
+
+   if len(myMatch) > 0
+      "call <SID>SetHL(g:locator_hl_func_the_rest)
+      "echon myMatch[2]
+      call <SID>SetHL(g:locator_hl_class)
       echon myMatch[2]
-      call <SID>SetHL(g:locator_hl_func_name)
-      echon myMatch[3]
       call <SID>SetHL(g:locator_hl_func_the_rest)
+      echon myMatch[3]
+      call <SID>SetHL(g:locator_hl_func_name)
       echon myMatch[4]
+      call <SID>SetHL(g:locator_hl_func_the_rest)
+      echon myMatch[5]
       call <SID>SetHL("None")
 
    endif
@@ -295,12 +388,32 @@ function! Locator_EchoItem_AsteriskSection(iLineNum)
    call <SID>SetHL("None")
 endfunction
 
+" section like  /* private       */
+function! Locator_EchoItem_AccessModeSection(iLineNum)
+   let iLineNum = a:iLineNum
+   let sLine = getline(iLineNum)
+   let sSectName = substitute(sLine, '\v^\s*\/\*\s*([A-Za-z0-9_]+)(.*)', '\1', '')
+   call <SID>SetHL(g:locator_hl_access_mode_section)
+   echon ""."--- [ ".sSectName." ] ---"
+   call <SID>SetHL("None")
+endfunction
+
+" section like    private:
+function! Locator_EchoItem_AccessModeRealSection(iLineNum)
+   let iLineNum = a:iLineNum
+   let sLine = getline(iLineNum)
+   let sSectName = substitute(sLine, '\v^\s*([^:]+)\:', '\1', '')
+   call <SID>SetHL(g:locator_hl_access_mode_section)
+   echon ""."-- [ ".sSectName." ] --"
+   call <SID>SetHL("None")
+endfunction
+
 function! Locator_EchoItem_CppCommentSection(iLineNum)
    let iLineNum = a:iLineNum + 1
    let sLine = getline(iLineNum)
-   let sSectName = substitute(sLine, '\v^[^A-Za-z0-9_\/](.*)', '\1', '')
+   let sSectName = substitute(sLine, '\v^[^A-Za-z0-9_]*\/\/\s*(.*)', '\1', '')
    call <SID>SetHL(g:locator_hl_section)
-   echon "*** [ ".sSectName." ] ***"
+   echon "### [ ".sSectName." ] ###"
    call <SID>SetHL("None")
 endfunction
 
@@ -687,8 +800,6 @@ function! <SID>GetMatchablesList(lFields, iStopLine)
       endif
    endfor
 
-   " sort lRet
-   let lRet = sort(lRet, "<SID>ItemsCompare") " not use 'function(..)' to not to break %
 
    call setpos('.', lSrcPos)
    return lRet
@@ -790,6 +901,33 @@ function! <SID>GetLocationPathList()
    if g:locator_parseSections
       call <SID>GetSections(lItems, lSrcPos[1], lFields)
    endif
+
+   " sort lItems
+   let lItems = sort(lItems, "<SID>ItemsCompare") " not use 'function(..)' to not to break %
+
+   " remove superfluous sections (using priority)
+
+   let iItemNum = len(lItems) - 1
+   let iCurPriority = 99999   " lowest priority
+
+   while iItemNum >= 0
+
+      if lItems[ iItemNum ]["edgeType"] == "section_start" && exists('lItems[iItemNum]["dItemType"]["data"]["priority"]') && lItems[ iItemNum ]["dItemType"]["data"]["priority"] >= 0
+         " this is section, and it has priority
+
+         if lItems[ iItemNum ]["dItemType"]["data"]["priority"] > iCurPriority
+            " need to remove this item, because its priority lower than
+            " current one
+            call remove(lItems, iItemNum)
+            let iItemNum -= 1
+         elseif lItems[ iItemNum ]["dItemType"]["data"]["priority"] < iCurPriority
+            let iCurPriority = lItems[ iItemNum ]["dItemType"]["data"]["priority"]
+         endif
+      endif
+
+      let iItemNum -= 1
+   endwhile
+
 
    " restore folds state
    call <SID>RestoreFoldsState(lSrcFoldsState)
@@ -894,6 +1032,10 @@ endif
 
 if !exists('g:locator_hl_section')
    let g:locator_hl_section = "ModeMsg"
+endif
+
+if !exists('g:locator_hl_access_mode_section')
+   let g:locator_hl_access_mode_section = "Folded"
 endif
 
 if !exists('g:locator_disable_mappings')
