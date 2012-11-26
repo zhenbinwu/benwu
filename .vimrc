@@ -281,6 +281,7 @@ set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+cnoremap Q q!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -647,10 +648,10 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
-
 let g:fuf_modesDisable = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem  = 400
+let g:fuf_previewHeight   = 10
 nnoremap <silent> gnb :FufBuffer<CR>
 nnoremap <silent> gnf :FufFile<CR>
 nnoremap <silent> gnd :FufDir<CR>
@@ -670,11 +671,11 @@ nnoremap <silent> gn[ :FufBufferTagWithCursorWord!<CR>
 nnoremap <silent> gnl :FufBufferTagAll<CR>
 nnoremap <silent> gn] :FufBufferTagAllWithCursorWord!<CR>
 nnoremap <silent> gng :FufTaggedFile<CR>
-nnoremap <silent> gnx :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent> gnz :FufFileWithFullCwd<CR>
-nnoremap <silent> gno :FufDirWithCurrentBufferDir<CR>
-nnoremap <silent> gnp :FufDirWithFullCwd<CR>
-"gn: q s u v  y 
+nnoremap <silent> gnz :FufFileWithCurrentBufferDir<CR>
+nnoremap <silent> gnx :FufFileWithFullCwd<CR>
+nnoremap <silent> gnp :FufDirWithCurrentBufferDir<CR>
+nnoremap <silent> gno :FufDirWithFullCwd<CR>
+"gn:q s u v y 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MISC
@@ -805,34 +806,35 @@ nmap <silent> <F10>  :TagbarToggle<CR>
 " => Align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complex C-code alignment maps: 
-map <unique> <Leader>ab   <Plug>AM_abox
-map <unique> <Leader>ac   <Plug>AM_adcom
-map <unique> <Leader>ad   <Plug>AM_adec
-map <unique> <Leader>af   <Plug>AM_afnc
-map <unique> <Leader>an   <Plug>AM_anum
-map <unique> <Leader>au   <Plug>AM_aunum
-map <unique> <Leader>ae   <Plug>AM_aenum
+map <Leader>ab   <Plug>AM_abox
+map <Leader>ac   <Plug>AM_adcom
+map <Leader>ad   <Plug>AM_adec
+map <Leader>af   <Plug>AM_afnc
+map <Leader>an   <Plug>AM_anum
+map <Leader>au   <Plug>AM_aunum
+map <Leader>ae   <Plug>AM_aenum
+map <Leader>a#   <Plug>AM_adef
 " character-based right-justified alignment maps 
-map <unique> <Leader>r| <Plug>AM_T|
-map <unique> <Leader>r#   <Plug>AM_T#
-map <unique> <Leader>r,   <Plug>AM_T,o
-map <unique> <Leader>rs,  <Plug>AM_Ts,
-map <unique> <Leader>r:   <Plug>AM_T:
-map <unique> <Leader>r;   <Plug>AM_T;
-map <unique> <Leader>r<   <Plug>AM_T<
-map <unique> <Leader>r=   <Plug>AM_T=
-map <unique> <Leader>r?   <Plug>AM_T?
-map <unique> <Leader>r@   <Plug>AM_T@
-map <unique> <Leader>rW@  <Plug>AM_TW@
-map <unique> <Leader>rb   <Plug>AM_Tab
-map <unique> <Leader>rp   <Plug>AM_Tsp
-map <unique> <Leader>r~   <Plug>AM_T~
+map <Leader>r| <Plug>AM_T|
+map <Leader>r#   <Plug>AM_T#
+map <Leader>r,   <Plug>AM_T,o
+map <Leader>rs,  <Plug>AM_Ts,
+map <Leader>r:   <Plug>AM_T:
+map <Leader>r;   <Plug>AM_T;
+map <Leader>r<   <Plug>AM_T<
+map <Leader>r=   <Plug>AM_T=
+map <Leader>r?   <Plug>AM_T?
+map <Leader>r@   <Plug>AM_T@
+map <Leader>rW@  <Plug>AM_TW@
+map <Leader>rb   <Plug>AM_Tab
+map <Leader>rp   <Plug>AM_Tsp
+map <Leader>r~   <Plug>AM_T~
 " character-based left-justified alignment maps
-map <unique> <Leader>ta   <Plug>AM_tab
-map <unique> <Leader>tl   <Plug>AM_tml
-map <unique> <Leader>tp   <Plug>AM_tsp
-map <unique> <Leader>tq   <Plug>AM_tsq
-map <unique> <Leader>t&   <Plug>AM_tt
+map <Leader>ta   <Plug>AM_tab
+map <Leader>tl   <Plug>AM_tml
+map <Leader>tp   <Plug>AM_tsp
+map <Leader>tq   <Plug>AM_tsq
+map <Leader>t&   <Plug>AM_tt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VCSCommand

@@ -372,10 +372,10 @@ function fuf#launch(modeName, initialPattern, partialMatching)
         \  ['&ignorecase', 0],
         \  ['&updatetime', 10],
         \ )
-  if s:runningHandler.getPreviewHeight() > 0
-    call fuf#setOneTimeVariables(
-          \ ['&cmdheight', s:runningHandler.getPreviewHeight() + 1])
-  endif
+  "if s:runningHandler.getPreviewHeight() > 0
+    "call fuf#setOneTimeVariables(
+          "\ ['&cmdheight', s:runningHandler.getPreviewHeight() + 1])
+  "endif
   call l9#tempvariables#setList(s:TEMP_VARIABLES_GROUP, s:oneTimeVariables)
   let s:oneTimeVariables = []
   call s:activateFufBuffer()
@@ -931,6 +931,10 @@ endfunction
 
 "
 function s:handlerBase.onPreviewBase(repeatable)
+  if s:runningHandler.getPreviewHeight() > 0
+    call fuf#setOneTimeVariables(
+          \ ['&cmdheight', s:runningHandler.getPreviewHeight() + 1])
+  endif
   if self.getPreviewHeight() <= 0
     return
   elseif !pumvisible()
@@ -954,6 +958,7 @@ function s:handlerBase.onPreviewBase(repeatable)
   call map(lines, 'strtrans(v:val)')
   call map(lines, 'l9#snipTail(v:val, &columns - 1, s:ABBR_SNIP_MASK)')
   echo join(lines, "\n")
+  call fuf#setOneTimeVariables(['&cmdheight', 0])
 endfunction
 
 "

@@ -3319,6 +3319,8 @@ function! C#InsertTemplate ( key, ... )
   if exists("g:loaded_toggle")
     nmap = :call Toggle()<CR>
   endif
+
+  imap    <buffer>  <silent>  <C-j>    <C-R>=C#JumpCtrlJ()<CR>
 endfunction    " ----------  end of function C#InsertTemplate  ----------
 
 "------------------------------------------------------------------------------

@@ -62,8 +62,8 @@ endif
 " ---------- alternate file plugin (a.vim) ----------------------
 "
 if exists("loaded_alternateFile")
- map  <buffer>  <silent>  <S-F2>       :A<CR>
-imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
+  map  <buffer>  <silent>  <S-F2>       :A<CR>
+  imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
 endif
 "
 command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert   (<f-args>)
@@ -407,8 +407,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("c
  map    <buffer>  <silent>  <LocalLeader>rmc        :call C#MakeClean()<CR>
  map    <buffer>  <silent>  <LocalLeader>rme        :call C#MakeExeToRun()<CR>
  map    <buffer>  <silent>  <LocalLeader>rg         :call C#MakeArguments()<CR>
- map    <buffer>  <silent>  <LocalLeader>rp         :call C#SplintCheck()<CR>:call C#HlMessage()<CR>
- map    <buffer>  <silent>  <LocalLeader>ri         :call C#SplintArguments()<CR>
+ "map    <buffer>  <silent>  <LocalLeader>rp         :call C#SplintCheck()<CR>:call C#HlMessage()<CR>
+ "map    <buffer>  <silent>  <LocalLeader>ri         :call C#SplintArguments()<CR>
  map    <buffer>  <silent>  <LocalLeader>rd         :call C#Indent()<CR>
  map    <buffer>  <silent>  <LocalLeader>rh         :call C#Hardcopy()<CR>
  map    <buffer>  <silent>  <LocalLeader>rs         :call C#Settings()<CR>
@@ -423,8 +423,8 @@ imap    <buffer>  <silent>  <LocalLeader>rm    <C-C>:call C#Make()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rmc   <C-C>:call C#MakeClean()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rme   <C-C>:call C#MakeExeToRun()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rg    <C-C>:call C#MakeArguments()<CR>
-imap    <buffer>  <silent>  <LocalLeader>rp    <C-C>:call C#SplintCheck()<CR>:call C#HlMessage()<CR>
-imap    <buffer>  <silent>  <LocalLeader>ri    <C-C>:call C#SplintArguments()<CR>
+"imap    <buffer>  <silent>  <LocalLeader>rp    <C-C>:call C#SplintCheck()<CR>:call C#HlMessage()<CR>
+"imap    <buffer>  <silent>  <LocalLeader>ri    <C-C>:call C#SplintArguments()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rd    <C-C>:call C#Indent()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rh    <C-C>:call C#Hardcopy()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rs    <C-C>:call C#Settings()<CR>
