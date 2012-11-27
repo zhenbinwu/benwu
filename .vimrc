@@ -83,6 +83,7 @@
 "     > Sideways         ( V0.0.2      2012_10_08 )
 "     > Powerline        ( V#beta      2012_11_22 )
 "     > Locator          ( V1.3        2012_11_25 )
+"     > Syntastic        ( V2.3.0      2012_11_25 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,7 +282,6 @@ set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-cnoremap Q q!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -295,6 +295,8 @@ imap <silent> <leader>o <ESC>o
 imap <silent> <leader>u <ESC>O
 imap <silent> <leader>p <ESC>:call CopyLine()<CR>a
 imap <silent> <leader>P <ESC>yyP
+imap <silent> <leader>s <ESC>:w<CR>a
+nnoremap <silent> S :w<CR>
 
 imap <silent> <leader>] <ESC>]]o
 imap <silent> <leader>[ <ESC>[[o
@@ -308,26 +310,25 @@ inoremap <silent> <C-h> <C-o>h
 inoremap <silent> <C-k> <C-o>k
 inoremap <silent> <C-l> <C-o>l
 
-
-fun! CopyLine()
+fun! CopyLine()"{{{
 	let line=line('.')
 	let col =col('.')
 	let context=getline('.')
 	let line2=line+1
 	call append(line, context)
 	call cursor(line2, col)
-endfun
+endfun"}}}
 
 "This allows for change paste motion cp{motion}
 noremap <silent> cp :set opfunc=ChangePaste<CR>g@
-function! ChangePaste(type, ...)
+function! ChangePaste(type, ...)"{{{
     silent exe "normal! `[v`]\"_c"
     silent exe "normal! p"
-endfunction
+endfunction"}}}
 
 "Inserting word quickly in normal mode
 "Same keystroke as i<ESC>, but saving the movement to <ESC>
-function! InsertWord()
+function! InsertWord()"{{{
   let l:user_word = input("Insert something then hit ENTER: ")
 
   let l:current = getpos(".")
@@ -351,7 +352,7 @@ function! InsertWord()
     "echo "end"
     execute "normal a ".l:user_word
   endif
-endfunction
+endfunction"}}}
 
 nnoremap gc :call InsertWord()<CR>
 
@@ -359,20 +360,6 @@ nnoremap gc :call InsertWord()<CR>
 nnoremap gs :exec "normal i".nr2char(getchar())."\e"<CR>
 nnoremap ga :exec "normal a".nr2char(getchar())."\e"<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => QuickFix
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Do :help cope if you are unsure what quickfix is. It's super useful!
-" Maping Keys compile the C++ program and get into quickfix
-map <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
-map <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
-map <F7> <Esc>:cp<CR>zv
-map <F8> <Esc>:cn<CR>zv
-
-imap <F2> <Esc>:w<CR>:make<CR>:cw<CR><CR>
-imap <F3> <Esc>:w<CR>:make %:r<CR>:cw<CR><CR>
-imap <F7> <Esc>:cp!<CR>zv
-imap <F8> <Esc>:cn!<CR>zv
 """""""""""""""""""""""""""""""""""""""""""
 " Buf Command
 """""""""""""""""""""""""""""""""""""""""'
@@ -746,8 +733,8 @@ let g:inccomplete_appendslash = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzsldfjk'
-"let g:EasyMotion_keys = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
+let g:EasyMotion_keys      = 'abceghimnopqrtuvwxyzsldfjk'
+"let g:EasyMotion_keys      = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
 let g:EasyMotion_mapping_w = '<leader>w'
 let g:EasyMotion_mapping_W = '<leader>W'
 let g:EasyMotion_mapping_b = '<leader>b'
@@ -760,18 +747,18 @@ let g:EasyMotion_mapping_n = '<leader>n'
 let g:EasyMotion_mapping_N = '<leader>N'
 let g:EasyMotion_mapping_j = '<leader>j'
 let g:EasyMotion_mapping_k = '<leader>k'
-imap <leader>w  <ESC><leader>w
-imap <leader>W  <ESC><leader>W
-imap <leader>b  <ESC><leader>b
-imap <leader>B  <ESC><leader>B
-imap <leader>e  <ESC><leader>e
-imap <leader>E  <ESC><leader>E
-imap <leader>f  <ESC><leader>f
-imap <leader>F  <ESC><leader>F
-imap <leader>n  <ESC><leader>n
-imap <leader>N  <ESC><leader>N
-imap <leader>j  <ESC><leader>j
-imap <leader>k  <ESC><leader>k
+imap <leader>w <ESC><leader>w
+imap <leader>W <ESC><leader>W
+imap <leader>b <ESC><leader>b
+imap <leader>B <ESC><leader>B
+imap <leader>e <ESC><leader>e
+imap <leader>E <ESC><leader>E
+imap <leader>f <ESC><leader>f
+imap <leader>F <ESC><leader>F
+imap <leader>n <ESC><leader>n
+imap <leader>N <ESC><leader>N
+imap <leader>j <ESC><leader>j
+imap <leader>k <ESC><leader>k
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -872,3 +859,10 @@ let g:Powerline_colorscheme = 'benwu'
 " => NERD_Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <leader>cl <ESC><leader>cl
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_auto_loc_list=1

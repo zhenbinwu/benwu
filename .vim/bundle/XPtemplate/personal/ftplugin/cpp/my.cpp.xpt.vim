@@ -25,26 +25,6 @@ XPT sp hint=Smart\ pointer\ usage
 `const ^std::tr1::shared_ptr<`type^>& `cursor^
 ..XPT
 
-XPT hclass hint=Class\ declaration\ in\ file
-//
-// Class: `fileRoot()^
-// Author: `$author^ (`$email^)
-//
-// Copyright (c) `year()^ `$author^
-//
-
-/**
- * @brief `briefDescription^
- */
-class `fileRoot()^
-{
-public:
-    `fileRoot()^(`argument^`...^, `arg^`...^);
-    virtual ~`fileRoot()^();
-    `cursor^
-};
-..XPT
-
 XPT css hint=const\ std::string&
 const std::string& `cursor^
 ..XPT
@@ -66,7 +46,6 @@ XSET class|post=S(V(), '.*[^:]', '&::', '')
 {
     <+code+>
 }       // -----  end of function `class^`name^  -----
-
 
 XPT << hint=<<""
 << "`content^" `cursor^

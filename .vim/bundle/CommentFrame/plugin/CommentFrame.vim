@@ -21,7 +21,7 @@ autocmd FileType sh call CommentFrame#MapLocalKeys('ni', 'cf', ':CommentFrameHas
 command! -nargs=+ CommentFrameHashEqual   : call CommentFrame#Custom('#', '#', 78, '=', '-', 5, <args>)
 autocmd FileType csh call CommentFrame#MapLocalKeys('ni', 'cf', ':CommentFrameHashEqual ""<Left>')
 
-command! -nargs=+ CommentFrameQuoteDash   : call CommentFrame#Custom('"', '"', 78, '-', ' ', 5, <args>)
+command! -nargs=+ CommentFrameQuoteDash   : call CommentFrame#Custom('"', '"', 78, '=', ' ', 5, <args>)
 autocmd FileType vim call CommentFrame#MapLocalKeys('ni', 'cf', ':CommentFrameQuoteDash ""<Left>')
 
 "command! -nargs=+ CommentFrameQuoteTilde  : call CommentFrame#Custom('"', '"', 78, '~', ' ', 5, <args>)

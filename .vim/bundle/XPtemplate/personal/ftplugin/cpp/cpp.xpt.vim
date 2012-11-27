@@ -112,7 +112,7 @@ endfunction
 function! s:f.insertVariableAtTheEnd(type, varname)
 endfunction
 
-XPT var hint=Creates\ accessors\ for\ a\ variable
+XPT avar hint=Creates\ accessors\ for\ a\ variable
 /**
  * Returns the value of the `variableName^ variable.
  *
@@ -128,8 +128,7 @@ const `variableType^& get`variableName^() const;
 void set`variableName^(const `variableType^& value);
 `variableType^ m_`variableName^SV('\(.\)','\l\1','')^^;
 
-
-XPT test hint=Unit\ test\ cpp\ file\ definition
+XPT Ctest hint=Unit\ test\ cpp\ file\ definition
 //
 // `getNamespaceFilename()^
 //
@@ -178,21 +177,21 @@ XPT tcsp hint=Typedef\ of\ a\ smart\ const\ pointer
 typedef std::tr1::shared_ptr<const `type^> `type^CPtr;
 
 
-XPT fullmain hint=C++\ main\ including\ #includes
-#include <map>
-#include <vector>
-#include <string>
-#include <iostream>
+"XPT fullmain hint=C++\ main\ including\ #includes
+"#include <map>
+"#include <vector>
+"#include <string>
+"#include <iostream>
 
-using namespace std;
+"using namespace std;
 
-int main(int argc, char** argv)
-{
-    `cursor^
+"int main(int argc, char** argv)
+"{
+    "`cursor^
 
-    return 0;
-}
-..XPT
+    "return 0;
+"}
+"..XPT
 
 
 XPT lam hint=Lambda
@@ -259,11 +258,11 @@ private:
 #endif // `getNamespaceFilenameDefine()^
 
 
-XPT functor hint=Functor\ definition
-struct `FunctorName^
-{
-    `void^ operator()(`argument^`...^, `arg^`...^)` const^
-}
+"XPT functor hint=Functor\ definition
+"struct `FunctorName^
+"{
+    "`void^ operator()(`argument^`...^, `arg^`...^)` const^
+"}
 
 XPT wcerr hint=Basic\ std::wcerr\ statement
 std::wcerr << `expression^`...^ << `expression^`...^ << std::endl;
@@ -285,31 +284,31 @@ XPT outcopy hint=Using\ an\ iterator\ to\ outout\ to\ stdout
 std::copy(`list^.begin(), `list^.end(), std::ostream_iterator<`std::string^>(std::cout, \"\\n\"));
 
 
-XPT cf wrap=message hint=CPPUNIT_FAIL
+XPT Cf wrap=message hint=CPPUNIT_FAIL
 CPPUNIT_FAIL("`message^");
 
 
-XPT ca wrap=condition hint=CPPUNIT_ASSERT
+XPT Ca wrap=condition hint=CPPUNIT_ASSERT
 CPPUNIT_ASSERT(`condition^);
 
 
-XPT cae hint=CPPUNIT_ASSERT_EQUAL
+XPT Cae hint=CPPUNIT_ASSERT_EQUAL
 CPPUNIT_ASSERT_EQUAL(`expected^, `actual^);
 
 
-XPT cade hint=CPPUNIT_ASSERT_DOUBLES_EQUAL
+XPT Cade hint=CPPUNIT_ASSERT_DOUBLES_EQUAL
 CPPUNIT_ASSERT_DOUBLES_EQUAL(`expected^, `actual^, `delta^);
 
 
-XPT cam hint=CPPUNIT_ASSERT_MESSAGE
+XPT Cam hint=CPPUNIT_ASSERT_MESSAGE
 CPPUNIT_ASSERT_MESSAGE(`message^, `condition^);
 
 
-XPT cat hint=CPPUNIT_ASSERT_THROW
+XPT Cat hint=CPPUNIT_ASSERT_THROW
 CPPUNIT_ASSERT_THROW(`expression^, `ExceptionType^);
 
 
-XPT cant wrap=expression hint=CPPUNIT_ASSERT_NO_THROW
+XPT Cant wrap=expression hint=CPPUNIT_ASSERT_NO_THROW
 CPPUNIT_ASSERT_NO_THROW(`expression^);
 
 
@@ -406,7 +405,6 @@ std::replace(`seq^.begin(), `seq^.end(), `predicate^, `newvalue^)
 XPT sort hint=std::sort\(seq.begin,\ seq.end,\ predicate\)
 std::replace(`seq^.begin(), `seq^.end(), `predicate^)
 
-XPT funh hint=function\ declaration
+XPT fh hint=function\ declaration
 `int^ `class^`name^(`param^`...^, `param^`...^)` const^;
-
 

@@ -26,15 +26,13 @@ needed. And maybe also can keep a list of the sub commands.
 
 [*] Tagbar, display the current tag based on whether the function is inside or out
 
-[*] Algin, '<Plug>AM_adef' align without space between # and define
-
 [*] Vimtips, plugin that can obtain the example script from the vimtips.txt
 and put it in a temp buffer. After the user edited the command, then a map can
 send the command to execute for the main file
 
-[*] Fuzzyfinder, preview mode only appear when toggled.
-
 [*] match va% doesnt work!
+
+[*] Combine syntastic cpp with automake 
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
@@ -43,6 +41,9 @@ gy
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z
+
+[h2]Start of map for xptemplate of CPP[/h2]
+g j k q x y z
 
 [h2]Sourcing time[/h2]
 005.338  005.338: sourcing /home/benwu/.vim/bundle/VCSCommand/plugin/vcscommand.vim

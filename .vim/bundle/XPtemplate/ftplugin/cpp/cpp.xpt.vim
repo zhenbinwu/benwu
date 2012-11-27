@@ -30,7 +30,6 @@ XPTinclude
       \ _common/common
       \ _comment/cpp.like
       \ _condition/c.like
-      \ _func/c.like
       \ _loops/c.while.like
       \ _loops/java.for.like
       \ _preprocessor/c.like
