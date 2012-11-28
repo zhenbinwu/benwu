@@ -121,5 +121,11 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 		\ , ['static_str.name', 'NERDTree']
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
+	\ ),
+	\ Pl#Theme#Buffer('calendar'
+		\ , ['static_str.name', 'Calendar']
+        \ , 'datetime'
+		\ , Pl#Segment#Truncate()
+		\ , Pl#Segment#Split()
 	\ )
 \ )

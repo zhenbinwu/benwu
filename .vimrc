@@ -259,7 +259,7 @@ map <C-l> <C-W>l
 map <space> W
  
 " Tab configuration
-map <leader>tn :tabnew <cr>
+map <leader>tn :tabnew 
 map <leader>te :tabedit 
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
@@ -282,6 +282,7 @@ set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+command! -nargs=* Q q!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -322,8 +323,8 @@ endfun"}}}
 "This allows for change paste motion cp{motion}
 noremap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)"{{{
-    silent exe "normal! `[v`]\"_c"
-    silent exe "normal! p"
+  silent exe "normal! `[v`]\"_c"
+  silent exe "normal! p"
 endfunction"}}}
 
 "Inserting word quickly in normal mode
@@ -342,7 +343,7 @@ function! InsertWord()"{{{
     "echo "middle"
     execute "normal i".l:user_word
   endif
-			
+
   if l:current[2] > l:currentb[2] && l:current[2] > l:currente[2] 
     "echo "begin"
     execute "normal i".l:user_word." "
@@ -442,16 +443,16 @@ fun! PreviewMap() "{{{
 endfunction "}}}
 
 fun! s:PreviewZoom() "{{{
-    if s:preview_win_maximized
-        " Restore the window back to the previous size
-        exe 'resize ' . &previewheight
-        let s:preview_win_maximized = 0
-    else
-        " Set the window size to the maximum possible without closing other
-        " windows
-        resize
-        let s:preview_win_maximized = 1
-    endif
+  if s:preview_win_maximized
+    " Restore the window back to the previous size
+    exe 'resize ' . &previewheight
+    let s:preview_win_maximized = 0
+  else
+    " Set the window size to the maximum possible without closing other
+    " windows
+    resize
+    let s:preview_win_maximized = 1
+  endif
 endfunction "}}}
 
 map <C-W>[ <C-W>g<C-]>
@@ -498,6 +499,7 @@ set tags=tags;/
 """"""""""""""""""""""""""""""""""""""""""""""
 " Calendar
 """"""""""""""""""""""""""""""""""""""""""""""
+let g:calendar_datetime = 'title'
 let g:calendar_diary = "~/.daily_note"
 nmap <silent> <Leader>cah <Plug>CalendarH
 

@@ -125,17 +125,17 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['white', 'darkestred'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name', 'calendar:static_str.name'], {
 		\ 'n': ['white', 'mediumgreen', ['bold']],
 		\ 'N': ['mediumgreen', 'darkestgreen', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer', 'datetime'], {
 		\ 'n': ['brightgreen', 'darkgreen'],
 		\ 'N': ['mediumgreen', 'darkestgreen'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT'], {
+	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT', 'calendar:SPLIT'], {
 		\ 'n': ['white', 'darkgreen'],
 		\ 'N': ['white', 'darkestgreen'],
 		\ }),
