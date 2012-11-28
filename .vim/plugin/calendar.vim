@@ -1229,10 +1229,50 @@ function! s:CalendarDiary(day, month, year, week, dir)
   let vbufnr = bufnr('__Calendar')
 
   " load the file
-  exe "sp " . sfile
+  if a:dir == 'H'
+    exe "sp " . sfile
+  elseif a:dir == 'V'
+    exe "wincmd w"
+    exe "vsp " . sfile
+  endif
   setlocal ft=calendar
   setlocal nowrap
-  setlocal comments=:#
+
+  "============================================================================"
+  "                            Borrow from Taskpaper                           "
+  "============================================================================"
+  let s:task_paper_date_format = "%Y-%m-%d" 
+  setlocal comments=:-
+
+  setlocal iskeyword+=@-@
+  syn match  taskpaperComment "^.*$"
+  syn match  taskpaperProject       /^.\+:\s*$/
+  syn match  taskpaperTime       "\d\{1,2}:\d\{1,2}"
+  syn match  taskpaperLineContinue ".$" contained
+  syn match  taskpaperListItem  "^\s*[-+]\s\+" 
+  syn match  taskpaperContext  "@[A-Za-z0-9_]\+"
+  syn match  taskpaperDone "^\s*[-+]\s\+.*@[Dd]one.*$"
+  syn match  taskpaperCancelled "^\s*[-+]\s\+.*@[Cc]ancelled.*$"
+  syn region taskpaperProjectFold start=/^.\+:\s*$/ end=/^\s*$/ transparent fold
+  syn sync fromstart
+
+  "highlighting for Taskpaper groups
+  hi link taskpaperListItem      Identifier
+  hi link taskpaperContext       Identifier
+  hi link taskpaperProject       Title
+  hi link taskpaperDone          NonText
+  hi link taskpaperCancelled     NonText
+  hi link taskpaperComment       Comment
+  hi link taskpaperTime          Typedef
+
+  map <buffer> <silent> <Leader>td <Plug>ToggleDone
+  map <buffer> <silent> <Leader>tx <Plug>ToggleCancelled
+  noremap <buffer> <script> <Plug>ToggleDone       :call <SID>ToggleDone()<CR>
+  noremap <buffer> <script> <Plug>ToggleCancelled   :call <SID>ToggleCancelled()<CR>
+
+  "============================================================================"
+  "                             Done with Taskpaper                            "
+  "============================================================================"
   let dir = getbufvar(vbufnr, "CalendarDir")
   let vyear = getbufvar(vbufnr, "CalendarYear")
   let vmnth = getbufvar(vbufnr, "CalendarMonth")
@@ -1673,9 +1713,7 @@ def SubmitSyn(date):
             line = vim.current.buffer[i].strip()
             if len(line) == 0:
                 continue
-            if line[0] == '#':
-                pass
-            else:
+            if line[0].isdigit():
                 event="\"%s %s\"" % (date.strftime("%Y/%m/%d"), line)
                 os.popen("gcalcli quick %s" % event)
                 vim.current.buffer[i] ="#%s" % line
@@ -1706,3 +1744,44 @@ EOF
 endfunction "}}}
 
 au BufWritePre *.cal call SyncGcanledar()
+
+
+" toggle @done context tag on a task
+function! s:ToggleDone()"{{{
+    let line = getline(".")
+    if (line =~ '^\s*- ')
+        let repl = line
+        if (line =~ '@done')
+            let repl = substitute(line, "@done\(.*\)", "", "g")
+            echo "undone!"
+        else
+            let today = strftime(s:task_paper_date_format, localtime())
+            let done_str = " @done(" . today . ")"
+            let repl = substitute(line, "$", done_str, "g")
+            echo "done!"
+        endif
+        call setline(".", repl)
+    else 
+        echo "not a task."
+    endif
+endfunction"}}}
+
+" toggle @cancelled context tag on a task
+function! s:ToggleCancelled()"{{{
+    let line = getline(".")
+    if (line =~ '^\s*- ')
+        let repl = line
+        if (line =~ '@cancelled')
+            let repl = substitute(line, "@cancelled\(.*\)", "", "g")
+            echo "uncancelled!"
+        else
+            let today = strftime(s:task_paper_date_format, localtime())
+            let cancelled_str = " @cancelled(" . today . ")"
+            let repl = substitute(line, "$", cancelled_str, "g")
+            echo "cancelled!"
+        endif
+        call setline(".", repl)
+    else 
+        echo "not a task."
+    endif
+endfunction"}}}
