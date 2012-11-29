@@ -46,7 +46,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['white', 'gray2'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['mode_indicator'], {
+	\ Pl#Hi#Segments(['mode_indicator', 'conqueterm:static_str.name'], {
 		\ 'n': ['darkestgreen', 'brightgreen', ['bold']],
 		\ 'i': ['darkestcyan', 'white', ['bold']],
 		\ 'v': ['darkred', 'brightorange', ['bold']],
@@ -60,7 +60,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['gray9', 'gray4'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['fileinfo', 'filename'], {
+	\ Pl#Hi#Segments(['fileinfo', 'filename', 'conqueterm:statusline'], {
 		\ 'n': ['white', 'gray4', ['bold']],
 		\ 'N': ['gray7', 'gray0', ['bold']],
 		\ 'i': ['white', 'darkestcyan', ['bold']],
@@ -130,12 +130,12 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['mediumgreen', 'darkestgreen', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer', 'datetime'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer', 'calendar:datetime'], {
 		\ 'n': ['brightgreen', 'darkgreen'],
 		\ 'N': ['mediumgreen', 'darkestgreen'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT', 'calendar:SPLIT'], {
+	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT', 'conqueterm:SPLIT',  'calendar:SPLIT'], {
 		\ 'n': ['white', 'darkgreen'],
 		\ 'N': ['white', 'darkestgreen'],
 		\ }),

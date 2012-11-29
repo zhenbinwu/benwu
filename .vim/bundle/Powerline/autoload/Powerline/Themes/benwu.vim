@@ -85,12 +85,12 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 		\ , Pl#Segment#Split()
 	\ ),
 	\
-	\ Pl#Theme#Buffer('ft_qf'
-		\ , ['static_str.name', 'Quickfix']
-		\ , Pl#Segment#Truncate()
-		\ , Pl#Segment#Split()
-	\ ),
-	\
+    \ Pl#Theme#Buffer('ft_qf'
+		\ , 'filename'
+        \ , Pl#Segment#Truncate()
+        \ , Pl#Segment#Split()
+    \ ),
+    \
 	\ Pl#Theme#Buffer('tagbar'
 		\ , ['static_str.name', 'Tagbar']
 		\ , ['static_str.buffer', 'Tree']
@@ -122,9 +122,17 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 	\ ),
+	\
+	\ Pl#Theme#Buffer('conqueterm'
+		\ , ['static_str.name', 'Conque_Term']
+		\ , 'conqueterm:statusline'
+		\ , Pl#Segment#Truncate()
+		\ , Pl#Segment#Split()
+	\ ),
+	\
 	\ Pl#Theme#Buffer('calendar'
 		\ , ['static_str.name', 'Calendar']
-        \ , 'datetime'
+        \ , 'calendar:datetime'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
 	\ )

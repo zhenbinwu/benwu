@@ -184,6 +184,7 @@ endif " }}}
 " Startup {{{
 
 let g:ConqueTerm_Loaded = 1
+let g:ConqueTerm_Statusline = 0
 let g:ConqueTerm_Idx = 0
 let g:ConqueTerm_Version = 210
 

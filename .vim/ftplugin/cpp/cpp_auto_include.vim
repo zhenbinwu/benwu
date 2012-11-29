@@ -180,6 +180,10 @@ fun! AutoInclude() "{{{
   if search(srh_file, 'nw') != 0
     return 
   end
+  let srh_file = "^#include\\s*[<\"]boost\.*[>\"]"
+  if search(srh_file, 'nw') != 0
+    return 
+  end
   ruby CppAutoInclude::process
 endfunction "}}}
 

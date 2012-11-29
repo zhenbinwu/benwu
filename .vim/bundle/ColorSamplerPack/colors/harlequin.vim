@@ -167,7 +167,7 @@ call s:Highlight('NonText',         s:greys[2], '', '', '')
 call s:HighlightX('CursorColumn',   '', s:greys[5], '', '')
 call s:HighlightX('CursorLine',     '', s:greys[5], '', '')
 call s:Highlight('SignColumn',      '', s:greys[5], '', '')
-call s:HighlightX('ColorColumn',    '', s:greys[5], '', '')
+call s:HighlightX('ColorColumn',    '', s:greys[3], '', '')
 
 call s:Highlight('Error',           s:mordant, s:greys[5], 'bold', '')
 call s:Highlight('ErrorMsg',        s:mordant, '', 'bold', '')

@@ -32,24 +32,24 @@
 "
 " Plugins_Included:
 "     ------> Common Plugins 
-"     > SuperTab     ( V2.0    2012_06_17 ) 
-"     > TagList      ( V4.5    2011_01_29 ) 
-"     > Calendar     ( V2.5    2011_01_29 ) 
-"     > LargeFile    ( V4      2011_01_29 ) 
-"     > ShowMarks    ( V2.2    2011_01_29 ) 
-"     > MarksBrowser ( V0.9    2011_01_29 ) 
-"     > Recover      ( V0.16   2012_11_22 ) 
-"     > Toggle       ( V0.5    2011_02_09 )
-"     > Pathogen     ( V2.0    2011_10_26 ) 
-"     > DirDiff      ( V1.1.4  2011_10_27 )
-"     > Indent_py    ( V0.3    2011_07_24 )
-"     > Python_fn    ( V1.13   2011_07_24 )
-"     > Pydoc        ( V1.3.6  2011_07_24 )
-"     > Pep8         ( V0.3.1  2011_07_24 ) 
-"     > Pythoncomplete(V0.9    2011_09_01 )
-"     > SrollColors  ( V0719   2012_05_09 )
-"     > Repmo        ( V0.5    2012_07_24 )
-"     > Ambicomplete ( V0.2a   2012_08_11 )
+"     > SuperTab         ( V2.0        2012_06_17 )
+"     > TagList          ( V4.5        2011_01_29 )
+"     > Calendar         ( V2.5        2011_01_29 )
+"     > LargeFile        ( V4          2011_01_29 )
+"     > ShowMarks        ( V2.2        2011_01_29 )
+"     > MarksBrowser     ( V0.9        2011_01_29 )
+"     > Recover          ( V0.16       2012_11_22 )
+"     > Toggle           ( V0.5        2011_02_09 )
+"     > Pathogen         ( V2.0        2011_10_26 )
+"     > DirDiff          ( V1.1.4      2011_10_27 )
+"     > Indent_py        ( V0.3        2011_07_24 )
+"     > Python_fn        ( V1.13       2011_07_24 )
+"     > Pydoc            ( V1.3.6      2011_07_24 )
+"     > Pep8             ( V0.3.1      2011_07_24 )
+"     > Pythoncomplete   ( V0.9        2011_09_01 )
+"     > SrollColors      ( V0719       2012_05_09 )
+"     > Repmo            ( V0.5        2012_07_24 )
+"     > Ambicomplete     ( V0.2a       2012_08_11 )
 "
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
@@ -625,7 +625,6 @@ let g:ConqueTerm_CWInsert      = 1
 let g:ConqueTerm_SendVisKey    = '<F9>'
 let g:ConqueTerm_TERM          = 'xterm'
 let g:ConqueTerm_ReadUnfocused = 1
-
 
 """"""""""""""""""""""""""""""
 " => Vim grep

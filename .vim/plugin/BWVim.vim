@@ -180,3 +180,31 @@ map <F7> <Esc>:call QLstep(-1)<CR>
 map <F8> <Esc>:call QLstep(1)<CR>
 imap <F7> <Esc>:call QLstep(-1)<CR>
 imap <F8> <Esc>:call QLstep(1)<CR>
+
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  call setloclist(0, [])
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+      echo 'grepadd "^' . escape(lineText, '".\^$*[]') . '$" %'
+      exe 'silent! lgrepadd -x "' . escape(lineText, '".\^$*[]') . '" %'
+    endif
+  endfor
+  if len(getloclist(0)) > 0
+    lopen
+    ll
+    redraw!
+  endif
+endfunction
+
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()

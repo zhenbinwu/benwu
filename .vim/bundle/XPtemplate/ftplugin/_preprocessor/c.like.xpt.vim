@@ -9,7 +9,7 @@ XPTinclude
 
 
 
-XPT #inc		" include <>
+XPT #ic		" include <>
 #include <`^>
 
 XPT #ib		" include <>

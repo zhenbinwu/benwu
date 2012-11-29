@@ -235,9 +235,9 @@ function! conque_term#dependency_check() " {{{
         if line =~ '^ ' || line =~ '^--' || line =~ 'matchparen'
             continue
         endif
-        if g:ConqueTerm_StartMessages
-            echohl WarningMsg | echomsg "Warning: Global CursorHoldI and CursorMovedI autocommands may cause ConqueTerm to run slowly." | echohl None
-        endif
+        "if g:ConqueTerm_StartMessages
+            "echohl WarningMsg | echomsg "Warning: Global CursorHoldI and CursorMovedI autocommands may cause ConqueTerm to run slowly." | echohl None
+        "endif
     endfor
 
     " check for compatible mode
@@ -1500,5 +1500,13 @@ function! conque_term#load_python() " {{{
     endif
 
 endfunction " }}}
+
+
+"============================================================================"
+"                                For Powerline                               "
+"============================================================================"
+fun! conque_term#powerline() "{{{
+  return g:ConqueTerm_Statusline
+endfunction "}}}
 
 " vim:foldmethod=marker
