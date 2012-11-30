@@ -172,6 +172,9 @@ end
 EOF
 
 fun! AutoInclude() "{{{
+  if &ft != 'cpp' && &ft != 'c'
+    return
+  endif
   let hasmain = search('\s*main\s*([^()]*', 'nw')
   if hasmain == 0
     return 

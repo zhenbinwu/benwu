@@ -83,9 +83,13 @@ function s:bookmarkHere(word)
     call fuf#echoWarning('Can''t bookmark this buffer.')
     return
   endif
+  let temp   = (a:word        = ~# '\S' ? substitute(a:word, '\n', ' ', 'g')
+        \                         : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ')
+  let length = 75 - len(temp)
+        "\   'word' : (a:word =~# '\S' ? substitute(a:word, '\n', ' ', 'g')
+        "\                             : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ' . getline('.')[:length]),
   let item = {
-        \   'word' : (a:word =~# '\S' ? substitute(a:word, '\n', ' ', 'g')
-        \                             : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ' . getline('.')),
+        \   'word' : (temp . getline('.')[:length]),
         \   'path' : expand('%:p'),
         \   'lnum' : line('.'),
         \   'pattern' : s:getLinePattern(line('.')),
