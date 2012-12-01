@@ -49,10 +49,12 @@ if !executable('g++')
     finish
 endif
 
+
 let s:save_cpo = &cpo
 set cpo&vim
 
 function! SyntaxCheckers_cpp_GetLocList()
+    call SyntasticCppC()
     let makeprg = 'g++ -fsyntax-only '.shellescape(expand('%'))
     let errorformat =  '%-G%f:%s:,%f:%l:%c: %m,%f:%l: %m'
 
