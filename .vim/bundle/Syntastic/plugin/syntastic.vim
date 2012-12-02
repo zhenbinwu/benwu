@@ -86,7 +86,7 @@ if !exists("g:syntastic_loc_list_height")
 endif
 
 if !exists("g:syntastic_enable")
-    let g:syntastic_enable = 1
+    let g:syntastic_enable = 0
 endif
 
 command! SyntasticToggleMode call s:ToggleMode()

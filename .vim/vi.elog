@@ -13,16 +13,9 @@
 
 [*] Speeddating: Add chinese support for increasing
 
-[*] Substitile or search with complicated pattern would be very useful but
-also very difficult to remember the command. So it would be nice to have local
-file that keep track of this command and can be execuated every time we
-needed. And maybe also can keep a list of the sub commands.
-
 [*] 农历 needs further improvments for 节气
 
 [*] In help file, map q to close the help window
-
-[*] BufExplorer, q will close the bufexplorer window also
 
 [*] Tagbar, display the current tag based on whether the function is inside or out
 
@@ -32,12 +25,11 @@ send the command to execute for the main file
 
 [*] match va% doesnt work!
 
-[*] Combine syntastic cpp with automake 
+[*] Add powerline support for vimim
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
 <leader>: g, h, q, u, x, z
-gy 
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z
@@ -47,7 +39,6 @@ g j k q x y z
 
 [h2]Sourcing time[/h2]
 072.376  072.376: sourcing /home/benwu/.vim/bundle/Syntastic/plugin/syntastic.vim
-047.733  012.324: sourcing $HOME/.vimrc
 033.313  007.358: sourcing /home/benwu/.vim/bundle/XPtemplate/ftplugin/cpp/cpp.xpt.vim
 016.156  015.492: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/lastpat.vim
 013.531  005.475: sourcing /home/benwu/.vim/bundle/FuzzyFinder/plugin/fuf.vim
@@ -60,12 +51,14 @@ g j k q x y z
 008.980  006.252: sourcing /home/benwu/.vim/bundle/XPtemplate/plugin/xptemplate.vim
 008.329  008.329: sourcing /home/benwu/.vim/bundle/TextObj/plugin/textobj/pair.vim
 
-[h2]Duplicate mapping[/h2]
-   ,ta           <Plug>AM_tab
-   ,ta         *@:call C#InsertTemplate("cpp.template-class-definition")<CR>
-   ,tn           :tabnew<Space>
-   ,tn         *@:call C#InsertTemplate("cpp.class-using-new-definition")<CR>
-   ,tc           :tabclose<CR>
-   ,tc         *@:IncludeCppCLibrary<Space>
-i  "           * <C-V><C-V><BS><C-R>=XPTtgr('"',{'noliteral':1,'k':'"'})<CR>
-i  "           *@ICCompleteInc('"')
+[h2]map need some cleanup[/h2]
+[code] 
+redir > map2
+for ab in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  echo "==================================" . ab
+  exec "map ," . ab
+  echo "---------------------------------"
+  exec "imap ," . ab
+endfor
+redir END
+[/code]

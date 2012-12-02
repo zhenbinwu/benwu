@@ -261,7 +261,7 @@ map <space> W
 " Tab configuration
 map <leader>tn :tabnew 
 map <leader>te :tabedit 
-map <leader>tc :tabclose<cr>
+map <leader>tz :tabclose<cr>
 map <leader>tm :tabmove 
 
 " When pressing <leader>cd switch to the directory of the open buffer
@@ -435,8 +435,13 @@ endif
 autocmd BufWinEnter * call PreviewMap()
 
 fun! PreviewMap() "{{{
-  if &pvw
-    nnoremap <buffer> <silent> q :pclose<CR>
+  if &pvw || &filetype == "help"
+    if &pvw
+      nnoremap <buffer> <silent> q :pclose<CR>
+    else
+      nnoremap <buffer> <silent> q :close<CR>
+    endif
+    let s:preview_win_height = winheight(0)
     let s:preview_win_maximized = 0
     nnoremap <buffer> <silent> x :call <SID>PreviewZoom()<CR>
   endif
@@ -445,7 +450,7 @@ endfunction "}}}
 fun! s:PreviewZoom() "{{{
   if s:preview_win_maximized
     " Restore the window back to the previous size
-    exe 'resize ' . &previewheight
+    exe 'resize ' . s:preview_win_height
     let s:preview_win_maximized = 0
   else
     " Set the window size to the maximum possible without closing other
@@ -711,7 +716,26 @@ com! -nargs=? Elog :tabedit http://hep05.baylor.edu/elog/benwu/<args>
 " => TaskPaper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:task_paper_date_format = "%Y-%m-%d  %H:%M:%S"
-com! -nargs=0 Task :tabedit ~/.daily_note/${USER}.taskpaper 
+com! -nargs=? -complete=customlist,s:TaskpaperComplete Task :call s:Taskpaper(<q-args>)
+fun! s:TaskpaperComplete(A, L, P) "{{{
+  let dtask = globpath("~/.daily_note/", "*.taskpaper")
+  let tasklist = []
+
+  for tak in split(dtask, "\n")
+    call add(tasklist, split(split(tak, "\/")[-1], '\.')[0])
+  endfor
+  return tasklist
+endfunction "}}}
+
+fun! s:Taskpaper(...) "{{{
+  if a:1 == ""
+    exec "tabedit ~/.daily_note/${USER}.taskpaper" 
+    return
+  else
+    exec "tabedit ~/.daily_note/" . a:1 . ".taskpaper"
+    return
+  endif
+endfunction "}}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
@@ -806,27 +830,35 @@ map <Leader>a#   <Plug>AM_adef
 map <Leader>r| <Plug>AM_T|
 map <Leader>r#   <Plug>AM_T#
 map <Leader>r,   <Plug>AM_T,o
-map <Leader>rs,  <Plug>AM_Ts,
+map <Leader>rw,  <Plug>AM_Ts,
 map <Leader>r:   <Plug>AM_T:
 map <Leader>r;   <Plug>AM_T;
 map <Leader>r<   <Plug>AM_T<
 map <Leader>r=   <Plug>AM_T=
 map <Leader>r?   <Plug>AM_T?
 map <Leader>r@   <Plug>AM_T@
-map <Leader>rW@  <Plug>AM_TW@
+map <Leader>rw@  <Plug>AM_TW@
 map <Leader>rb   <Plug>AM_Tab
 map <Leader>rp   <Plug>AM_Tsp
 map <Leader>r~   <Plug>AM_T~
 " character-based left-justified alignment maps
-map <Leader>ta   <Plug>AM_tab
+map <Leader>tb   <Plug>AM_tab
 map <Leader>tl   <Plug>AM_tml
 map <Leader>tp   <Plug>AM_tsp
 map <Leader>tq   <Plug>AM_tsq
 map <Leader>t&   <Plug>AM_tt
+map <Leader>tw@  <Plug>AM_tW@
+map <Leader>tw,	 <Plug>AM_ts,
+map <Leader>tw:	 <Plug>AM_ts:
+map <Leader>tw;	 <Plug>AM_ts;
+map <Leader>tw<	 <Plug>AM_ts<
+map <Leader>tw=	 <Plug>AM_ts=
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VCSCommand
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let VCSCommandDisableExtensionMappings = 1
 augroup VCSCommand
   au VCSCommand User VCSBufferCreated silent! nmap <unique> <buffer> q :bwipeout<cr>
 augroup END
@@ -837,7 +869,7 @@ augroup END
 let g:repmo_key = '\'
 let g:repmo_revkey = 'g\'
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
-      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c n|N"
+      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AmbiCompletion
@@ -867,3 +899,16 @@ imap <leader>cl <ESC><leader>cl
 let g:syntastic_enable_balloons = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_loc_list=1
+nnoremap <buffer> <silent> <leader>q :call <SID>Syntastic_Toggle()<CR>
+fun! s:Syntastic_Toggle() "{{{
+  if !exists("g:loaded_syntastic_plugin")
+    finish
+  endif
+  if g:syntastic_enable == 0
+    let g:syntastic_enable = 1
+    echo "Syntastic Enabled!"
+  elseif g:syntastic_enable == 1
+    let g:syntastic_enable = 0
+    echo "Syntastic Disabled!"
+  endif
+endfunction "}}}

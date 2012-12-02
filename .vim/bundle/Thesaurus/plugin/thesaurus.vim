@@ -297,5 +297,5 @@ function! s:Thesaurus_Window_Zoom()
 endfunction
 
 " Map the K key to the ReadThesaurus function
-nnoremap <silent> <leader>r :call ReadThesaurus()<CR><CR>
+nnoremap <silent> <leader>rt :call ReadThesaurus()<CR><CR>
 

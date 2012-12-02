@@ -2851,6 +2851,26 @@ function! s:vimim_save_vimrc()
     let s:statusline  = &statusline
     let s:lazyredraw  = &lazyredraw
     let s:timeoutlen  = &timeoutlen
+
+    "" BenWu's map for imap , 
+    redir => s:temp
+    silent imap ,
+    redir END
+    "" Save them into dict
+    let s:imap = {}
+    let s:split = split(s:temp, '\(i\s*,\)')
+    for i in range(1, len(s:split)-1)
+      let s:map = ','.split(s:split[i], '\s\{6}')[0]
+      let s:imap[split(s:split[i], '\s\{6}')[-1]]=s:map
+    endfor
+    " Unmap everything
+    for [key, value] in items(s:imap)
+      if match(key, '@') == '-1'
+        exec "iunmap  " . value
+      else
+        exec "iunmap <buffer> " . value
+      endif
+    endfor
 endfunction
 
 function! s:vimim_set_vimrc()
@@ -2872,6 +2892,23 @@ function! s:vimim_restore_vimrc()
     let &titlestring = s:titlestring
     let &pumheight   = s:pumheights.saved
     let &timeoutlen  = s:timeoutlen   
+
+    "" BenWu Remap
+    for [key, value] in items(s:imap)
+      let s:keystrip = strpart(key, match(key, '<') )
+      let s:keyflag = strpart(key, 0, match(key, '<'))
+      echo s:keyflag
+      if  match(s:keyflag, '*') != '-1' && match(s:keyflag, '@') != '-1'
+        exec "inoremap <buffer> " . value . "  " . s:keystrip
+      elseif match(s:keyflag, '*') != '-1'
+        exec "inoremap " . value . "  " . s:keystrip
+      elseif match(s:keyflag, '@') != '-1'
+        exec "imap <buffer> " . value . "  " . s:keystrip
+      else
+        exec "imap " . value . "  " . s:keystrip
+      endif
+    endfor
+    redraw!
 endfunction
 
 function! s:vimim_super_reset()
@@ -3195,8 +3232,8 @@ function! s:vimim_plug_and_play()
     inoremap <silent> <C-^>  <C-R>=g:vimim_onekey()<CR>
     xnoremap <silent> <C-^> y:call g:vimim_visual()<CR>
     if g:vimim_map !~ 'no-gi'
-        nnoremap <silent> gi a<C-R>=g:vimim_gi()<CR>
-            xmap <silent> gi  <C-^>
+        nnoremap <silent> gy a<C-R>=g:vimim_gi()<CR>
+            xmap <silent> gy  <C-^>
     endif
     if g:vimim_map !~ 'no-search'
         nnoremap <silent> n :call g:vimim_search()<CR>n
