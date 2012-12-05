@@ -29,7 +29,7 @@
 \setlength\parindent{0pt}
 
 \newcommand{\Pluginversion}{5.16}
-\newcommand{\ReleaseDate}{November 2011}
+\newcommand{\ReleaseDate}{November 2012}
 \newcommand{\Rep}{{\tiny{[n]}}}
 
 %%----------------------------------------------------------------------
@@ -52,7 +52,7 @@
 %%  hyperref
 %%----------------------------------------------------------------------
 \usepackage[ps2pdf]{hyperref}
-\hypersetup{pdfauthor={Dr.-Ing. Fritz Mehner, FH Südwestfalen, Iserlohn, Germany}}
+\hypersetup{pdfauthor={Ben Wu}}
 \hypersetup{pdfkeywords={Vim, C/C++}}
 \hypersetup{pdfsubject={Vim-plugin,  c-support.vim, hot keys}}
 \hypersetup{pdftitle={Vim-plugin,  c-support.vim, hot keys}}
@@ -86,28 +86,28 @@ Plugin: http://vim.sourceforge.net\\
 %
 \hline
 \multicolumn{2}{|r|}{\textsl{\textbf{C}omments}} \\
-\hline \Rep\verb'\cl'  & end-of-line comment                     \hfill (n,v,i)\\
-\hline \Rep\verb'\cj'  & adjust end-of-line comment              \hfill (n,v,i)\\
-\hline     \verb'\cs'  & set end-of-line comment column          \hfill (n)    \\
-\hline \Rep\verb'\c*'  & code $\Rightarrow$ comment \verb'/* */' \hfill (n,v)  \\
-\hline \Rep\verb'\cc'  & code $\Rightarrow$ comment \verb'//'    \hfill (n,v,o)\\
-\hline \Rep\verb'\co'  & comment $\Rightarrow$ code              \hfill (n,v,o)\\
+\hline \Rep\verb'\cl' & end-of-line comment                     \hfill (n,v,i)                                   \\
+\hline \Rep\verb'\cj' & adjust end-of-line comment              \hfill (n,v,i)                                   \\
+\hline     \verb'\cs' & set end-of-line comment column          \hfill (n)                                       \\
+\hline \Rep\verb'\c*' & code $\Rightarrow$ comment \verb'/* */' \hfill (n,v)                                     \\
+\hline \Rep\verb'\cc' & code $\Rightarrow$ comment \verb'//'    \hfill (n,v,o)                                   \\
+\hline \Rep\verb'\co' & comment $\Rightarrow$ code              \hfill (n,v,o)                                   \\
 
-\hline \verb'\cfr' & frame comment                           \hfill (n,i)\\
-\hline \verb'\cu' & function comment                        \hfill (n,i)\\
-\hline \verb'\cm' & method description                      \hfill (n,i)\\
-\hline \verb'\cs' & class description                       \hfill (n,i)\\
-\hline \verb'NULL'& file description (implementation)       \hfill (n,i)\\
-\hline \verb'NULL'& file description (header)               \hfill (n,i)\\
+\hline \verb'\cfr'    & frame comment                           \hfill (n,i)                                     \\
+\hline \verb'\cu'     & function comment                        \hfill (n,i)                                     \\
+\hline \verb'\cm'     & method description                      \hfill (n,i)                                     \\
+\hline \verb'\cs'     & class description                       \hfill (n,i)                                     \\
+\hline \verb'NULL'    & file description (implementation)       \hfill (n,i)                                     \\
+\hline \verb'NULL'    & file description (header)               \hfill (n,i)                                     \\
 
-\hline \verb'\ce'& C/C++--file sections\hspace{3mm}\footnotesize{(tab compl.)}    \hfill \normalsize{(n,i)}\\
-\hline \verb'\ch'& H--file sections\hspace{10mm}\footnotesize{(tab compl.)}       \hfill \normalsize{(n,i)}\\
-\hline \verb'\ck'& keyword comment\hspace{5mm}\footnotesize{(tab compl.)}         \hfill \normalsize{(n,i)}\\
-\hline \verb'\cx'& special comment\hspace{7,5mm}\footnotesize{(tab compl.)}       \hfill \normalsize{(n,i)}\\
+\hline \verb'\ce'     & C/C++--file sections\hspace{3mm}\footnotesize{(tab compl.)}    \hfill \normalsize{(n,i)} \\
+\hline \verb'\ch'     & H--file sections\hspace{10mm}\footnotesize{(tab compl.)}       \hfill \normalsize{(n,i)} \\
+\hline \verb'\ck'     & keyword comment\hspace{5mm}\footnotesize{(tab compl.)}         \hfill \normalsize{(n,i)} \\
+\hline \verb'\cx'     & special comment\hspace{7,5mm}\footnotesize{(tab compl.)}       \hfill \normalsize{(n,i)} \\
 
-\hline \verb'\cd' & date                                    \hfill (n,v,i)\\
-\hline \verb'\ct' & date \& time                            \hfill (n,v,i)\\
-\hline \Rep\verb'NULL' & toggle comments: C $\leftrightarrow$ C++                  \hfill (n,v,i)\\
+\hline \verb'\cd'     & date                                    \hfill (n,v,i)                                   \\
+\hline \verb'\ct'     & date \& time                            \hfill (n,v,i)                                   \\
+\hline \verb'NULL'    & toggle comments: C $\leftrightarrow$ C++                  \hfill (n,v,i)                 \\
 \hline 
 \end{tabular}\\
 %%~~~~~ TABULAR :  end  ~~~~~~~~~~
@@ -123,40 +123,41 @@ Plugin: http://vim.sourceforge.net\\
 %%----------------------------------------------------------------------
 \hline
 \multicolumn{2}{|r|}{\textsl{\textbf{S}tatements}} \\
-\hline \verb'\sd'  & \verb'do { } while'        \hfill (n,v,i)\\
-\hline \verb'NULL'  & \verb'for'                 \hfill (n,i)\\
-\hline \verb'\sf' & \verb'for { }'             \hfill (n,v,i)\\
-\hline \verb'\si'  & \verb'if'                  \hfill (n,i)\\
-\hline \verb'\sj' & \verb'if { }'              \hfill (n,v,i)\\
-\hline \verb'NULL' & \verb'if else'             \hfill (n,v,i)\\
-\hline \verb'\sk'& \verb'if { } else { }'     \hfill (n,v,i)\\
-\hline \verb'\se'  & \verb'else { }'            \hfill (n,v,i)\\
-\hline \verb'NULL'  & \verb'while'               \hfill (n,i)\\
-\hline \verb'\sw' & \verb'while { }'           \hfill (n,v,i)\\
-\hline \verb'\ss'  & \verb'switch'              \hfill (n,v,i)\\
-\hline \verb'\sc'  & \verb'case'                \hfill (n,i)\\
-\hline \verb'\s{ \sb'  & \verb'{ }'             \hfill (n,v,i)\\
+\hline \verb'\sd'     & \verb'do { } while'        \hfill (n,v,i)           \\
+\hline \verb'\sf'     & \verb'for { }'             \hfill (n,v,i)           \\
+\hline \verb'\si'     & \verb'if'                  \hfill (n,i)             \\
+\hline \verb'\sj'     & \verb'if { }'              \hfill (n,v,i)           \\
+\hline \verb'NULL'    & \verb'if else'             \hfill (n,v,i)           \\
+\hline \verb'\sk'     & \verb'if { } else { }'     \hfill (n,v,i)           \\
+\hline \verb'\se'     & \verb'else { }'            \hfill (n,v,i)           \\
+\hline \verb'\sw'     & \verb'while { }'           \hfill (n,v,i)           \\
+\hline \verb'\ss'     & \verb'switch'              \hfill (n,v,i)           \\
+\hline \verb'\sc'     & \verb'case'                \hfill (n,i)             \\
+\hline \verb'\s{ \sb' & \verb'{ }'                 \hfill (n,v,i)               \\
+\hline \verb'\sr'     & choose RTTI                \hfill (n,i)            \\
+\hline \verb'\mn'     & choose Output Manipulator  \hfill (n,i) \\
 \hline
 %%----------------------------------------------------------------------
 %%  preprocessor menu
 %%----------------------------------------------------------------------
 \hline
 \multicolumn{2}{|r|}{\textsl{\textbf{P}reprocessor}}   \\
-\hline \verb'\ps'   & choose a Std. Lib. include    \hfill (n,i)\\
-\hline \verb'\pc'   & choose a C99 include         \hfill (n,i)\\
-\hline \verb'\pg'   & \verb$#include<...>$         \hfill (n,i)\\
-\hline \verb'\pi'   & \verb$#include"..."$         \hfill (n,i)\\
-\hline \verb'\pd'   & \verb'#define'               \hfill (n,i)\\
-\hline \verb'\pu'   & \verb'#undef'                \hfill (n,i)\\
-\hline \verb'\pf'  & \verb'#if #else #endif'      \hfill (n,v,i)\\
-\hline \verb'\pa'  & \verb'#ifdef #else #endif'   \hfill (n,v,i)\\
-\hline \verb'\pk'  & \verb'#ifndef #else #endif'  \hfill (n,v,i)\\
-\hline \verb'\pj' & \verb'#ifndef #def #endif'   \hfill (n,v,i)\\
-\hline \verb'\p0'  & \verb'#if 0 #endif'          \hfill (n,v,i)\\
-\hline \verb'\pr'  & remove \verb'#if 0 #endif'   \hfill (n,i)\\
-\hline \verb'\pe'   & \verb'#error '               \hfill (n,i)\\
-\hline \verb'\pl'   & \verb'#line  '               \hfill (n,i)\\
-\hline \verb'\pp'   & \verb'#pragma'               \hfill (n,i)\\
+\hline \verb'\ps' & choose a Std. Lib. include    \hfill (n,i)  \\
+\hline \verb'\pc' & choose a C99 include         \hfill (n,i)   \\
+\hline \verb'\pg' & \verb$#include<...>$         \hfill (n,i)   \\
+\hline \verb'\pi' & \verb$#include"..."$         \hfill (n,i)   \\
+\hline \verb'\pd' & \verb'#define'               \hfill (n,i)   \\
+\hline \verb'\pu' & \verb'#undef'                \hfill (n,i)   \\
+\hline \verb'\pf' & \verb'#if #else #endif'      \hfill (n,v,i) \\
+\hline \verb'\pa' & \verb'#ifdef #else #endif'   \hfill (n,v,i) \\
+\hline \verb'\pk' & \verb'#ifndef #else #endif'  \hfill (n,v,i) \\
+\hline \verb'\pj' & \verb'#ifndef #def #endif'   \hfill (n,v,i) \\
+\hline \verb'\p0' & \verb'#if 0 #endif'          \hfill (n,v,i) \\
+\hline \verb'\pr' & remove \verb'#if 0 #endif'   \hfill (n,i)   \\
+\hline \verb'\pe' & \verb'#error '               \hfill (n,i)   \\
+\hline \verb'\pl' & \verb'#line  '               \hfill (n,i)   \\
+\hline \verb'\pp' & \verb'#pragma'               \hfill (n,i)   \\
+\hline \verb'\pw' & \verb'#warning'              \hfill (n,i)   \\
 \hline
 \end{tabular} \\
 %%~~~~~ TABULAR :  end  ~~~~~~~~~~
@@ -172,41 +173,42 @@ Plugin: http://vim.sourceforge.net\\
 %%----------------------------------------------------------------------
 \hline 
 \multicolumn{2}{|r|}{\textsl{S\textbf{n}ippet}} \\
-\hline     \verb'\mr'  & read code snippet         \hfill (n,i)\\
-\hline     \verb'\mw'  & write code snippet        \hfill (n,v,i)\\
-\hline     \verb'\me'  & edit code snippet         \hfill (n,i)\\
-\hline \Rep\verb'\mf' \Rep\verb'\np'  & pick up function prototype         \hfill (n,v,i)\\
-\hline \Rep\verb'\md'  & pick up method prototype         \hfill (n,v,i)\\
-\hline     \verb'\mi'  & insert prototype(s)       \hfill (n,i)\\
-\hline     \verb'\mc'  & clear  prototype(s)       \hfill (n,i)\\
-\hline     \verb'\ms'  & show   prototype(s)       \hfill (n,i)\\
+\hline     \verb'\mr' & read code snippet          \hfill (n,i)   \\
+\hline     \verb'\mw' & write code snippet         \hfill (n,v,i) \\
+\hline     \verb'\me' & edit code snippet          \hfill (n,i)   \\
+\hline     \verb'\mv' & view code snippet          \hfill (n,i)   \\
+\hline \Rep\verb'\mf' & pick up function prototype \hfill (n,v,i) \\
+\hline \Rep\verb'\md' & pick up method prototype   \hfill (n,v,i) \\
+\hline     \verb'\mi' & insert prototype(s)        \hfill (n,i)   \\
+\hline     \verb'\mc' & clear  prototype(s)        \hfill (n,i)   \\
+\hline     \verb'\ms' & show   prototype(s)        \hfill (n,i)   \\
 %
-\hline \verb'\ml' & edit local templates      \hfill (n,i)\\
-\hline \verb'\mg' & edit global templates$^1$ \hfill (n,i)\\
-\hline \verb'\mp' & reread the templates      \hfill (n,i)\\
-\hline \verb'\my' & change templates style    \hfill (n,i)\\
+\hline \verb'\ml'     & edit local templates      \hfill (n,i)    \\
+\hline \verb'\mg'     & edit global templates$^1$ \hfill (n,i)    \\
+\hline \verb'\mp'     & reread the templates      \hfill (n,i)    \\
+\hline \verb'\my'     & change templates style    \hfill (n,i)    \\
 \hline
 %%----------------------------------------------------------------------
 %%  idioms menu
 %%----------------------------------------------------------------------
 \hline 
 \multicolumn{2}{|r|}{\textsl{\textbf{I}dioms}}   \\
-\hline \verb'NULL'  & function                         \hfill (n,v,i)\\
-\hline \verb'\if' & static function                  \hfill (n,v,i)\\
-\hline \verb'\im'  & \verb'main()'                    \hfill (n,v,i)\\
-\hline \Rep\verb'\iu'  & \verb'for( x=0; x<n; x+=1 )'     \hfill (n,v,i)\\
-\hline \Rep\verb'\id'  & \verb'for( x=n-1; x>=0; x-=1 )'  \hfill (n,v,i)\\
-\hline \verb'\ie'  & \verb'enum'   + \verb'typedef'   \hfill (n,v,i)\\
-\hline \verb'\is'  & \verb'struct' + \verb'typedef'   \hfill (n,v,i)\\
-\hline \verb'\iu'  & \verb'union'  + \verb'typedef'   \hfill (n,v,i)\\
-\hline \verb'\ip'  & \verb'printf()'                  \hfill (n,i)\\
-\hline \verb'\ic' & \verb'scanf()'                   \hfill (n,i)\\
-\hline \verb'\ik' & \verb'p=calloc()'                \hfill (n,i)\\
-\hline \verb'\ij' & \verb'p=malloc()'                \hfill (n,i)\\
-\hline \verb'\iz' & \verb'sizeof()'                  \hfill (n,v,i)\\
-\hline \verb'\ia' & \verb'assert()'                  \hfill (n,v,i)\\
-\hline \verb'\ii'  & open input file                  \hfill (n,v,i)\\
-\hline \verb'\io'  & open output file                 \hfill (n,v,i)\\
+\hline \verb'\if'     & static function                  \hfill (n,v,i) \\
+\hline \verb'\im'     & \verb'main()'                    \hfill (n,v,i) \\
+\hline \Rep\verb'\in' & \verb'for( x=0; x<n; x+=1 )'     \hfill (n,v,i) \\
+\hline \Rep\verb'\id' & \verb'for( x=n-1; x>=0; x-=1 )'  \hfill (n,v,i) \\
+\hline \verb'\ie'     & \verb'enum'   + \verb'typedef'   \hfill (n,v,i) \\
+\hline \verb'\is'     & \verb'struct' + \verb'typedef'   \hfill (n,v,i) \\
+\hline \verb'\iu'     & \verb'union'  + \verb'typedef'   \hfill (n,v,i) \\
+\hline \verb'\ip'     & \verb'printf()'                  \hfill (n,i)   \\
+\hline \verb'\ic'     & \verb'scanf()'                   \hfill (n,i)   \\
+\hline \verb'\ik'     & \verb'p=calloc()'                \hfill (n,i)   \\
+\hline \verb'\ij'     & \verb'p=malloc()'                \hfill (n,i)   \\
+\hline \verb'\iz'     & \verb'sizeof()'                  \hfill (n,v,i) \\
+\hline \verb'\ia'     & \verb'assert()'                  \hfill (n,v,i) \\
+\hline \verb'\ii'     & open input file                  \hfill (n,v,i) \\
+\hline \verb'\io'     & open output file                 \hfill (n,v,i) \\
+\hline \verb'\ib'     & IOs Flagbits                     \hfill (n,v,i) \\
 \hline
 \end{tabular}\\
 %
@@ -230,40 +232,44 @@ Plugin: http://vim.sourceforge.net\\
 %%----------------------------------------------------------------------
 \hline 
 \multicolumn{2}{|r|}{\textsl{C\textbf{++}}} \\
-\hline \verb'\to'  & \verb'cout << << endl; '                \hfill (n,i)\\
-\hline \verb'\ti'   & \verb'<< ""'                \hfill (n,i)\\
-\hline \verb'\td'   & \verb'cout << debug'                \hfill (n,i)\\
-\hline \verb'\ts'  & \verb$#include<...> STL$                \hfill (n,i)\\
-\hline \verb'\tc'  & \verb$#include<c..> C$                  \hfill (n,i)\\
-\hline \verb'\tg'   & class                                   \hfill (n,i)\\
-\hline \verb'\th'  & class (using \verb'new')                \hfill (n,i)\\
-\hline \verb'\tG'  & class  implementation                   \hfill (n,i)\\
-\hline \verb'\tH' & class (using \verb'new') implementation \hfill (n,i)\\
-\hline \verb'\ty'  & method implementation                   \hfill (n,i)\\
-\hline \verb'\tu'  & accessor implementation                 \hfill (n,i)\\
-\hline \verb'\tj'  & template class                          \hfill (n,i)\\
-\hline \verb'\tk' & template class (using \verb'new')       \hfill (n,i)\\
-\hline \verb'\tJ' & template class  implementation          \hfill (n,i)\\
-\hline \verb'\tK'& template class (using \verb'new') impl. \hfill (n,i)\\
-\hline \verb'\tx' & template method implementation          \hfill (n,i)\\
-\hline \verb'\ta' & template accessor implementation        \hfill (n,i)\\
-\hline \verb'\tf'  & template function                       \hfill (n,i)\\
-\hline \verb'\tv'  & error class                             \hfill (n,i)\\
-\hline \verb'\tr'  & \verb'try' \dots \verb'catch'           \hfill (n,v,i)\\
-%\hline \verb'\+ca'  & \verb'catch'                            \hfill (n,v,i)\\
-\hline \verb'\c.'  & \verb'catch(...)'                       \hfill (n,v,i)\\
+\hline \verb'\t['   & \verb'<< ""'                            \hfill (n,i)               \\
+\hline \verb'\t]'   & \verb'>> ""'                            \hfill (n,i)               \\
+\hline \verb'\ti'   & \verb'cin >> ; '                \hfill (n,i)   \\
+\hline \verb'\to'   & \verb'cout << << endl; '                \hfill (n,i)   \\
+\hline \verb'\td'   & \verb'cout << debug'                    \hfill (n,i)       \\
+\hline \verb'\ts'   & \verb$#include<...> STL$                \hfill (n,i)   \\
+\hline \verb'\tc'   & \verb$#include<c..> C$                  \hfill (n,i)   \\
+\hline \verb'\tg'   & class                                   \hfill (n,i)   \\
+\hline \verb'\th'   & class (using \verb'new')                \hfill (n,i)   \\
+\hline \verb'\tG'   & class  implementation                   \hfill (n,i)   \\
+\hline \verb'\tH'   & class (using \verb'new') implementation \hfill (n,i)   \\
+\hline \verb'\ty'   & method implementation                   \hfill (n,i)   \\
+\hline \verb'\tu'   & accessor implementation                 \hfill (n,i)   \\
+\hline \verb'\tj'   & template class                          \hfill (n,i)   \\
+\hline \verb'\tk'   & template class (using \verb'new')       \hfill (n,i)   \\
+\hline \verb'\tJ'   & template class  implementation          \hfill (n,i)   \\
+\hline \verb'\tK'   & template class (using \verb'new') impl. \hfill (n,i)   \\
+\hline \verb'\tx'   & template method implementation          \hfill (n,i)   \\
+\hline \verb'\ta'   & template accessor implementation        \hfill (n,i)   \\
+\hline \verb'\tf'   & template function                       \hfill (n,i)   \\
+\hline \verb'\tv'   & error class                             \hfill (n,i)   \\
+\hline \verb'\t}'   & class operator-out                      \hfill (n,i)   \\
+\hline \verb'\t{'   & class operator-in                       \hfill (n,i)   \\
+\hline \verb'\tr'   & \verb'try' \dots \verb'catch'           \hfill (n,v,i) \\
+%\hline \verb'\+ca' & \verb'catch'                            \hfill (n,v,i) \\
+\hline \verb'\c.'   & \verb'catch(...)'                       \hfill (n,v,i) \\
 \hline 
 %%
 %%----------------------------------------------------------------------
 %%  show plugin help
 %%----------------------------------------------------------------------
-\hline 
-\multicolumn{2}{|r|}{\textsl{\textbf{H}elp and Menus}}\\
-\hline \verb'\hm'   & show manual   \hfill (n,i)\\
-\hline \verb'\hp'   & help (c-support) \hfill (n,i)\\
-\hline \verb'\lcs'  & load    Menus\hfill \scriptsize{(n \& GUI only)}\\
-\hline \verb'\ucs'  & unload  Menus\hfill \scriptsize{(n \& GUI only)}\\
-\hline 
+%\hline 
+%\multicolumn{2}{|r|}{\textsl{\textbf{H}elp and Menus}}\\
+%\hline \verb'\hm'   & show manual   \hfill (n,i)\\
+%\hline \verb'\hp'   & help (c-support) \hfill (n,i)\\
+%%\hline \verb'\lcs'  & load    Menus\hfill \scriptsize{(n \& GUI only)}\\
+%%\hline \verb'\ucs'  & unload  Menus\hfill \scriptsize{(n \& GUI only)}\\
+%\hline 
 \end{tabular}
 \vspace{100mm}
 %%~~~~~ TABULAR : begin ~~~~~~~~~~
@@ -273,26 +279,27 @@ Plugin: http://vim.sourceforge.net\\
 %%----------------------------------------------------------------------
 \hline
 \multicolumn{2}{|r|}{\textsl{\textbf{R}un}} \\
-\hline \verb'\rc'  & save and compile                        \hfill (n,i)\\
-\hline \verb'\rl'  & link                                    \hfill (n,i)\\
-\hline \verb'\rf'  & run                                     \hfill (n,i)\\
-\hline \verb'\ra'  & set comand line arguments               \hfill (n,i)\\
-\hline \verb'\rm'  & run \texttt{ make}$^1$                      \hfill (n,i)\\
-\hline \verb'\rn' & run \texttt{ make clean}$^1$                \hfill (n,i)\\
-\hline \verb'\re' & executable\ to\ run$^1$                     \hfill (n,i)\\
-\hline \verb'\rg' & cmd.\ line arg.\ for \texttt{make}$^1$      \hfill (n,i)\\
+\hline \verb'\rc'     & save and compile                        \hfill (n,i)       \\
+\hline \verb'\rl'     & link                                    \hfill (n,i)       \\
+\hline \verb'\rf'     & run                                     \hfill (n,i)       \\
+\hline \verb'\ra'     & set comand line arguments               \hfill (n,i)       \\
+\hline \verb'\rj'     & choose makefile                      \hfill (n,i)   \\
+\hline \verb'\rm'     & run \texttt{ make}$^1$                      \hfill (n,i)   \\
+\hline \verb'\rn'     & run \texttt{ make clean}$^1$                \hfill (n,i)   \\
+\hline \verb'\re'     & executable\ to\ run$^1$                     \hfill (n,i)   \\
+\hline \verb'\rg'     & cmd.\ line arg.\ for \texttt{make}$^1$      \hfill (n,i)   \\
 %
-\hline \verb'\rq'  & run \texttt{ splint}$^2$     \hfill (n,i)\\
-\hline \verb'\ri' & cmd.\ line arg.\ for \texttt{splint}    \hfill (n,i)\\
+\hline \verb'\rq'     & run \texttt{ splint}$^2$     \hfill (n,i)                  \\
+\hline \verb'\ri'     & cmd.\ line arg.\ for \texttt{splint}    \hfill (n,i)       \\
 %
-\hline \verb'\rk'  & run \texttt{ CodeCheck}$^3$  \hfill (n,i)\\
-\hline \verb'\re' & cmd.\ line arg.\ for \texttt{CodeCheck} \hfill (n,i)\\
+\hline \verb'\rk'     & run \texttt{ CodeCheck}$^3$  \hfill (n,i)                  \\
+\hline \verb'\re'     & cmd.\ line arg.\ for \texttt{CodeCheck} \hfill (n,i)       \\
 %
-\hline \verb'\rd'  & run \texttt{ indent}         \hfill (n,i)\\
-\hline \Rep\verb'\rh'  & hardcopy buffer             \hfill (n,i,v)\\
-\hline \verb'\rs'  & show plugin settings        \hfill (n,i)\\
-\hline \verb'\rx'  & set xterm size              \hfill (n,i, only Unix \& GUI)\\
-\hline \verb'\ro'  & change output destination   \hfill (n,i)\\
+\hline \verb'\rd'     & run \texttt{ indent}         \hfill (n,i)                  \\
+\hline \Rep\verb'\rh' & hardcopy buffer             \hfill (n,i,v)                 \\
+\hline \verb'\rs'     & show plugin settings        \hfill (n,i)                   \\
+\hline \verb'\rx'     & set xterm size              \hfill (n,i, only Unix \& GUI) \\
+\hline \verb'\ro'     & change output destination   \hfill (n,i)                   \\
 \hline
 %\end{tabular}
 %\begin{spacing}{1.2}
@@ -321,15 +328,15 @@ Plugin: http://vim.sourceforge.net\\
 \textit{Ex commands:}
 \begin{description}
 %
-\item [CFileSection]       C/C++--file sections (same as \verb'\ccs')
-\item [HFileSection]       H--file sections (same as \verb'\chs')
-\item [KeywordComment]     keyword comment (same as \verb'\ckc')
-\item [SpecialComment]     special comment (same as \verb'\csc')
+\item [CFileSection]       C/C++--file sections (same as \verb'\ce')
+\item [HFileSection]       H--file sections (same as \verb'\ch')
+\item [KeywordComment]     keyword comment (same as \verb'\ck')
+\item [SpecialComment]     special comment (same as \verb'\cx')
 \item [IncludeStdLibrary]  standard library includes (same as \verb'\ps')
 \item [IncludeC99Library]  C99 includes (same as \verb'\pc')
-\item [IncludeCppLibrary]  STL includes (same as \verb'\+ps')
-\item [IncludeCppCLibrary] C includes (same as \verb'\+pc')
-\item [CStyle]             C99 include (same as \verb'\nts')
+\item [IncludeCppLibrary]  STL includes (same as \verb'\ts')
+\item [IncludeCppCLibrary] C includes (same as \verb'\tc')
+\item [CStyle]             C99 include (same as \verb'\my')
 %
 \end{description}
 %

@@ -132,8 +132,7 @@ XPT op " t operator .. ()
 ..XPT
 
 XPT templateclass   " template <> class
-template
-    <`templateParam^>
+template <`templateParam^>
 class `className^
 {
 public:

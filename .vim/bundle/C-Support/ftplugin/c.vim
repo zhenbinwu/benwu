@@ -66,15 +66,18 @@ if exists("loaded_alternateFile")
   imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
 endif
 "
-command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert   (<f-args>)
-command! -nargs=1 -complete=customlist,C#HFileSectionList        HFileSection       call C#HFileSectionListInsert   (<f-args>)
-command! -nargs=1 -complete=customlist,C#KeywordCommentList      KeywordComment     call C#KeywordCommentListInsert (<f-args>)
-command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert (<f-args>)
-command! -nargs=1 -complete=customlist,C#StdLibraryIncludesList  IncludeStdLibrary  call C#StdLibraryIncludesInsert (<f-args>)
-command! -nargs=1 -complete=customlist,C#C99LibraryIncludesList  IncludeC99Library  call C#C99LibraryIncludesInsert (<f-args>)
-command! -nargs=1 -complete=customlist,C#CppLibraryIncludesList  IncludeCppLibrary  call C#CppLibraryIncludesInsert (<f-args>)
-command! -nargs=1 -complete=customlist,C#CppCLibraryIncludesList IncludeCppCLibrary call C#CppCLibraryIncludesInsert(<f-args>)
-command! -nargs=1 -complete=customlist,C#StyleList               CStyle             call C#Style                    (<f-args>)
+command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert     (<f-args>)
+command! -nargs=1 -complete=customlist,C#HFileSectionList        HFileSection       call C#HFileSectionListInsert     (<f-args>)
+command! -nargs=1 -complete=customlist,C#KeywordCommentList      KeywordComment     call C#KeywordCommentListInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#StdLibraryIncludesList  IncludeStdLibrary  call C#StdLibraryIncludesInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#C99LibraryIncludesList  IncludeC99Library  call C#C99LibraryIncludesInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#CppLibraryIncludesList  IncludeCppLibrary  call C#CppLibraryIncludesInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#CppCLibraryIncludesList IncludeCppCLibrary call C#CppCLibraryIncludesInsert  (<f-args>)
+command! -nargs=1 -complete=customlist,C#OutputManipulatorList   OutputManipulator  call C#OutputManipulatorListInsert(<f-args>)
+command! -nargs=1 -complete=customlist,C#CppIOSFlagBitsList      IOSFlagBits        call C#CppIOSFlagBitsInsert       (<f-args>)
+command! -nargs=1 -complete=customlist,C#StyleList               CStyle             call C#Style                      (<f-args>)
+command! -nargs=1 -complete=customlist,C#RTTIList                RTTI               call C#RTTIListInsert             (<f-args>)
 
 " ---------- KEY MAPPINGS : MENU ENTRIES -------------------------------------
 " ---------- comments menu  ------------------------------------------------
@@ -187,17 +190,20 @@ inoremap    <buffer>  <silent>  <LocalLeader>s{    <Esc>:call C#InsertTemplate("
  noremap    <buffer>  <silent>  <LocalLeader>sb         :call C#InsertTemplate("statements.block")<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>sb    <Esc>:call C#InsertTemplate("statements.block", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>sb    <Esc>:call C#InsertTemplate("statements.block")<CR>
+
+ noremap    <buffer>            <LocalLeader>sr   <Esc>:RTTI<Space>
+inoremap    <buffer>            <LocalLeader>sr   <Esc>:RTTI<Space>
 "
 " ---------- preprocessor menu  ----------------------------------------------
 "
- noremap    <buffer>  <LocalLeader>ps                  :IncludeStdLibrary<Space>
-inoremap    <buffer>  <LocalLeader>ps             <Esc>:IncludeStdLibrary<Space>
- noremap    <buffer>  <LocalLeader>pc                  :IncludeC99Library<Space>
-inoremap    <buffer>  <LocalLeader>pc             <Esc>:IncludeC99Library<Space>
- noremap    <buffer>  <LocalLeader>ts                 :IncludeCppLibrary<Space>
-inoremap    <buffer>  <LocalLeader>ts            <Esc>:IncludeCppLibrary<Space>
- noremap    <buffer>  <LocalLeader>tc                 :IncludeCppCLibrary<Space>
-inoremap    <buffer>  <LocalLeader>tc            <Esc>:IncludeCppC9Library<Space>
+ noremap    <buffer>  <silent>  <LocalLeader>ps                  :IncludeStdLibrary<Space>
+inoremap    <buffer>  <silent>  <LocalLeader>ps             <Esc>:IncludeStdLibrary<Space>
+ noremap    <buffer>  <silent>  <LocalLeader>pc                  :IncludeC99Library<Space>
+inoremap    <buffer>  <silent>  <LocalLeader>pc             <Esc>:IncludeC99Library<Space>
+ noremap    <buffer>  <silent>  <LocalLeader>ts                 :IncludeCppLibrary<Space>
+inoremap    <buffer>  <silent>  <LocalLeader>ts            <Esc>:IncludeCppLibrary<Space>
+ noremap    <buffer>  <silent>  <LocalLeader>tc                 :IncludeCppCLibrary<Space>
+inoremap    <buffer>  <silent>  <LocalLeader>tc            <Esc>:IncludeCppC9Library<Space>
 "
  noremap    <buffer>  <silent>  <LocalLeader>pg        :call C#InsertTemplate("preprocessor.include-global")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>pi        :call C#InsertTemplate("preprocessor.include-local")<CR>
@@ -234,10 +240,12 @@ inoremap    <buffer>  <silent>  <LocalLeader>pr  <Esc>:call C#PPIf0Remove()<CR>
  noremap    <buffer>  <silent>  <LocalLeader>pe        :call C#InsertTemplate("preprocessor.error")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>pl        :call C#InsertTemplate("preprocessor.line")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>pp        :call C#InsertTemplate("preprocessor.pragma")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>pw        :call C#InsertTemplate("preprocessor.warning")<CR>
 "
 inoremap    <buffer>  <silent>  <LocalLeader>pe   <Esc>:call C#InsertTemplate("preprocessor.error")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>pl   <Esc>:call C#InsertTemplate("preprocessor.line")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>pp   <Esc>:call C#InsertTemplate("preprocessor.pragma")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>pw   <Esc>:call C#InsertTemplate("preprocessor.warning")<CR>
 "
 " ---------- idioms menu  ----------------------------------------------------
 "
@@ -251,9 +259,9 @@ inoremap    <buffer>  <silent>  <LocalLeader>if   <Esc>:call C#InsertTemplate("i
 vnoremap    <buffer>  <silent>  <LocalLeader>im    <Esc>:call C#InsertTemplate("idioms.main", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>im    <Esc>:call C#InsertTemplate("idioms.main")<CR>
 "
- noremap    <buffer>  <silent>  <LocalLeader>iu         :call C#CodeFor("up"  )<CR>
-vnoremap    <buffer>  <silent>  <LocalLeader>iu         :call C#CodeFor("up"  )<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>iu    <Esc>:call C#CodeFor("up"  )<CR>i
+ noremap    <buffer>  <silent>  <LocalLeader>in         :call C#CodeFor("up"  )<CR>
+vnoremap    <buffer>  <silent>  <LocalLeader>in         :call C#CodeFor("up"  )<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>in    <Esc>:call C#CodeFor("up"  )<CR>i
  noremap    <buffer>  <silent>  <LocalLeader>id         :call C#CodeFor("down")<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>id         :call C#CodeFor("down")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>id    <Esc>:call C#CodeFor("down")<CR>i
@@ -292,6 +300,9 @@ vnoremap    <buffer>  <silent>  <LocalLeader>ii    <Esc>:call C#InsertTemplate("
  noremap    <buffer>  <silent>  <LocalLeader>io         :call C#InsertTemplate("idioms.open-output-file")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>io    <Esc>:call C#InsertTemplate("idioms.open-output-file")<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>io    <Esc>:call C#InsertTemplate("idioms.open-output-file", "v")<CR>
+
+ noremap    <buffer>  <LocalLeader>ib                 :IOSFlagBits<Space>
+inoremap    <buffer>  <LocalLeader>ib            <Esc>:IOSFlagBits<Space>
 "
 " ---------- snippet menu : snippets -----------------------------------------
 "
@@ -299,10 +310,12 @@ vnoremap    <buffer>  <silent>  <LocalLeader>io    <Esc>:call C#InsertTemplate("
  noremap    <buffer>  <silent>  <LocalLeader>mw         :call C#CodeSnippet("w")<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>mw    <Esc>:call C#CodeSnippet("wv")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>me         :call C#CodeSnippet("e")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>mv         :call C#CodeSnippet("view")<CR>
 "
 inoremap    <buffer>  <silent>  <LocalLeader>mr    <Esc>:call C#CodeSnippet("r")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>mw    <Esc>:call C#CodeSnippet("w")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>me    <Esc>:call C#CodeSnippet("e")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>mv    <Esc>:call C#CodeSnippet("view")<CR>
 "
 " ---------- snippet menu : prototypes ---------------------------------------
 "
@@ -336,10 +349,16 @@ inoremap    <buffer>  <silent>  <LocalLeader>ml   <Esc>:call C#BrowseTemplateFil
 inoremap    <buffer>  <silent>  <LocalLeader>mp   <Esc>:call C#RereadTemplates()<CR>
 inoremap    <buffer>            <LocalLeader>my   <Esc>:CStyle<Space>
 "
+ noremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
+inoremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
 " ---------- C++ menu ----------------------------------------------------
 "
- noremap    <buffer>  <silent>  <LocalLeader>ti         :call C#InsertTemplate("cpp.cout-operator")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ti    <Esc>:call C#InsertTemplate("cpp.cout-operator")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>t[        :call C#InsertTemplate("cpp.cout-operator")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>t[   <Esc>:call C#InsertTemplate("cpp.cout-operator")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>t]        :call C#InsertTemplate("cpp.cin-operator")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>t]   <Esc>:call C#InsertTemplate("cpp.cin-operator")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>ti        :call C#InsertTemplate("cpp.cin")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ti   <Esc>:call C#InsertTemplate("cpp.cin")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>to        :call C#InsertTemplate("cpp.cout")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>to   <Esc>:call C#InsertTemplate("cpp.cout")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>td        :call C#InsertTemplate("cpp.debug")<CR><ESC>
@@ -352,8 +371,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>th   <Esc>:call C#InsertTemplate("c
 
  noremap    <buffer>  <silent>  <LocalLeader>tG        :call C#InsertTemplate("cpp.class-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tG   <Esc>:call C#InsertTemplate("cpp.class-implementation")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>tH       :call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tH  <Esc>:call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tH        :call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tH   <Esc>:call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>ty        :call C#InsertTemplate("cpp.method-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>ty   <Esc>:call C#InsertTemplate("cpp.method-implementation")<CR>
@@ -385,6 +404,10 @@ inoremap    <buffer>  <silent>  <LocalLeader>tv   <Esc>:call C#InsertTemplate("c
 vnoremap    <buffer>  <silent>  <LocalLeader>tr   <Esc>:call C#InsertTemplate("cpp.try-catch", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tr   <Esc>:call C#InsertTemplate("cpp.try-catch")<CR>
 
+ noremap    <buffer>  <silent>  <LocalLeader>t}        :call C#InsertTemplate("cpp.operator-out")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>t}   <Esc>:call C#InsertTemplate("cpp.operator-out")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>t{        :call C#InsertTemplate("cpp.operator-in")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>t{   <Esc>:call C#InsertTemplate("cpp.operator-in")<CR>
  "noremap    <buffer>  <silent>  <LocalLeader>ca        :call C#InsertTemplate("cpp.catch")<CR>
 "vnoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C#InsertTemplate("cpp.catch", "v")<CR>
 "inoremap    <buffer>  <silent>  <LocalLeader>ca   <Esc>:call C#InsertTemplate("cpp.catch")<CR>
@@ -399,6 +422,7 @@ inoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("c
  map    <buffer>  <silent>  <LocalLeader>rl         :call C#Link()<CR>:call C#HlMessage()<CR>
  map    <buffer>  <silent>  <LocalLeader>rf         :call C#Run()<CR>
  map    <buffer>  <silent>  <LocalLeader>ra         :call C#Arguments()<CR>
+ map    <buffer>  <silent>  <LocalLeader>rj         :call C#ChooseMakefile()<CR>
  map    <buffer>  <silent>  <LocalLeader>rm         :call C#Make()<CR>
  map    <buffer>  <silent>  <LocalLeader>rn        :call C#MakeClean()<CR>
  map    <buffer>  <silent>  <LocalLeader>re        :call C#MakeExeToRun()<CR>

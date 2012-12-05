@@ -899,7 +899,7 @@ imap <leader>cl <ESC><leader>cl
 let g:syntastic_enable_balloons = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_loc_list=1
-nnoremap <buffer> <silent> <leader>q :call <SID>Syntastic_Toggle()<CR>
+nnoremap <silent> <leader>q :call <SID>Syntastic_Toggle()<CR>
 fun! s:Syntastic_Toggle() "{{{
   if !exists("g:loaded_syntastic_plugin")
     finish

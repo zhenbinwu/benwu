@@ -118,14 +118,14 @@ XPT avar hint=Creates\ accessors\ for\ a\ variable
  *
  * @return A const reference to the `variableName^.
  */
-const `variableType^& get`variableName^() const;
+const `variableType^& get_`variableName^() const;
 
 /**
  * Sets the value of the `variableName^ variable.
  *
  * @param value The value to set for `variableName^.
  */
-void set`variableName^(const `variableType^& value);
+void set_`variableName^(const `variableType^& value);
 `variableType^ m_`variableName^SV('\(.\)','\l\1','')^^;
 
 XPT Ctest hint=Unit\ test\ cpp\ file\ definition
@@ -205,21 +205,6 @@ XPT inits hint=Initializer\ list\ for\ strings
 
 XPT m hint=Member\ variable
 `int^ m_`name^;
-
-XPT imp hint=specific\ C++\ implementation\ file
-//
-// `getNamespaceFilename()^
-//
-// Copyright (c) `year()^ Research In Motion
-//
-
-#include "`getHeaderForCurrentSourceFile()^"
-
-`insertNamespaceBegin()^
-
-`returnSkeletonsFromPrototypes()^`cursor^
-`insertNamespaceEnd()^
-
 
 XPT header hint=specific\ C++\ header\ file
 //
@@ -350,7 +335,7 @@ typedef `type^ `called^
 
 
 XPT s hint=std::string
-std::string
+std::string `name^;`cursor^
 
 
 XPT foriter hint=for\ \(type::iterator\ i\ =\ var.begin;\ i\ !=\ var.end;\ ++i\)
@@ -399,11 +384,11 @@ std::replace(`seq^.begin(), `seq^.end(), `oldvalue^, `newvalue^)
 
 
 XPT replaceif hint=std::replace_if\(seq.begin,\ seq.end,\ predicate,\ newvalue\)
-std::replace(`seq^.begin(), `seq^.end(), `predicate^, `newvalue^)
+std::replace_if(`seq^.begin(), `seq^.end(), `predicate^, `newvalue^)
 
 
 XPT sort hint=std::sort\(seq.begin,\ seq.end,\ predicate\)
-std::replace(`seq^.begin(), `seq^.end(), `predicate^)
+std::sort(`seq^.begin(), `seq^.end(), `predicate^)
 
 XPT fh hint=function\ declaration
 `int^ `class^`name^(`param^`...^, `param^`...^)` const^;

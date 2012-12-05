@@ -12,7 +12,7 @@ XPTinclude
 XPT #ic		" include <>
 #include <`^>
 
-XPT #ib		" include <>
+XPT #ib		" include <boost/>
 #include <boost/`^>
 
 XPT #include_user	" include ""

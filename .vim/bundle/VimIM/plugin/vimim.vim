@@ -50,6 +50,7 @@ elseif &compatible
 endif
 scriptencoding utf-8
 let g:vimim_profile = reltime()
+let g:vimim_powerline = ""
 let s:plugin = expand("<sfile>:p:h")
 
 function! s:vimim_initialize_debug()
@@ -189,7 +190,8 @@ function! s:vimim_set_frontend()
     let s:ui.quote = match(split(quote),s:ui.im) < 0 ? 0 : 1
     let s:gi_dynamic = s:ui.im =~ 'pinyin' || s:ui.root =~ 'cloud' ? 0 : 1
     let logo = s:chinese('dscj')
-    let tail = s:mode.windowless ? s:today : ''
+    let tail = ''
+    "let tail = s:mode.windowless ? s:today : ''
     if s:mode.dynamic || s:mode.static
         let logo = s:chinese('chinese',s:mode.static?'static':'dynamic')
         let tail = s:chinese('halfwidth')
@@ -197,7 +199,8 @@ function! s:vimim_set_frontend()
             let tail = s:chinese('fullwidth')
         endif
     endif
-    let g:vimim = "VimIM".s:space.logo.' '.s:vimim_im_chinese().' '.tail
+    let g:vimim = "VimIM".' '.s:vimim_im_chinese().' '.tail
+    "let g:vimim = "VimIM".s:space.logo.' '.s:vimim_im_chinese().' '.tail
     call s:vimim_set_title(g:vimim)
 endfunction
 
@@ -532,16 +535,17 @@ let s:VimIM += [" ====  statusline       ==== {{{"]
 " =================================================
 
 function! s:vimim_set_title(title)
-    if &laststatus < 2
-        let &titlestring = a:title
-        redraw
-    endif
-    "if &term == 'screen'
-        if s:mode.windowless
-           let &l:statusline = '%{"'. a:title .'"}%<'
-        else
-           let &l:statusline = g:vimim .' %h%m%r%=%-14.(%l,%c%V%) %P %<%f'
-        endif
+    let g:vimim_powerline = a:title
+    "if &laststatus < 2
+        "let &titlestring = a:title
+        "redraw
+    "endif
+    ""if &term == 'screen'
+        "if s:mode.windowless
+           "let &l:statusline = '%{"'. a:title .'"}%<'
+        "else
+           "let &l:statusline = g:vimim .' %h%m%r%=%-14.(%l,%c%V%) %P %<%f'
+        "endif
     "endif
 endfunction
 
@@ -895,6 +899,7 @@ function! g:vimim_enter()
         let s:smart_enter = 0
     endif
     sil!call s:vimim_set_title(g:vimim)
+    redraw
     sil!exe 'sil!return "' . key . '"'
 endfunction
 
@@ -2892,6 +2897,7 @@ function! s:vimim_restore_vimrc()
     let &titlestring = s:titlestring
     let &pumheight   = s:pumheights.saved
     let &timeoutlen  = s:timeoutlen   
+    let g:vimim_powerline = ""
 
     "" BenWu Remap
     for [key, value] in items(s:imap)

@@ -78,12 +78,12 @@ else
 		let s:C_LocalTemplateDir		= fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
 	else
 		" system wide installation
-		let s:installation					= 'system'
-		let s:plugin_dir						= $VIM.'/vimfiles'
-		let s:C_GlobalTemplateDir		= s:plugin_dir.'/c-support/templates'
-		let s:C_GlobalTemplateFile  = s:C_GlobalTemplateDir.'/Templates'
-    let s:C_LocalTemplateFile     = $HOME.'/.vim/bundle/C-Support/c-support/templates/Templates'
-		let s:C_LocalTemplateDir		= fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
+		let s:installation         = 'system'
+		let s:plugin_dir           = $VIM.'/vimfiles'
+		let s:C_GlobalTemplateDir  = s:plugin_dir.'/c-support/templates'
+		let s:C_GlobalTemplateFile = s:C_GlobalTemplateDir.'/Templates'
+		let s:C_LocalTemplateFile  = $HOME.'/.vim/bundle/C-Support/c-support/templates/Templates'
+		let s:C_LocalTemplateDir   = fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
 	endif
 	"
 	let s:C_CodeSnippets  				= s:plugin_dir.'/c-support/codesnippets/'
@@ -1504,6 +1504,19 @@ function! C#CodeSnippet(mode)
 				:execute "update! | split | edit ".l:snippetfile
 			endif
 		endif
+        "
+        " update current buffer / split window / view snippet file
+        "
+        if a:mode == "view"
+          if has("gui_running") && s:C_GuiSnippetBrowser == 'gui'
+            let l:snippetfile=browse(0,"view a code snippet",s:C_CodeSnippets,"")
+          else
+            let	l:snippetfile=input("view snippet ", s:C_CodeSnippets, "file" )
+          endif
+          if !empty(l:snippetfile)
+            :execute "update! | split | view ".l:snippetfile
+          endif
+        endif
 		"
 		" write whole buffer into snippet file
 		"
@@ -1700,17 +1713,17 @@ function! C#ProtoPick( type ) range
 		"
 		let prototyp  = substitute( prototyp, '^template\s*<\s*class \w\+\s*>\s*', "", "" )
 		"
-		let idx 		= stridx( prototyp, '(' )								    		" start of the parameter list
-		let head   	= strpart( prototyp, 0, idx )
+		let idx     = stridx( prototyp, '(' )								    		" start of the parameter list
+		let head    = strpart( prototyp, 0, idx )
 		let parlist = strpart( prototyp, idx )
 		"
 		" remove the scope resolution operator
 		"
-		let	template_id	= '\h\w*\s*<[^>]\+>'
-		let	rgx2				= '\('.template_id.'\s*::\s*\)*\([~A-Za-z]\w*\|operator.\+\)\s*$'
-		let idx 				= match( head, rgx2 )								    		" start of the function name
-		let returntype	= strpart( head, 0, idx )
-		let fctname	  	= strpart( head, idx )
+		let template_id = '\h\w*\s*\(<[^>]\+>\)\?'
+		let rgx2        = '\('.template_id.'\s*::\s*\)*\([~]\?\h\w*\|operator.\+\)\s*$'
+		let idx         = match( head, rgx2 )                                           " start of the function name
+		let returntype  = strpart( head, 0, idx )
+		let fctname     = strpart( head, idx )
 
 		let resret	= matchstr( returntype, '\('.template_id.'\s*::\s*\)*'.template_id )
 		let resret	= substitute( resret, '\s\+', '', 'g' )
@@ -2193,26 +2206,72 @@ endfunction    " ----------  end of function C#XtermSize ----------
 
 let s:C_MakeCmdLineArgs   	= ''   " command line arguments for Run-make; initially empty
 let s:C_MakeExecutableToRun	= ''
+let s:C_Makefile			= ''
 "
+"------------------------------------------------------------------------------
+"  C#ChooseMakefile : choose a makefile       {{{1
+"------------------------------------------------------------------------------
+function! C#ChooseMakefile ()
+	let s:C_Makefile	= ''
+	let mkfile	= findfile( "Makefile", ".;" )    " try to find a Makefile
+	if mkfile == ''
+    let mkfile  = findfile( "makefile", ".;" )  " try to find a makefile
+	endif
+	if mkfile == ''
+		let mkfile	= getcwd()
+	endif
+	let	s:C_Makefile	= C#Input ( "choose a Makefile: ", mkfile, "file" )
+	if  s:MSWIN
+		let	s:C_Makefile	= substitute( s:C_Makefile, '\\ ', ' ', 'g' )
+	endif
+endfunction    " ----------  end of function C#ChooseMakefile  ----------
+"
+"
+"------------------------------------------------------------------------------
+"  C#Make : run make       {{{1
+"------------------------------------------------------------------------------
 function! C#Make()
 	exe	":cclose"
 	" update : write source file if necessary
 	exe	":update"
 	" run make
-  exe ":compiler " . s:C_VimCompilerName
-	let makeprg_saved	= '"'.&makeprg.'"'
-	exe		"setlocal makeprg=make"
-	exe	":make ".s:C_MakeCmdLineArgs
-	exe	"setlocal makeprg=".makeprg_saved
+    "
+	if s:C_Makefile == ''
+		exe	":make ".s:C_MakeCmdLineArgs
+	else
+		exe	':lchdir  '.fnamemodify( s:C_Makefile, ":p:h" )
+		if  s:MSWIN
+			exe	':make -f "'.s:C_Makefile.'" '.s:C_MakeCmdLineArgs
+		else
+			exe	':make -f '.s:C_Makefile.' '.s:C_MakeCmdLineArgs
+		endif
+		exe	":lchdir -"
+	endif
 	exe	":botright cwindow"
 	"
 endfunction    " ----------  end of function C#Make ----------
 "
+"------------------------------------------------------------------------------
+"  C#MakeClean : run 'make clean'       {{{1
+"------------------------------------------------------------------------------
 function! C#MakeClean()
 	" run make clean
-	exe		":!make clean"
+	if s:C_Makefile == ''
+		exe	":!make clean"
+	else
+		exe	':lchdir  '.fnamemodify( s:C_Makefile, ":p:h" )
+		if  s:MSWIN
+			exe	':!make -f "'.s:C_Makefile.'" clean'
+		else
+			exe	':!make -f '.s:C_Makefile.' clean'
+		endif
+		exe	":lchdir -"
+	endif
 endfunction    " ----------  end of function C#MakeClean ----------
 
+"------------------------------------------------------------------------------
+"  C#MakeArguments : get make command line arguments       {{{1
+"------------------------------------------------------------------------------
 function! C#MakeArguments ()
 	let	s:C_MakeCmdLineArgs= C#Input( 'make command line arguments : ', s:C_MakeCmdLineArgs, 'file' )
 endfunction    " ----------  end of function C#MakeArguments ----------
@@ -2607,7 +2666,6 @@ endfunction		" ---------- end of function  C#Help  ----------
 "
 "------------------------------------------------------------------------------
 "  remove <backspace><any character> in CYGWIN man(1) output   {{{1
-"  remove           _<any character> in CYGWIN man(1) output   {{{1
 "------------------------------------------------------------------------------
 "
 function! s:C_RemoveSpecialCharacters ( )
@@ -3719,10 +3777,11 @@ function! C#CleanDirNameList ( list )
 	return result
 endfunction    " ----------  end of function C#CleanDirNameList  ----------
 
-let	s:C_StandardLibsClean			= C#CleanDirNameList( s:C_StandardLibs )
-let	s:C_C99LibsClean					= C#CleanDirNameList( s:C_C99Libs )
-let	s:Cpp_StandardLibsClean		= C#CleanDirNameList( s:Cpp_StandardLibs )
-let	s:Cpp_CStandardLibsClean	= C#CleanDirNameList( s:Cpp_CStandardLibs )
+let s:C_StandardLibsClean    = C#CleanDirNameList( s:C_StandardLibs )
+let s:C_C99LibsClean         = C#CleanDirNameList( s:C_C99Libs )
+let s:Cpp_StandardLibsClean  = C#CleanDirNameList( s:Cpp_StandardLibs )
+let s:Cpp_CStandardLibsClean = C#CleanDirNameList( s:Cpp_CStandardLibs )
+let s:Cpp_IosFlagBitsClean   = C#CleanDirNameList( s:Cpp_IosFlagBits )
 
 "-------------------------------------------------------------------------------
 " callback functions used in the filetype plugin ftplugin/c.vim
@@ -3753,6 +3812,17 @@ function! C#CppCLibraryIncludesInsert ( arg )
 	call C#IncludesInsert ( a:arg, s:Cpp_CStandardLibsClean )
 endfunction    " ----------  end of function C#CppCLibraryIncludesInsert
 
+function! C#FlagBitsInsert ( arg, List )
+	if index( a:List, a:arg ) >= 0
+		exe 'normal i'.a:arg
+	else
+		echomsg "entry '".a:arg."' does not exist"
+	endif
+endfunction    " ----------  end of function C#FlagBitsInsert
+
+function! C#CppIOSFlagBitsInsert ( arg )
+	call C#FlagBitsInsert ( a:arg, s:Cpp_IosFlagBitsClean )
+endfunction    " ----------  end of function C#CppCLibraryIncludesInsert
 "-------------------------------------------------------------------------------
 " callback functions used in the filetype plugin ftplugin/c.vim
 " custom completion
@@ -3789,6 +3859,9 @@ function!	C#CppCLibraryIncludesList ( ArgLead, CmdLine, CursorPos )
 	return C#IncludesList ( a:ArgLead, a:CmdLine, a:CursorPos, s:Cpp_CStandardLibsClean )
 endfunction    " ----------  end of function C#CppCLibraryIncludesList  ----------
 
+function!	C#CppIOSFlagBitsList ( ArgLead, CmdLine, CursorPos )
+	return C#IncludesList ( a:ArgLead, a:CmdLine, a:CursorPos, s:Cpp_IosFlagBitsClean )
+endfunction    " ----------  end of function C#CppCLibraryIncludesList  ----------
 ""------------------------------------------------------------------------------
 ""  show / hide the c-support menus
 ""  define key mappings (gVim only)
@@ -3865,3 +3938,66 @@ endfunction    " ----------  end of function C#CppCLibraryIncludesList  --------
 ""
 ""=====================================================================================
 "" vim: tabstop=2 shiftwidth=2 foldmethod=marker
+
+"============================================================================"
+"                           New function by Ben Wu                           "
+"============================================================================"
+"   Cpp : Output Manipulator                                   {{{1
+"-------------------------------------------------------------------------------
+let s:OutputManipulator = { 
+      \ 'boolalpha'    : 'output-manipulator-boolalpha',
+      \ 'dec'          : 'output-manipulator-dec',
+      \ 'endl'         : 'output-manipulator-endl',
+      \ 'fixed'        : 'output-manipulator-fixed',
+      \ 'flush'        : 'output-manipulator-flush',
+      \ 'hex'          : 'output-manipulator-hex',
+      \ 'internal'     : 'output-manipulator-internal',
+      \ 'left'         : 'output-manipulator-left',
+      \ 'oct'          : 'output-manipulator-oct',
+      \ 'right'        : 'output-manipulator-right',
+      \ 'scientific'   : 'output-manipulator-scientifi',
+      \ 'setbase'      : 'output-manipulator-setbase',
+      \ 'setfill'      : 'output-manipulator-setfill',
+      \ 'setiosflags'  : 'output-manipulator-setiosfla',
+      \ 'setprecision' : 'output-manipulator-setprecis',
+      \ 'setw'         : 'output-manipulator-setw',
+      \ 'showbase'     : 'output-manipulator-showbase',
+      \ 'showpoint'    : 'output-manipulator-showpoint',
+      \ 'showpos'      : 'output-manipulator-showpos',
+      \ 'uppercase'    : 'output-manipulator-uppercase',
+	\ }
+
+function!	C#OutputManipulatorList ( ArgLead, CmdLine, CursorPos )
+	return filter( copy( sort(keys( s:OutputManipulator)) ), 'v:val =~ "\\<'.a:ArgLead.'\\w*"' )
+endfunction    " ----------  end of function C#OutputManipulatorList  ----------
+
+function! C#OutputManipulatorListInsert ( arg )
+	if has_key( s:OutputManipulator, a:arg )
+		call C#InsertTemplate( 'cpp.'.s:OutputManipulator[a:arg] )
+	else
+		echomsg "entry '".a:arg."' does not exist"
+	endif
+endfunction    " ----------  end of function C#SpecialCommentListInsert  ----------
+"   Cpp : RTTI                                                     {{{1
+"-------------------------------------------------------------------------------
+"
+
+let s:RTTI = { 
+      \ 'typeid'           : 'rtti-typeid',
+      \ 'static_cast'      : 'rtti-static-cast',
+      \ 'const_cast'       : 'rtti-const-cast',
+      \ 'reinterpret_cast' : 'rtti-reinterpret-cast' ,
+      \ 'dynamic_cast'     : 'rtti-dynamic-cast',
+	\ }
+
+function!	C#RTTIList ( ArgLead, CmdLine, CursorPos )
+	return filter( copy( sort(keys( s:RTTI)) ), 'v:val =~ "\\<'.a:ArgLead.'\\w*"' )
+endfunction    " ----------  end of function C#RTTIList  ----------
+
+function! C#RTTIListInsert ( arg )
+	if has_key( s:RTTI, a:arg )
+		call C#InsertTemplate( 'cpp.'.s:RTTI[a:arg] )
+	else
+		echomsg "entry '".a:arg."' does not exist"
+	endif
+endfunction    " ----------  end of function C#SpecialCommentListInsert  ----------

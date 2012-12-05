@@ -115,7 +115,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['brightred', 'darkestred', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['gundo:static_str.buffer', 'command_t:raw.line'], {
+	\ Pl#Hi#Segments(['gundo:static_str.buffer', 'command_t:raw.line', 'calendar:datetime'], {
 		\ 'n': ['white', 'darkred'],
 		\ 'N': ['brightred', 'darkestred'],
 		\ }),
@@ -130,7 +130,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['mediumgreen', 'darkestgreen', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer', 'calendar:datetime'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer'], {
 		\ 'n': ['brightgreen', 'darkgreen'],
 		\ 'N': ['mediumgreen', 'darkestgreen'],
 		\ }),
@@ -163,4 +163,9 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 	\ Pl#Hi#Segments(['ctrlp:SPLIT'], {
 		\ 'n': ['white', 'darkestpurple'],
 		\ }),
+    \
+    \ Pl#Hi#Segments(['vimim'], {
+        \ 'n': ['white', 'darkestpurple'],
+        \ 'i': ['white', 'darkestpurple'],
+        \ }),
 	\ ])

@@ -14,8 +14,7 @@
 [*] Speeddating: Add chinese support for increasing
 
 [*] 农历 needs further improvments for 节气
-
-[*] In help file, map q to close the help window
+[*] Add support of weather to the calendar plugin
 
 [*] Tagbar, display the current tag based on whether the function is inside or out
 
@@ -24,8 +23,6 @@ and put it in a temp buffer. After the user edited the command, then a map can
 send the command to execute for the main file
 
 [*] match va% doesnt work!
-
-[*] Add powerline support for vimim
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
@@ -45,7 +42,6 @@ g j k q x y z
 011.928  011.135: sourcing /home/benwu/.vim/bundle/ColorSamplerPack/colors/harlequin.vim
 011.875  009.978: sourcing /home/benwu/.vim/bundle/XPtemplate/ftplugin/_common/common.xpt.vim
 010.701  010.701: sourcing /home/benwu/.vim/plugin/showmarks.vim
-010.589  007.693: sourcing /home/benwu/.vim/syntax/cpp.vim
 009.636  000.656: sourcing /home/benwu/.vim/bundle/XPtemplate/plugin/xpt.plugin.highlight.vim
 009.036  009.036: sourcing /home/benwu/.vim/bundle/VimIM/plugin/vimim.vim
 008.980  006.252: sourcing /home/benwu/.vim/bundle/XPtemplate/plugin/xptemplate.vim

@@ -1,57 +1,60 @@
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $
 == cpp.cin ==
-std::cin	>> <CURSOR>;
+std::cin >> <CURSOR>;
 $
 == cpp.cout ==
-std::cout<< <CURSOR> << std::endl;
+std::cout << <CURSOR> << std::endl;
 == cpp.debug ==
 std::cout<<"Run to \033[0;31m"<<__func__<<"\033[0m at \033[1;36m"<< __FILE__<<"\033[0m, line \033[0;34m"<< __LINE__<<"\033[0m"<< std::endl; <CURSOR>
 $
+== cpp.cin-operator == insert ==
+"<CURSOR>" >> <-CURSOR->
+$
 == cpp.cout-operator == insert ==
-<< "<CURSOR>" 
+<< "<CURSOR>" <-CURSOR->
 $
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.output-manipulator-boolalpha       == insert ==
-<< boolalpha <CURSOR>
+<< std::boolalpha <CURSOR>
 == cpp.output-manipulator-dec             == insert ==
-<< dec <CURSOR>
+<< std::dec <CURSOR>
 == cpp.output-manipulator-endl            == insert ==
-<< endl <CURSOR>
+<< std::endl <CURSOR>
 == cpp.output-manipulator-fixed           == insert ==
-<< fixed <CURSOR>
+<< std::fixed <CURSOR>
 == cpp.output-manipulator-flush           == insert ==
-<< flush <CURSOR>
+<< std::flush <CURSOR>
 == cpp.output-manipulator-hex             == insert ==
-<< hex <CURSOR>
+<< std::hex <CURSOR>
 == cpp.output-manipulator-internal        == insert ==
-<< internal <CURSOR>
+<< std::internal <CURSOR>
 == cpp.output-manipulator-left            == insert ==
-<< left <CURSOR>
+<< std::left <CURSOR>
 == cpp.output-manipulator-oct             == insert ==
-<< oct <CURSOR>
+<< std::oct <CURSOR>
 == cpp.output-manipulator-right           == insert ==
-<< right <CURSOR>
+<< std::right <CURSOR>
 == cpp.output-manipulator-scientific      == insert ==
-<< scientific <CURSOR>
+<< std::scientific <CURSOR>
 == cpp.output-manipulator-setbase         == insert ==
-<< setbase(10<CURSOR>) 
+<< std::setbase(10<CURSOR>) 
 == cpp.output-manipulator-setfill         == insert ==
-<< setfill(<CURSOR>) 
+<< std::setfill(<CURSOR>) 
 == cpp.output-manipulator-setiosflag      == insert ==
-<< setiosflags(<CURSOR>) 
+<< std::setiosflags(<CURSOR>) 
 == cpp.output-manipulator-setprecision    == insert ==
-<< setprecision(6<CURSOR>) 
+<< std::setprecision(6<CURSOR>) 
 == cpp.output-manipulator-setw            == insert ==
-<< setw(0<CURSOR>) 
+<< std::setw(0<CURSOR>) 
 == cpp.output-manipulator-showbase        == insert ==
-<< showbase <CURSOR>
+<< std::showbase <CURSOR>
 == cpp.output-manipulator-showpoint       == insert ==
-<< showpoint <CURSOR>
+<< std::showpoint <CURSOR>
 == cpp.output-manipulator-showpos         == insert ==
-<< showpos <CURSOR>
+<< std::showpos <CURSOR>
 == cpp.output-manipulator-uppercase       == insert ==
-<< uppercase <CURSOR>
+<< std::uppercase <CURSOR>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.method-implementation ==
 void<CURSOR>
@@ -439,14 +442,14 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 typeid(<CURSOR><SPLIT>)
 $
 == cpp.rtti-static-cast == insert ==
-static_cast<>(<CURSOR><SPLIT>)
+static_cast<<CURSOR>>(<-SPLIT->)
 $
 == cpp.rtti-const-cast == insert ==
-const_cast<>(<CURSOR><SPLIT>)
+const_cast<<CURSOR>>(<-SPLIT->)
 $
 == cpp.rtti-reinterpret-cast == insert ==
-reinterpret_cast<>(<CURSOR><SPLIT>)
+reinterpret_cast<<CURSOR>>(<-SPLIT->)
 $
 == cpp.rtti-dynamic-cast == insert ==
-dynamic_cast<>(<CURSOR><SPLIT>)
+dynamic_cast<<CURSOR>>(<-SPLIT->)
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

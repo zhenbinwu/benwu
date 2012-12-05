@@ -83,7 +83,7 @@ function s:bookmarkHere(word)
     call fuf#echoWarning('Can''t bookmark this buffer.')
     return
   endif
-  let temp   = (a:word        = ~# '\S' ? substitute(a:word, '\n', ' ', 'g')
+  let temp   = (a:word        =~# '\S' ? substitute(a:word, '\n', ' ', 'g')
         \                         : pathshorten(expand('%:p:~')) . '|' . line('.') . '| ')
   let length = 75 - len(temp)
         "\   'word' : (a:word =~# '\S' ? substitute(a:word, '\n', ' ', 'g')

@@ -49,3 +49,9 @@ XSET class|post=S(V(), '.*[^:]', '&::', '')
 
 XPT << hint=<<""
 << "`content^" `cursor^
+
+XPT bf wrap " BOOST_FOREACH
+BOOST_FOREACH(`content^, `sequence^)
+{
+    `cursor^
+}
