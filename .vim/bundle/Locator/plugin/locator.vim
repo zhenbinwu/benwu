@@ -18,10 +18,6 @@
 "  DATA
 " **********************************************************************************
 
-
-         "\        'get_end__eval' : 'call search("\\v\\{\\{\\{", "cW") | normal %',
-                  "\        'get_end__eval' : 'let _iTmp = foldclosedend(".") | if _iTmp == -1 | normal! ]z | else | exe "normal "._iTmp."gg" | endif | unlet _iTmp ',
-
 let s:dItem_fold = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
@@ -51,8 +47,8 @@ let s:dItem_java_class = {
 let s:dItem_C_func = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
-         \        'start_regexp' : '\v^(\s*([a-z]))*\s*[_a-zA-Z0-9*.\[\]:<>]+[ \t\n]+[_a-zA-Z0-9*:]+[ \t\n]*\([^{]+[ \t\n]*\{',
-         \        'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
+         \    'start_regexp' : '\v^(\s*template\s*<\s*class\s*\w\+\s*>\s*)=[ \t\n]=(\s*([a-z]))*\s*[_a-zA-Z0-9*.\[\]:<>&]+[ \t\n]+[_a-zA-Z0-9*:<>&]+[ \t\n]*\A*[ \t\n]*\([^{]+[ \t\n]*\{',
+         \   'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
          \     },
          \     'echo_type'   : 'func',
          \     'echo_data' : {
@@ -294,26 +290,49 @@ endfunction
 
 function! Locator_EchoItem_C_Func(iLineNum)
    "call <SID>SetHL("WarningMsg")
-   let sLine = getline(a:iLineNum)
+   let sLine = ''
+   let Line = a:iLineNum
+   while Line < searchpos("\\v\\{", "bcW")[0]
+     let sLine .= substitute(getline(Line), '\s*$', ' ', '')
+     let Line = Line + 1
+   endwhile
 
-   let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)(\S+\s*)(\(.*)')
+   let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)(\S+\s*)(\(.*\))(\s*const\s*){0,1}')
 
    if len(myMatch) > 0
-      if myMatch[3] =~ '\:\:'
+      if myMatch[3] =~ '\:\:' || myMatch[2] =~ '\:\:' 
          " C++ function-member
-         let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)([^:]+\s*)(\:\:\s*){0,1}(\S+\s*){0,1}(\(.*)')
+         let myMatch = matchlist(sLine, '\v(\s*)([0-9A-Za-z_&<>]+\s)([^:]+\s*)(\:\:\s*){0,1}(\S+\s*){0,1}(\W*\s*){0,1}(\(.*\))(\s*const\s*){0,1}')
 
          if len(myMatch) > 0
-            call <SID>SetHL(g:locator_hl_func_the_rest)
-            echon myMatch[2]
+            let comma = 0
+            for com in range(1, len(myMatch))
+              if myMatch[com] ==# '::'
+                let comma = com
+                break
+              endif
+            endfor
+            let com = comma
+            call <SID>SetHL(g:locator_hl_access_mode_section)
+            let t = eval(com - 2)
+            echon myMatch[t]
             call <SID>SetHL(g:locator_hl_class)
-            echon myMatch[3]
+            let t = eval(com - 1)
+            echon myMatch[t]
             call <SID>SetHL(g:locator_hl_func_the_rest)
-            echon myMatch[4]
+            echon myMatch[com]
             call <SID>SetHL(g:locator_hl_func_name)
-            echon myMatch[5]
+            let t = eval(com + 1)
+            echon myMatch[t]
+            call <SID>SetHL(g:locator_hl_access_mode_section)
+            let t = eval(com + 2)
+            echon myMatch[t]
             call <SID>SetHL(g:locator_hl_func_the_rest)
-            echon myMatch[6]
+            let t = eval(com + 3)
+            echon myMatch[t]
+            call <SID>SetHL(g:locator_hl_section)
+            let t = eval(com + 4)
+            echon myMatch[t]
             call <SID>SetHL("None")
 
          endif
@@ -325,6 +344,8 @@ function! Locator_EchoItem_C_Func(iLineNum)
          echon myMatch[3]
          call <SID>SetHL(g:locator_hl_func_the_rest)
          echon myMatch[4]
+         call <SID>SetHL(g:locator_hl_section)
+         echon myMatch[5]
          call <SID>SetHL("None")
 
       endif
@@ -1035,7 +1056,7 @@ if !exists('g:locator_hl_section')
 endif
 
 if !exists('g:locator_hl_access_mode_section')
-   let g:locator_hl_access_mode_section = "Folded"
+   let g:locator_hl_access_mode_section = "Type"
 endif
 
 if !exists('g:locator_disable_mappings')

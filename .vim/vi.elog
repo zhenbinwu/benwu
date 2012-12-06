@@ -1,8 +1,5 @@
 [h2]Vi problem I need to fixed:[/h2]
 [list] 
-[*] Alternative: shuold be further improve to search directory in three levels,
-  up, current and down. Also it would be nice to have WHAM style support
-
 [*] AutoMake: Clear up the code and add the final version to git 
 
 [*] Vimgdb: How to interact with the debugging program
@@ -23,10 +20,22 @@ and put it in a temp buffer. After the user edited the command, then a map can
 send the command to execute for the main file
 
 [*] match va% doesnt work!
+
+[*] Locator, add support for template functions
+reconigz template < class T >
+[code] 
+template < class T >
+wod<T>::wod ()
+{
+
+}  // -----  end of constructor of template class wod  -----
+[/code]
+
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
-<leader>: g, h, q, u, x, z
+<leader>: g, u, x, z
+go gr gz
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z

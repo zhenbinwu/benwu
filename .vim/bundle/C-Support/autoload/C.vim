@@ -1719,7 +1719,7 @@ function! C#ProtoPick( type ) range
 		"
 		" remove the scope resolution operator
 		"
-		let template_id = '\h\w*\s*\(<[^>]\+>\)\?'
+        let template_id = '\h\w*\s*\(<[^>]\+>\)\?'
 		let rgx2        = '\('.template_id.'\s*::\s*\)*\([~]\?\h\w*\|operator.\+\)\s*$'
 		let idx         = match( head, rgx2 )                                           " start of the function name
 		let returntype  = strpart( head, 0, idx )
@@ -1731,7 +1731,8 @@ function! C#ProtoPick( type ) range
 		let resfct	= matchstr( fctname   , '\('.template_id.'\s*::\s*\)*'.template_id )
 		let resfct	= substitute( resfct, '\s\+', '', 'g' )
 
-		if  !empty(resret) && match( resfct, resret.'$' ) >= 0
+
+        if  !empty(resret)
 			"-------------------------------------------------------------------------------
 			" remove scope resolution from the return type (keep 'std::')
 			"-------------------------------------------------------------------------------

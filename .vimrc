@@ -237,7 +237,6 @@ vnoremap <silent> # :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
 nnoremap <expr>   gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 
@@ -248,7 +247,7 @@ set foldmethod=marker
 " Map space to / (search) and c-space to ? (backgwards search)
 map <tab> :tabnext <ESC>
 map <silent> <leader><cr> :noh<cr>
-map <silent> <leader>fo :set foldmethod=syntax<CR>
+map <silent> <leader>z :set foldmethod=syntax<CR>
   		
 
 " Smart way to move btw. windows
@@ -275,7 +274,6 @@ nnoremap <leader>p :set invpaste paste?<CR>i
 """"""""""""""""""""""""""""""
 " Always show the statusline
 set laststatus=2
-"set statusline=%<\ \[%n:%Y]%{fugitive#statusline()}\ %f%m%r%h%w%q\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -676,15 +674,30 @@ nnoremap <silent> gno :FufDirWithFullCwd<CR>
 " Remove the Windows ^M - when the encodings gets messed up
 "noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-"""""""""""""""""''
-" Alternate 
-"""""""""""""""""""""""'
-let g:alternateSearchPath         = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../,
-      \sfr:./source,sfr:./src,sfr:./include,sfr:./inc' 
-let g:alternateNoDefaultAlternate = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Alternate 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:alternateSearchPath         = 'sfr:../,'
+let g:alternateSearchPath        .= 'sfr:src,sfr:inc,reg:/inc/src/g/,reg:/src/inc/g/,'
+let g:alternateSearchPath        .= 'sfr:source,sfr:include,reg:/include/source/g/,reg:/source/include/g/'
+let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
-nmap <Leader>a :A<CR>
-imap <Leader>a <ESC>:A<CR>
+nmap <Leader>aa :A<CR>
+nmap <Leader>as :AS<CR>
+nmap <Leader>av :AV<CR>
+nmap <Leader>at :AT<CR>
+nmap <Leader>ha :IH<CR>
+nmap <Leader>hs :IHS<CR>
+nmap <Leader>hv :IHV<CR>
+nmap <Leader>ht :IHT<CR>
+imap <Leader>aa <ESC>:w<CR>:A<CR>
+imap <Leader>as <ESC>:w<CR>:AS<CR>
+imap <Leader>av <ESC>:w<CR>:AV<CR>
+imap <Leader>at <ESC>:w<CR>:AT<CR>
+imap <Leader>ha <ESC>:w<CR>:IH<CR>
+imap <Leader>hs <ESC>:w<CR>:IHS<CR>
+imap <Leader>hv <ESC>:w<CR>:IHV<CR>
+imap <Leader>ht <ESC>:w<CR>:IHT<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -740,7 +753,7 @@ endfunction "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:DirDiffExcludes   = "CVS, objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
+let g:DirDiffExcludes   = "CVS,objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
 let g:DirDiffIgnore     = "Id:,Revision:,Date:"
 let g:DirDiffWindowSize = 14
 
