@@ -279,7 +279,7 @@ set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Abbrevs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iab xdate <c-r>=strftime("%d/%m/%Y %H:%M:%S")<cr>
 command! -nargs=* Q q!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -765,8 +765,8 @@ autocmd filetype python set omnifunc=pythoncomplete#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Inccomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:inccomplete_addclosebracket='no'
-let g:inccomplete_appendslash = 1
+let g:inccomplete_addclosebracket = 'no'
+let g:inccomplete_appendslash     = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion

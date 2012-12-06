@@ -3,7 +3,7 @@
 " Description: Plugin that enables relative numbers for pending operation.
 " Last Modified: Sep 12, 2012
 
-if exists('g:loaded_relops') || v:version <= 703 | finish | endif
+if exists('g:loaded_relops') || v:version < 703 | finish | endif
 let g:loaded_relops = 1
 
 if !exists('g:relops_check_for_nu')
