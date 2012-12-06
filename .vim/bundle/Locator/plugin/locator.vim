@@ -44,6 +44,19 @@ let s:dItem_java_class = {
          \     'flags'   : 'C',
          \  }
 
+let s:dItem_Cpp_class = {
+         \     'detect_type' : 'matchable',
+         \     'detect_data' : {
+         \        'start_regexp'  : '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)?(\s*([a-z]))*\s*(class|interface)[ \t\n]+[_a-zA-Z0-9]+([ \t\n]*[a-zA-Z0-9_.,:])*[ \t\n]*\{',
+         \        'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
+         \     },
+         \     'echo_type'   : 'func',
+         \     'echo_data' : {
+         \        'func_name' : 'Locator_EchoItem_CppClass',
+         \     },
+         \     'flags'   : 'C',
+         \  }
+
 let s:dItem_C_func = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
@@ -192,7 +205,7 @@ let g:locator_items = {
          \        'items' : [
          \           {
          \              'name' : 'java_class',
-         \              'data' : s:dItem_java_class,
+         \              'data' : s:dItem_Cpp_class,
          \           },
          \           {
          \              'name' : 'func',
@@ -281,6 +294,33 @@ function! Locator_EchoItem_JavaClass(iLineNum)
    call <SID>SetHL(g:locator_hl_class)
    echon substitute(
             \     getline(a:iLineNum),
+            \     '\v\s*(.*)',
+            \     '\1',
+            \     ''
+            \  )
+   call <SID>SetHL("None")
+endfunction
+
+function! Locator_EchoItem_CppClass(iLineNum)
+   let sLine = ''
+   let Line = a:iLineNum
+   while Line < searchpos("\\v\\{", "bcW")[0]
+     let sLine .= substitute(getline(Line), '\s*$', ' ', '')
+     let Line = Line + 1
+   endwhile
+
+   if match(sLine, '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)') != -1
+     let temp = 1
+     let sLine = substitute(sLine,  '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)', '', '')
+   endif
+   if exists("temp") && temp == 1
+     call <SID>SetHL(g:locator_hl_template)
+     echon "\[T\]\ "
+   endif
+
+   call <SID>SetHL(g:locator_hl_class)
+   echon substitute(
+            \     sLine,
             \     '\v\s*(.*)',
             \     '\1',
             \     ''
@@ -382,8 +422,6 @@ function! Locator_EchoItem_Cpp_ConstrDestr(iLineNum)
    let myMatch = matchlist(sLine, '\v(\s*)(\S+\s*)(\:\:\s*)(\S+\s*)(\(.*)')
 
    if len(myMatch) > 0
-      "call <SID>SetHL(g:locator_hl_func_the_rest)
-      "echon myMatch[2]
       call <SID>SetHL(g:locator_hl_class)
       echon myMatch[2]
       call <SID>SetHL(g:locator_hl_func_the_rest)
