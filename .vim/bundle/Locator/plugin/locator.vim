@@ -47,7 +47,7 @@ let s:dItem_java_class = {
 let s:dItem_C_func = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
-         \    'start_regexp' : '\v^(\s*template\s*<\s*class\s*\w\+\s*>\s*)=[ \t\n]=(\s*([a-z]))*\s*[_a-zA-Z0-9*.\[\]:<>&]+[ \t\n]+[_a-zA-Z0-9*:<>&]+[ \t\n]*\A*[ \t\n]*\([^{]+[ \t\n]*\{',
+         \    'start_regexp' : '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)?(\s*([a-z]))*\s*[_a-zA-Z0-9*.\[\]:<>&]+[ \t\n]+[_a-zA-Z0-9*:<>&]+[ \t\n]*\A*[ \t\n]*\([^{]+[ \t\n]*\{',
          \   'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
          \     },
          \     'echo_type'   : 'func',
@@ -60,7 +60,7 @@ let s:dItem_C_func = {
 let s:dItem_Cpp_constr_destr = {
          \     'detect_type' : 'matchable',
          \     'detect_data' : {
-         \        'start_regexp' : '\v^\s*([a-zA-Z0-9_]+)[ \t\n]*\:\:[ \t\n]*\~{0,1}[ \t\n]*\1[ \t\n]*\(([^{;]|[\n])+[ \t\n]*\{',
+         \        'start_regexp' : '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)?\s*([a-zA-Z0-9_<>]+)[ \t\n]*\:\:[ \t\n]*\~{0,1}[ \t\n]*([a-zA-Z0-9_]+)[ \t\n]*\(([^{;]|[\n])+[ \t\n]*\{',
          \        'get_end__eval' : 'call search("\\v\\{", "cW") | normal %',
          \     },
          \     'echo_type'   : 'func',
@@ -297,6 +297,15 @@ function! Locator_EchoItem_C_Func(iLineNum)
      let Line = Line + 1
    endwhile
 
+   if match(sLine, '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)') != -1
+     let temp = 1
+     let sLine = substitute(sLine,  '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)', '', '')
+   endif
+   if exists("temp") && temp == 1
+     call <SID>SetHL(g:locator_hl_template)
+     echon "\[T\]\ "
+   endif
+
    let myMatch = matchlist(sLine, '\v(\s*)(.*\s+)(\S+\s*)(\(.*\))(\s*const\s*){0,1}')
 
    if len(myMatch) > 0
@@ -354,7 +363,21 @@ endfunction
 
 function! Locator_EchoItem_Cpp_ConstrDestr(iLineNum)
    "call <SID>SetHL("WarningMsg")
-   let sLine = getline(a:iLineNum)
+   let sLine = ''
+   let Line = a:iLineNum
+   while Line < searchpos("\\v\\{", "bcW")[0]
+     let sLine .= substitute(getline(Line), '\s*$', ' ', '')
+     let Line = Line + 1
+   endwhile
+
+   if match(sLine, '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)') != -1
+     let temp = 1
+     let sLine = substitute(sLine,  '\v^(\s*template\s*\<\s*(class)?\s*\w+\s*\>[ \t\n]*)', '', '')
+   endif
+   if exists("temp") && temp == 1
+     call <SID>SetHL(g:locator_hl_template)
+     echon "\[T\]\ "
+   endif
 
    let myMatch = matchlist(sLine, '\v(\s*)(\S+\s*)(\:\:\s*)(\S+\s*)(\(.*)')
 
@@ -1056,7 +1079,11 @@ if !exists('g:locator_hl_section')
 endif
 
 if !exists('g:locator_hl_access_mode_section')
-   let g:locator_hl_access_mode_section = "Type"
+   let g:locator_hl_access_mode_section = "Number"
+endif
+
+if !exists('g:locator_hl_template')
+  let g:locator_hl_template = "Statement"
 endif
 
 if !exists('g:locator_disable_mappings')

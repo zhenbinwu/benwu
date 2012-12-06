@@ -20,17 +20,6 @@ and put it in a temp buffer. After the user edited the command, then a map can
 send the command to execute for the main file
 
 [*] match va% doesnt work!
-
-[*] Locator, add support for template functions
-reconigz template < class T >
-[code] 
-template < class T >
-wod<T>::wod ()
-{
-
-}  // -----  end of constructor of template class wod  -----
-[/code]
-
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

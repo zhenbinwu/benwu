@@ -31,6 +31,7 @@ endif
                 
 let s:mappings = ['v',
                 \ 'V',
+                \ '<C-v>',
                 \ 'g?',
                 \ '>',
                 \ '<',
