@@ -181,7 +181,7 @@ map <F8> <Esc>:call QLstep(1)<CR>
 imap <F7> <Esc>:call QLstep(-1)<CR>
 imap <F8> <Esc>:call QLstep(1)<CR>
 
-function! HighlightRepeats() range
+function! HighlightRepeats() range"{{{
   let lineCounts = {}
   let lineNum = a:firstline
   while lineNum <= a:lastline
@@ -205,6 +205,33 @@ function! HighlightRepeats() range
     ll
     redraw!
   endif
-endfunction
+endfunction"}}}
 
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+
+function! s:OnlineDoc(word)"{{{
+  let s:wordUnderCursor = a:word
+  let s:ask = "What to google: " 
+  let s:string = input(s:ask, s:wordUnderCursor . " ")
+  let s:string = substitute(s:string, " ", "+", "g")
+  let s:string = substitute(s:string, "+*$", "", "g")
+
+  call s:OnlineWord(s:string)
+endfunction"}}}
+fun! s:OnlineWord(word) "{{{
+  let s:browser = "opera"
+  "let s:browser = "gnome-open"
+  "
+  let s:word = substitute(a:word, " ", "+", "g")
+  let s:word = substitute(s:word, "+*$", "", "g")
+  
+  let s:url = "http://www.google.com/search?q=" . s:word . "\""
+  let s:cmd ="silent ! " . s:browser . " \"" . s:url
+  execute s:cmd
+  redraw!
+endfunction "}}}
+
+nmap go :call <SID>OnlineWord(expand("<cword>"))<CR>
+vmap go :call <SID>OnlineWord(expand("<C-R>*"))<CR>
+nmap gO :call <SID>OnlineDoc(expand("<cword>"))<CR>
+vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>

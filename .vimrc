@@ -269,11 +269,13 @@ map <leader>d :cd %:p:h<cr>
 
 map <F9> :redraw!<cr>
 nnoremap <leader>p :set invpaste paste?<CR>i
+nnoremap <C-\><C-\> <tab>
 """"""""""""""""""""""""""""""
 " => Statusline
 """"""""""""""""""""""""""""""
 " Always show the statusline
 set laststatus=2
+set conceallevel=2
 set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -433,6 +435,11 @@ endif
 autocmd BufWinEnter * call PreviewMap()
 
 fun! PreviewMap() "{{{
+  "" Define local variable for all buffers
+  if exists("g:loaded_syntastic_plugin") && !exists("b:syntastic_enable")
+    let b:syntastic_enable = 0
+  endif
+
   if &pvw || &filetype == "help"
     if &pvw
       nnoremap <buffer> <silent> q :pclose<CR>
@@ -475,9 +482,8 @@ let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabRetainCompletionType = 2
 let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 let g:SuperTabRetainCompletionDuration = 'completion'
-""inoremap <expr> <CR>   pumvisible()?"\<C-Y>":"\<CR>"
-""inoremap <expr> <C-f>  pumvisible()?"\<PageDown>\<C-N><C-P>":"\<C-f>"
-""inoremap <expr> <C-U>  pumvisible()?"\<C-E>":"\<C-U>"
+inoremap <expr> <C-f>  pumvisible()?"\<PageDown>\<C-N><C-P>":"\<C-f>"
+inoremap <expr> <C-b>  pumvisible()?"\<PageUp>\<C-N><C-P>":"\<C-b>"
 au CursorMovedI,InsertLeave * if pumvisible()==0| silent! pclose |endif
 ""set completeopt-=preview
 set include="#include \\(<boost\\)\\@!"
@@ -917,11 +923,11 @@ fun! s:Syntastic_Toggle() "{{{
   if !exists("g:loaded_syntastic_plugin")
     finish
   endif
-  if g:syntastic_enable == 0
-    let g:syntastic_enable = 1
+  if b:syntastic_enable == 0
+    let b:syntastic_enable = 1
     echo "Syntastic Enabled!"
-  elseif g:syntastic_enable == 1
-    let g:syntastic_enable = 0
+  elseif b:syntastic_enable == 1
+    let b:syntastic_enable = 0
     echo "Syntastic Disabled!"
   endif
 endfunction "}}}

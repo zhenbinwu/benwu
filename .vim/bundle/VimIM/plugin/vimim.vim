@@ -50,7 +50,6 @@ elseif &compatible
 endif
 scriptencoding utf-8
 let g:vimim_profile = reltime()
-let g:vimim_powerline = ""
 let s:plugin = expand("<sfile>:p:h")
 
 function! s:vimim_initialize_debug()
@@ -535,7 +534,7 @@ let s:VimIM += [" ====  statusline       ==== {{{"]
 " =================================================
 
 function! s:vimim_set_title(title)
-    let g:vimim_powerline = a:title
+    let b:vimim_powerline = a:title
     "if &laststatus < 2
         "let &titlestring = a:title
         "redraw
@@ -2897,7 +2896,7 @@ function! s:vimim_restore_vimrc()
     let &titlestring = s:titlestring
     let &pumheight   = s:pumheights.saved
     let &timeoutlen  = s:timeoutlen   
-    let g:vimim_powerline = ""
+    let b:vimim_powerline = ""
 
     "" BenWu Remap
     for [key, value] in items(s:imap)

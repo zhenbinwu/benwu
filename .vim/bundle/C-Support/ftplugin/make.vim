@@ -18,10 +18,10 @@ let b:did_make_ftplugin = 1
 
  map    <buffer>  <silent>  <LocalLeader>rm         :call C#Make()<CR>
 imap    <buffer>  <silent>  <LocalLeader>rm    <C-C>:call C#Make()<CR>
- map    <buffer>  <silent>  <LocalLeader>rmc        :call C#MakeClean()<CR>
-imap    <buffer>  <silent>  <LocalLeader>rmc   <C-C>:call C#MakeClean()<CR>
- map    <buffer>  <silent>  <LocalLeader>rme        :call C#MakeExeToRun()<CR>
-imap    <buffer>  <silent>  <LocalLeader>rme   <C-C>:call C#MakeExeToRun()<CR>
- map    <buffer>  <silent>  <LocalLeader>rma        :call C#MakeArguments()<CR>
-imap    <buffer>  <silent>  <LocalLeader>rma   <C-C>:call C#MakeArguments()<CR>
+ map    <buffer>  <silent>  <LocalLeader>rn       :call C#MakeClean()<CR>
+imap    <buffer>  <silent>  <LocalLeader>rn   <C-C>:call C#MakeClean()<CR>
+ map    <buffer>  <silent>  <LocalLeader>re        :call C#MakeExeToRun()<CR>
+imap    <buffer>  <silent>  <LocalLeader>re   <C-C>:call C#MakeExeToRun()<CR>
+ map    <buffer>  <silent>  <LocalLeader>rg        :call C#MakeArguments()<CR>
+imap    <buffer>  <silent>  <LocalLeader>rg   <C-C>:call C#MakeArguments()<CR>
 

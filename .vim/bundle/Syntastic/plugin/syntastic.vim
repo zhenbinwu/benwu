@@ -85,10 +85,6 @@ if !exists("g:syntastic_loc_list_height")
     let g:syntastic_loc_list_height = 10
 endif
 
-if !exists("g:syntastic_enable")
-    let g:syntastic_enable = 0
-endif
-
 command! SyntasticToggleMode call s:ToggleMode()
 command! SyntasticCheck call s:UpdateErrors(0) <bar> redraw!
 command! Errors call s:ShowLocList()
@@ -115,7 +111,7 @@ function! s:UpdateErrors(auto_invoked)
         return
     endif
 
-    if !g:syntastic_enable
+    if exists("b:syntastic_enable") && !b:syntastic_enable
         call s:ClearLocList()
         call s:RefreshSigns()
         call setloclist(0, [])

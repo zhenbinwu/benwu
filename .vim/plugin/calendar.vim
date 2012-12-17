@@ -1099,6 +1099,11 @@ function! Calendar(...)
     silent put! =vdisplay1
   endif
 
+"============================================================================"
+"                           Call to Change weather                           "
+"============================================================================"
+  call GetWeather()
+
   setlocal nomodifiable
   " In case we've gotten here from insert mode (via <C-O>:Calendar<CR>)...
   stopinsert
@@ -1174,6 +1179,7 @@ function! Calendar(...)
     silent execute "normal! gg/\*\<cr>"
   endif
 
+  call WeatherSyn()
   return ''
 endfunction
 
@@ -1785,3 +1791,103 @@ function! s:ToggleCancelled()"{{{
         echo "not a task."
     endif
 endfunction"}}}
+
+"============================================================================"
+"                      Get the local weather from google                     "
+"============================================================================"
+"" 
+fun! GetWeather() "{{{
+  
+let s:weather_location = ''
+
+python << EOF
+import urllib2
+import vim
+from BeautifulSoup import BeautifulSoup
+
+def GetWeather():
+    agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3'
+    url = "http://www.google.com/search?hl=en&q=local+weather"
+    opener = urllib2.build_opener()
+    opener.addheaders = [('User-agent', agent)]
+    data = opener.open(url).read().decode('utf8')
+    
+    soup = BeautifulSoup(data)
+
+    ## Get the first search result
+    for li in soup.findAll('li', attrs={"class":"g"}):
+        tb = li.find('table')
+        break
+
+    out = [[3, 2],  [5, 1], [6, 1], [7, 1]]
+
+    weather = []
+    i = 1
+    for tr in tb.findAll('tr'):
+        j = 1
+        if i == 1:
+            weather.append(str(tr.findAll('b')[1]))
+            command = "let s:weather_location = \"" + str(tr.findAll('b')[1]) + "\""
+            vim.command(command)
+        for td in tr.findAll('td'):
+            if out.count([i, j]) != 0:
+                weather.append(td.text)
+            j += 1
+        i += 1
+
+    weather2 = []
+    for w in weather:
+        w = w.replace("<b>", "")
+        w = w.replace("</b>", "")
+        w = w.replace(u"\u200e", "")
+        w = w.replace(u"\xb0", "_._")
+        w = w.encode("ascii")
+        w = w.replace("_._", "°")
+        weather2.append(w)
+
+    weather2[0] = "City: " + weather2[0]
+    weather2[1] = "Temp: " + weather2[1]
+    weather2[2] = "Cond: " + weather2[2]
+
+    return weather2
+
+def ChangeCal(weather, caldir):
+    b = vim.current.buffer
+    if caldir == '1':
+        col = 150
+        empty = '|            '
+        b[3] +=  empty
+        for it in range(len(weather)):
+            b[it+4] +=  empty
+            b[it+4] +=  weather[it]
+
+    else:
+        b.append('\n')
+        b.append('\n')
+        b.append('\n')
+        for it in range(len(weather)):
+            b.append(weather[it])
+
+
+
+if __name__ == "__main__":
+    w = GetWeather()
+    caldir = vim.eval("b:CalendarDir")
+    ChangeCal(w, caldir)
+EOF
+
+endfunction "}}}
+
+fun! WeatherSyn() "{{{
+  
+  syn match CalLocation /City:.*$/hs=s+5
+  syn match CalTemp /Temp:.*$/hs=s+5
+  syn match CalCond /Cond:.*$/hs=s+5
+  syn match CalWind /Wind:.*$/hs=s+5
+  syn match CalHumidity /Humidity:.*$/hs=s+9
+  hi link CalLocation Identifier
+  hi link CalTemp Keyword
+  hi link CalCond Define
+  hi link CalWind Special
+  hi link CalHumidity Todo
+endfunction "}}}

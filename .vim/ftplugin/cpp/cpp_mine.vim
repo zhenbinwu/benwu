@@ -95,7 +95,7 @@ fun! SyntasticCppC() "{{{
   let sp = split(g:alternateSearchPath, ",")
   for pathsec in sp
     let pth = strpart(pathsec, 4)
-    if isdirectory("./".pth)
+    if isdirectory(expand('%:p:h'). "/" . pth)
       call add(s:paths, pth)
     endif
   endfor

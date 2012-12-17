@@ -11,7 +11,7 @@ let g:Powerline#Segments#segments = Pl#Segment#Init([
 		\ Pl#Segment#Create('flags.mod'   , '%M'),
 		\ Pl#Segment#Create('flags.type'  , '%H%W'),
 	\ ),
-    \ Pl#Segment#Create('vimim'           , '%{g:vimim_powerline}'),
+    \ Pl#Segment#Create('vimim'           , '%{exists("b:vimim_powerline") ? b:vimim_powerline : ""}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('filename'        , '%t'),
 	\ Pl#Segment#Create('filesize'        , '%{Powerline#Functions#GetFilesize()}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('pwd'             , '%{substitute(getcwd(), expand("$HOME"), "~", "g")}'),

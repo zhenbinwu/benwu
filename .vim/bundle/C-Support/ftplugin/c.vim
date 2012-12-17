@@ -471,9 +471,14 @@ endif
 "
  map    <buffer>  <silent>  <LocalLeader>hp         :call C#HelpCsupport()<CR>
 imap    <buffer>  <silent>  <LocalLeader>hp    <C-C>:call C#HelpCsupport()<CR>
- map    <buffer>  <silent>  <LocalLeader>hm         :call C#Help("m")<CR>
-imap    <buffer>  <silent>  <LocalLeader>hm    <C-C>:call C#Help("m")<CR>
+nmap    <buffer>  <silent>  <LocalLeader>hr   :call CRV#STLRefVim(expand("<cword>"))<CR>   
+vmap    <buffer>  <silent>  <LocalLeader>hr    y:call CRV#STLRefVim('<c-r>"')<CR>
 "
+vmap    <buffer>  <silent>  <LocalLeader>he   y:call CRV#StlRefVimExample('<c-r>"')<CR>
+nmap    <buffer>  <silent>  <LocalLeader>he   :call CRV#StlRefVimExample(expand("<cword>"))<CR>
+"
+map  <silent> <script> <Plug>StlRefVimAsk      :call CRV#STLRefVimAskForWord()<CR>
+nmap    <buffer>  <silent>  <LocalLeader>hm   <Plug>StlRefVimAsk
 "-------------------------------------------------------------------------------
 " additional mapping : complete a classical C comment: '/*' => '/* | */'
 "-------------------------------------------------------------------------------
