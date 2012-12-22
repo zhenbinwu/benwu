@@ -84,6 +84,7 @@
 "     > Powerline        ( V#beta      2012_11_22 )
 "     > Locator          ( V1.3        2012_11_25 )
 "     > Syntastic        ( V2.3.0      2012_11_25 )
+"     > Project          ( V1.4.1      2012_12_22 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -116,6 +117,7 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
+let maplocalleader = ","
 let g:mapleader = ","
 
 " Fast editing of the .vimrc
@@ -275,7 +277,6 @@ nnoremap <C-\><C-\> <tab>
 """"""""""""""""""""""""""""""
 " Always show the statusline
 set laststatus=2
-set conceallevel=2
 set statusline=%<\ \[%n:%Y]\ %f%m%r%h%w\ %=\ Line:%l\/%L\ Column:%c%V\ %P
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -904,7 +905,7 @@ nnoremap gk :SidewaysRight<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Powerline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:Powerline_theme = 'benwu'
+let g:Powerline_theme       = 'benwu'
 let g:Powerline_colorscheme = 'benwu'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -931,3 +932,9 @@ fun! s:Syntastic_Toggle() "{{{
     echo "Syntastic Disabled!"
   endif
 endfunction "}}}
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Project
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>x :Project<CR>

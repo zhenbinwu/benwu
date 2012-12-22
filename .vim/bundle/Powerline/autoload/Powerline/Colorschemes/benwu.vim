@@ -60,10 +60,23 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['gray9', 'gray4'],
 		\ }),
 	\
+	\ Pl#Hi#Segments(['project:project', 'project:projectN'], {
+		\ 'n': ['darkestgreen', 'brightgreen', ['bold']],
+		\ 'N': ['white', 'gray4', ['bold']],
+		\ 'i': ['white', 'darkestcyan', ['bold']],
+		\ }),
+	\
+	\
 	\ Pl#Hi#Segments(['fileinfo', 'filename', 'conqueterm:statusline'], {
 		\ 'n': ['white', 'gray4', ['bold']],
 		\ 'N': ['gray7', 'gray0', ['bold']],
 		\ 'i': ['white', 'darkestcyan', ['bold']],
+		\ }),
+	\
+	\ Pl#Hi#Segments(['filemod'], {
+		\ 'n': ['brightred', 'gray4', ['bold']],
+		\ 'N': ['mediumred', 'gray0', ['bold']],
+		\ 'i': ['brightred', 'darkestcyan', ['bold']],
 		\ }),
 	\
 	\ Pl#Hi#Segments(['fileinfo.filepath'], {

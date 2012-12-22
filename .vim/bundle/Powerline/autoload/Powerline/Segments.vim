@@ -13,6 +13,7 @@ let g:Powerline#Segments#segments = Pl#Segment#Init([
 	\ ),
     \ Pl#Segment#Create('vimim'           , '%{exists("b:vimim_powerline") ? b:vimim_powerline : ""}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('filename'        , '%t'),
+	\ Pl#Segment#Create('filemod'         , '%M'),
 	\ Pl#Segment#Create('filesize'        , '%{Powerline#Functions#GetFilesize()}', Pl#Segment#Modes('!N')),
 	\ Pl#Segment#Create('pwd'             , '%{substitute(getcwd(), expand("$HOME"), "~", "g")}'),
 	\ Pl#Segment#Create('static_str'      , '%%{"%s"}'),

@@ -136,5 +136,14 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
         \ , 'calendar:datetime'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
+	\ ),
+    \
+	\ Pl#Theme#Buffer('project'
+		\ , 'project:project'
+		\ , 'project:projectN'
+		\ , 'filemod'
+		\ , Pl#Segment#Truncate()
+		\ , Pl#Segment#Split()
+		\ , 'scrollpercent'
 	\ )
 \ )
