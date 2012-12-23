@@ -151,23 +151,23 @@ fun! QLstep(direction) "{{{
 endfunction "}}}
 
 fun! MapMake(output) "{{{
-  if exists("g:syntastic_enable") && g:syntastic_enable == 1
-    let g:syntastic_enable = 0
+  if exists("g:syntastic_enable") 
+    let syntastic_temp = g:syntastic_enable
+    if g:syntastic_enable == 1
+      let g:syntastic_enable = 0
+    endif
   endif
   w
   if a:output == 0
     silent make
-    normal <CR>
   elseif a:output == 1
     silent make %:r
-    normal <CR>
   endif
   cw
-  normal <CR>
-  if exists("g:syntastic_enable") && g:syntastic_enable == 0
-    let g:syntastic_enable = 1
+  cc
+  if exists("g:syntastic_enable") && exists("syntastic_temp")
+    let g:syntastic_enable = syntastic_temp
   endif
-  normal <CR>
   redraw!
 endfunction "}}}
 
@@ -180,6 +180,20 @@ map <F7> <Esc>:call QLstep(-1)<CR>
 map <F8> <Esc>:call QLstep(1)<CR>
 imap <F7> <Esc>:call QLstep(-1)<CR>
 imap <F8> <Esc>:call QLstep(1)<CR>
+
+"" Indicate weather the compiling is completed successfully!
+function! QfMakeConv()
+  let qflist_end = getqflist()[-1]['text']
+  for igndir in split(g:qflist_done, ", ")
+    if match(qflist_end, " ".igndir."$") != -1
+      let g:qflist_result = "Success"
+      break
+    endif
+  endfor
+endfunction
+
+au QuickFixCmdPre  make let g:qflist_result = ''
+au QuickFixCmdPost make call QfMakeConv()
 
 function! HighlightRepeats() range"{{{
   let lineCounts = {}

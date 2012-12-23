@@ -89,7 +89,8 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
     \ Pl#Theme#Buffer('ft_qf'
 		\ , 'filename'
         \ , Pl#Segment#Truncate()
-        \ , Pl#Segment#Split()
+		\ , Pl#Segment#Split()
+        \ , 'qfdone'
     \ ),
     \
 	\ Pl#Theme#Buffer('tagbar'

@@ -947,6 +947,6 @@ fun! ToggleProject() "{{{
 endfunction "}}}
 nmap <silent> <leader>x :call ToggleProject()<CR>
 let g:proj_flags='imstbLS' 
-let g:proj_igndir="doc, CVS, plugin"
+let g:proj_igndir="CVS, objects, obj, dict"
 let g:proj_filter="*.vim *.C *.cc *.hh"
 let g:proj_cdfile="GNUmakefile, makefile, Makefile"

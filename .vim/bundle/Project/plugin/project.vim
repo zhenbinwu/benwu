@@ -541,6 +541,9 @@ function! s:Project(filename) " <<<
     " s:CreateEntriesFromDir(recursive) <<<
     "   Prompts user for information and then calls s:DoEntryFromDir()
     function! s:CreateEntriesFromDir(recursive)
+        if &modifiable == 0
+          setlocal modifiable
+        endif
         " Save a mark for the current cursor position
         normal! mk
         let line=line('.')
@@ -621,8 +624,7 @@ function! s:Project(filename) " <<<
     "   with the contents of the directory.  Works recursively if recursive is 1.
     function! s:RefreshEntriesFromDir(recursive)
         if &modifiable == 0
-          echomsg "Please set modifiable!"
-          return
+          setlocal modifiable
         endif
 
         if foldlevel('.') == 0
@@ -702,9 +704,6 @@ function! s:Project(filename) " <<<
                 " We have reached a sub-fold. If we're doing recursive, then
                 " call this function again. If not, find the end of the fold.
                 if a:recursive == 1
-"============================================================================"
-"                    Some work need to go there ---- BenWu                   "
-"============================================================================"
                     call s:RefreshEntriesFromDir(1)
                     normal! ]zj
                 else
