@@ -833,6 +833,7 @@ let g:vimim_toggle = 'pinyin,sogou'
 " => Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <F10>  :TagbarToggle<CR>
+let g:tagbar_width = 30
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Align

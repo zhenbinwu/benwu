@@ -11,6 +11,7 @@ function! Powerline#Functions#project#GetProject() " {{{
     let pos = substitute(getline("."), '\v^[^A-Za-z0-9_]*([^=]+)=.*', '\1', '') . ":" . pos
   endwhile
 
+  exec "normal " . save_cursor[2] . '|'
   call setpos('.', save_cursor)
   let g:project_powerline=join(split(pos, ':', 1)[1:-2], ":")
   return g:project_powerline

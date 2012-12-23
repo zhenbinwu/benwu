@@ -19,9 +19,12 @@ let g:loaded_syntastic_plugin = 1
 
 let s:running_windows = has("win16") || has("win32") || has("win64")
 
-if !s:running_windows
-    let s:uname = system('uname')
-endif
+function! s:uname()
+    if !exists('s:uname')
+        let s:uname = system('uname')
+    endif
+    return s:uname
+endfunction
 
 if !exists("g:syntastic_enable_signs")
     let g:syntastic_enable_signs = 1
@@ -501,7 +504,7 @@ function! SyntasticMake(options)
     let old_shell = &shell
     let old_errorformat = &errorformat
 
-    if !s:running_windows && (s:uname !~ "FreeBSD")
+    if !s:running_windows && s:uname() !~ "FreeBSD"
         "this is a hack to stop the screen needing to be ':redraw'n when
         "when :lmake is run. Otherwise the screen flickers annoyingly
         let &shellpipe='&>'
@@ -525,7 +528,7 @@ function! SyntasticMake(options)
     let &shellpipe=old_shellpipe
     let &shell=old_shell
 
-    if !s:running_windows && s:uname =~ "FreeBSD"
+    if !s:running_windows && s:uname() =~ "FreeBSD"
         redraw!
     endif
 
