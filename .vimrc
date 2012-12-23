@@ -938,6 +938,15 @@ endfunction "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Project
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>x :Project<CR>
+fun! ToggleProject() "{{{
+  if !exists("g:proj_running")
+    Project
+  else
+    exec "bwipeout " . g:proj_running
+  endif
+endfunction "}}}
+nmap <silent> <leader>x :call ToggleProject()<CR>
+let g:proj_flags='imstbLS' 
 let g:proj_igndir="doc, CVS, plugin"
 let g:proj_filter="*.vim *.C *.cc *.hh"
+let g:proj_cdfile="GNUmakefile, makefile, Makefile"

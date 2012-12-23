@@ -501,6 +501,8 @@ function! s:Project(filename) " <<<
                 let dname = substitute(dirs,  '\(\( \|\f\|:\)*\).*', '\1', '')
                 let edname = escape(dname, ' ')
                 let dirs = substitute(dirs, '\( \|\f\|:\)*.\(.*\)', '\2', '')
+
+                "" Ignore directories by g:proj_igndir
                 let ignored = 0
                 for igndir in split(g:proj_igndir, ", ")
                   if dname == igndir
@@ -511,7 +513,18 @@ function! s:Project(filename) " <<<
                     let dcount=dcount-1
                     continue
                 endif
-                let line=s:GenerateEntry(1, line + 1, dname, a:absolute_dir.'/'.edname, edname, '', '', a:filter, a:foldlev+1, a:sort)
+
+                "" Control whether CD current directory by g:proj_cdfile
+                let cddir = ''
+                for cdfile in split(g:proj_cdfile, ", ")
+                  if filereadable(a:absolute_dir.'/'.edname.'/'.cdfile)
+                    let cddir = '.'
+                    break
+                  endif
+                endfor
+
+                "" Generate Entries
+                let line=s:GenerateEntry(1, line + 1, dname, a:absolute_dir.'/'.edname, edname, cddir, '', a:filter, a:foldlev+1, a:sort)
                 let dcount=dcount-1
             endwhile
         endif
@@ -867,6 +880,7 @@ function! s:Project(filename) " <<<
                 exec command
             endif
         endif
+        redraw!
     endfunction ">>>
     " s:ListSpawn(varnamesegment) <<<
     "   List external commands
@@ -1208,6 +1222,7 @@ function! s:Project(filename) " <<<
                 endif
             endif
         endif
+        redraw!
     endfunction ">>>
     if !exists("g:proj_running")
         " s:DoProjectOnly(void) <<<
@@ -1225,23 +1240,30 @@ function! s:Project(filename) " <<<
         endfunction
         " >>>
 
+        function! s:ExternalLaunch()
+          let fname=Project_GetFname(line('.'))
+          exec 'silent! !' . g:nerdtree_open_cmd . ' "'. fname .'"&'
+          redraw!
+        endfunction
+        " >>>
+        
         " Mappings <<<
         nnoremap <buffer> <silent> <Return>   \|:call <SID>DoFoldOrOpenEntry('', 'e')<CR>
         nnoremap <buffer> <silent> <S-Return> \|:call <SID>DoFoldOrOpenEntry('', 'sp')<CR>
         nnoremap <buffer> <silent> <C-Return> \|:call <SID>DoFoldOrOpenEntry('silent! only', 'e')<CR>
-        nnoremap <buffer> <silent> <LocalLeader>T \|:call <SID>DoFoldOrOpenEntry('', 'tabe')<CR>
+        nnoremap <buffer> <silent> gf         \|:call <SID>DoFoldOrOpenEntry('', 'tabe')<CR>
+        nnoremap <buffer> <silent> <LocalLeader>v \|:call <SID>DoFoldOrOpenEntry('', 'vsp')<CR>
         nmap     <buffer> <silent> <LocalLeader>s <S-Return>
         nnoremap <buffer> <silent> <LocalLeader>S \|:call <SID>LoadAllSplit(0, line('.'))<CR>
         nmap     <buffer> <silent> <LocalLeader>o <C-Return>
         nnoremap <buffer> <silent> <LocalLeader>i :echo <SID>RecursivelyConstructDirectives(line('.'))<CR>
-        nnoremap <buffer> <silent> <LocalLeader>I :echo Project_GetFname(line('.'))<CR>
+        nnoremap <buffer> <silent> <LocalLeader>h :echo Project_GetFname(line('.'))<CR>
         nmap     <buffer> <silent> <M-CR> <Return><C-W>p
-        nmap     <buffer> <silent> <LocalLeader>v <M-CR>
+        nmap     <buffer> <silent> <LocalLeader>z <M-CR>
         nnoremap <buffer> <silent> <LocalLeader>l \|:call <SID>LoadAll(0, line('.'))<CR>
         nnoremap <buffer> <silent> <LocalLeader>L \|:call <SID>LoadAll(1, line('.'))<CR>
-        nnoremap <buffer> <silent> <LocalLeader>w \|:call <SID>WipeAll(0, line('.'))<CR>
-        nnoremap <buffer> <silent> <LocalLeader>W \|:call <SID>WipeAll(1, line('.'))<CR>
-        nnoremap <buffer> <silent> <LocalLeader>W \|:call <SID>WipeAll(1, line('.'))<CR>
+        nnoremap <buffer> <silent> <LocalLeader>a \|:call <SID>WipeAll(0, line('.'))<CR>
+        nnoremap <buffer> <silent> <LocalLeader>A \|:call <SID>WipeAll(1, line('.'))<CR>
         nnoremap <buffer> <silent> <LocalLeader>g \|:call <SID>GrepAll(0, line('.'), "")<CR>
         nnoremap <buffer> <silent> <LocalLeader>G \|:call <SID>GrepAll(1, line('.'), "")<CR>
         nnoremap <buffer> <silent> <2-LeftMouse>   \|:call <SID>DoFoldOrOpenEntry('', 'e')<CR>
@@ -1259,8 +1281,10 @@ function! s:Project(filename) " <<<
         nmap     <buffer> <silent> q  <ESC>:q<CR>
         nnoremap <buffer> <silent> gj   \|:silent call <SID>MoveUp()<CR>
         nnoremap <buffer> <silent> gk   \|:silent call <SID>MoveDown()<CR>
-        nmap     <buffer> <silent> <LocalLeader><Up> <C-Up>
-        nmap     <buffer> <silent> <LocalLeader><Down> <C-Down>
+        nmap     <buffer> <silent> <LocalLeader><Up>   \|:silent call <SID>MoveUp()<CR>
+        nmap     <buffer> <silent> <LocalLeader><Down> \|:silent call <SID>MoveDown()<CR>
+        nnoremap <buffer> <silent> gb   \|:call <SID>ExternalLaunch()<CR>
+
         let k=1
         while k < 10
             exec 'nnoremap <buffer> <LocalLeader>'.k.'  \|:call <SID>Spawn('.k.')<CR>'
@@ -1277,8 +1301,8 @@ function! s:Project(filename) " <<<
         nnoremap <buffer> <silent> <LocalLeader>R :call <SID>RefreshEntriesFromDir(1)<CR>
         " For Windows users: same as \R
         nnoremap <buffer> <silent>           <F5> :call <SID>RefreshEntriesFromDir(1)<CR>
-        nnoremap <buffer> <silent> <LocalLeader>e :call <SID>OpenEntry(line('.'), '', '', 0)<CR>
-        nnoremap <buffer> <silent> <LocalLeader>E :call <SID>OpenEntry(line('.'), '', 'e', 1)<CR>
+        nnoremap <buffer> <silent> <LocalLeader>d :call <SID>OpenEntry(line('.'), '', '', 0)<CR>
+        nnoremap <buffer> <silent> <LocalLeader>x :call <SID>OpenEntry(line('.'), '', 'e', 1)<CR>
         nnoremap <buffer> <silent> <LocalLeader>m :call <SID>ToggleModifiable()<CR>
         " The :help command stomps on the Project Window.  Try to avoid that.
         " This is not perfect, but it is alot better than without the mappings.
@@ -1286,7 +1310,6 @@ function! s:Project(filename) " <<<
         nnoremap <buffer> <F1> :let g:proj_doinghelp = 1<CR><F1>
         " This is to avoid changing the buffer, but it is not fool-proof.
         nnoremap <buffer> <silent> <C-^> <Nop>
-        "nnoremap <script> <Plug>ProjectOnly :let lzsave=&lz<CR>:set lz<CR><C-W>o:Project<CR>:silent! wincmd p<CR>:let &lz=lzsave<CR>:unlet lzsave<CR>
         nnoremap <script> <Plug>ProjectOnly :call <SID>DoProjectOnly()<CR>
         if match(g:proj_flags, '\Cm') != -1
             if !hasmapto('<Plug>ProjectOnly')
