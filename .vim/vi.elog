@@ -26,8 +26,6 @@ send the command to execute for the main file
 
 [*] visual map & and g& so that the they works like in normal mode
 
-[*] Project plugin: get setting to exclude directories while loading files
-[*] Project plugin: define a global filters 
 [*] Project plugin: directory complete while creating project
 [*] Project plugin: make a script to generate project files more easily and
 combine it with the maketag script

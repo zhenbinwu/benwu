@@ -938,3 +938,5 @@ endfunction "}}}
 " => Project
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <silent> <leader>x :Project<CR>
+let g:proj_igndir="doc, CVS, plugin"
+let g:proj_filter="*.vim *.C *.cc *.hh"

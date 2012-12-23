@@ -26,7 +26,6 @@ function s:SetProj() "<<<
     endif
 
     execute "cd " . curdir
-    echo temp
     return temp
 endfunction ">>>
 
@@ -49,7 +48,6 @@ function! s:Project(filename) " <<<
         if strlen(a:filename) == 0
             let filename=s:SetProj()
             echo filename
-            "let filename ='~/.vimprojects'      " Default project filename
         else
             let filename = a:filename
         endif
@@ -503,6 +501,16 @@ function! s:Project(filename) " <<<
                 let dname = substitute(dirs,  '\(\( \|\f\|:\)*\).*', '\1', '')
                 let edname = escape(dname, ' ')
                 let dirs = substitute(dirs, '\( \|\f\|:\)*.\(.*\)', '\2', '')
+                let ignored = 0
+                for igndir in split(g:proj_igndir, ", ")
+                  if dname == igndir
+                    let ignored = 1
+                  endif
+                endfor
+                if ignored
+                    let dcount=dcount-1
+                    continue
+                endif
                 let line=s:GenerateEntry(1, line + 1, dname, a:absolute_dir.'/'.edname, edname, '', '', a:filter, a:foldlev+1, a:sort)
                 let dcount=dcount-1
             endwhile
@@ -577,7 +585,7 @@ function! s:Project(filename) " <<<
             endif
         endif
         let c_d = inputdialog('Enter the CD parameter: ', '')
-        let filter_directive = inputdialog('Enter the File Filter: ', '')
+        let filter_directive = inputdialog('Enter the File Filter: ', g:proj_filter)
         if strlen(filter_directive) != 0
             let filter = filter_directive
         endif
@@ -681,7 +689,6 @@ function! s:Project(filename) " <<<
                 " We have reached a sub-fold. If we're doing recursive, then
                 " call this function again. If not, find the end of the fold.
                 if a:recursive == 1
-
 "============================================================================"
 "                    Some work need to go there ---- BenWu                   "
 "============================================================================"
@@ -742,7 +749,7 @@ function! s:Project(filename) " <<<
     "   Moves the entity under the cursor up a line.
     function! s:MoveUp()
         if &modifiable == 0
-          echon "Please set modifiable!"
+          echomsg "Please set modifiable!"
           return
         endif
         let lineno=line('.')
@@ -1250,8 +1257,8 @@ function! s:Project(filename) " <<<
         nmap     <buffer> <silent> <4-RightMouse> <space>
         nnoremap <buffer> <silent> <space>  \|:silent exec 'vertical resize '.(match(g:proj_flags, '\Ct')!=-1 && winwidth('.') > g:proj_window_width?(g:proj_window_width):(winwidth('.') + g:proj_window_increment))<CR>
         nmap     <buffer> <silent> q  <ESC>:q<CR>
-        nnoremap <buffer> <silent> <C-j>   \|:silent call <SID>MoveUp()<CR>
-        nnoremap <buffer> <silent> <C-k> \|:silent call <SID>MoveDown()<CR>
+        nnoremap <buffer> <silent> gj   \|:silent call <SID>MoveUp()<CR>
+        nnoremap <buffer> <silent> gk   \|:silent call <SID>MoveDown()<CR>
         nmap     <buffer> <silent> <LocalLeader><Up> <C-Up>
         nmap     <buffer> <silent> <LocalLeader><Down> <C-Down>
         let k=1
