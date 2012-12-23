@@ -618,6 +618,11 @@ function! s:Project(filename) " <<<
         call s:DoEntryFromDir(a:recursive, line, name, home.dir, dir, c_d, filter_directive, filter, foldlev, 0)
         " Restore the cursor position
         normal! `k
+        " Set to nomodifiable
+        w
+        if &modifiable == 1
+          setlocal nomodifiable
+        endif
     endfunction ">>>
     " s:RefreshEntriesFromDir(recursive) <<<
     "   Finds metadata at the top of the fold, and then replaces all files
@@ -756,6 +761,11 @@ function! s:Project(filename) " <<<
         endif
         " Go to the top of the refreshed fold.
         normal! [z
+        " Set to nomodifiable
+        w
+        if &modifiable == 1
+          setlocal nomodifiable
+        endif
     endfunction ">>>
     " s:MoveUp() <<<
     "   Moves the entity under the cursor up a line.
