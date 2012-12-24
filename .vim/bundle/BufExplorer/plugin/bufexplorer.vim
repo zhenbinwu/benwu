@@ -10,7 +10,7 @@
 " Name Of File: bufexplorer.vim
 "  Description: Buffer Explorer Vim Plugin
 "   Maintainer: Jeff Lanzarotta (delux256-vim at yahoo dot com)
-" Last Changed: Tuesday, 09 Oct 2012
+" Last Changed: Sunday, 23 Dec 2012
 "      Version: See g:bufexplorer_version for version number.
 "        Usage: This file should reside in the plugin directory and be
 "               automatically sourced.
@@ -48,7 +48,7 @@ endif
 "2}}}
 
 " Version number
-let g:bufexplorer_version = "7.3.0"
+let g:bufexplorer_version = "7.3.2"
 
 " Check for Vim version {{{2
 if v:version < 700
@@ -336,6 +336,7 @@ function! BufExplorerTab()
   let s:splitMode = "tabnew"
   exec "BufExplorer"
 endfunction
+
 " BufExplorer {{{2
 function! BufExplorer(open)
     let name = s:name
@@ -837,12 +838,14 @@ endfunction
 function! s:DeleteBuffer(buf, mode)
     " This routine assumes that the buffer to be removed is on the current line.
     try
+        " Wipe/Delete buffer from Vim.
         if a:mode == "wipe"
             exe "silent bwipe" a:buf
         else
             exe "silent bdelete" a:buf
         endif
 
+        " Delete the buffer from the list on screen.
         setlocal modifiable
         normal! "_dd
         setlocal nomodifiable
@@ -965,6 +968,12 @@ endfunction
 " SortSelect {{{2
 function! s:SortSelect()
     let g:bufExplorerSortBy = get(s:sort_by, index(s:sort_by, g:bufExplorerSortBy) + 1, s:sort_by[0])
+    call s:ReSortListing()
+endfunction
+
+" ReverseSortSelect {{{2
+function! s:ReverseSortSelect()
+    let g:bufExplorerSortBy = get(s:sort_by, index(s:sort_by, g:bufExplorerSortBy) - 1, s:sort_by[-1])
     call s:ReSortListing()
 endfunction
 

@@ -31,10 +31,13 @@ send the command to execute for the main file
 combine it with the maketag script
 
 [*] Easymotion support for fold
+
+[*] Map <leader>u for undo, whether persistence undo or undo till the pervious
+write (or some way better to deal with this)
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
-<leader>: g, u, z
+<leader>: u
 gr gz
 zp zq zu zy
 

@@ -21,6 +21,9 @@ function s:SetProj() "<<<
 
     if filereadable(".vimproject")
         let temp = getcwd() . "/.vimproject"
+        if filereadable(".lvimrc")
+          source .lvimrc
+        endif
     else
         let temp = "~/.vimprojects"
     endif
@@ -761,11 +764,6 @@ function! s:Project(filename) " <<<
         endif
         " Go to the top of the refreshed fold.
         normal! [z
-        " Set to nomodifiable
-        w
-        if &modifiable == 1
-          setlocal nomodifiable
-        endif
     endfunction ">>>
     " s:MoveUp() <<<
     "   Moves the entity under the cursor up a line.
@@ -1306,10 +1304,10 @@ function! s:Project(filename) " <<<
         nnoremap <buffer>          <LocalLeader>F0 \|:call <SID>ListSpawn("_fold")<CR>
         nnoremap <buffer> <silent> <LocalLeader>c :call <SID>CreateEntriesFromDir(0)<CR>
         nnoremap <buffer> <silent> <LocalLeader>C :call <SID>CreateEntriesFromDir(1)<CR>
-        nnoremap <buffer> <silent> <LocalLeader>r :call <SID>RefreshEntriesFromDir(0)<CR>
-        nnoremap <buffer> <silent> <LocalLeader>R :call <SID>RefreshEntriesFromDir(1)<CR>
+        nnoremap <buffer> <silent> <LocalLeader>r :call <SID>RefreshEntriesFromDir(0)<CR>:w<CR>:setlocal nomodifiable<CR>
+        nnoremap <buffer> <silent> <LocalLeader>R :call <SID>RefreshEntriesFromDir(1)<CR>:w<CR>:setlocal nomodifiable<CR>
         " For Windows users: same as \R
-        nnoremap <buffer> <silent>           <F5> :call <SID>RefreshEntriesFromDir(1)<CR>
+        nnoremap <buffer> <silent>           <F5> :call <SID>RefreshEntriesFromDir(1)<CR>:w<CR>:setlocal nomodifiable<CR>
         nnoremap <buffer> <silent> <LocalLeader>d :call <SID>OpenEntry(line('.'), '', '', 0)<CR>
         nnoremap <buffer> <silent> <LocalLeader>x :call <SID>OpenEntry(line('.'), '', 'e', 1)<CR>
         nnoremap <buffer> <silent> <LocalLeader>m :call <SID>ToggleModifiable()<CR>
@@ -1376,6 +1374,26 @@ if exists('g:proj_flags') && (match(g:proj_flags, '\Cg') != -1)
         nmap <silent> <F12> <Plug>ToggleProject
     endif
 endif
+
+
+"============================================================================"
+"                 Template for local vimrc for project plugin                "
+"============================================================================"
+fun! s:Editlvimrc() "{{{
+  let out = []
+  call add(out, '"Define the symbol when make is done successfully!')
+  call add(out, 'let g:qflist_done = "' . g:qflist_done . '"')
+  call add(out, '')
+
+  call add(out, '"Golbal variables for project')
+  call add(out, 'let g:proj_flags  = "' . g:proj_flags  . '"')
+  call add(out, 'let g:proj_cdfile = "' . g:proj_cdfile . '"')
+  call add(out, 'let g:proj_filter = "' . g:proj_filter . '"')
+  call add(out, 'let g:proj_igndir = "' . g:proj_igndir . '"')
+  put =out
+endfunction "}}}
+
+au BufNewFile .lvimrc  silent! call s:Editlvimrc()
 
 finish
 

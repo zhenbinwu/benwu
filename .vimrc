@@ -517,12 +517,21 @@ nmap <silent> <Leader>cah <Plug>CalendarH
 " WinManager Setting
 """"""""""""""""""""""""""""""""""""""""
 let g:winManagerWindowLayout = 'TagList,NERDTree|BufExplorer'
-let g:winManagerWidth = 30
-let g:persistentBehaviour = 0
-let g:defaultExplorer = 0
+let g:winManagerWidth        = 30
+let g:persistentBehaviour    = 0
+let g:defaultExplorer        = 0
+map <silent> <F12> :WMToggle<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""
+" NERDTree Setting
+""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeMapChdir  = 'd'
+let NERDTreeIgnore      = ['\~$']
+let NERDTreeWinSize     = 30
 let g:nerdtree_open_cmd = 'gnome-open'
 exe 'nnoremap gb :!' . g:nerdtree_open_cmd . ' <cfile> &<CR><CR>'
-map <silent> <F12> :WMToggle<CR>
+nmap <silent> <Leader>g :NERDTreeToggle<CR>:redraw!<CR>
 
 """"""""""""""""""""""""""""""
 " BufExplorer Setting

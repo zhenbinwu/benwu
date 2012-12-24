@@ -163,7 +163,7 @@ fun! MapMake(output) "{{{
   elseif a:output == 1
     silent make %:r
   endif
-  cw
+  cwindow
   cc
   if exists("g:syntastic_enable") && exists("syntastic_temp")
     let g:syntastic_enable = syntastic_temp
