@@ -659,6 +659,7 @@ let g:fuf_modesDisable = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfil
 let g:fuf_mrufile_maxItem = 400
 let g:fuf_mrucmd_maxItem  = 400
 let g:fuf_previewHeight   = 10
+let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/media\/)'
 nnoremap <silent> gnb :FufBuffer<CR>
 nnoremap <silent> gnf :FufFile<CR>
 nnoremap <silent> gnd :FufDir<CR>
