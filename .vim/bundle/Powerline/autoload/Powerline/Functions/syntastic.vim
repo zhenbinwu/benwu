@@ -14,3 +14,20 @@ function! Powerline#Functions#syntastic#GetErrors(line_symbol) " {{{
 
 	return ret
 endfunction " }}}
+
+function! Powerline#Functions#syntastic#Enable() " {{{
+	if ! exists('g:syntastic_stl_format')
+		" Syntastic hasn't been loaded yet
+		return ''
+	endif
+
+    if ! exists('b:syntastic_enable')
+		return ''
+    endif
+
+    if b:syntastic_enable
+      return '§'
+    else
+      return ''
+    endif
+endfunction " }}}

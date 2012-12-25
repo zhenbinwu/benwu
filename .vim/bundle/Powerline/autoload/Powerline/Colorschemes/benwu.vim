@@ -72,7 +72,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['white', 'darkestcyan', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['filemod'], {
+	\ Pl#Hi#Segments(['filemod', 'syntastic:enable'], {
 		\ 'n': ['brightred', 'gray4', ['bold']],
 		\ 'N': ['mediumred', 'gray0', ['bold']],
 		\ 'i': ['brightred', 'darkestcyan', ['bold']],

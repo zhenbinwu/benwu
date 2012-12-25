@@ -14,6 +14,7 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 		\ , 'filetype'
 		\ , 'scrollpercent'
 		\ , 'lineinfo'
+		\ , 'syntastic:enable'
 	\ ),
 	\
 	\ Pl#Theme#Buffer('command_t'
