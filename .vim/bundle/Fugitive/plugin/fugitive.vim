@@ -909,6 +909,7 @@ function! s:Commit(args) abort
         endif
         let b:fugitive_commit_arguments = args
         setlocal bufhidden=wipe filetype=gitcommit
+        setlocal textwidth=72
         return '1'
       elseif error ==# '!'
         return s:Status()

@@ -7,10 +7,10 @@
 " See documentation in accompanying help file
 " You may use this code in whatever way you see fit.
 
-if exists('loaded_project') || &cp
+if exists('g:loaded_project') || &cp
   finish
 endif
-let loaded_project=1
+let g:loaded_project=1
 let g:project_powerline=''
 
 function s:SetProj() "<<<
@@ -30,6 +30,26 @@ function s:SetProj() "<<<
 
     execute "cd " . curdir
     return temp
+endfunction ">>>
+
+function s:SourceLvimrc() "<<<
+    if filereadable(expand("%:p:h") . "/.lvimrc")
+      execute "source ". expand("%:p:h") . "/.lvimrc"
+      echo "source ". expand("%:p:h") . "/.lvimrc"
+    else
+      return 
+    endif
+endfunction ">>>
+
+function s:EditLvimrc() "<<<
+    if filereadable(expand("%:p:h") . "/.lvimrc")
+      let vimrc = expand("%:p:h") . "/.lvimrc"
+      wincmd p
+      execute "silent! edit ". vimrc
+      echo "editing ". vimrc
+    else
+      return 
+    endif
 endfunction ">>>
 
 function s:ToggleModifiable() "<<<
@@ -1311,6 +1331,8 @@ function! s:Project(filename) " <<<
         nnoremap <buffer> <silent> <LocalLeader>d :call <SID>OpenEntry(line('.'), '', '', 0)<CR>
         nnoremap <buffer> <silent> <LocalLeader>x :call <SID>OpenEntry(line('.'), '', 'e', 1)<CR>
         nnoremap <buffer> <silent> <LocalLeader>m :call <SID>ToggleModifiable()<CR>
+        nnoremap <buffer> <silent> <LocalLeader>ss :call <SID>SourceLvimrc()<CR>
+        nnoremap <buffer> <silent> <LocalLeader>q :call <SID>EditLvimrc()<CR>
         " The :help command stomps on the Project Window.  Try to avoid that.
         " This is not perfect, but it is alot better than without the mappings.
         cnoremap <buffer> help let g:proj_doinghelp = 1<CR>:help
@@ -1381,15 +1403,33 @@ endif
 "============================================================================"
 fun! s:Editlvimrc() "{{{
   let out = []
-  call add(out, '"Define the symbol when make is done successfully!')
-  call add(out, 'let g:qflist_done = "' . g:qflist_done . '"')
-  call add(out, '')
+  if exists("g:Powerline_loaded") && g:Powerline_loaded == 1
+    call add(out, '"Define the symbol when make is done successfully!')
+    call add(out, 'let g:qflist_done = "' . g:qflist_done . '"')
+    call add(out, '')
+  endif
 
-  call add(out, '"Golbal variables for project')
-  call add(out, 'let g:proj_flags  = "' . g:proj_flags  . '"')
-  call add(out, 'let g:proj_cdfile = "' . g:proj_cdfile . '"')
-  call add(out, 'let g:proj_filter = "' . g:proj_filter . '"')
-  call add(out, 'let g:proj_igndir = "' . g:proj_igndir . '"')
+  if exists("g:loaded_project") && g:loaded_project == 1
+    call add(out, '"Golbal variables for project')
+    call add(out, 'let g:proj_flags  = "' . g:proj_flags  . '"')
+    call add(out, 'let g:proj_cdfile = "' . g:proj_cdfile . '"')
+    call add(out, 'let g:proj_filter = "' . g:proj_filter . '"')
+    call add(out, 'let g:proj_igndir = "' . g:proj_igndir . '"')
+    call add(out, '')
+  endif
+
+  if exists("g:loaded_syntastic_plugin") && g:loaded_syntastic_plugin == 1
+    call add(out, '"Define local syntastic option : ==============')
+
+    call add(out, '"Define local syntastic option for cpp')
+    call add(out, 'let g:syntastic_cpp_compiler_options  = "' . 
+          \     (exists("g:syntastic_cpp_compiler_options") ? g:syntastic_cpp_compiler_options : '') . '"')
+    call add(out, 'let g:syntastic_cpp_check_header      = "' .
+          \     (exists("g:syntastic_cpp_check_header") ? g:syntastic_cpp_check_header : '') . '"')
+    call add(out, 'let g:syntastic_cpp_no_include_search = "' .
+          \     (exists("g:syntastic_cpp_no_include_search") ? g:syntastic_cpp_no_include_search : '') . '"')
+  endif
+
   put =out
 endfunction "}}}
 

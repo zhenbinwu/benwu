@@ -66,7 +66,6 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['white', 'darkestcyan', ['bold']],
 		\ }),
 	\
-	\
 	\ Pl#Hi#Segments(['fileinfo', 'filename', 'conqueterm:statusline'], {
 		\ 'n': ['white', 'gray4', ['bold']],
 		\ 'N': ['gray7', 'gray0', ['bold']],

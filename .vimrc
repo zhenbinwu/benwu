@@ -926,9 +926,9 @@ imap <leader>cl <ESC><leader>cl
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:syntastic_enable_balloons = 0
+let g:syntastic_enable_balloons     = 0
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list       = 1
 nnoremap <silent> <leader>q :call <SID>Syntastic_Toggle()<CR>
 fun! s:Syntastic_Toggle() "{{{
   if !exists("g:loaded_syntastic_plugin")
@@ -939,6 +939,12 @@ fun! s:Syntastic_Toggle() "{{{
     echo "Syntastic Enabled!"
   elseif b:syntastic_enable == 1
     let b:syntastic_enable = 0
+    if expand('%') =~? '\%(.h\|.hpp\|.hh\)$'
+      if filereadable(expand('%').'.gch')
+        exec "silent! !rm " . expand('%').'.gch'
+        redraw!
+      endif
+    endif
     echo "Syntastic Disabled!"
   endif
 endfunction "}}}
@@ -948,8 +954,11 @@ endfunction "}}}
 " => Project
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 fun! ToggleProject() "{{{
-  if !exists("g:proj_running")
+  if !exists("g:proj_running") || bufwinnr(g:proj_running) == -1
+    let file = expand("%:t")
     Project
+    call search(file)
+    normal zv
   else
     exec "bwipeout " . g:proj_running
   endif

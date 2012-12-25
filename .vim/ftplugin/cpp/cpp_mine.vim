@@ -94,9 +94,28 @@ fun! SyntasticCppC() "{{{
   "" The search path
   let sp = split(g:alternateSearchPath, ",")
   for pathsec in sp
+    let type = strpart(pathsec, 0, 3)
     let pth = strpart(pathsec, 4)
-    if isdirectory(expand('%:p:h'). "/" . pth)
-      call add(s:paths, pth)
+    if type == 'sfr'
+      if isdirectory(expand('%:p:h'). "/" . pth)
+        call add(s:paths, expand('%:p:h'). "/" . pth)
+      endif
+    endif
+    if type == 'reg'
+      let sep = strpart(pth, 0, 1)
+      let patend = match(pth, sep, 1)
+      let pat = strpart(pth, 1, patend - 1)
+      let subend = match(pth, sep, patend + 1)
+      let sub = strpart(pth, patend+1, subend - patend - 1)
+      let flag = strpart(pth, strlen(pth) - 2)
+      if (flag == sep)
+        let flag = ''
+      endif
+      let path = substitute(expand('%:p:h'), pat, sub, flag)
+
+      if path != expand('%:p:h') && isdirectory(path)
+        call add(s:paths, path)
+      endif
     endif
   endfor
 
@@ -140,7 +159,7 @@ fun! s:GetLRFiles(lines) "{{{
     let sep = (has('win32') || has('win64')) ?  '\' : '/' 
     let found = 0
     for path in s:paths
-      let filename = expand('%:p:h') . sep . path . sep . hfile
+      let filename = path . sep . hfile
       try
         let lines = readfile(filename, '', 100)
       catch /E484/
@@ -149,11 +168,7 @@ fun! s:GetLRFiles(lines) "{{{
 
       "" Add local include
       if path != './'
-        if expand("%:h") == '.'
-          let include = ' -I' . path . ''
-        else 
-          let include = ' -I' . expand("%:h") . sep . path . ''
-        endif
+        let include = ' -I' . path . ''
         if has_key(s:includes, include)
           let s:includes[include] += 1
         else
@@ -187,7 +202,7 @@ fun! s:GetInclude() "{{{
   "echo s:syntastic_cpp_includes 
   "echo s:syntastic_cpp_compiler_options
   exec "let b:syntastic_" . &filetype . "_includes = s:syntastic_cpp_includes"
-  exec "let g:syntastic_" . &filetype . "_compiler_options = s:syntastic_cpp_compiler_options"
+  exec "let g:syntastic_" . &filetype . "_compiler_options .= s:syntastic_cpp_compiler_options"
 endfunction "}}}
 
 fun! s:SyntasticCppC_Root(mode) "{{{

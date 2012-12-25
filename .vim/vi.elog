@@ -37,7 +37,7 @@ write (or some way better to deal with this)
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
-<leader>: u
+<leader>: u, i
 gr gz
 zp zq zu zy
 
