@@ -211,6 +211,12 @@ function! <SID>ExpandAlternatePath(pathSpec, sfPath)
       if (flag == sep)
         let flag = ''
       endif
+      if sub == 'WHAM'
+        let sub = split(expand("%:p:h"), '/')[-2]
+      endif
+      if pat == 'WHAM'
+        let pat = split(expand("%:p:h"), '/')[-2]
+      endif
       let path = substitute(a:sfPath, pat, sub, flag)
       "call confirm('PAT: [' . pat . '] SUB: [' . sub . ']')
       "call confirm(a:sfPath . ' => ' . path)
@@ -218,6 +224,9 @@ function! <SID>ExpandAlternatePath(pathSpec, sfPath)
       let path = a:pathSpec
       if (prfx == "sfr:")
          let path = strpart(path, 4)
+         if path == 'WHAM'
+           let path = split(expand("%:p:h"), '/')[-1]
+         endif
       endif
       let path = a:sfPath . "/" . path
    endif

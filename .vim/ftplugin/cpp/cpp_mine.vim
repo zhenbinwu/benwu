@@ -67,6 +67,7 @@ fun! SyntasticCppC() "{{{
   "============================================================================"
   let s:lrfiles  = {}
   let s:paths    = ['./']
+  let s:d_paths  = {}
   let s:type     = &filetype
   let s:includes = {}
   let s:syntastic_cpp_includes = ''
@@ -97,8 +98,11 @@ fun! SyntasticCppC() "{{{
     let type = strpart(pathsec, 0, 3)
     let pth = strpart(pathsec, 4)
     if type == 'sfr'
+      if pth == 'WHAM'
+        let pth = split(expand("%:p:h"), '/')[-1]
+      endif
       if isdirectory(expand('%:p:h'). "/" . pth)
-        call add(s:paths, expand('%:p:h'). "/" . pth)
+        let s:d_paths[expand('%:p:h'). "/" . pth] = 1
       endif
     endif
     if type == 'reg'
@@ -111,13 +115,20 @@ fun! SyntasticCppC() "{{{
       if (flag == sep)
         let flag = ''
       endif
+      if sub == 'WHAM'
+        let sub = split(expand("%:p:h"), '/')[-2]
+      endif
+      if pat == 'WHAM'
+        let pat = split(expand("%:p:h"), '/')[-2]
+      endif
       let path = substitute(expand('%:p:h'), pat, sub, flag)
 
       if path != expand('%:p:h') && isdirectory(path)
-        call add(s:paths, path)
+        let s:d_paths[path] = 1
       endif
     endif
   endfor
+  let s:paths += keys(s:d_paths)
 
   let lines = filter(getline(1, 50), 'v:val =~# "^\s*#\s*include"')
   call s:GetLRFiles(lines)

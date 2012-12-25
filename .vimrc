@@ -180,7 +180,8 @@ if has("gui_running")
   set t_Co=256
   colorscheme harlequin
 else
-  if &term == 'linux' || &term == 'jfbterm'
+  if &term == 'linux' || &term == 'jfbterm' || &term == 'screen'
+    set t_Co=256
     colorscheme anotherdark
   else
     if( match(hostname(), 'hep') >=0 )
@@ -696,6 +697,7 @@ nnoremap <silent> gno :FufDirWithFullCwd<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alternateSearchPath         = 'sfr:../,'
 let g:alternateSearchPath        .= 'sfr:src,sfr:inc,reg:/inc/src/g/,reg:/src/inc/g/,'
+let g:alternateSearchPath        .= 'sfr:src,sfr:WHAM,reg:/WHAM/src/g/,reg:/src/WHAM/g/,'
 let g:alternateSearchPath        .= 'sfr:source,sfr:include,reg:/include/source/g/,reg:/source/include/g/'
 let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
