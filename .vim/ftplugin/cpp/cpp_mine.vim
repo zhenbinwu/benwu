@@ -72,8 +72,12 @@ fun! SyntasticCppC() "{{{
   let s:includes = {}
   let s:syntastic_cpp_includes = ''
   let s:syntastic_cpp_compiler_options = ''
-  exec "let b:syntastic_" . &filetype . "_includes = ''"
-  exec "let g:syntastic_" . &filetype . "_compiler_options = ''"
+  if !exists("b:syntastic_" . &filetype . "_includes")
+    exec "let b:syntastic_" . &filetype . "_includes = ''"
+  endif
+  if !exists("g:syntastic_" . &filetype . "_compiler_options")
+    exec "let g:syntastic_" . &filetype . "_compiler_options = ''"
+  endif
 
   let s:library  = { "root" : {"pattern": '^T.*\.\(h\|hpp\)',    
         \                      "include": "s:SyntasticCppC_Root",
