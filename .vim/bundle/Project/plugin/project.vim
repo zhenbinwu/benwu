@@ -135,6 +135,7 @@ function! s:Project(filename) " <<<
         setlocal foldenable foldmethod=marker foldmarker={,} commentstring=%s foldcolumn=0 nonumber noswapfile shiftwidth=1
         setlocal foldtext=ProjFoldText() nobuflisted nowrap
         setlocal winwidth=1
+        setlocal cursorline
         setlocal filetype=vimproject
         if match(g:proj_flags, '\Cn') != -1
             setlocal number

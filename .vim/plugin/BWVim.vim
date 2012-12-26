@@ -151,10 +151,10 @@ fun! QLstep(direction) "{{{
 endfunction "}}}
 
 fun! MapMake(output) "{{{
-  if exists("g:syntastic_enable") 
-    let syntastic_temp = g:syntastic_enable
-    if g:syntastic_enable == 1
-      let g:syntastic_enable = 0
+  if exists("b:syntastic_enable") 
+    let syntastic_temp = b:syntastic_enable
+    if b:syntastic_enable == 1
+      let b:syntastic_enable = 0
     endif
   endif
   w
@@ -165,8 +165,8 @@ fun! MapMake(output) "{{{
   endif
   cwindow
   cc
-  if exists("g:syntastic_enable") && exists("syntastic_temp")
-    let g:syntastic_enable = syntastic_temp
+  if exists("b:syntastic_enable") && exists("syntastic_temp")
+    let b:syntastic_enable = syntastic_temp
   endif
   redraw!
 endfunction "}}}

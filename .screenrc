@@ -108,5 +108,5 @@ defhstatus "screen | $USER@H"
 # ------------------------------------------------------------------------------
 # SCREENS CONTROL
 # ------------------------------------------------------------------------------
-blankerprg /home/benwu/.screen/idle
+blankerprg $HOME/.screen/idle
 idle 600 blanker

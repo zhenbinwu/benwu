@@ -225,7 +225,7 @@ fun! s:SyntasticCppC_Root(mode) "{{{
     return ""
   endif
   if a:mode == "include"
-    return " -I" . system("root-config --incdir")
+    return " -I" . substitute(system("root-config --incdir"), '\n', ' ', '')
   elseif a:mode == "cflags"
     return ""
     "return system("root-config --cflags")

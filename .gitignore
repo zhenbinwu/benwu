@@ -16,3 +16,4 @@
 .vim/undo/*
 tags
 *.pyc
+*.cache

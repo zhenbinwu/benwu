@@ -528,6 +528,8 @@ map <silent> <F12> :WMToggle<CR>
 " NERDTree Setting
 """"""""""""""""""""""""""""""""""""""""
 let g:NERDTreeMapChdir  = 'd'
+let g:NERDTreeMapJumpNextSibling = 'gj'
+let g:NERDTreeMapJumpPrevSibling = 'gk'
 let NERDTreeIgnore      = ['\~$']
 let NERDTreeWinSize     = 30
 let g:nerdtree_open_cmd = 'gnome-open'

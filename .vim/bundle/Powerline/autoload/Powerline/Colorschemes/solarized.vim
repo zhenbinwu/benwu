@@ -28,7 +28,7 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['base3',  'base2'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['mode_indicator'], {
+	\ Pl#Hi#Segments(['mode_indicator', 'conqueterm:static_str.name'], {
 		\ 'n': ['base2',  'blue',     ['bold']],
 		\ 'i': ['base3',  'orange',   ['bold']],
 		\ 'v': ['base3',  'magenta',  ['bold']],
@@ -36,7 +36,7 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 's': ['base3',  'yellow',   ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['branch'], {
+	\ Pl#Hi#Segments(['branch', 'scrollpercent', 'raw', 'filesize'], {
 		\ 'n': ['base2',   'base02'],
 		\ 'N': ['base02',  'base1'],
 		\ 'i': ['base2',   'base00'],
@@ -48,7 +48,7 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['base2',   'base1'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['fileinfo', 'filename'], {
+	\ Pl#Hi#Segments(['fileinfo', 'filename', 'conqueterm:statusline'], {
 		\ 'n': ['base2',   'base01',   ['bold']],
 		\ 'N': ['base01',  'base2' ],
 		\ 'i': ['base3',   'base1',    ['bold']],
@@ -72,7 +72,7 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['base3'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['currenttag', 'fileformat', 'fileencoding', 'pwd', 'filetype', 'rvm:string', 'rvm:statusline', 'virtualenv:statusline', 'charcode', 'currhigroup'], {
+	\ Pl#Hi#Segments(['currenttag', 'fullcurrenttag', 'fileformat', 'fileencoding', 'pwd', 'filetype', 'rvm:string', 'rvm:statusline', 'virtualenv:statusline', 'charcode', 'currhigroup'], {
 		\ 'n': ['base00', 'base2'],
 		\ 'i': ['base0', 'base2'],
 		\ }),
@@ -103,7 +103,7 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['base02',  'base01',  ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['gundo:static_str.buffer', 'command_t:raw.line'], {
+	\ Pl#Hi#Segments(['gundo:static_str.buffer', 'command_t:raw.line', 'calendar:datetime'], {
 		\ 'n': ['base3',  'base00'],
 		\ 'N': ['base0',  'base02'],
 		\ }),
@@ -113,17 +113,17 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['base0',  'base03'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name', 'calendar:static_str.name'], {
 		\ 'n': ['base2',   'green',   ['bold']],
 		\ 'N': ['base02',  'base1'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.buffer', 'tagbar:static_str.buffer', 'qfdone'], {
 		\ 'n': ['base3',   'base01'],
 		\ 'N': ['base02',  'base01'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT'], {
+	\ Pl#Hi#Segments(['lustyexplorer:SPLIT', 'minibufexplorer:SPLIT', 'nerdtree:SPLIT', 'tagbar:SPLIT', 'conqueterm:SPLIT',  'calendar:SPLIT'], {
 		\ 'n': ['base2',  'base2'],
 		\ 'N': ['base2',  'base2'],
 		\ }),
@@ -151,4 +151,21 @@ let g:Powerline#Colorschemes#solarized#colorscheme = Pl#Colorscheme#Init([
 	\ Pl#Hi#Segments(['ctrlp:SPLIT'], {
 		\ 'n': ['base3', 'base03'],
 		\ }),
+	\
+	\ Pl#Hi#Segments(['project:project', 'project:projectN'], {
+		\ 'n': ['green', 'base01', ['bold']],
+		\ 'N': ['white', 'base0', ['bold']],
+		\ 'i': ['white', 'base00', ['bold']],
+		\ }),
+	\
+	\ Pl#Hi#Segments(['filemod'], {
+		\ 'n': ['red', 'base3', ['bold']],
+		\ 'N': ['magenta', 'base00', ['bold']],
+		\ 'i': ['red', 'base3', ['bold']],
+		\ }),
+    \
+    \ Pl#Hi#Segments(['vimim'], {
+        \ 'n': ['white', 'violet'],
+        \ 'i': ['white', 'violet'],
+        \ }),
 	\ ])

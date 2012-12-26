@@ -45,11 +45,11 @@ if __name__ == "__main__":
         delta = datetime.datetime.now() - t
         f.close()
     except:
-        proc = subprocess.Popen('/home/benwu/.screen/checkmail > ' \
+        proc = subprocess.Popen('~/.screen/checkmail > ' \
                             + statfile, shell=True, preexec_fn=os.setsid)
     finally:
         if delta > datetime.timedelta(minutes=20):
-            p = subprocess.Popen('/home/benwu/.screen/checkmail', \
+            p = subprocess.Popen('~/.screen/checkmail', \
                                  shell=True, stdout=subprocess.PIPE)
             out = p.stdout.read()
             f = open(statfile, 'w')
@@ -64,5 +64,5 @@ if __name__ == "__main__":
         else:
             if echo != "None":
                 print echo
-            proc = subprocess.Popen('/home/benwu/.screen/checkmail > ' \
+            proc = subprocess.Popen('~/.screen/checkmail > ' \
                             + statfile, shell=True, preexec_fn=os.setsid)

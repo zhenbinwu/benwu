@@ -26,7 +26,7 @@ set noclobber
 #
 ## When using cd [name], if name is not a subdirectory of the current directory
 ## each component of the variable cdpath is checked to see if it has the same name
-set cdpath=(~/ );
+set cdpath=(~/);
 #
 #
 ## Define new prompt.
