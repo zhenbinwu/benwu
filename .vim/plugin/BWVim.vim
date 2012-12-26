@@ -150,6 +150,7 @@ fun! QLstep(direction) "{{{
   endif
 endfunction "}}}
 
+let g:make_target = "%:r"
 fun! MapMake(output) "{{{
   if exists("b:syntastic_enable") 
     let syntastic_temp = b:syntastic_enable
@@ -161,7 +162,7 @@ fun! MapMake(output) "{{{
   if a:output == 0
     silent make
   elseif a:output == 1
-    silent make %:r
+    execute "silent make " . g:make_target
   endif
   cwindow
   cc

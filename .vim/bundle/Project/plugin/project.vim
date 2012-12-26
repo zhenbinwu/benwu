@@ -1404,6 +1404,10 @@ endif
 "============================================================================"
 fun! s:Editlvimrc() "{{{
   let out = []
+  call add(out, '"Define the target from the Makefile')
+  call add(out, 'let g:make_target = "' . g:make_target . '"')
+  call add(out, '')
+
   if exists("g:Powerline_loaded") && g:Powerline_loaded == 1
     call add(out, '"Define the symbol when make is done successfully!')
     call add(out, 'let g:qflist_done = "' . g:qflist_done . '"')
