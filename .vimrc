@@ -85,6 +85,7 @@
 "     > Locator          ( V1.3        2012_11_25 )
 "     > Syntastic        ( V2.3.0      2012_11_25 )
 "     > Project          ( V1.4.1      2012_12_22 )
+"     > AsyncCommand     ( V4.0        2012_12_27 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -954,7 +955,6 @@ fun! s:Syntastic_Toggle() "{{{
   endif
 endfunction "}}}
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Project
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -969,7 +969,15 @@ fun! ToggleProject() "{{{
   endif
 endfunction "}}}
 nmap <silent> <leader>x :call ToggleProject()<CR>
-let g:proj_flags='imstbLS' 
-let g:proj_igndir="CVS, objects, obj, dict"
-let g:proj_filter="*.vim *.C *.cc *.hh"
-let g:proj_cdfile="GNUmakefile, makefile, Makefile"
+let g:proj_flags  = 'imstbLS'
+let g:proj_igndir = "CVS, objects, obj, dict"
+let g:proj_filter = "*.vim *.C *.cc *.hh"
+let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => AsyncCommand
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if( match(hostname(), 'nbay') >=0 )
+  let g:asynccommand_prg = 'vim73'
+endif
