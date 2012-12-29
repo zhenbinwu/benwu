@@ -8,10 +8,16 @@
 "             Want To Public License, Version 2, as published by Sam Hocevar.
 "             See http://sam.zoy.org/wtfpl/COPYING for more details.
 "============================================================================
-if exists("loaded_css_syntax_checker")
-    finish
+"
+" Specify additional options to csslint with this option. e.g. to disable
+" warnings:
+"
+"   let g:syntastic_csslint_options = "--warnings=none"
+
+let async_css_syntax_checker = 1
+if !exists('g:syntastic_csslint_options')
+    let g:syntastic_csslint_options = ""
 endif
-let loaded_css_syntax_checker = 1
 
 " Bail if the user doesn't have `csslint` installed.
 if !executable("csslint")
@@ -19,12 +25,13 @@ if !executable("csslint")
 endif
 
 function! SyntaxCheckers_css_GetLocList()
-    let makeprg = 'csslint --format=compact '.shellescape(expand('%'))
+    let makeprg = 'csslint --format=compact '.g:syntastic_csslint_options.' '.
+                \ shellescape(expand('%'))
 
     " Print CSS Lint's error/warning messages from compact format. Ignores blank lines.
     let errorformat = '%-G,%-G%f: lint free!,%f: line %l\, col %c\, %trror - %m,%f: line %l\, col %c\, %tarning - %m,%f: line %l\, col %c\, %m,'
 
-    return SyntasticMake({ 'makeprg': makeprg,
+    return SyntasticMake({ 'checker': 'css', 'makeprg': makeprg,
                                 \ 'errorformat': errorformat,
                                 \ 'defaults': {'bufnr': bufnr("")} })
 
