@@ -243,6 +243,9 @@ vnoremap <silent> # :<C-U>
 " When you press gv you vimgrep after the selected text
 nnoremap <expr>   gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
+" map & and g& for visual mode, also work for visual block
+vnoremap &  :s<CR>
+vnoremap g& :s/\%V<C-R>//~/g<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -935,16 +938,21 @@ imap <leader>cl <ESC><leader>cl
 let g:syntastic_enable_balloons     = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_auto_loc_list       = 1
+let g:syntastic_error_symbol        = '✗'
+let g:syntastic_warning_symbol      = '⚠'
+let g:syntastic_async               = 1
+
 nnoremap <silent> <leader>q :call <SID>Syntastic_Toggle()<CR>
 fun! s:Syntastic_Toggle() "{{{
   if !exists("g:loaded_syntastic_plugin")
     finish
   endif
-  if b:syntastic_enable == 0
-    let b:syntastic_enable = 1
+
+  if g:syntastic_enable == 0
+    let g:syntastic_enable = 1
     echo "Syntastic Enabled!"
-  elseif b:syntastic_enable == 1
-    let b:syntastic_enable = 0
+  elseif g:syntastic_enable == 1
+    let g:syntastic_enable = 0
     if expand('%') =~? '\%(.h\|.hpp\|.hh\)$'
       if filereadable(expand('%').'.gch')
         exec "silent! !rm " . expand('%').'.gch'

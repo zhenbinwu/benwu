@@ -15,19 +15,23 @@ function! Powerline#Functions#syntastic#GetErrors(line_symbol) " {{{
 	return ret
 endfunction " }}}
 
+"" I modify this function for both syntastic and asynccommand now since I use
+"" async make brunch from syntastic
 function! Powerline#Functions#syntastic#Enable() " {{{
-	if ! exists('g:syntastic_stl_format')
+	if ! exists('g:syntastic_stl_format') &&  ! exists('g:loaded_asynccommand')
 		" Syntastic hasn't been loaded yet
 		return ''
 	endif
+    
+    let output = ''
 
-    if ! exists('b:syntastic_enable')
-		return ''
-    endif
-
-    if b:syntastic_enable
-      return '§'
+    if exists('g:syntastic_enable') && g:syntastic_enable
+      let output .= '§'
     else
-      return ''
+      let output .= ''
     endif
+
+    let output .= asynccommand#powerline()
+
+    return output
 endfunction " }}}

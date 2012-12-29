@@ -1704,6 +1704,10 @@ function! s:GetCursorDayLunar()
  endfunc
 
 fun! SyncGcanledar() "{{{
+  if !has('python')
+    return
+  endif
+
     if executable("gcalcli")
 python << EOF
 
@@ -1797,6 +1801,9 @@ endfunction"}}}
 "============================================================================"
 "" 
 fun! GetWeather() "{{{
+  if !has('python')
+    return
+  endif
   
 let s:weather_location = ''
 

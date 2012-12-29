@@ -83,6 +83,10 @@ fun! ReadThesaurus() "{{{
 endfun   "}}}
 
 function! UseSynonym(type, action) "{{{
+  if !has('python')
+    return
+  endif
+
 let s:enter=""
 
 python << EOF

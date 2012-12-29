@@ -71,6 +71,9 @@ EOF
 endfunction "}}}
 
 fun! MapAutoMake() "{{{
+  if !has('python')
+    return
+  endif
 
   "" Start fresh
   cclose

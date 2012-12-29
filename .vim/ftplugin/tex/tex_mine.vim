@@ -138,11 +138,14 @@ autocmd BufWritePre *.tex call LastModified()
 " def and newcommand. Map the input 
 " 
 function! GetCustomLatexCommands() "{{{
+  if !has('python')
+    return
+  endif
 
-" Don't run this for fugitive files
-if expand ('%:p') =~? "^fugitive://.*.tex"
-  return
-endif
+  " Don't run this for fugitive files
+  if expand ('%:p') =~? "^fugitive://.*.tex"
+    return
+  endif
 
 python << EOF
 import os

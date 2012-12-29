@@ -183,7 +183,11 @@ imap <F7> <Esc>:call QLstep(-1)<CR>
 imap <F8> <Esc>:call QLstep(1)<CR>
 
 "" Indicate weather the compiling is completed successfully!
-function! QfMakeConv()
+function! QfMakeConv()"{{{
+  if empty(getqflist())
+    return
+  endif
+
   let qflist_end = getqflist()[-1]['text']
   for igndir in split(g:qflist_done, ", ")
     if match(qflist_end, " ".igndir."$") != -1

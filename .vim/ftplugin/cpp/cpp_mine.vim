@@ -72,12 +72,6 @@ fun! SyntasticCppC() "{{{
   let s:includes = {}
   let s:syntastic_cpp_includes = ''
   let s:syntastic_cpp_compiler_options = ''
-  if !exists("b:syntastic_" . &filetype . "_includes")
-    exec "let b:syntastic_" . &filetype . "_includes = ''"
-  endif
-  if !exists("g:syntastic_" . &filetype . "_compiler_options")
-    exec "let g:syntastic_" . &filetype . "_compiler_options = ''"
-  endif
 
   let s:library  = { "root" : {"pattern": '^T.*\.\(h\|hpp\)',    
         \                      "include": "s:SyntasticCppC_Root",
@@ -214,10 +208,8 @@ fun! s:GetInclude() "{{{
       let s:syntastic_cpp_compiler_options .= call(value["cflags"], ["cflags"])
     endif
   endfor
-  "echo s:syntastic_cpp_includes 
-  "echo s:syntastic_cpp_compiler_options
   exec "let b:syntastic_" . &filetype . "_includes = s:syntastic_cpp_includes"
-  exec "let g:syntastic_" . &filetype . "_compiler_options .= s:syntastic_cpp_compiler_options"
+  exec "let b:syntastic_" . &filetype . "_cflags   = s:syntastic_cpp_compiler_options"
 endfunction "}}}
 
 fun! s:SyntasticCppC_Root(mode) "{{{

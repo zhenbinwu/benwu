@@ -1427,12 +1427,18 @@ fun! s:Editlvimrc() "{{{
     call add(out, '"Define local syntastic option : ==============')
 
     call add(out, '"Define local syntastic option for cpp')
-    call add(out, 'let g:syntastic_cpp_compiler_options  = "' . 
-          \     (exists("g:syntastic_cpp_compiler_options") ? g:syntastic_cpp_compiler_options : '') . '"')
-    call add(out, 'let g:syntastic_cpp_check_header      = "' .
-          \     (exists("g:syntastic_cpp_check_header") ? g:syntastic_cpp_check_header : '') . '"')
-    call add(out, 'let g:syntastic_cpp_no_include_search = "' .
-          \     (exists("g:syntastic_cpp_no_include_search") ? g:syntastic_cpp_no_include_search : '') . '"')
+    call add(out, 'let g:syntastic_cpp_compiler              = "' .
+          \     (exists("g:syntastic_cpp_compiler")              ? g:syntastic_cpp_compiler : '') . '"')
+    call add(out, 'let g:syntastic_cpp_check_header          = "' .
+          \     (exists("g:syntastic_cpp_check_header")          ? g:syntastic_cpp_check_header : '') . '"')
+    call add(out, 'let g:syntastic_cpp_no_include_search     = "' .
+          \     (exists("g:syntastic_cpp_no_include_search")     ? g:syntastic_cpp_no_include_search : '') . '"')
+    call add(out, 'let g:syntastic_cpp_include_dirs          = "' .
+          \     (exists("g:syntastic_cpp_include_dirs")          ? g:syntastic_cpp_include_dirs : '') . '"')
+    call add(out, 'let g:syntastic_cpp_compiler_options      = "' .
+          \     (exists("g:syntastic_cpp_compiler_options")      ? g:syntastic_cpp_compiler_options : '') . '"')
+    call add(out, 'let g:syntastic_cpp_remove_include_errors = "' .
+          \     (exists("g:syntastic_cpp_remove_include_errors") ? g:syntastic_cpp_remove_include_errors : '') . '"')
   endif
 
   put =out
