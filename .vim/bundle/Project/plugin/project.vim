@@ -1262,6 +1262,10 @@ function! s:Project(filename) " <<<
                 only
                 Project
                 silent! wincmd p
+                if !empty(getqflist())
+                  copen
+                  silent! wincmd p
+                endif
                 let &lz=lzsave
                 unlet lzsave
             endif

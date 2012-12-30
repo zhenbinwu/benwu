@@ -138,6 +138,7 @@ function! s:GundoSettingsGraph()"{{{
     setlocal nowrap
     call s:GundoSyntaxGraph()
     call s:GundoMapGraph()
+    nnoremap <buffer> <silent> x  \|:silent exec 'vertical resize '.( winwidth('.') > g:gundo_width?(g:gundo_width):(winwidth('.') + 100))<CR>
 endfunction"}}}
 
 function! s:GundoSettingsPreview()"{{{

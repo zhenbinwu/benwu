@@ -183,7 +183,7 @@ imap <F7> <Esc>:call QLstep(-1)<CR>
 imap <F8> <Esc>:call QLstep(1)<CR>
 
 "" Indicate weather the compiling is completed successfully!
-function! QfMakeConv()"{{{
+function! QfMakeConv() "{{{
   if empty(getqflist())
     return
   endif
@@ -195,12 +195,12 @@ function! QfMakeConv()"{{{
       break
     endif
   endfor
-endfunction
+endfunction "}}}
 
 au QuickFixCmdPre  make let g:qflist_result = ''
 au QuickFixCmdPost make call QfMakeConv()
 
-function! HighlightRepeats() range"{{{
+function! HighlightRepeats() range "{{{
   let lineCounts = {}
   let lineNum = a:firstline
   while lineNum <= a:lastline
@@ -224,11 +224,11 @@ function! HighlightRepeats() range"{{{
     ll
     redraw!
   endif
-endfunction"}}}
+endfunction "}}}
 
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
-function! s:OnlineDoc(word)"{{{
+function! s:OnlineDoc(word) "{{{
   let s:wordUnderCursor = a:word
   let s:ask = "What to google: " 
   let s:string = input(s:ask, s:wordUnderCursor . " ")
@@ -236,7 +236,7 @@ function! s:OnlineDoc(word)"{{{
   let s:string = substitute(s:string, "+*$", "", "g")
 
   call s:OnlineWord(s:string)
-endfunction"}}}
+endfunction "}}}
 fun! s:OnlineWord(word) "{{{
   let s:browser = "opera"
   "let s:browser = "gnome-open"
@@ -255,8 +255,42 @@ vmap go :call <SID>OnlineWord(expand("<C-R>*"))<CR>
 nmap gO :call <SID>OnlineDoc(expand("<cword>"))<CR>
 vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>
 
-
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
+function! s:AdjustWindowHeight(minheight, maxheight) "{{{
   exe max([min([line("$")+1, a:maxheight]), a:minheight]) . "wincmd _"
-endfunction
+endfunction "}}}
+
+fun! s:QuickfixZoom() "{{{
+  if g:quickfix_win_maximized
+    " Restore the window back to the previous size
+    exe 'resize ' . g:quickfix_win_height
+    let g:quickfix_win_maximized = 0
+  else
+    " Set the window size to the maximum possible without closing other
+    " windows
+    resize
+    let g:quickfix_win_maximized = 1
+  endif
+endfunction "}}}
+
+fun! s:QuickfixSplit(mode) "{{{
+  let s:qf_buf = bufnr("%")
+  wincmd p
+
+  if a:mode == 's'
+    split
+  endif
+  if a:mode == 'v'
+    vertical split
+  endif
+
+  echo bufwinnr(s:qf_buf) . "wincmd w"
+  execute bufwinnr(s:qf_buf) . "wincmd w"
+  normal 
+endfunction "}}}
+
+au FileType qf call s:AdjustWindowHeight(3, 10)
+au FileType qf nnoremap <buffer> <silent> x :call <SID>QuickfixZoom()<CR>
+au FileType qf nnoremap <buffer> <silent> s :call <SID>QuickfixSplit('s')<CR>
+au FileType qf nnoremap <buffer> <silent> v :call <SID>QuickfixSplit('v')<CR>
+au FileType qf let g:quickfix_win_height = winheight(0)
+au QuickFixCmdPre * let g:quickfix_win_maximized = 0

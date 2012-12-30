@@ -441,11 +441,6 @@ endif
 autocmd BufWinEnter * call PreviewMap()
 
 fun! PreviewMap() "{{{
-  "" Define local variable for all buffers
-  if exists("g:loaded_syntastic_plugin") && !exists("b:syntastic_enable")
-    let b:syntastic_enable = 0
-  endif
-
   if &pvw || &filetype == "help"
     if &pvw
       nnoremap <buffer> <silent> q :pclose<CR>

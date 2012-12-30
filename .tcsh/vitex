@@ -32,7 +32,7 @@ end
 
 
 if ($texfile == 1) then
-  ${CVSEIDTOR} --servername benwu $targs
+  ${CVSEIDTOR} --servername $USER $targs
 else
   ${CVSEIDTOR} -X $targs
 endif
