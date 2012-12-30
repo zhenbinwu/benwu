@@ -410,9 +410,9 @@
 "    }}}
 
 " {{{ Init
-if !exists('loaded_cctree') && v:version >= 700
+if !exists('g:loaded_cctree') && v:version >= 700
   " First time loading the cctree plugin
-  let loaded_cctree = 1
+  let g:loaded_cctree = 1
 else
   "finish
 endif
@@ -2342,13 +2342,16 @@ let s:TreeMarkers_UTF8 = {
 
 let s:TreeMarkers_Text = {
                             \ 'splitT' : '+',
-                            \ 'arrowF' : '>',
-                            \ 'arrowR' : '<',
+                            \ 'arrowF' : '☞',
+                            \ 'arrowR' : '☜',
                             \ 'extV' : '|',
                             \ 'extH': '-',
                             \ 'depth': 'depth:'
                             \}
 
+                            "\ 'extH': '-',
+                            "\ 'arrowF' : '>',
+                            "\ 'arrowR' : '<',
 let s:CCTreeMarkers = {
                         \ 'icons':{}
                         \ }
@@ -2469,6 +2472,22 @@ function! CCTreeWindowPreviewStatusLine()
                 \)
 endfunction
 
+function! s:CCTree_Powerline_Title()
+    return s:CCTreeGlobals.PreviewState.keyword
+endfunction
+
+function! CCTree_Powerline_Title()
+    return s:CCTree_Powerline_Title()
+endfunction
+
+fun! s:CCTree_Powerline_Depth() "{{{
+    return "Depth:" . s:CCTreeGlobals.PreviewState.depth
+endfunction "}}}
+
+fun! CCTree_Powerline_Depth() "{{{
+    return s:CCTree_Powerline_Depth() 
+endfunction "}}}
+
 function! s:CCTreeWindow.mPreviewSave(savetitle) dict
     if s:FindOpenWindow(s:windowtitle) == 1
         setlocal modifiable
@@ -2545,6 +2564,7 @@ function! s:CCTreeWindow.mDisplayTree(atree, direction) dict
     " Need to force this again
     let &l:foldlevel=g:CCTreeMinVisibleDepth
     setlocal nomodifiable
+    nnoremap <buffer> <silent> x  \|:silent exec 'vertical resize '.( winwidth('.') > g:CCTreeWindowMinWidth ? (g:CCTreeWindowMinWidth):(winwidth('.') + 100))<CR>
     call self.mResize()
     if (incctreewin == 0)
         call s:CCTreeWindow.mLeave()

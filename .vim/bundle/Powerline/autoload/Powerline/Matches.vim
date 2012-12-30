@@ -9,6 +9,7 @@ let g:Powerline#Matches#matches = {
 	\ 'gundo_tree'      : Pl#Match#Add('bufname("%")', '__Gundo__'),
 	\ 'bufexplorer'     : Pl#Match#Add('bufname("%")', '\[Buf List\]'),
 	\ 'taglist'         : Pl#Match#Add('bufname("%")', '__Tag_List__'),
+	\ 'cctree'          : Pl#Match#Add('bufname("%")', 'CCTree-View'),
 	\ 'lustyexplorer'   : Pl#Match#Add('bufname("%")', '\[LustyExplorer-Buffers\]'),
 	\ 'minibufexplorer' : Pl#Match#Add('bufname("%")', '\-MiniBufExplorer\-'),
 	\ 'tagbar'          : Pl#Match#Add('&ft'         , 'tagbar'),

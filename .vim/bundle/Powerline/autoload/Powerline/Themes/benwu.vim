@@ -146,5 +146,12 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 		\ , 'filemod'
 		\ , Pl#Segment#Truncate()
 		\ , Pl#Segment#Split()
+	\ ), 
+    \
+	\ Pl#Theme#Buffer('cctree'
+		\ , 'cctree_title'
+		\ , 'cctree_depth'
+		\ , Pl#Segment#Truncate()
+		\ , Pl#Segment#Split()
 	\ )
 \ )

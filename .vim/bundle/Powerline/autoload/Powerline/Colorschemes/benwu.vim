@@ -122,7 +122,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'n': ['white', 'brightred', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['gundo:static_str.name', 'command_t:static_str.name'], {
+	\ Pl#Hi#Segments(['gundo:static_str.name', 'command_t:static_str.name', 'cctree_title'], {
 		\ 'n': ['white', 'mediumred', ['bold']],
 		\ 'N': ['brightred', 'darkestred', ['bold']],
 		\ }),
@@ -137,7 +137,7 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'N': ['white', 'darkestred'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name', 'calendar:static_str.name'], {
+	\ Pl#Hi#Segments(['lustyexplorer:static_str.name', 'minibufexplorer:static_str.name', 'nerdtree:raw.name', 'tagbar:static_str.name', 'calendar:static_str.name', 'cctree_depth'], {
 		\ 'n': ['white', 'mediumgreen', ['bold']],
 		\ 'N': ['mediumgreen', 'darkestgreen', ['bold']],
 		\ }),
