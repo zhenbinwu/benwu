@@ -24,8 +24,6 @@ send the command to execute for the main file
 
 [*] Syntax conceal for crefvim.txt
 
-[*] visual map & and g& so that the they works like in normal mode
-
 [*] Map <leader>u for undo, whether persistence undo or undo till the pervious
 write (or some way better to deal with this)
 [/list]

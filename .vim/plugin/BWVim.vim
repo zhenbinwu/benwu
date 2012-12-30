@@ -152,10 +152,10 @@ endfunction "}}}
 
 let g:make_target = "%:r"
 fun! MapMake(output) "{{{
-  if exists("b:syntastic_enable") 
-    let syntastic_temp = b:syntastic_enable
-    if b:syntastic_enable == 1
-      let b:syntastic_enable = 0
+  if exists("g:syntastic_enable") 
+    let syntastic_temp = g:syntastic_enable
+    if g:syntastic_enable == 1
+      let g:syntastic_enable = 0
     endif
   endif
   w
@@ -166,8 +166,8 @@ fun! MapMake(output) "{{{
   endif
   cwindow
   cc
-  if exists("b:syntastic_enable") && exists("syntastic_temp")
-    let b:syntastic_enable = syntastic_temp
+  if exists("g:syntastic_enable") && exists("syntastic_temp")
+    let g:syntastic_enable = syntastic_temp
   endif
   redraw!
 endfunction "}}}
@@ -254,3 +254,9 @@ nmap go :call <SID>OnlineWord(expand("<cword>"))<CR>
 vmap go :call <SID>OnlineWord(expand("<C-R>*"))<CR>
 nmap gO :call <SID>OnlineDoc(expand("<cword>"))<CR>
 vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>
+
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$")+1, a:maxheight]), a:minheight]) . "wincmd _"
+endfunction

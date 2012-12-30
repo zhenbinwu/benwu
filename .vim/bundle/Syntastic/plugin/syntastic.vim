@@ -223,14 +223,13 @@ function! s:CacheErrors()
         let fts = substitute(&ft, '-', '_', 'g')
         for ft in split(fts, '\.')
             if SyntasticCheckable(ft)
-                if exists("g:syntastic_do_async") && exists("g:async_".ft."_syntax_checker")
+                if exists("g:syntastic_do_async") && exists("g:async_".ft."_syntax_checker") && v:servername != ''
                     call SyntaxCheckers_{ft}_GetLocList()
                 else
                     let errors = SyntaxCheckers_{ft}_GetLocList()
                     if exists("*SyntaxCheckers_".ft."_PostProcess")
                         let errors = SyntaxCheckers_{ft}_PostProcess(errors)
                     endif
-                    let errors = SyntaxCheckers_{ft}_GetLocList()
                     "keep only lines that effectively match an error/warning
                     let errors = s:FilterLocList({'valid': 1}, errors)
                     "make errors have type "E" by default
@@ -722,7 +721,7 @@ function! SyntasticRemoteMake(options)
         let old_errorformat = &l:errorformat
         let g:syntastic_auto_loc_list = 1
 
-        if !s:running_windows && (s:uname !~ "FreeBSD")
+        if !s:running_windows && (s:uname() !~ "FreeBSD")
             "this is a hack to stop the screen needing to be ':redraw'n when
             "when :lmake is run. Otherwise the screen flickers annoyingly
             let &shellpipe='&>'
@@ -741,7 +740,7 @@ function! SyntasticRemoteMake(options)
         let &shellpipe=old_shellpipe
         let &shell=old_shell
 
-        if !s:running_windows && s:uname =~ "FreeBSD"
+        if s:IsRedrawRequiredAfterMake()
             redraw!
         endif
 

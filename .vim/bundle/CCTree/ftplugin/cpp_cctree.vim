@@ -15,11 +15,11 @@ fun! s:CCTree() "{{{
     return ""
   endif
 
-  if !exists('g:CscopePath') 
+  if !exists('g:cscope_relative_path') 
     return ""
   endif
 
-  let a:CscopeFile = g:CscopePath . '/cscope.out'
+  let a:CscopeFile = g:cscope_relative_path . '/cscope.out'
   if !filereadable(a:CscopeFile)
     return ""
   endif
@@ -34,9 +34,9 @@ fun! s:CCTree() "{{{
   ""Perl interface is typically faster than native Vimscript.
   "let g:CCTreeUsePerl = 1 
 
-  let a:CctreeFile = g:CscopePath . '/cctree.out'
-  let a:CcglueFile = g:CscopePath . '/ccglue.out'
-  let a:XrefFile = g:CscopePath . '/xref.out'
+  let a:CctreeFile = g:cscope_relative_path . '/cctree.out'
+  let a:CcglueFile = g:cscope_relative_path . '/ccglue.out'
+  let a:XrefFile   = g:cscope_relative_path . '/xref.out'
   if filereadable(a:CcglueFile)
     silent execute 'CCTreeLoadXRefDB' . a:CcglueFile
   elseif filereadable(a:XrefFile)

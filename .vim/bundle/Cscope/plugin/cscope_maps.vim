@@ -27,7 +27,7 @@
 " when it was compiled.  If it wasn't, time to recompile vim... 
 if has("cscope")
 
-function SetCscope()
+function s:SetCscope()
     let curdir = getcwd()
     while !filereadable("cscope.out") && getcwd() != "/"
 	cd ..
@@ -35,11 +35,49 @@ function SetCscope()
 
     if filereadable("cscope.out")
         cs add cscope.out  
-        let g:CscopePath = getcwd()
+        let g:cscope_relative_path = getcwd()
     endif
 
     execute "cd " . curdir
 endfunction
+
+fun! CscopeQuickfix(mode, word) "{{{
+  exec "set cscopequickfix=" . a:mode ."-"
+  try
+    if a:word == "word"
+      exec 'cs find ' . a:mode . ' <cword>'
+    elseif  a:word == "file"
+      if a:mode == 'i'
+        exec 'cs find ' . a:mode . ' ^<cfile>$'
+      else
+        exec 'cs find ' . a:mode . ' <cfile>'
+      endif
+    endif
+  catch /.*/
+    echo  v:exception
+    call setqflist([])
+  endtry
+
+  exec "set cscopequickfix="
+  if !empty(getqflist())
+    copen
+
+    syntax region CscopeTagName start="^Cscope tag: "hs=s end="$"he=e
+    syntax region CscopeFileName start="^\s*\d\+\s\+" end="$"he=e
+    syntax match CscopeFunc /<<.\{-}>>/
+    syntax match CscopeUnknown /<<<.\{-}>>>/
+    syntax match CscopeTagLineNr /\[[0-9]\+\]/
+    hi link CscopeUnknown WarningMsg
+    hi link CscopeLine LineNr
+    hi link CscopeFunc Label
+    hi link CscopeTagName Title
+    hi link CscopeFileName Visual
+
+    cc
+  else
+    cclose
+  endif
+endfunction "}}}
 
     """"""""""""" Standard cscope/vim boilerplate
 
@@ -60,14 +98,14 @@ endif
 
     " add any cscope database in current directory
     if filereadable("cscope.out")
-        let g:CscopePath = getcwd()
+        let g:cscope_relative_path = getcwd()
         cs add cscope.out  
     " else add the database pointed to by environment variable 
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
-        let g:CscopePath = getcwd()
+        let g:cscope_relative_path = getcwd()
     else 
-        call SetCscope()
+        call s:SetCscope()
     endif
 
 
@@ -111,14 +149,23 @@ endif
     " go back to where you were before the search.  
     "
 
-    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+
+    nmap <C-\>s :call CscopeQuickfix('s', 'word')<CR>
+    nmap <C-\>g :call CscopeQuickfix('g', 'word')<CR>
+    nmap <C-\>c :call CscopeQuickfix('c', 'word')<CR>
+    nmap <C-\>t :call CscopeQuickfix('t', 'word')<CR>
+    nmap <C-\>e :call CscopeQuickfix('e', 'word')<CR>
+    nmap <C-\>f :call CscopeQuickfix('f', 'file')<CR>
+    nmap <C-\>i :call CscopeQuickfix('i', 'file')<CR>
+    nmap <C-\>d :call CscopeQuickfix('d', 'word')<CR>
+    "nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    "nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    "nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    "nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    "nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    "nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    "nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    "nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type

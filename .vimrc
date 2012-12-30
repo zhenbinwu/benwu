@@ -245,7 +245,7 @@ nnoremap <expr>   gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 " map & and g& for visual mode, also work for visual block
 vnoremap &  :s<CR>
-vnoremap g& :s/\%V<C-R>//~/g<CR>
+vnoremap g& :s/\%V<C-R>//~/g<CR>:let @/ = substitute(@/, '\v^\\\%V(.*)', '\1', '')<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
@@ -989,3 +989,4 @@ let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
 if( match(hostname(), 'nbay') >=0 )
   let g:asynccommand_prg = 'vim73'
 endif
+let g:cscope_database = "cscope.out"

@@ -2079,8 +2079,8 @@ function! s:CCTreeUtils.mDetectDB(class)
     if a:class == s:DBClasses.cctreexref
         if filereadable(g:CCTreeDb)
             return g:CCTreeDb
-        elseif filereadable(g:CscopePath . '/cscope.out')
-            return g:CscopePath . '/' . g:CCTreeDb
+        elseif filereadable(g:cscope_relative_path . '/cscope.out')
+            return g:cscope_relative_path . '/' . g:CCTreeDb
         endif
     elseif a:class == s:DBClasses.cscopeid
         if filereadable(g:CCTreeCscopeDb)

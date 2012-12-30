@@ -71,6 +71,7 @@
 " Set your compiler executable with e.g. (defaults to g++)
 "
 "   let g:syntastic_cpp_compiler = 'clang++'
+
 if exists("g:syntastic_do_async") 
     let g:async_cpp_syntax_checker = 1
 endif
@@ -152,17 +153,9 @@ function! SyntaxCheckers_cpp_GetLocList()
                     \ 'defaults': {'bufnr': bufnr("")} })
     else
         " process makeprg
-        let errors = SyntasticLocalMake({ 'makeprg': makeprg,
+        return SyntasticLocalMake({ 'makeprg': makeprg,
                     \ 'errorformat': errorformat })
 
-        " filter the processed errors if desired
-        if exists('g:syntastic_cpp_remove_include_errors') &&
-                    \ g:syntastic_cpp_remove_include_errors != 0
-            return filter(errors,
-                        \ 'has_key(v:val, "bufnr") && v:val["bufnr"]=='.bufnr(''))
-        else
-            return errors
-        endif
     endif
 endfunction "}}}
 
