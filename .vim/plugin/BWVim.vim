@@ -78,6 +78,34 @@ nmap <silent> <leader>tt :call <sid>LastTab()<CR>
 "============================================================================"
 "                            QuickFix & LocalList                            "
 "============================================================================"
+"" Re-define make
+let g:make_target = "%:r"
+fun! MapMake(output) "{{{
+  if exists("g:syntastic_enable") 
+    let syntastic_temp = g:syntastic_enable
+    if g:syntastic_enable == 1
+      let g:syntastic_enable = 0
+    endif
+  endif
+  w
+  if a:output == 0
+    silent make
+  elseif a:output == 1
+    execute "silent make " . g:make_target
+  endif
+  cwindow
+  cc
+  if exists("g:syntastic_enable") && exists("syntastic_temp")
+    let g:syntastic_enable = syntastic_temp
+  endif
+  redraw!
+endfunction "}}}
+
+map <F2> <Esc>:call MapMake(0)<CR>
+map <F3> <Esc>:call MapMake(1)<CR>
+imap <F2> <Esc>:call MapMake(0)<CR>
+imap <F3> <Esc>:call MapMake(1)<CR>
+
 "" Automatic select local list or quickfix depending 
 fun! QLstep(direction) "{{{
   hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen
@@ -150,33 +178,6 @@ fun! QLstep(direction) "{{{
   endif
 endfunction "}}}
 
-let g:make_target = "%:r"
-fun! MapMake(output) "{{{
-  if exists("g:syntastic_enable") 
-    let syntastic_temp = g:syntastic_enable
-    if g:syntastic_enable == 1
-      let g:syntastic_enable = 0
-    endif
-  endif
-  w
-  if a:output == 0
-    silent make
-  elseif a:output == 1
-    execute "silent make " . g:make_target
-  endif
-  cwindow
-  cc
-  if exists("g:syntastic_enable") && exists("syntastic_temp")
-    let g:syntastic_enable = syntastic_temp
-  endif
-  redraw!
-endfunction "}}}
-
-map <F2> <Esc>:call MapMake(0)<CR>
-map <F3> <Esc>:call MapMake(1)<CR>
-imap <F2> <Esc>:call MapMake(0)<CR>
-imap <F3> <Esc>:call MapMake(1)<CR>
-
 map <F7> <Esc>:call QLstep(-1)<CR>
 map <F8> <Esc>:call QLstep(1)<CR>
 imap <F7> <Esc>:call QLstep(-1)<CR>
@@ -200,6 +201,76 @@ endfunction "}}}
 au QuickFixCmdPre  make let g:qflist_result = ''
 au QuickFixCmdPost make call QfMakeConv()
 
+"" Ajust the window height for quickfix
+function! s:AdjustWindowHeight(minheight, maxheight) "{{{
+  exe max([min([line("$")+1, a:maxheight]), a:minheight]) . "wincmd _"
+endfunction "}}}
+au FileType qf call s:AdjustWindowHeight(3, 10)
+
+"" Local mapping for quickfix
+fun! s:QuickfixZoom() "{{{
+  if g:quickfix_win_maximized
+    " Restore the window back to the previous size
+    exe 'resize ' . g:quickfix_win_height
+    let g:quickfix_win_maximized = 0
+  else
+    " Set the window size to the maximum possible without closing other
+    " windows
+    resize
+    let g:quickfix_win_maximized = 1
+  endif
+endfunction "}}}
+fun! s:QuickfixSplit(mode) "{{{
+  let s:qf_buf = bufnr("%")
+  wincmd p
+
+  if a:mode == 's'
+    split
+  endif
+  if a:mode == 'v'
+    vertical split
+  endif
+
+  echo bufwinnr(s:qf_buf) . "wincmd w"
+  execute bufwinnr(s:qf_buf) . "wincmd w"
+  normal 
+endfunction "}}}
+
+au FileType qf let g:quickfix_win_height = winheight(0)
+au QuickFixCmdPre * let g:quickfix_win_maximized = 0
+au FileType qf nnoremap <buffer> <silent> x :call <SID>QuickfixZoom()<CR>
+au FileType qf nnoremap <buffer> <silent> s :call <SID>QuickfixSplit('s')<CR>
+au FileType qf nnoremap <buffer> <silent> v :call <SID>QuickfixSplit('v')<CR>
+
+"" Substitute long path name in quickfix window
+fun! s:QuickfixSed() "{{{
+    setlocal modifiable
+    try
+      "%s#/home/benwu#$HOME#g
+    catch /.*/
+    endtry
+    setlocal nomodifiable
+    setlocal nomodified
+endfunction "}}}
+au FileType qf call s:QuickfixSed()
+
+"" Exit vim when the last window is quickfix
+function! MyLastWindow() "{{{
+  " if the window is quickfix go on
+  if &buftype=="quickfix"
+    " if this window is last on screen quit without warning
+    "if winbufnr(2) == -1
+    if winnr('$') < 2
+      quit
+    endif
+  endif
+endfunction "}}}
+au BufEnter * call MyLastWindow()
+
+"============================================================================"
+"                            General Functions                               "
+"============================================================================"
+" Highlight the repeated line
 function! HighlightRepeats() range "{{{
   let lineCounts = {}
   let lineNum = a:firstline
@@ -228,6 +299,7 @@ endfunction "}}}
 
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 
+" mapping for google the word under cursor
 function! s:OnlineDoc(word) "{{{
   let s:wordUnderCursor = a:word
   let s:ask = "What to google: " 
@@ -237,6 +309,7 @@ function! s:OnlineDoc(word) "{{{
 
   call s:OnlineWord(s:string)
 endfunction "}}}
+
 fun! s:OnlineWord(word) "{{{
   let s:browser = "opera"
   "let s:browser = "gnome-open"
@@ -254,43 +327,3 @@ nmap go :call <SID>OnlineWord(expand("<cword>"))<CR>
 vmap go :call <SID>OnlineWord(expand("<C-R>*"))<CR>
 nmap gO :call <SID>OnlineDoc(expand("<cword>"))<CR>
 vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>
-
-function! s:AdjustWindowHeight(minheight, maxheight) "{{{
-  exe max([min([line("$")+1, a:maxheight]), a:minheight]) . "wincmd _"
-endfunction "}}}
-
-fun! s:QuickfixZoom() "{{{
-  if g:quickfix_win_maximized
-    " Restore the window back to the previous size
-    exe 'resize ' . g:quickfix_win_height
-    let g:quickfix_win_maximized = 0
-  else
-    " Set the window size to the maximum possible without closing other
-    " windows
-    resize
-    let g:quickfix_win_maximized = 1
-  endif
-endfunction "}}}
-
-fun! s:QuickfixSplit(mode) "{{{
-  let s:qf_buf = bufnr("%")
-  wincmd p
-
-  if a:mode == 's'
-    split
-  endif
-  if a:mode == 'v'
-    vertical split
-  endif
-
-  echo bufwinnr(s:qf_buf) . "wincmd w"
-  execute bufwinnr(s:qf_buf) . "wincmd w"
-  normal 
-endfunction "}}}
-
-au FileType qf call s:AdjustWindowHeight(3, 10)
-au FileType qf nnoremap <buffer> <silent> x :call <SID>QuickfixZoom()<CR>
-au FileType qf nnoremap <buffer> <silent> s :call <SID>QuickfixSplit('s')<CR>
-au FileType qf nnoremap <buffer> <silent> v :call <SID>QuickfixSplit('v')<CR>
-au FileType qf let g:quickfix_win_height = winheight(0)
-au QuickFixCmdPre * let g:quickfix_win_maximized = 0
