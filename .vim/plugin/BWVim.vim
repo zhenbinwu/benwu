@@ -246,7 +246,8 @@ au FileType qf nnoremap <buffer> <silent> v :call <SID>QuickfixSplit('v')<CR>
 fun! s:QuickfixSed() "{{{
     setlocal modifiable
     try
-      "%s#/home/benwu#$HOME#g
+      "silent! %s#/home/benwu#$HOME#g
+      silent! %s#/mnt/autofs/misc/nbay05.a/benwu/WHAM_CDF/#WHAM/#g
     catch /.*/
     endtry
     setlocal nomodifiable
