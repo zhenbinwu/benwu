@@ -101,7 +101,7 @@ termcapinfo vt100 dl=5\E[M
 # (This fixes the "Aborted because of window size change" konsole symptoms found
 #  in bug #134198)
 #termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
-termcapinfo xterm* "hs:ts=\E]0;:fs=\007:ds=\E]0;screen @ ${SHORT_HOST}\007"
+#termcapinfo xterm* "hs:ts=\E]0;:fs=\007:ds=\E]0;screen @ ${SHORT_HOST}\007"
 defhstatus "screen | $USER@H"
 
 
@@ -110,3 +110,15 @@ defhstatus "screen | $USER@H"
 # ------------------------------------------------------------------------------
 blankerprg $HOME/.screen/idle
 idle 600 blanker
+
+# ------------------------------------------------------------------------------
+# Enable 256 color support for xterm
+# https://wiki.archlinux.org/index.php/GNU_Screen#Use_256_colors
+# ------------------------------------------------------------------------------
+# allow bold colors - necessary for some reason
+attrcolor b ".I"    
+# tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   
+# use current bg color for erased chars
+defbce on    
+

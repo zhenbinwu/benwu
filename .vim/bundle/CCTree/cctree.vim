@@ -2473,7 +2473,7 @@ function! CCTreeWindowPreviewStatusLine()
 endfunction
 
 function! s:CCTree_Powerline_Title()
-    return s:CCTreeGlobals.PreviewState.keyword
+    return s:CCTreeGlobals.PreviewState.keyword . s:CCTreeGlobals.Window.treeMarkers.mGetArrow(s:CCTreeGlobals.PreviewState.direction) . ' ' 
 endfunction
 
 function! CCTree_Powerline_Title()
