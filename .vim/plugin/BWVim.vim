@@ -247,6 +247,7 @@ fun! s:QuickfixSed() "{{{
     setlocal modifiable
     try
       "silent! %s#/home/benwu#$HOME#g
+      exec "silent! %s#".getcwd()."#\.#g"
       silent! %s#/mnt/autofs/misc/nbay05.a/benwu/WHAM_CDF/#WHAM/#g
     catch /.*/
     endtry
@@ -328,3 +329,281 @@ nmap go :call <SID>OnlineWord(expand("<cword>"))<CR>
 vmap go :call <SID>OnlineWord(expand("<C-R>*"))<CR>
 nmap gO :call <SID>OnlineDoc(expand("<cword>"))<CR>
 vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>
+
+
+"============================================================================"
+"                        Run command using Asyncommand                       "
+"============================================================================"
+
+let g:AsynRun_path = "."
+let g:AsynRun_comd = ""
+
+function! AsynRunFunc() "{{{
+  if !exists("g:loaded_asynccommand") 
+    echo "Please install Asyncommand plugin!"
+    return
+  endif
+
+  if v:servername == ''
+    echo "Please start vim with a servername!"
+    return
+  endif
+
+  if g:AsynRun_comd == ''
+    if executable(expand(g:make_target))
+      let g:AsynRun_comd = './' . expand(g:make_target)
+    endif
+  endif
+
+  let cmd = 'cd ' .  g:AsynRun_path  . ";"
+  let cmd .= g:AsynRun_comd
+  let env = {}
+  function env.get(temp_file) dict
+    if self.return_code == 0
+      " use tiny split window height on success
+    endif
+
+    if bufwinnr(bufnr('\[Asyn Run\]')) != -1
+      let s:hasansi = "true"
+      exec bufwinnr(bufnr('\[Asyn Run\]')) . "wincmd w" 
+      setlocal modifiable
+      normal GVgg"_d<C-[>
+      exec "read " . a:temp_file
+      exec "bwipeout " . a:temp_file
+    else
+      " open the file in a split
+      exec 10 . "split " . "\[Asyn Run\]"
+      exec "read " . a:temp_file
+      exec "bwipeout " . a:temp_file
+
+      if exists("g:loaded_AnsiEscPlugin") && !exists("b:AnsiEsc")
+        setlocal conceallevel=3 
+        AnsiEsc
+      endif
+
+      nnoremap <buffer> <silent> x  \|:silent exec 'resize '.( winheight('.') > 10 ? 10 : (winheight('.') + 100))<CR>
+      nnoremap <buffer> <silent> q  :q<CR>
+
+
+      setlocal buftype=nofile
+      setlocal bufhidden=hide
+      setlocal winfixheight
+      setlocal noswapfile
+      setlocal nobuflisted
+
+    endif
+    " remove boring build output
+    "%s/^\[xslt\].*$/
+    execute "silent! %s/]2;/[31;4mENV[m /g"
+    execute "silent! %s//\r/g"
+    setlocal number
+    setlocal nomodified
+    setlocal nomodifiable
+
+    " go back to the previous window
+
+    wincmd p
+  endfunction
+
+  " tab_restore prevents interruption when the task completes.
+  " All provided asynchandlers already use tab_restore.
+  call asynccommand#run(cmd, asynccommand#tab_restore(env))
+endfunction "}}}
+
+if has("clientserver") 
+  nnoremap <silent> <leader>ar :call AsynRunFunc()<CR><Esc>
+endif
+
+"============================================================================"
+"                        Run command in another screen window                "
+"============================================================================"
+let g:ScreenRun_winu = '1'
+let g:ScreenRun_path = '.'
+"let g:ScreenRun_comd = 'ls'
+let g:ScreenRun_comd = 'ping gogle.com'
+let g:ScreenRun_logp = '.'
+"let g:ScreenRun_logp = '/home/benwu/temp/automake/'
+"let g:ScreenRun_comd = '$LASTJOB'
+
+fun! ScreenRunFunc() "{{{
+  if match($TERM, "screen") == -1
+    echo "This command only run within screen!"
+    return
+  endif
+
+  "[*] Within vim, send command to another window within current screen section
+  "set a variable for the current window and remove such screenlog
+  "screen -p 0 -X stuff 'ls'`echo -n '\015'`
+  "-n for tcsh, -ne for bash
+  "screen -p 0 -X log (to start, again to stop)
+  "setlocal autoread, autocmd to ansiesc
+
+  "" Set all the inputs 
+  if g:ScreenRun_winu == ''
+    let g:ScreenRun_winu = inputdialog("Which window to run on? ", '0')
+  endif
+  
+  if g:ScreenRun_path != '' && g:ScreenRun_path != './'  && g:ScreenRun_path != '.'
+    let g:ScreenRun_path = inputdialog("Which path to run on? ", getcwd())
+  endif
+
+  if g:ScreenRun_comd == '' 
+    let g:ScreenRun_comd = inputdialog("Which command to run? ", '')
+  endif
+
+  if $SHELL == 'tcsh'
+    let enter = "`echo -n \'\\015\'`"
+  else
+    let enter = "`echo -ne \'\\015\'`"
+  endif
+
+"============================================================================"
+"                          Clean the screenlog first                         "
+"============================================================================"
+  "" Start to constuct the command to run on
+  if !exists("g:ScreenRun_first") || g:ScreenRun_first != 1
+    let cmd = "setenv LASTJOB \\\!\\\!"
+    let g:ScreenRun_first = 1
+  else
+    let cmd = ""
+  endif
+
+  if g:ScreenRun_path != './' && g:ScreenRun_path != '.'
+    let cmd .= '; cd ' . g:ScreenRun_path
+  endif
+
+  let cmd .= '; rm -f screenlog.' . g:ScreenRun_winu
+  let cmd .= '; ls'
+
+
+  let g:torun = "screen -p " . g:ScreenRun_winu . " -X stuff \'" . cmd . "\'" . enter
+  
+  "echo "silent! !". g:torun
+  execute "silent! !". g:torun
+
+
+"============================================================================"
+"                       Send the real command to screen                      "
+"============================================================================"
+  "" Start to constuct the command to run on
+  let cmd = ''
+  "let cmd = 'screen -X msgwait 0; screen -X log '
+  let cmd .= ';' .  g:ScreenRun_comd
+  "let cmd .= '; echo "Job is done\!" '
+  "let cmd .= '; screen -X log ; screen -X msgwait 4'
+  let g:torun = "screen -p " . g:ScreenRun_winu . " -X stuff \'" . cmd . "\'" . enter
+  
+  "echo "silent! !". g:torun
+  execute "silent! !". g:torun
+
+"============================================================================"
+"                     Split window to monitor the output                     "
+"============================================================================"
+  "" Find the logfile 
+  if filereadable(g:ScreenRun_path . "/screenlog" . "." . g:ScreenRun_winu)
+    let s:logfile = g:ScreenRun_path . "/screenlog" . "." . g:ScreenRun_winu 
+  endif
+
+  if filereadable(g:ScreenRun_logp . "/screenlog" . "." . g:ScreenRun_winu)
+    let s:logfile = g:ScreenRun_logp . "/screenlog" . "." . g:ScreenRun_winu 
+  endif
+
+  if !exists("s:logfile")
+    return
+  endif
+
+
+    if bufwinnr(bufnr(expand(s:logfile))) != -1
+      exec bufwinnr(bufnr(expand(s:logfile))) . "wincmd w" 
+      setlocal autoread
+      redir => s:sy
+      silent! syntax list
+      redir END
+      echo len(s:sy)
+    else
+      " open the file in a split
+      exec 10 . "split " . expand(s:logfile)
+
+      if exists("g:loaded_AnsiEscPlugin") && !exists("b:AnsiEsc")
+        setlocal conceallevel=3 
+        AnsiEsc
+        syntax match ansiConceal "" conceal cchar=3
+      endif
+
+      nnoremap <buffer> <silent> x  \|:silent exec 'resize '.( winheight('.') > 10 ? 10 : (winheight('.') + 100))<CR>
+      nnoremap <buffer> <silent> q  :bwipeout % <CR>
+      nnoremap <buffer> <silent> r  :checktime<CR>G
+
+      setlocal autoread
+
+      "setlocal buftype=nofile
+      "setlocal bufhidden=hide
+      "setlocal winfixheight
+      "setlocal noswapfile
+      "setlocal nobuflisted
+
+    endif
+    " remove boring build output
+    "%s/^\[xslt\].*$/
+    execute "silent! %s/]2;/[31;4mENV[m /g"
+    execute "silent! %s//\r/g"
+    setlocal number
+    setlocal nowrap
+    setlocal nomodified
+    setlocal nomodifiable
+    "
+
+    autocmd CursorHold     * call s:UpdateScreenlog(s:logfile)
+    autocmd CursorHoldI    * call s:UpdateScreenlog(s:logfile)
+    autocmd BufEnter       * call s:UpdateScreenlog(s:logfile)
+    
+    " go back to the previous window
+    wincmd p
+
+    redraw!
+
+endfunction "}}}
+"
+function! s:UpdateScreenlog(filename) "{{{
+    if a:filename == ''
+        return
+    endif
+
+    if !bufexists(a:filename)
+      return
+    endif
+
+    " Make sure the taglist window is present
+    let winnum = bufwinnr(a:filename)
+    if winnum == -1
+        return
+    endif
+
+    " Ignore all autocommands
+    let old_ei = &eventignore
+    set eventignore=all
+
+    " Save the original window number
+    let org_winnr = winnr()
+
+    " Go to the taglist window
+    if org_winnr != winnum
+        exe winnum . 'wincmd w'
+    endif
+
+    checktime
+    normal G
+
+    " Go back to the original window
+    if org_winnr != winnum
+        exe org_winnr . 'wincmd w'
+    endif
+
+    " Restore the autocommands
+    let &eventignore = old_ei
+    return
+endfunction "}}}
+
+if match($TERM, "screen") != -1
+  nmap <silent> <leader>sr :call ScreenRunFunc()<CR>
+endif

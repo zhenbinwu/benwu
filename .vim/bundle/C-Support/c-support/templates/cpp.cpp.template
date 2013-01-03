@@ -8,6 +8,9 @@ std::cout << <CURSOR> << std::endl;
 == cpp.debug ==
 std::cout<<"Run to \033[0;31m"<<__func__<<"\033[0m at \033[1;36m"<< __FILE__<<"\033[0m, line \033[0;34m"<< __LINE__<<"\033[0m"<< std::endl; <CURSOR>
 $
+== cpp.quickfix ==
+std::cout<<__FILE__<<":"<<__LINE__<<": Run to "<<__func__<< std::endl; <CURSOR>
+$
 == cpp.cin-operator == insert ==
 "<CURSOR>" >> <-CURSOR->
 $

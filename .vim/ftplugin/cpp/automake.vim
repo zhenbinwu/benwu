@@ -106,7 +106,7 @@ from sets import Set
 ### Define to compile the main in two steps
 MAKEMAIN = True
 ### Whether to read fortune while compiling
-FORTUNE = True
+FORTUNE = False
 ### Define the C++ compiler to be used
 CXX           = 'g++'
 ### Define the C++ flags

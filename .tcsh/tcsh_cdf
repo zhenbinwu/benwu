@@ -94,6 +94,7 @@ if (  $SHORT_HOST =~ ThinkPad ) then
         setenv LD_LIBRARY_PATH $HOME/BenSys/lib/
 	endif
 	setenv CVSEIDTOR vim
+    alias vi  '$CVSEIDTOR --servername $USER';
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
 endif
 

@@ -52,6 +52,7 @@ fun! s:CCTree() "{{{
     let choice = confirm("Do want you to load from cscope File?", "&Yes\n&No")
     if choice == 1
        execute 'CCTreeLoadDB' . a:CscopeFile
+       execute 'CCTreeSaveXRefDB ' . a:CctreeFile
     endif
   endif
 

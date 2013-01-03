@@ -363,6 +363,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>ti   <Esc>:call C#InsertTemplate("c
 inoremap    <buffer>  <silent>  <LocalLeader>to   <Esc>:call C#InsertTemplate("cpp.cout")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>td        :call C#InsertTemplate("cpp.debug")<CR><ESC>
 inoremap    <buffer>  <silent>  <LocalLeader>td   <Esc>:call C#InsertTemplate("cpp.debug")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>t/        :call C#InsertTemplate("cpp.quickfix")<CR><ESC>
+inoremap    <buffer>  <silent>  <LocalLeader>t/   <Esc>:call C#InsertTemplate("cpp.quickfix")<CR>
 "
  noremap    <buffer>  <silent>  <LocalLeader>tg        :call C#InsertTemplate("cpp.class-definition")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tg   <Esc>:call C#InsertTemplate("cpp.class-definition")<CR>
