@@ -1774,6 +1774,8 @@ function! s:ToggleDone()"{{{
     else 
         echo "not a task."
     endif
+
+    silent! call repeat#set("\<Plug>ToggleDone", v:count)
 endfunction"}}}
 
 " toggle @cancelled context tag on a task
@@ -1794,6 +1796,8 @@ function! s:ToggleCancelled()"{{{
     else 
         echo "not a task."
     endif
+
+    silent! call repeat#set("\<Plug>ToggleCancelled", v:count)
 endfunction"}}}
 
 "============================================================================"

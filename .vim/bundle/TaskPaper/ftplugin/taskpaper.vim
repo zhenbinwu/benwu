@@ -66,6 +66,7 @@ function! s:ToggleDone()
         echo "not a task."
     endif
 
+    silent! call repeat#set("\<Plug>ToggleDone", v:count)
 endfunction
 
 " toggle @cancelled context tag on a task
@@ -88,11 +89,12 @@ function! s:ToggleCancelled()
         echo "not a task."
     endif
 
+    silent! call repeat#set("\<Plug>ToggleCancelled", v:count)
 endfunction
 
 " Set up mappings
 noremap <unique> <script> <Plug>ToggleDone       :call <SID>ToggleDone()<CR>
-noremap <unique> <script> <Plug>ToggleCancelled   :call <SID>ToggleCancelled()<CR>
+noremap <unique> <script> <Plug>ToggleCancelled  :call <SID>ToggleCancelled()<CR>
 noremap <unique> <script> <Plug>ShowContext      :call <SID>ShowContext()<CR>
 noremap <unique> <script> <Plug>ShowAll          :call <SID>ShowAll()<CR>
 noremap <unique> <script> <Plug>FoldAllProjects  :call <SID>FoldAllProjects()<CR>

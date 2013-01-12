@@ -21,7 +21,7 @@ function! sideways#Left(definitions)
   endif
 
   call s:Swap(first, second, new_cursor_column)
-  silent! call repeat#set(":call sideways#Left()\<cr>")
+  silent! call repeat#set(":call sideways#Left(g:sideways_definitions)\<cr>")
   return 1
 endfunction
 
@@ -48,7 +48,7 @@ function! sideways#Right(definitions)
   endif
 
   call s:Swap(first, second, new_cursor_column)
-  silent! call repeat#set(":call sideways#Right()\<cr>")
+  silent! call repeat#set(":call sideways#Right(g:sideways_definitions)\<cr>")
   return 1
 endfunction
 

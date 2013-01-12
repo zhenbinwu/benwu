@@ -1182,6 +1182,7 @@ function! C#AdjustLineEndComm ( ) range
 	let &expandtab	= save_expandtab
 	call setpos('.', save_cursor)
 
+    silent! call repeat#set(":call C#AdjustLineEndComm()\<cr>")
 endfunction		" ---------- end of function  C#AdjustLineEndComm  ----------
 "
 "------------------------------------------------------------------------------
@@ -3159,6 +3160,7 @@ function! C#InsertTemplateNoIndent ( key, ... )
 		normal zv
 	endif
 
+    silent! call repeat#set(":call C#InsertTemplateNoIndent(" . shellescape(a:key) . ")\<cr>")
 endfunction    " ----------  end of function C#InsertTemplateNoIndent ----------
 
 "------------------------------------------------------------------------------
@@ -3380,6 +3382,8 @@ function! C#InsertTemplate ( key, ... )
   endif
 
   imap    <buffer>  <silent>  <C-j>    <C-R>=C#JumpCtrlJ()<CR>
+
+  silent! call repeat#set(":call C#InsertTemplate(" . shellescape(a:key) . ")\<cr>")
 endfunction    " ----------  end of function C#InsertTemplate  ----------
 
 "------------------------------------------------------------------------------
@@ -3606,6 +3610,8 @@ function! C#InsertDateAndTime ( format )
 	else
 		exe 'normal i'.C#DateAndTime(a:format)
 	endif
+
+    silent! call repeat#set(":call C#InsertDateAndTime(" . shellescape(a:format) . ")\<cr>")
 endfunction    " ----------  end of function C#InsertDateAndTime  ----------
 
 "------------------------------------------------------------------------------

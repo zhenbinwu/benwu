@@ -255,6 +255,7 @@ set foldmethod=marker
 map <tab> :tabnext <ESC>
 map <silent> <leader><cr> :noh<cr>
 map <silent> <leader>z :set foldmethod=syntax<CR>
+map <silent> zu :checktime<CR>
   		
 
 " Smart way to move btw. windows

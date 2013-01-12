@@ -15,7 +15,7 @@
 "   let g:cscope_relative_path = **folder containing cscope database file**
 " These variables are set by tagfilehelpers.vim
 
-if exists('g:loaded_asynccommand')
+if exists('g:loaded_asynccommand') || !has('clientserver')
     finish
 endif
 let g:loaded_asynccommand = 1

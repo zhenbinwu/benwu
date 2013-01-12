@@ -88,9 +88,9 @@ command! -nargs=1 -complete=customlist,C#RTTIList                RTTI           
 "
 nnoremap    <buffer>  <silent>  <LocalLeader>cj         :call C#AdjustLineEndComm()<CR>
 vnoremap    <buffer>  <silent>  <LocalLeader>cj         :call C#AdjustLineEndComm()<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cj    <Esc>:call CBrowseTemplateFiles#AdjustLineEndComm()<CR>a
+inoremap    <buffer>  <silent>  <LocalLeader>cj    <Esc>:call C#AdjustLineEndComm()<CR>a
 "
- noremap    <buffer>  <silent>  <LocalLeader>cs         :call C#GetLineEndCommCol()<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>cE         :call C#GetLineEndCommCol()<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>c*         :call C#CodeToCommentC()<CR>:nohlsearch<CR>j
 vnoremap    <buffer>  <silent>  <LocalLeader>c*         :call C#CodeToCommentC()<CR>:nohlsearch<CR>j

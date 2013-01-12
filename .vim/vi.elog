@@ -32,17 +32,16 @@ project. Or a better managerment of the left windowo
 
 [*] Cpp debug cout changed to vim readable format (:h cfile)
 
-[*] Enable repeat for C-Support or many other plugin.
-[*] Enable repeat for Align
-[*] Enable repeat for textobj
 
 [*] Bufexplorer acting wired with winmanager
+
+[*] Fuzzyfinder, dir open with nerdtree
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
 <leader>: u, i
 gr gz
-zp zq zu zy
+zp zq zy
 
 
 [h2]Free mapping in insert mode[/h2]
