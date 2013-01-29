@@ -30,12 +30,12 @@ write (or some way better to deal with this)
 [*] Close the right window (project, winmanage etc. ) when open another
 project. Or a better managerment of the left windowo
 
-[*] Cpp debug cout changed to vim readable format (:h cfile)
-
-
-[*] Bufexplorer acting wired with winmanager
-
 [*] Fuzzyfinder, dir open with nerdtree
+
+[*] Repeat support for text object, using v:operator
+
+[*] R: Add the one line description of the function to the omnilist
+[*] R: Enable syntax highlight in the preview window
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
@@ -49,6 +49,9 @@ zp zq zy
 
 [h2]Start of map for xptemplate of CPP[/h2]
 g j k q x y z
+
+[h2]Start of map for xptemplate of R[/h2]
+ri j k u x y z
 
 [h2]Sourcing time[/h2]
 072.376  072.376: sourcing /home/benwu/.vim/bundle/Syntastic/plugin/syntastic.vim

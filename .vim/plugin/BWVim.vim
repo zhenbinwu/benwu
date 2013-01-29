@@ -220,6 +220,7 @@ fun! s:QuickfixZoom() "{{{
     let g:quickfix_win_maximized = 1
   endif
 endfunction "}}}
+
 fun! s:QuickfixSplit(mode) "{{{
   let s:qf_buf = bufnr("%")
   wincmd p
@@ -241,6 +242,7 @@ au QuickFixCmdPre * let g:quickfix_win_maximized = 0
 au FileType qf nnoremap <buffer> <silent> x :call <SID>QuickfixZoom()<CR>
 au FileType qf nnoremap <buffer> <silent> s :call <SID>QuickfixSplit('s')<CR>
 au FileType qf nnoremap <buffer> <silent> v :call <SID>QuickfixSplit('v')<CR>
+au FileType qf nnoremap <buffer> <silent> q :q<CR>
 
 "" Substitute long path name in quickfix window
 fun! s:QuickfixSed() "{{{

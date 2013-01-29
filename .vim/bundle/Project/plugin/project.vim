@@ -1310,7 +1310,7 @@ function! s:Project(filename) " <<<
         nmap     <buffer> <silent> <3-RightMouse> <space>
         nmap     <buffer> <silent> <4-RightMouse> <space>
         nnoremap <buffer> <silent> <space>  \|:silent exec 'vertical resize '.(match(g:proj_flags, '\Ct')!=-1 && winwidth('.') > g:proj_window_width?(g:proj_window_width):(winwidth('.') + g:proj_window_increment))<CR>
-        nmap     <buffer> <silent> q  <ESC>:q<CR>
+        nmap     <buffer> <silent> q  <ESC>:bwipeout<CR>
         nnoremap <buffer> <silent> gj   \|:silent call <SID>MoveUp()<CR>
         nnoremap <buffer> <silent> gk   \|:silent call <SID>MoveDown()<CR>
         nmap     <buffer> <silent> <LocalLeader><Up>   \|:silent call <SID>MoveUp()<CR>

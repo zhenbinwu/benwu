@@ -3383,7 +3383,7 @@ function! C#InsertTemplate ( key, ... )
 
   imap    <buffer>  <silent>  <C-j>    <C-R>=C#JumpCtrlJ()<CR>
 
-  silent! call repeat#set(":call C#InsertTemplate(" . shellescape(a:key) . ")\<cr>")
+  silent! call repeat#set(":call C#InsertTemplate(" . shellescape(a:key) . ")\<cr>\<ESC>")
 endfunction    " ----------  end of function C#InsertTemplate  ----------
 
 "------------------------------------------------------------------------------

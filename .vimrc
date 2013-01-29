@@ -40,52 +40,53 @@
 "     > MarksBrowser     ( V0.9        2011_01_29 )
 "     > Recover          ( V0.16       2012_11_22 )
 "     > Toggle           ( V0.5        2011_02_09 )
-"     > Pathogen         ( V2.0        2011_10_26 )
+"     > Pathogen         ( V2.2        2012_01_14 )
 "     > DirDiff          ( V1.1.4      2011_10_27 )
 "     > Indent_py        ( V0.3        2011_07_24 )
 "     > Python_fn        ( V1.13       2011_07_24 )
-"     > Pydoc            ( V1.3.6      2011_07_24 )
+"     > Pydoc            ( V1.3.6      2011_07_24 )  " 
 "     > Pep8             ( V0.3.1      2011_07_24 )
 "     > Pythoncomplete   ( V0.9        2011_09_01 )
 "     > SrollColors      ( V0719       2012_05_09 )
-"     > Repmo            ( V0.5        2012_07_24 )
+"     > Repmo            ( V0.5.1      2013_01_15 ) 
 "     > Ambicomplete     ( V0.2a       2012_08_11 )
 "
 "     ------> Plugins within Pathogen
-"     > NERD_Tree        ( V4.1.0      2011_01_29 ) 
+"     > NERD_Tree        ( V4.1.0      2011_01_29 )  " 
 "     > WinManager       ( V2.3        2011_01_29 ) 
-"     > BufExplorer      ( V7.3.0      2012_10_09 ) 
+"     > BufExplorer      ( V7.3.0      2012_10_09 )  " 
 "     > Align            ( V36/42      2012_11_25 ) 
-"     > VCSCommand       ( V1.99.45    2011_10_27 ) 
-"     > XPtemplate       ( V0.4.8-0707 2011_10_27 ) 
+"     > VCSCommand       ( V1.99.45    2011_10_27 )  " 
+"     > XPtemplate       ( V0.4.8-0707 2011_10_27 )  " 
 "     > C-Support        ( V5.16       2011_11_06 ) 
-"     > Conque Shell     ( V2.2        2011_10_27 ) 
+"     > Conque Shell     ( V2.2        2011_10_27 )   
 "     > LaTeX-Suite      ( V1.5        2011_01_29 ) 
-"     > ColorSamplerPack ( V8.03       2011_01_29 ) 
+"     > ColorSamplerPack ( V8.03       2011_01_29 )  " 
 "     > OmniCppComplete  ( V0.41       2011_01_29 ) 
 "     > VimGdb           ( V1.14       2011_01_29 )
 "     > Matchit          ( V1.13.2     2011_01_29 )
 "     > FuzzyFinder      ( V4.2.2      2011_01_30 )
 "     > A                ( V2.18       2011_05_08 )
-"     > Taskpaper        ( v0.6        2011_05_29 )
+"     > Taskpaper        ( v0.6        2011_05_29 )  " 
 "     > Cscope           ( V1          2011_01_30 )
 "     > Pydiction        ( V1.2        2011_07_24 )
 "     > Python_ifold     ( V2.9        2011_07_24 )
-"     > Inccomplete      ( V1.6.29     2012_04_18 )
+"     > Inccomplete      ( V1.6.32     2013_01_16 ) 
 "     > NERD_Commenter   ( V2.3.0      2012_06_17 ) 
-"     > Repeat           ( V1.0        2012_05_09 ) 
-"     > Surrond          ( V1.90       2012_05_09 ) 
-"     > Tagbar           ( V2.4        2012_06_17 ) 
+"     > Repeat           ( V1.0        2012_05_09 )  " 
+"     > Surrond          ( V1.90       2012_05_09 )  " 
+"     > Tagbar           ( V2.4        2012_06_17 )  " 
 "     > Fugitive         ( V1.2        2012_06_18 )
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
-"     > RelOps           ( V1.0        2012_09_13 )
+"     > RelOps           ( V1.0        2012_09_13 )  " 
 "     > Sideways         ( V0.0.2      2012_10_08 )
 "     > Powerline        ( V#beta      2012_11_22 )
 "     > Locator          ( V1.3        2012_11_25 )
 "     > Syntastic        ( V2.3.0      2012_11_25 )
 "     > Project          ( V1.4.1      2012_12_22 )
 "     > AsyncCommand     ( V4.0        2012_12_27 )
+"     > R-plugin         ( V0.9.9.1    2013_01_29 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -986,3 +987,10 @@ if( match(hostname(), 'nbay') >=0 )
   let g:asynccommand_prg = 'vim73'
 endif
 let g:cscope_database = "cscope.out"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => R-Plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimrplugin_screenplugin = 0
+let vimrplugin_objbr_w        = 30
+let vimrplugin_vimpager       = "horizontal"

@@ -1,4 +1,4 @@
-*inccomplete.txt*	For Vim version 7.3.  Last change: 2012 Jan 6
+*inccomplete.txt*	For Vim version 7.3.  Last change: 2012 Oct 13
 
 
 		  inccomplete plugin documentation    by xaizek
@@ -10,7 +10,7 @@ inccomplete plugin					*inccomplete*
 2. Configuration		|inccomplete-configuration|
 3. ToDo		       	 	|inccomplete-todo|
 
-Author:  xaizek <xaizek@gmail.com>         		*inccomplete-author*
+Author:  xaizek <xaizek@lavabit.com>         		*inccomplete-author*
 License: Same terms as Vim itself (see |license|)
 
 ==============================================================================
@@ -49,11 +49,21 @@ typing subdirectory name and a slash (and optionally beginning of file name).
 
 When |g:inccomplete_showdirs| is true, completion list contains directories
 and it will popup after hitting forward or backward slash key.  Directories
-can be distinguished by the ending slash.  Closing bracket is never added
-to directory completion items.
+can be distinguished by the ending slash.  Directories which names start with
+a dot are ignored.  Closing bracket is never added to directory completion
+items.
 
 ==============================================================================
 2. Configuration				*inccomplete-configuration*
+
+Whether to autoselect the first entry		*inccomplete-autoselect*
+						*g:inccomplete_autoselect*
+If equal to 0, nothing is selected.
+If equal to 1, automatically select the first entry in the popup menu, but
+without inserting it into the code.
+If equal to 2, automatically select the first entry in the popup menu, and
+insert it into the code.
+Default: 1
 
 command to run GNU find program			*inccomplete-findcmd*
 						*g:inccomplete_findcmd*
@@ -94,6 +104,15 @@ add directories to completion list     		*inccomplete-showdirs*
 
 If value of this option evaluates to true, plugin will search for
 directories and add it to completion list.
+
+append a slash to directory names     		*inccomplete-appendslash*
+						*g:inccomplete_appendslash*
+						 type: bool
+						 default: false
+
+If value of this option evaluates to true, the plugin will append a slash
+to directory name completion items. Otherwise slashes will be added in the
+menu only.
 
 ==============================================================================
 3. ToDo						*inccomplete-todo*

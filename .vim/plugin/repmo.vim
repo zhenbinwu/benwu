@@ -2,10 +2,10 @@
 " General: {{{1
 " File:         repmo.vim
 " Created:      2008 Jan 27
-" Last Change:  2009 Jun 03
-" Rev Days:     7
+" Last Change:  2012 Sep 25
+" Rev Days:     8
 " Author:	Andy Wokula <anwoku@yahoo.de>
-" Version:	0.5
+" Version:	0.5.1
 
 " Question: BML schrieb: Is there a way/command to repeat the last movement,
 "   like ; and , repeat the last f command? It would be nice to be able to
@@ -79,6 +79,9 @@
 " + added :sil! before  unmap ;  in case user unmapped ";" by hand
 " + :normal didn't work with <Space> (i.e. " ")
 " + let f/F/t/T accept a count when unmapping
+" v0.5.1
+" + make "v5j" work again after vim7.3.100 (:normal resets the count)
+"   (fix by Joseph McCullough)
 
 " }}}
 
@@ -176,7 +179,7 @@ func! <sid>MapRepeatMotion(vmode, key, revkey) "{{{
 	" map ";" and ","
 	let hasrepmo = 0
 	if exists("g:repmo_key") && g:repmo_key != ''
-	    exec "noremap <special>" g:repmo_key cnt.a:key
+            exec "noremap <special>" g:repmo_key cnt.a:key
 	    exec "sunmap <special>" g:repmo_key
 	    let hasrepmo = 1
 	endif

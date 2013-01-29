@@ -191,8 +191,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>s{    <Esc>:call C#InsertTemplate("
 vnoremap    <buffer>  <silent>  <LocalLeader>sb    <Esc>:call C#InsertTemplate("statements.block", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>sb    <Esc>:call C#InsertTemplate("statements.block")<CR>
 
- noremap    <buffer>            <LocalLeader>sr   <Esc>:RTTI<Space>
-inoremap    <buffer>            <LocalLeader>sr   <Esc>:RTTI<Space>
+ noremap    <buffer>            <LocalLeader>sg   <Esc>:RTTI<Space>
+inoremap    <buffer>            <LocalLeader>sg   <Esc>:RTTI<Space>
 "
 " ---------- preprocessor menu  ----------------------------------------------
 "
