@@ -83,7 +83,7 @@ vim.omni.line <- function(x, envir, printenv, curlevel) {
     if(x.group == "function"){
       if (vim.help(x, 100) == "VIMHELP") {
         o <- paste(Sys.getenv("VIMRPLUGIN_TMPDIR"), "/Rdoc", sep = "")
-        des  <- readLines(file(o, 'r'), 3)[3]
+        des <- readLines(file(o, 'r'), 3)[3]
         des <- gsub('_\b', '', des)
         if(curlevel == 0){
           if(vim.grepl("GlobalEnv", printenv)){
@@ -95,6 +95,18 @@ vim.omni.line <- function(x, envir, printenv, curlevel) {
           # some libraries have functions as list elements
           cat(x, "\x06function\x06function\x06", printenv, "\x06Unknown arguments", "\x06", des, "\n", sep="")
         }
+      } else{
+        if(curlevel == 0){
+          if(vim.grepl("GlobalEnv", printenv)){
+            cat(x, "\x06function\x06function\x06", printenv, "\x06", vim.args(x, txt = ""),  "\n", sep="")
+          } else {
+            cat(x, "\x06function\x06function\x06", printenv, "\x06", vim.args(x, txt = "", pkg = printenv), "\n", sep="")
+          }
+        } else {
+          # some libraries have functions as list elements
+          cat(x, "\x06function\x06function\x06", printenv, "\x06Unknown arguments", "\n", sep="")
+        }
+      }
     } else {
         if(is.list(xx)){
             if(curlevel == 0){

@@ -1,5 +1,5 @@
-ColorOutfunctionfunctioncoloroutNO_ARGS
-noColorOutfunctionfunctioncoloroutNO_ARGS
-setOutputColorsfunctionfunctioncoloroutnormal2	number3	negnum3	string6	const5	stderror4	warnc(1, 0, 1)	errorc(1, 7)	verboseTRUE
-setOutputColors256functionfunctioncoloroutnormal40	number214	negnum209	string85	const35	stderror33	warnc(1, 0, 1)	errorc(1, 15)	verboseTRUE
-show256Colorsfunctionfunctioncoloroutoutfile"/tmp/table256.html"
+ColorOutfunctionfunctioncoloroutNO_ARGSColorize R output in terminal emulator
+noColorOutfunctionfunctioncoloroutNO_ARGSStop colorizing R output
+setOutputColorsfunctionfunctioncoloroutnormal2	number3	negnum3	string6	const5	stderror4	warnc(1, 0, 1)	errorc(1, 7)	verboseTRUESet the colors to be used on R output
+setOutputColors256functionfunctioncoloroutnormal40	number214	negnum209	string85	const35	stderror33	warnc(1, 0, 1)	errorc(1, 15)	verboseTRUESet the colors to be used on R output
+show256Colorsfunctionfunctioncoloroutoutfile"/tmp/table256.html"Create and show a table with 256 colors

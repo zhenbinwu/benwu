@@ -1,162 +1,162 @@
-?functionfunctionutilse1	e2
-adistfunctionfunctionutilsx	yNULL	costsNULL	countsFALSE	fixedTRUE	partial!fixed	ignore.caseFALSE	useBytesFALSE
-alarmfunctionfunctionutilsNO_ARGS
-aproposfunctionfunctionutilswhat	whereFALSE	ignore.caseTRUE	mode"any"
-aregexecfunctionfunctionutilspattern	text	max.distance0.1	costsNULL	ignore.caseFALSE	fixedFALSE	useBytesFALSE
-argsAnywherefunctionfunctionutilsx
-aspellfunctionfunctionutilsfiles	filter	controllist()	encoding"unknown"	programNULL
-aspell_package_Rd_filesfunctionfunctionutilsdir	dropc("\\author", "\\references")	controllist()	programNULL
-aspell_package_vignettesfunctionfunctionutilsdir	controllist()	programNULL
-aspell_write_personal_dictionary_filefunctionfunctionutilsx	out	language"en"	programNULL
-as.personfunctionfunctionutilsx
-as.personListfunctionfunctionutilsx
-as.relistablefunctionfunctionutilsx
-as.romanfunctionfunctionutilsx
-assignInNamespacefunctionfunctionutilsx	value	ns	pos-1	enviras.environment(pos)
-available.packagesfunctionfunctionutilscontriburlcontrib.url(getOption("repos"), type)	method	fieldsNULL	typegetOption("pkgType")	filtersNULL
-bibentryfunctionfunctionutilsbibtype	textVersionNULL	headerNULL	footerNULL	keyNULL	...	otherlist()	mheaderNULL	mfooterNULL
-browseEnvfunctionfunctionutilsenvir	pattern	excludepatt"^last\.warning"	html.Platform$OS.type != "mac"	expandedTRUE	propertiesNULL	mainNULL	debugMeFALSE
-browseURLfunctionfunctionutilsurl	browsergetOption("browser")	encodeIfNeededFALSE
-browseVignettesfunctionfunctionutilspackageNULL	lib.locNULL	allTRUE
-bug.reportfunctionfunctionutilssubject""	address	file"R.bug.report"	packageNULL	lib.locNULL	...
-capture.outputfunctionfunctionutils...	fileNULL	appendFALSE
-checkCRANfunctionfunctionutilsmethod
-chooseBioCmirrorfunctionfunctionutilsgraphicsgetOption("menu.graphics")
-chooseCRANmirrorfunctionfunctionutilsgraphicsgetOption("menu.graphics")
-citationfunctionfunctionutilspackage"base"	lib.locNULL	autoNULL
-citEntryfunctionfunctionutilsentry	textVersion	headerNULL	footerNULL	...
-citFooterfunctionfunctionutils...
-citHeaderfunctionfunctionutils...
-close.socketfunctionfunctionutilssocket	...
-combnfunctionfunctionutilsx	m	FUNNULL	simplifyTRUE	...
-compareVersionfunctionfunctionutilsa	b
-contrib.urlfunctionfunctionutilsrepos	typegetOption("pkgType")
-count.fieldsfunctionfunctionutilsfile	sep""	quote""'"	skip0	blank.lines.skipTRUE	comment.char"#"
-CRAN.packagesfunctionfunctionutilsCRANgetOption("repos")	method	contriburlcontrib.url(CRAN)
-create.postfunctionfunctionutilsinstructionscharacter()	description"post"	subject""	methodgetOption("mailer")	address"the relevant mailing list"	ccaddressgetOption("ccaddress", "")	filename"R.post"	infocharacter()
-datafunctionfunctionutils...	listcharacter()	packageNULL	lib.locNULL	verbosegetOption("verbose")	envir
-dataentryfunctionfunctionutilsdata	modes
-data.entryfunctionfunctionutils...	ModesNULL	NamesNULL
-defunctionfunctionutils...	Modeslist()	NamesNULL
-debuggerfunctionfunctionutilsdump
-demofunctionfunctionutilstopic	packageNULL	lib.locNULL	character.onlyFALSE	verbosegetOption("verbose")	echoTRUE	askgetOption("demo.ask")
-de.ncolsfunctionfunctionutilsinlist
-de.restorefunctionfunctionutilsinlist	ncols	coltypes	argnames	args
-de.setupfunctionfunctionutilsilist	list.names	incols
-download.filefunctionfunctionutilsurl	destfile	method	quietFALSE	mode"w"	cacheOKTRUE	extragetOption("download.file.extra")
-download.packagesfunctionfunctionutilspkgs	destdir	availableNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	typegetOption("pkgType")	...
-dump.framesfunctionfunctionutilsdumpto"last.dump"	to.fileFALSE
-editfunctionfunctionutilsname	...
-emacsfunctionfunctionutilsnameNULL	file""
-examplefunctionfunctionutilstopic	packageNULL	lib.locNULL	character.onlyFALSE	give.linesFALSE	localFALSE	echoTRUE	verbosegetOption("verbose")	setRNGFALSE	askgetOption("example.ask")	prompt.prefixabbreviate(topic, 6)
-file.editfunctionfunctionutils...	title	editorgetOption("editor")	fileEncoding""
-file_testfunctionfunctionutilsop	x	y
-findfunctionfunctionutilswhat	mode"any"	numericFALSE	simple.wordsTRUE
-findLineNumfunctionfunctionutilssrcfile	line	nameonlyTRUE	envirparent.frame()	lastenv
-fixfunctionfunctionutilsx	...
-fixInNamespacefunctionfunctionutilsx	ns	pos-1	enviras.environment(pos)	...
-flush.consolefunctionfunctionutilsNO_ARGS
-formatOLfunctionfunctionutilsx	type"arabic"	offset0	start1	width0.9 * getOption("width")
-formatULfunctionfunctionutilsx	label"*"	offset0	width0.9 * getOption("width")
-getAnywherefunctionfunctionutilsx
-getCRANmirrorsfunctionfunctionutilsallFALSE	local.onlyFALSE
-getFromNamespacefunctionfunctionutilsx	ns	pos-1	enviras.environment(pos)
-getS3methodfunctionfunctionutilsf	class	optionalFALSE
-getSrcDirectoryfunctionfunctionutilsx	uniqueTRUE
-getSrcFilenamefunctionfunctionutilsx	full.namesFALSE	uniqueTRUE
-getSrcLocationfunctionfunctionutilsx	whichc("line", "column", "byte", "parse")	firstTRUE
-getSrcreffunctionfunctionutilsx
-getTxtProgressBarfunctionfunctionutilspb
-glob2rxfunctionfunctionutilspattern	trim.headFALSE	trim.tailTRUE
-headfunctionfunctionutilsx	...
-head.matrixfunctionfunctionutilsx	...
-helpfunctionfunctionutilstopic	packageNULL	lib.locNULL	verbosegetOption("verbose")	try.all.packagesgetOption("help.try.all.packages")	help_typegetOption("help_type")
-help.requestfunctionfunctionutilssubject""	address"r-help@R-project.org"	file"R.help.request"	...
-help.searchfunctionfunctionutilspattern	fieldsc("alias", "concept", "title")	apropos	keyword	whatis	ignore.caseTRUE	packageNULL	lib.locNULL	help.dbgetOption("help.db")	verbosegetOption("verbose")	rebuildFALSE	agrepNULL	use_UTF8FALSE	typesgetOption("help.search.types")
-help.startfunctionfunctionutilsupdateFALSE	gui"irrelevant"	browsergetOption("browser")	remoteNULL
-historyfunctionfunctionutilsmax.show25	reverseFALSE	pattern	...
-installed.packagesfunctionfunctionutilslib.locNULL	priorityNULL	noCacheFALSE	fieldsNULL	subarch.Platform$r_arch
-install.packagesfunctionfunctionutilspkgs	lib	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	availableNULL	destdirNULL	dependenciesNA	typegetOption("pkgType")	configure.argsgetOption("configure.args")	configure.varsgetOption("configure.vars")	cleanFALSE	NcpusgetOption("Ncpus", 1L)	libs_onlyFALSE	INSTALL_opts	...
-is.relistablefunctionfunctionutilsx
-limitedLabelsfunctionfunctionutilsvalue	maxwidthgetOption("width") - 5L
-loadhistoryfunctionfunctionutilsfile".Rhistory"
-localeToCharsetfunctionfunctionutilslocaleSys.getlocale("LC_CTYPE")
-lsf.strfunctionfunctionutilspos-1	envir	...
-ls.strfunctionfunctionutilspos-1	name	envir	all.namesFALSE	pattern	mode"any"
-maintainerfunctionfunctionutilspkg
-make.packages.htmlfunctionfunctionutilslib.loc.libPaths()	tempFALSE	verboseTRUE	docdirR.home("doc")
-makeRweaveLatexCodeRunnerfunctionfunctionutilsevalFunc
-make.socketfunctionfunctionutilshost"localhost"	port	failTRUE	serverFALSE
-memory.limitfunctionfunctionutilssizeNA
-memory.sizefunctionfunctionutilsmaxFALSE
-menufunctionfunctionutilschoices	graphicsFALSE	titleNULL
-methodsfunctionfunctionutilsgeneric.function	class
-mirror2htmlfunctionfunctionutilsmirrorsNULL	file"mirrors.html"	head"mirrors-head.html"	foot"mirrors-foot.html"
-modifyListfunctionfunctionutilsx	val
-new.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	instPkgsinstalled.packages(lib.loc = lib.loc)	method	availableNULL	askFALSE	...	typegetOption("pkgType")
-newsfunctionfunctionutilsquery	package"R"	lib.locNULL	formatNULL	readerNULL	dbNULL
-nslfunctionfunctionutilshostname
-object.sizefunctionfunctionutilsx
-old.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	instPkgsinstalled.packages(lib.loc = lib.loc)	method	availableNULL	checkBuiltFALSE	typegetOption("pkgType")
-package.contentsfunctionfunctionutilspkg	lib.locNULL
-packageDescriptionfunctionfunctionutilspkg	lib.locNULL	fieldsNULL	dropTRUE	encoding""
-package.skeletonfunctionfunctionutilsname"anRpackage"	listcharacter()	environment	path"."	forceFALSE	namespaceTRUE	code_filescharacter()
-packageStatusfunctionfunctionutilslib.locNULL	repositoriesNULL	method	typegetOption("pkgType")
-packageVersionfunctionfunctionutilspkg	lib.locNULL
-pagefunctionfunctionutilsx	methodc("dput", "print")	...
-personfunctionfunctionutilsgivenNULL	familyNULL	middleNULL	emailNULL	roleNULL	commentNULL	firstNULL	lastNULL
-personListfunctionfunctionutils...
-picofunctionfunctionutilsnameNULL	file""
-promptfunctionfunctionutilsobject	filenameNULL	nameNULL	...
-promptDatafunctionfunctionutilsobject	filenameNULL	nameNULL
-promptPackagefunctionfunctionutilspackage	lib.locNULL	filenameNULL	nameNULL	finalFALSE
-rc.getOptionfunctionfunctionutilsname
-rc.optionsfunctionfunctionutils...
-rc.settingsfunctionfunctionutilsops	ns	args	func	ipck	S3	data	help	argdb	files
-rc.statusfunctionfunctionutilsNO_ARGS
-readCitationFilefunctionfunctionutilsfile	metaNULL
-read.csvfunctionfunctionutilsfile	headerTRUE	sep","	quote"""	dec"."	fillTRUE	comment.char""	...
-read.csv2functionfunctionutilsfile	headerTRUE	sep";"	quote"""	dec","	fillTRUE	comment.char""	...
-read.delimfunctionfunctionutilsfile	headerTRUE	sep"	"	quote"""	dec"."	fillTRUE	comment.char""	...
-read.delim2functionfunctionutilsfile	headerTRUE	sep"	"	quote"""	dec","	fillTRUE	comment.char""	...
-read.DIFfunctionfunctionutilsfile	headerFALSE	dec"."	row.names	col.names	as.is!stringsAsFactors	na.strings"NA"	colClassesNA	nrows-1	skip0	check.namesTRUE	blank.lines.skipTRUE	stringsAsFactorsdefault.stringsAsFactors()	transposeFALSE
-read.fortranfunctionfunctionutilsfile	format	...	as.isTRUE	colClassesNA
-read.fwffunctionfunctionutilsfile	widths	headerFALSE	sep"	"	skip0	row.names	col.names	n-1	buffersize2000	...
-read.socketfunctionfunctionutilssocket	maxlen256	loopFALSE
-read.tablefunctionfunctionutilsfile	headerFALSE	sep""	quote""'"	dec"."	row.names	col.names	as.is!stringsAsFactors	na.strings"NA"	colClassesNA	nrows-1	skip0	check.namesTRUE	fill!blank.lines.skip	strip.whiteFALSE	blank.lines.skipTRUE	comment.char"#"	allowEscapesFALSE	flushFALSE	stringsAsFactorsdefault.stringsAsFactors()	fileEncoding""	encoding"unknown"	text
-recoverfunctionfunctionutilsNO_ARGS
-relistfunctionfunctionutilsflesh	skeletonattr(flesh, "skeleton")
-remove.packagesfunctionfunctionutilspkgs	lib
-removeSourcefunctionfunctionutilsfn
-Rproffunctionfunctionutilsfilename"Rprof.out"	appendFALSE	interval0.02	memory.profilingFALSE
-Rprofmemfunctionfunctionutilsfilename"Rprofmem.out"	appendFALSE	threshold0
-RShowDocfunctionfunctionutilswhat	typec("pdf", "html", "txt")	package
-RSiteSearchfunctionfunctionutilsstring	restrictc("functions", "vignettes", "views")	formatc("normal", "short")	sortbyc("score", "date:late", "date:early", "subject", "subject:descending", 	sortby    "from", "from:descending", "size", "size:descending")	matchesPerPage20
-rtagsfunctionfunctionutilspath"."	pattern"\.[RrSs]$"	recursiveFALSE	srclist.files(path = path, pattern = pattern, full.names = TRUE, 	src    recursive = recursive)	keep.reNULL	ofile""	appendFALSE	verbosegetOption("verbose")
-RtanglefunctionfunctionutilsNO_ARGS
-RtangleSetupfunctionfunctionutilsfile	syntax	outputNULL	annotateTRUE	splitFALSE	quietFALSE	...
-RtangleWritedocfunctionfunctionutilsobject	chunk
-RweaveChunkPrefixfunctionfunctionutilsoptions
-RweaveEvalWithOptfunctionfunctionutilsexpr	options
-RweaveLatexfunctionfunctionutilsNO_ARGS
-RweaveLatexFinishfunctionfunctionutilsobject	errorFALSE
-RweaveLatexOptionsfunctionfunctionutilsoptions
-RweaveLatexSetupfunctionfunctionutilsfile	syntax	outputNULL	quietFALSE	debugFALSE	stylepath	...
-RweaveLatexWritedocfunctionfunctionutilsobject	chunk
-RweaveTryStopfunctionfunctionutilserr	options
-savehistoryfunctionfunctionutilsfile".Rhistory"
-select.listfunctionfunctionutilschoices	preselectNULL	multipleFALSE	titleNULL	graphicsgetOption("menu.graphics")
-sessionInfofunctionfunctionutilspackageNULL
-setBreakpointfunctionfunctionutilssrcfile	line	nameonlyTRUE	envirparent.frame()	lastenv	verboseTRUE	tracer	printFALSE	clearFALSE	...
-setRepositoriesfunctionfunctionutilsgraphicsgetOption("menu.graphics")	indNULL	addURLscharacter()
-setTxtProgressBarfunctionfunctionutilspb	value	titleNULL	labelNULL
-stackfunctionfunctionutilsx	...
-Stanglefunctionfunctionutilsfile	driverRtangle()	syntaxgetOption("SweaveSyntax")	encoding""	...
-strfunctionfunctionutilsobject	...
-strOptionsfunctionfunctionutilsstrict.width"no"	digits.d3	vec.len4	formatNumfunction(x, ...) format(x, trim = TRUE, drop0trailing = TRUE, 	formatNum    ...)
-summaryRproffunctionfunctionutilsfilename"Rprof.out"	chunksize5000	memoryc("none", "both", "tseries", "stats")	index2	diffTRUE	excludeNULL
-Sweavefunctionfunctionutilsfile	driverRweaveLatex()	syntaxgetOption("SweaveSyntax")	encoding""	...
-SweaveHooksfunctionfunctionutilsoptions	runFALSE	envir
+?functionfunctionutilse1	e2Documentation Shortcuts
+adistfunctionfunctionutilsx	yNULL	costsNULL	countsFALSE	fixedTRUE	partial!fixed	ignore.caseFALSE	useBytesFALSEApproximate String Distances
+alarmfunctionfunctionutilsNO_ARGSAlert the User
+aproposfunctionfunctionutilswhat	whereFALSE	ignore.caseTRUE	mode"any"Find Objects by (Partial) Name
+aregexecfunctionfunctionutilspattern	text	max.distance0.1	costsNULL	ignore.caseFALSE	fixedFALSE	useBytesFALSEApproximate String Match Positions
+argsAnywherefunctionfunctionutilsxRetrieve an R Object, Including from a Namespace
+aspellfunctionfunctionutilsfiles	filter	controllist()	encoding"unknown"	programNULLSpell Check Interface
+aspell_package_Rd_filesfunctionfunctionutilsdir	dropc("\\author", "\\references")	controllist()	programNULLSpell Check Utilities
+aspell_package_vignettesfunctionfunctionutilsdir	controllist()	programNULLSpell Check Utilities
+aspell_write_personal_dictionary_filefunctionfunctionutilsx	out	language"en"	programNULLSpell Check Utilities
+as.personfunctionfunctionutilsxPersons
+as.personListfunctionfunctionutilsxPersons
+as.relistablefunctionfunctionutilsxAllow Re-Listing an unlist()ed Object
+as.romanfunctionfunctionutilsxRoman Numerals
+assignInNamespacefunctionfunctionutilsx	value	ns	pos-1	enviras.environment(pos)Utility functions for Developing Namespaces
+available.packagesfunctionfunctionutilscontriburlcontrib.url(getOption("repos"), type)	method	fieldsNULL	typegetOption("pkgType")	filtersNULLList Available Packages at CRAN-like Repositories
+bibentryfunctionfunctionutilsbibtype	textVersionNULL	headerNULL	footerNULL	keyNULL	...	otherlist()	mheaderNULL	mfooterNULLBibliography Entries
+browseEnvfunctionfunctionutilsenvir	pattern	excludepatt"^last\.warning"	html.Platform$OS.type != "mac"	expandedTRUE	propertiesNULL	mainNULL	debugMeFALSEBrowse Objects in Environment
+browseURLfunctionfunctionutilsurl	browsergetOption("browser")	encodeIfNeededFALSELoad URL into a WWW Browser
+browseVignettesfunctionfunctionutilspackageNULL	lib.locNULL	allTRUEList Vignettes in an HTML Browser
+bug.reportfunctionfunctionutilssubject""	address	file"R.bug.report"	packageNULL	lib.locNULL	...Send a Bug Report
+capture.outputfunctionfunctionutils...	fileNULL	appendFALSESend Output to a Character String or File
+checkCRANfunctionfunctionutilsmethodManaging Repository Mirrors
+chooseBioCmirrorfunctionfunctionutilsgraphicsgetOption("menu.graphics")Select a Bioconductor Mirror
+chooseCRANmirrorfunctionfunctionutilsgraphicsgetOption("menu.graphics")Select a CRAN Mirror
+citationfunctionfunctionutilspackage"base"	lib.locNULL	autoNULLCiting R and R Packages in Publications
+citEntryfunctionfunctionutilsentry	textVersion	headerNULL	footerNULL	...Bibliography Entries (Older Interface)
+citFooterfunctionfunctionutils...Bibliography Entries (Older Interface)
+citHeaderfunctionfunctionutils...Bibliography Entries (Older Interface)
+close.socketfunctionfunctionutilssocket	...Close a Socket
+combnfunctionfunctionutilsx	m	FUNNULL	simplifyTRUE	...Generate All Combinations of n Elements, Taken m at a Time
+compareVersionfunctionfunctionutilsa	bCompare Two Package Version Numbers
+contrib.urlfunctionfunctionutilsrepos	typegetOption("pkgType")Find Appropriate Paths in CRAN-like Repositories
+count.fieldsfunctionfunctionutilsfile	sep""	quote""'"	skip0	blank.lines.skipTRUE	comment.char"#"Count the Number of Fields per Line
+CRAN.packagesfunctionfunctionutilsCRANgetOption("repos")	method	contriburlcontrib.url(CRAN)Deprecated Functions in Package 'utils'
+create.postfunctionfunctionutilsinstructionscharacter()	description"post"	subject""	methodgetOption("mailer")	address"the relevant mailing list"	ccaddressgetOption("ccaddress", "")	filename"R.post"	infocharacter()Ancillary Function for Preparing Emails and Postings
+datafunctionfunctionutils...	listcharacter()	packageNULL	lib.locNULL	verbosegetOption("verbose")	envirData Sets
+dataentryfunctionfunctionutilsdata	modesSpreadsheet Interface for Entering Data
+data.entryfunctionfunctionutils...	ModesNULL	NamesNULLSpreadsheet Interface for Entering Data
+defunctionfunctionutils...	Modeslist()	NamesNULLSpreadsheet Interface for Entering Data
+debuggerfunctionfunctionutilsdumpPost-Mortem Debugging
+demofunctionfunctionutilstopic	packageNULL	lib.locNULL	character.onlyFALSE	verbosegetOption("verbose")	echoTRUE	askgetOption("demo.ask")Demonstrations of R Functionality
+de.ncolsfunctionfunctionutilsinlistSpreadsheet Interface for Entering Data
+de.restorefunctionfunctionutilsinlist	ncols	coltypes	argnames	argsSpreadsheet Interface for Entering Data
+de.setupfunctionfunctionutilsilist	list.names	incolsSpreadsheet Interface for Entering Data
+download.filefunctionfunctionutilsurl	destfile	method	quietFALSE	mode"w"	cacheOKTRUE	extragetOption("download.file.extra")Download File from the Internet
+download.packagesfunctionfunctionutilspkgs	destdir	availableNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	typegetOption("pkgType")	...Download Packages from CRAN-like Repositories
+dump.framesfunctionfunctionutilsdumpto"last.dump"	to.fileFALSEPost-Mortem Debugging
+editfunctionfunctionutilsname	...Invoke a Text Editor
+emacsfunctionfunctionutilsnameNULL	file""Invoke a Text Editor
+examplefunctionfunctionutilstopic	packageNULL	lib.locNULL	character.onlyFALSE	give.linesFALSE	localFALSE	echoTRUE	verbosegetOption("verbose")	setRNGFALSE	askgetOption("example.ask")	prompt.prefixabbreviate(topic, 6)Run an Examples Section from the Online Help
+file.editfunctionfunctionutils...	title	editorgetOption("editor")	fileEncoding""Edit One or More Files
+file_testfunctionfunctionutilsop	x	yShell-style Tests on Files
+findfunctionfunctionutilswhat	mode"any"	numericFALSE	simple.wordsTRUEFind Objects by (Partial) Name
+findLineNumfunctionfunctionutilssrcfile	line	nameonlyTRUE	envirparent.frame()	lastenvFind the Location of a Line of Source Code, or Set a Breakpoint There.
+fixfunctionfunctionutilsx	...Fix an Object
+fixInNamespacefunctionfunctionutilsx	ns	pos-1	enviras.environment(pos)	...Utility functions for Developing Namespaces
+flush.consolefunctionfunctionutilsNO_ARGSFlush Output to A Console
+formatOLfunctionfunctionutilsx	type"arabic"	offset0	start1	width0.9 * getOption("width")Format Unordered and Ordered Lists
+formatULfunctionfunctionutilsx	label"*"	offset0	width0.9 * getOption("width")Format Unordered and Ordered Lists
+getAnywherefunctionfunctionutilsxRetrieve an R Object, Including from a Namespace
+getCRANmirrorsfunctionfunctionutilsallFALSE	local.onlyFALSESelect a CRAN Mirror
+getFromNamespacefunctionfunctionutilsx	ns	pos-1	enviras.environment(pos)Utility functions for Developing Namespaces
+getS3methodfunctionfunctionutilsf	class	optionalFALSEGet An S3 Method
+getSrcDirectoryfunctionfunctionutilsx	uniqueTRUESource Reference Utilities
+getSrcFilenamefunctionfunctionutilsx	full.namesFALSE	uniqueTRUESource Reference Utilities
+getSrcLocationfunctionfunctionutilsx	whichc("line", "column", "byte", "parse")	firstTRUESource Reference Utilities
+getSrcreffunctionfunctionutilsxSource Reference Utilities
+getTxtProgressBarfunctionfunctionutilspbText Progress Bar
+glob2rxfunctionfunctionutilspattern	trim.headFALSE	trim.tailTRUEChange Wildcard or Globbing Pattern into Regular Expression
+headfunctionfunctionutilsx	...Return the First or Last Part of an Object
+head.matrixfunctionfunctionutilsx	...Return the First or Last Part of an Object
+helpfunctionfunctionutilstopic	packageNULL	lib.locNULL	verbosegetOption("verbose")	try.all.packagesgetOption("help.try.all.packages")	help_typegetOption("help_type")Documentation
+help.requestfunctionfunctionutilssubject""	address"r-help@R-project.org"	file"R.help.request"	...Send a Post to R-help
+help.searchfunctionfunctionutilspattern	fieldsc("alias", "concept", "title")	apropos	keyword	whatis	ignore.caseTRUE	packageNULL	lib.locNULL	help.dbgetOption("help.db")	verbosegetOption("verbose")	rebuildFALSE	agrepNULL	use_UTF8FALSE	typesgetOption("help.search.types")Search the Help System
+help.startfunctionfunctionutilsupdateFALSE	gui"irrelevant"	browsergetOption("browser")	remoteNULLHypertext Documentation
+historyfunctionfunctionutilsmax.show25	reverseFALSE	pattern	...Load or Save or Display the Commands History
+installed.packagesfunctionfunctionutilslib.locNULL	priorityNULL	noCacheFALSE	fieldsNULL	subarch.Platform$r_archFind Installed Packages
+install.packagesfunctionfunctionutilspkgs	lib	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	availableNULL	destdirNULL	dependenciesNA	typegetOption("pkgType")	configure.argsgetOption("configure.args")	configure.varsgetOption("configure.vars")	cleanFALSE	NcpusgetOption("Ncpus", 1L)	libs_onlyFALSE	INSTALL_opts	...Install Packages from Repositories or Local Files
+is.relistablefunctionfunctionutilsxAllow Re-Listing an unlist()ed Object
+limitedLabelsfunctionfunctionutilsvalue	maxwidthgetOption("width") - 5LBrowsing after an Error
+loadhistoryfunctionfunctionutilsfile".Rhistory"Load or Save or Display the Commands History
+localeToCharsetfunctionfunctionutilslocaleSys.getlocale("LC_CTYPE")Select a Suitable Encoding Name from a Locale Name
+lsf.strfunctionfunctionutilspos-1	envir	...List Objects and their Structure
+ls.strfunctionfunctionutilspos-1	name	envir	all.namesFALSE	pattern	mode"any"List Objects and their Structure
+maintainerfunctionfunctionutilspkgShow Package Maintainer
+make.packages.htmlfunctionfunctionutilslib.loc.libPaths()	tempFALSE	verboseTRUE	docdirR.home("doc")Update HTML Package List
+makeRweaveLatexCodeRunnerfunctionfunctionutilsevalFuncSweave Driver Utilities
+make.socketfunctionfunctionutilshost"localhost"	port	failTRUE	serverFALSECreate a Socket Connection
+memory.limitfunctionfunctionutilssizeNAReport on Memory Allocation
+memory.sizefunctionfunctionutilsmaxFALSEReport on Memory Allocation
+menufunctionfunctionutilschoices	graphicsFALSE	titleNULLMenu Interaction Function
+methodsfunctionfunctionutilsgeneric.function	classList Methods for S3 Generic Functions or Classes
+mirror2htmlfunctionfunctionutilsmirrorsNULL	file"mirrors.html"	head"mirrors-head.html"	foot"mirrors-foot.html"Managing Repository Mirrors
+modifyListfunctionfunctionutilsx	valRecursively Modify Elements of a List
+new.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	instPkgsinstalled.packages(lib.loc = lib.loc)	method	availableNULL	askFALSE	...	typegetOption("pkgType")Compare Installed Packages with CRAN-like Repositories
+newsfunctionfunctionutilsquery	package"R"	lib.locNULL	formatNULL	readerNULL	dbNULLBuild and Query R or Package News Information
+nslfunctionfunctionutilshostnameLook up the IP Address by Hostname
+object.sizefunctionfunctionutilsxReport the Space Allocated for an Object
+old.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	instPkgsinstalled.packages(lib.loc = lib.loc)	method	availableNULL	checkBuiltFALSE	typegetOption("pkgType")Compare Installed Packages with CRAN-like Repositories
+package.contentsfunctionfunctionutilspkg	lib.locNULLDefunct Functions in Package 'utils'
+packageDescriptionfunctionfunctionutilspkg	lib.locNULL	fieldsNULL	dropTRUE	encoding""Package Description
+package.skeletonfunctionfunctionutilsname"anRpackage"	listcharacter()	environment	path"."	forceFALSE	namespaceTRUE	code_filescharacter()Create a Skeleton for a New Source Package
+packageStatusfunctionfunctionutilslib.locNULL	repositoriesNULL	method	typegetOption("pkgType")Package Management Tools
+packageVersionfunctionfunctionutilspkg	lib.locNULLPackage Description
+pagefunctionfunctionutilsx	methodc("dput", "print")	...Invoke a Pager on an R Object
+personfunctionfunctionutilsgivenNULL	familyNULL	middleNULL	emailNULL	roleNULL	commentNULL	firstNULL	lastNULLPersons
+personListfunctionfunctionutils...Persons
+picofunctionfunctionutilsnameNULL	file""Invoke a Text Editor
+promptfunctionfunctionutilsobject	filenameNULL	nameNULL	...Produce Prototype of an R Documentation File
+promptDatafunctionfunctionutilsobject	filenameNULL	nameNULLGenerate Outline Documentation for a Data Set
+promptPackagefunctionfunctionutilspackage	lib.locNULL	filenameNULL	nameNULL	finalFALSEGenerate a Shell for Documentation of a Package
+rc.getOptionfunctionfunctionutilsnameA Completion Generator for R
+rc.optionsfunctionfunctionutils...A Completion Generator for R
+rc.settingsfunctionfunctionutilsops	ns	args	func	ipck	S3	data	help	argdb	filesA Completion Generator for R
+rc.statusfunctionfunctionutilsNO_ARGSA Completion Generator for R
+readCitationFilefunctionfunctionutilsfile	metaNULLCiting R and R Packages in Publications
+read.csvfunctionfunctionutilsfile	headerTRUE	sep","	quote"""	dec"."	fillTRUE	comment.char""	...Data Input
+read.csv2functionfunctionutilsfile	headerTRUE	sep";"	quote"""	dec","	fillTRUE	comment.char""	...Data Input
+read.delimfunctionfunctionutilsfile	headerTRUE	sep"	"	quote"""	dec"."	fillTRUE	comment.char""	...Data Input
+read.delim2functionfunctionutilsfile	headerTRUE	sep"	"	quote"""	dec","	fillTRUE	comment.char""	...Data Input
+read.DIFfunctionfunctionutilsfile	headerFALSE	dec"."	row.names	col.names	as.is!stringsAsFactors	na.strings"NA"	colClassesNA	nrows-1	skip0	check.namesTRUE	blank.lines.skipTRUE	stringsAsFactorsdefault.stringsAsFactors()	transposeFALSEData Input from Spreadsheet
+read.fortranfunctionfunctionutilsfile	format	...	as.isTRUE	colClassesNARead Fixed-Format Data
+read.fwffunctionfunctionutilsfile	widths	headerFALSE	sep"	"	skip0	row.names	col.names	n-1	buffersize2000	...Read Fixed Width Format Files
+read.socketfunctionfunctionutilssocket	maxlen256	loopFALSERead from or Write to a Socket
+read.tablefunctionfunctionutilsfile	headerFALSE	sep""	quote""'"	dec"."	row.names	col.names	as.is!stringsAsFactors	na.strings"NA"	colClassesNA	nrows-1	skip0	check.namesTRUE	fill!blank.lines.skip	strip.whiteFALSE	blank.lines.skipTRUE	comment.char"#"	allowEscapesFALSE	flushFALSE	stringsAsFactorsdefault.stringsAsFactors()	fileEncoding""	encoding"unknown"	textData Input
+recoverfunctionfunctionutilsNO_ARGSBrowsing after an Error
+relistfunctionfunctionutilsflesh	skeletonattr(flesh, "skeleton")Allow Re-Listing an unlist()ed Object
+remove.packagesfunctionfunctionutilspkgs	libRemove Installed Packages
+removeSourcefunctionfunctionutilsfnRemove Stored Source from a Function.
+Rproffunctionfunctionutilsfilename"Rprof.out"	appendFALSE	interval0.02	memory.profilingFALSEEnable Profiling of R's Execution
+Rprofmemfunctionfunctionutilsfilename"Rprofmem.out"	appendFALSE	threshold0Enable Profiling of R's Memory Use
+RShowDocfunctionfunctionutilswhat	typec("pdf", "html", "txt")	packageShow R Manuals and Other Documentation
+RSiteSearchfunctionfunctionutilsstring	restrictc("functions", "vignettes", "views")	formatc("normal", "short")	sortbyc("score", "date:late", "date:early", "subject", "subject:descending", 	sortby    "from", "from:descending", "size", "size:descending")	matchesPerPage20Search for Key Words or Phrases in the R-help Mailing List Archives or Documentation
+rtagsfunctionfunctionutilspath"."	pattern"\.[RrSs]$"	recursiveFALSE	srclist.files(path = path, pattern = pattern, full.names = TRUE, 	src    recursive = recursive)	keep.reNULL	ofile""	appendFALSE	verbosegetOption("verbose")An Etags-like Tagging Utility for R
+RtanglefunctionfunctionutilsNO_ARGSR Driver for Stangle
+RtangleSetupfunctionfunctionutilsfile	syntax	outputNULL	annotateTRUE	splitFALSE	quietFALSE	...R Driver for Stangle
+RtangleWritedocfunctionfunctionutilsobject	chunkSweave Driver Utilities
+RweaveChunkPrefixfunctionfunctionutilsoptionsSweave Driver Utilities
+RweaveEvalWithOptfunctionfunctionutilsexpr	optionsSweave Driver Utilities
+RweaveLatexfunctionfunctionutilsNO_ARGSR/LaTeX Driver for Sweave
+RweaveLatexFinishfunctionfunctionutilsobject	errorFALSESweave Driver Utilities
+RweaveLatexOptionsfunctionfunctionutilsoptionsSweave Driver Utilities
+RweaveLatexSetupfunctionfunctionutilsfile	syntax	outputNULL	quietFALSE	debugFALSE	stylepath	...R/LaTeX Driver for Sweave
+RweaveLatexWritedocfunctionfunctionutilsobject	chunkSweave Driver Utilities
+RweaveTryStopfunctionfunctionutilserr	optionsSweave Driver Utilities
+savehistoryfunctionfunctionutilsfile".Rhistory"Load or Save or Display the Commands History
+select.listfunctionfunctionutilschoices	preselectNULL	multipleFALSE	titleNULL	graphicsgetOption("menu.graphics")Select Items from a List
+sessionInfofunctionfunctionutilspackageNULLCollect Information About the Current R Session
+setBreakpointfunctionfunctionutilssrcfile	line	nameonlyTRUE	envirparent.frame()	lastenv	verboseTRUE	tracer	printFALSE	clearFALSE	...Find the Location of a Line of Source Code, or Set a Breakpoint There.
+setRepositoriesfunctionfunctionutilsgraphicsgetOption("menu.graphics")	indNULL	addURLscharacter()Select Package Repositories
+setTxtProgressBarfunctionfunctionutilspb	value	titleNULL	labelNULLText Progress Bar
+stackfunctionfunctionutilsx	...Stack or Unstack Vectors from a Data Frame or List
+Stanglefunctionfunctionutilsfile	driverRtangle()	syntaxgetOption("SweaveSyntax")	encoding""	...Automatic Generation of Reports
+strfunctionfunctionutilsobject	...Compactly Display the Structure of an Arbitrary R Object
+strOptionsfunctionfunctionutilsstrict.width"no"	digits.d3	vec.len4	formatNumfunction(x, ...) format(x, trim = TRUE, drop0trailing = TRUE, 	formatNum    ...)Compactly Display the Structure of an Arbitrary R Object
+summaryRproffunctionfunctionutilsfilename"Rprof.out"	chunksize5000	memoryc("none", "both", "tseries", "stats")	index2	diffTRUE	excludeNULLSummarise Output of R Sampling Profiler
+Sweavefunctionfunctionutilsfile	driverRweaveLatex()	syntaxgetOption("SweaveSyntax")	encoding""	...Automatic Generation of Reports
+SweaveHooksfunctionfunctionutilsoptions	runFALSE	envirSweave Driver Utilities
 SweaveSyntaxLatexSweaveSyntaxlistutilsNot a function
 SweaveSyntaxLatex$doccharactercharacterutilsNot a function
 SweaveSyntaxLatex$codecharactercharacterutilsNot a function
@@ -177,33 +177,33 @@ SweaveSyntaxNoweb$extensioncharactercharacterutilsNot a function
 SweaveSyntaxNoweb$syntaxnamecharactercharacterutilsNot a function
 SweaveSyntaxNoweb$inputcharactercharacterutilsNot a function
 SweaveSyntaxNoweb$translist utilsNot a function
-SweaveSyntConvfunctionfunctionutilsfile	syntax	outputNULL
-tailfunctionfunctionutilsx	...
-tail.matrixfunctionfunctionutilsx	addrownumsTRUE	...
-tarfunctionfunctionutilstarfile	filesNULL	compressionc("none", "gzip", "bzip2", "xz")	compression_level6	tarSys.getenv("tar")	extra_flags""
-timestampfunctionfunctionutilsstampdate()	prefix"##------ "	suffix" ------##"	quietFALSE
-toBibtexfunctionfunctionutilsobject	...
-toLatexfunctionfunctionutilsobject	...
-txtProgressBarfunctionfunctionutilsmin0	max1	initial0	char"="	widthNA	title	label	style1	file""
-type.convertfunctionfunctionutilsx	na.strings"NA"	as.isFALSE	dec"."
-unstackfunctionfunctionutilsx	...
-untarfunctionfunctionutilstarfile	filesNULL	listFALSE	exdir"."	compressedNA	extrasNULL	verboseFALSE	tarSys.getenv("TAR")
-unzipfunctionfunctionutilszipfile	filesNULL	listFALSE	overwriteTRUE	junkpathsFALSE	exdir"."	unzip"internal"	setTimesFALSE
-update.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	instlibNULL	askTRUE	availableNULL	oldPkgsNULL	...	checkBuiltFALSE	typegetOption("pkgType")
-update.packageStatusfunctionfunctionutilsobject	lib.loclevels(object$inst$LibPath)	repositorieslevels(object$avail$Repository)	...
-upgradefunctionfunctionutilsobject	...
-URLdecodefunctionfunctionutilsURL
-URLencodefunctionfunctionutilsURL	reservedFALSE
-url.showfunctionfunctionutilsurl	title	filetempfile()	delete.fileTRUE	method	...
-vifunctionfunctionutilsnameNULL	file""
-Viewfunctionfunctionutilsx	title
-vignettefunctionfunctionutilstopic	packageNULL	lib.locNULL	allTRUE
-write.csvfunctionfunctionutils...
-write.csv2functionfunctionutils...
-write.socketfunctionfunctionutilssocket	string
-write.tablefunctionfunctionutilsx	file""	appendFALSE	quoteTRUE	sep" "	eol"\n"	na"NA"	dec"."	row.namesTRUE	col.namesTRUE	qmethodc("escape", "double")	fileEncoding""
-wsbrowserfunctionfunctionutilsIDS	IsRoot	IsContainer	ItemsPerContainer	ParentID	NAMES	TYPES	DIMS	expandedTRUE	kind"HTML"	main"R Workspace"	propertieslist()	browsergetOption("browser")
-xeditfunctionfunctionutilsnameNULL	file""
-xemacsfunctionfunctionutilsnameNULL	file""
-zipfunctionfunctionutilszipfile	files	flags"-r9X"	extras""	zipSys.getenv("R_ZIPCMD", "zip")
-zip.file.extractfunctionfunctionutilsfile	zipname"R.zip"	unzipgetOption("unzip")	dirtempdir()
+SweaveSyntConvfunctionfunctionutilsfile	syntax	outputNULLConvert Sweave Syntax
+tailfunctionfunctionutilsx	...Return the First or Last Part of an Object
+tail.matrixfunctionfunctionutilsx	addrownumsTRUE	...Return the First or Last Part of an Object
+tarfunctionfunctionutilstarfile	filesNULL	compressionc("none", "gzip", "bzip2", "xz")	compression_level6	tarSys.getenv("tar")	extra_flags""Create a Tar Archive
+timestampfunctionfunctionutilsstampdate()	prefix"##------ "	suffix" ------##"	quietFALSELoad or Save or Display the Commands History
+toBibtexfunctionfunctionutilsobject	...Converting R Objects to BibTeX or LaTeX
+toLatexfunctionfunctionutilsobject	...Converting R Objects to BibTeX or LaTeX
+txtProgressBarfunctionfunctionutilsmin0	max1	initial0	char"="	widthNA	title	label	style1	file""Text Progress Bar
+type.convertfunctionfunctionutilsx	na.strings"NA"	as.isFALSE	dec"."Type Conversion on Character Variables
+unstackfunctionfunctionutilsx	...Stack or Unstack Vectors from a Data Frame or List
+untarfunctionfunctionutilstarfile	filesNULL	listFALSE	exdir"."	compressedNA	extrasNULL	verboseFALSE	tarSys.getenv("TAR")Extract or List Tar Archives
+unzipfunctionfunctionutilszipfile	filesNULL	listFALSE	overwriteTRUE	junkpathsFALSE	exdir"."	unzip"internal"	setTimesFALSEExtract or List Zip Archives
+update.packagesfunctionfunctionutilslib.locNULL	reposgetOption("repos")	contriburlcontrib.url(repos, type)	method	instlibNULL	askTRUE	availableNULL	oldPkgsNULL	...	checkBuiltFALSE	typegetOption("pkgType")Compare Installed Packages with CRAN-like Repositories
+update.packageStatusfunctionfunctionutilsobject	lib.loclevels(object$inst$LibPath)	repositorieslevels(object$avail$Repository)	...Package Management Tools
+upgradefunctionfunctionutilsobject	...Package Management Tools
+URLdecodefunctionfunctionutilsURLEncode or Decode a (partial) URL
+URLencodefunctionfunctionutilsURL	reservedFALSEEncode or Decode a (partial) URL
+url.showfunctionfunctionutilsurl	title	filetempfile()	delete.fileTRUE	method	...Display a text URL
+vifunctionfunctionutilsnameNULL	file""Invoke a Text Editor
+Viewfunctionfunctionutilsx	titleInvoke a Data Viewer
+vignettefunctionfunctionutilstopic	packageNULL	lib.locNULL	allTRUEView or List Vignettes
+write.csvfunctionfunctionutils...Data Output
+write.csv2functionfunctionutils...Data Output
+write.socketfunctionfunctionutilssocket	stringRead from or Write to a Socket
+write.tablefunctionfunctionutilsx	file""	appendFALSE	quoteTRUE	sep" "	eol"\n"	na"NA"	dec"."	row.namesTRUE	col.namesTRUE	qmethodc("escape", "double")	fileEncoding""Data Output
+wsbrowserfunctionfunctionutilsIDS	IsRoot	IsContainer	ItemsPerContainer	ParentID	NAMES	TYPES	DIMS	expandedTRUE	kind"HTML"	main"R Workspace"	propertieslist()	browsergetOption("browser")Browse Objects in Environment
+xeditfunctionfunctionutilsnameNULL	file""Invoke a Text Editor
+xemacsfunctionfunctionutilsnameNULL	file""Invoke a Text Editor
+zipfunctionfunctionutilszipfile	files	flags"-r9X"	extras""	zipSys.getenv("R_ZIPCMD", "zip")Create Zip archives
+zip.file.extractfunctionfunctionutilsfile	zipname"R.zip"	unzipgetOption("unzip")	dirtempdir()Defunct Functions in Package 'utils'

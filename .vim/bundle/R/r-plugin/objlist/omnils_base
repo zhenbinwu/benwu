@@ -1,917 +1,917 @@
-^functionfunctionbaseNO_ARGS
-~functionfunctionbaseNO_ARGS
-<functionfunctionbaseNO_ARGS
-<<-functionfunctionbaseNO_ARGS
-<=functionfunctionbaseNO_ARGS
-<-functionfunctionbaseNO_ARGS
-=functionfunctionbaseNO_ARGS
-==functionfunctionbaseNO_ARGS
->functionfunctionbaseNO_ARGS
->=functionfunctionbaseNO_ARGS
-|functionfunctionbaseNO_ARGS
-||functionfunctionbaseNO_ARGS
--functionfunctionbaseNO_ARGS
-:functionfunctionbaseNO_ARGS
-::functionfunctionbasepkg	name
-:::functionfunctionbasepkg	name
-!functionfunctionbaseNO_ARGS
-!=functionfunctionbaseNO_ARGS
-/functionfunctionbaseNO_ARGS
-(functionfunctionbaseNO_ARGS
-[functionfunctionbaseNO_ARGS
-[<-functionfunctionbaseNO_ARGS
-[[functionfunctionbaseNO_ARGS
-[[<-functionfunctionbaseNO_ARGS
-{functionfunctionbaseNO_ARGS
-@functionfunctionbaseNO_ARGS
-$functionfunctionbaseNO_ARGS
-$<-functionfunctionbaseNO_ARGS
-*functionfunctionbaseNO_ARGS
-&functionfunctionbaseNO_ARGS
-&&functionfunctionbaseNO_ARGS
-%/%functionfunctionbaseNO_ARGS
-%*%functionfunctionbaseNO_ARGS
-%%functionfunctionbaseNO_ARGS
-+functionfunctionbaseNO_ARGS
-abbreviatefunctionfunctionbasenames.arg	use.classesTRUE	dotFALSE	strictFALSE	methodc("left.kept", "both.sides")
-absfunctionfunctionbaseNO_ARGS
-acosfunctionfunctionbaseNO_ARGS
-acoshfunctionfunctionbaseNO_ARGS
-addNAfunctionfunctionbasex	ifanyFALSE
-addTaskCallbackfunctionfunctionbasef	dataNULL	namecharacter()
-agrepfunctionfunctionbasepattern	x	max.distance0.1	costsNULL	ignore.caseFALSE	valueFALSE	fixedTRUE	useBytesFALSE
-alistfunctionfunctionbase...
-allfunctionfunctionbaseNO_ARGS
-all.equalfunctionfunctionbasetarget	current	...
-all.equal.characterfunctionfunctionbasetarget	current	check.attributesTRUE	...
-all.equal.defaultfunctionfunctionbasetarget	current	...
-all.equal.factorfunctionfunctionbasetarget	current	check.attributesTRUE	...
-all.equal.formulafunctionfunctionbasetarget	current	...
-all.equal.languagefunctionfunctionbasetarget	current	...
-all.equal.listfunctionfunctionbasetarget	current	check.attributesTRUE	...
-all.equal.numericfunctionfunctionbasetarget	current	tolerance.Machine$double.eps^0.5	scaleNULL	check.attributesTRUE	...
-all.equal.POSIXctfunctionfunctionbasetarget	current	...	scale1
-all.equal.rawfunctionfunctionbasetarget	current	check.attributesTRUE	...
-all.namesfunctionfunctionbaseexpr	functionsTRUE	max.names-1L	uniqueFALSE
-all.varsfunctionfunctionbaseexpr	functionsFALSE	max.names-1L	uniqueTRUE
-anyfunctionfunctionbaseNO_ARGS
-anyDuplicatedfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-anyDuplicated.arrayfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-anyDuplicated.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-anyDuplicated.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-anyDuplicated.matrixfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-apermfunctionfunctionbasea	permNULL	resizeTRUE	...
-aperm.defaultfunctionfunctionbasea	permNULL	resizeTRUE	...
-aperm.tablefunctionfunctionbasea	permNULL	resizeTRUE	keep.classTRUE	...
-appendfunctionfunctionbasex	values	afterlength(x)
-applyfunctionfunctionbaseX	MARGIN	FUN	...
-ArgfunctionfunctionbaseNO_ARGS
-argsfunctionfunctionbasename
-arrayfunctionfunctionbasedataNA	dimlength(data)	dimnamesNULL
-arrayIndfunctionfunctionbaseind	.dim	.dimnamesNULL	useNamesFALSE
-as.arrayfunctionfunctionbasex	...
-as.array.defaultfunctionfunctionbasex	...
-as.callfunctionfunctionbaseNO_ARGS
-as.characterfunctionfunctionbasex	...
-as.character.conditionfunctionfunctionbasex	...
-as.character.Datefunctionfunctionbasex	...
-as.character.defaultfunctionfunctionbasex	...
-as.character.errorfunctionfunctionbasex	...
-as.character.factorfunctionfunctionbasex	...
-as.character.hexmodefunctionfunctionbasex	...
-as.character.numeric_versionfunctionfunctionbasex	...
-as.character.octmodefunctionfunctionbasex	...
-as.character.POSIXtfunctionfunctionbasex	...
-as.character.srcreffunctionfunctionbasex	useSourceTRUE	...
-as.complexfunctionfunctionbaseNO_ARGS
-as.data.framefunctionfunctionbasex	...
-as.data.frame.arrayfunctionfunctionbasex	row.namesNULL	optionalFALSE	...
-as.data.frame.AsIsfunctionfunctionbasex	row.namesNULL	optionalFALSE	...
-as.data.frame.characterfunctionfunctionbasex	...	stringsAsFactorsdefault.stringsAsFactors()
-as.data.frame.complexfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.data.framefunctionfunctionbasex	row.namesNULL	...
-as.data.frame.Datefunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.defaultfunctionfunctionbasex	...
-as.data.frame.difftimefunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.factorfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.integerfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.listfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	stringsAsFactorsdefault.stringsAsFactors()
-as.data.frame.logicalfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.matrixfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	stringsAsFactorsdefault.stringsAsFactors()
-as.data.frame.model.matrixfunctionfunctionbasex	row.namesNULL	optionalFALSE	...
-as.data.frame.numericfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.numeric_versionfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.orderedfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.POSIXctfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.POSIXltfunctionfunctionbasex	row.namesNULL	optionalFALSE	...
-as.data.frame.rawfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.data.frame.tablefunctionfunctionbasex	row.namesNULL	...	responseName"Freq"	stringsAsFactorsTRUE
-as.data.frame.tsfunctionfunctionbasex	...
-as.data.frame.vectorfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")
-as.Datefunctionfunctionbasex	...
-as.Date.characterfunctionfunctionbasex	format""	...
-as.Date.datefunctionfunctionbasex	...
-as.Date.datesfunctionfunctionbasex	...
-as.Date.defaultfunctionfunctionbasex	...
-as.Date.factorfunctionfunctionbasex	...
-as.Date.numericfunctionfunctionbasex	origin	...
-as.Date.POSIXctfunctionfunctionbasex	tz"UTC"	...
-as.Date.POSIXltfunctionfunctionbasex	...
-as.difftimefunctionfunctionbasetim	format"%X"	units"auto"
-as.doublefunctionfunctionbaseNO_ARGS
-as.double.difftimefunctionfunctionbasex	units"auto"	...
-as.double.POSIXltfunctionfunctionbasex	...
-as.environmentfunctionfunctionbaseNO_ARGS
-as.expressionfunctionfunctionbasex	...
-as.expression.defaultfunctionfunctionbasex	...
-as.factorfunctionfunctionbasex
-as.functionfunctionfunctionbasex	envirparent.frame()	...
-as.function.defaultfunctionfunctionbasex	envirparent.frame()	...
-as.hexmodefunctionfunctionbasex
-asinfunctionfunctionbaseNO_ARGS
-asinhfunctionfunctionbaseNO_ARGS
-as.integerfunctionfunctionbaseNO_ARGS
-[.AsIsfunctionfunctionbasex	i	...
-as.listfunctionfunctionbasex	...
-as.list.data.framefunctionfunctionbasex	...
-as.list.Datefunctionfunctionbasex	...
-as.list.defaultfunctionfunctionbasex	...
-as.list.environmentfunctionfunctionbasex	all.namesFALSE	...
-as.list.factorfunctionfunctionbasex	...
-as.list.functionfunctionfunctionbasex	...
-as.list.numeric_versionfunctionfunctionbasex	...
-as.list.POSIXctfunctionfunctionbasex	...
-as.logicalfunctionfunctionbaseNO_ARGS
-as.logical.factorfunctionfunctionbasex	...
-as.matrixfunctionfunctionbasex	...
-as.matrix.data.framefunctionfunctionbasex	rownames.forceNA	...
-as.matrix.defaultfunctionfunctionbasex	...
-as.matrix.noquotefunctionfunctionbasex	...
-as.matrix.POSIXltfunctionfunctionbasex	...
-as.namefunctionfunctionbasex
-asNamespacefunctionfunctionbasens	base.OKTRUE
-as.nullfunctionfunctionbasex	...
-as.null.defaultfunctionfunctionbasex	...
-as.numericfunctionfunctionbaseNO_ARGS
-as.numeric_versionfunctionfunctionbasex
-as.octmodefunctionfunctionbasex
-as.orderedfunctionfunctionbasex
-as.package_versionfunctionfunctionbasex
-as.pairlistfunctionfunctionbasex
-as.POSIXctfunctionfunctionbasex	tz""	...
-as.POSIXct.datefunctionfunctionbasex	...
-as.POSIXct.Datefunctionfunctionbasex	...
-as.POSIXct.datesfunctionfunctionbasex	...
-as.POSIXct.defaultfunctionfunctionbasex	tz""	...
-as.POSIXct.numericfunctionfunctionbasex	tz""	origin	...
-as.POSIXct.POSIXltfunctionfunctionbasex	tz""	...
-as.POSIXltfunctionfunctionbasex	tz""	...
-as.POSIXlt.characterfunctionfunctionbasex	tz""	format	...
-as.POSIXlt.datefunctionfunctionbasex	...
-as.POSIXlt.Datefunctionfunctionbasex	...
-as.POSIXlt.datesfunctionfunctionbasex	...
-as.POSIXlt.defaultfunctionfunctionbasex	tz""	...
-as.POSIXlt.factorfunctionfunctionbasex	...
-as.POSIXlt.numericfunctionfunctionbasex	tz""	origin	...
-as.POSIXlt.POSIXctfunctionfunctionbasex	tz""	...
-as.qrfunctionfunctionbasex
-as.rawfunctionfunctionbaseNO_ARGS
-as.realfunctionfunctionbaseNO_ARGS
-asS3functionfunctionbaseobject	flagTRUE	completeTRUE
-asS4functionfunctionbaseobject	flagTRUE	completeTRUE
-assignfunctionfunctionbasex	value	pos-1	enviras.environment(pos)	inheritsFALSE	immediateTRUE
-as.singlefunctionfunctionbasex	...
-as.single.defaultfunctionfunctionbasex	...
-as.symbolfunctionfunctionbasex
-as.tablefunctionfunctionbasex	...
-as.table.defaultfunctionfunctionbasex	...
-as.vectorfunctionfunctionbasex	mode"any"
-as.vector.factorfunctionfunctionbasex	mode"any"
-atanfunctionfunctionbaseNO_ARGS
-atan2functionfunctionbasey	x
-atanhfunctionfunctionbaseNO_ARGS
-attachfunctionfunctionbasewhat	pos2	namedeparse(substitute(what))	warn.conflictsTRUE
-attachNamespacefunctionfunctionbasens	pos2	dataPathNULL	dependsNULL
-attrfunctionfunctionbaseNO_ARGS
-attr<-functionfunctionbaseNO_ARGS
-attr.all.equalfunctionfunctionbasetarget	current	check.attributesTRUE	check.namesTRUE	...
-attributesfunctionfunctionbaseNO_ARGS
-attributes<-functionfunctionbaseNO_ARGS
-autoloadfunctionfunctionbasename	package	resetFALSE	...
-autoloaderfunctionfunctionbasename	package	...
-backsolvefunctionfunctionbaser	x	kncol(r)	upper.triTRUE	transposeFALSE
-baseenvfunctionfunctionbaseNO_ARGS
-basenamefunctionfunctionbasepath
-besselIfunctionfunctionbasex	nu	expon.scaledFALSE
-besselJfunctionfunctionbasex	nu
-besselKfunctionfunctionbasex	nu	expon.scaledFALSE
-besselYfunctionfunctionbasex	nu
-betafunctionfunctionbasea	b
-bindingIsActivefunctionfunctionbasesym	env
-bindingIsLockedfunctionfunctionbasesym	env
-bindtextdomainfunctionfunctionbasedomain	dirnameNULL
-bodyfunctionfunctionbasefunsys.function(sys.parent())
-body<-functionfunctionbasefun	envirenvironment(fun)	value
-bquotefunctionfunctionbaseexpr	whereparent.frame()
+^functionfunctionbaseNO_ARGSArithmetic Operators
+~functionfunctionbaseNO_ARGSTilde Operator
+<functionfunctionbaseNO_ARGSRelational Operators
+<<-functionfunctionbaseNO_ARGSAssignment Operators
+<=functionfunctionbaseNO_ARGSRelational Operators
+<-functionfunctionbaseNO_ARGSAssignment Operators
+=functionfunctionbaseNO_ARGSAssignment Operators
+==functionfunctionbaseNO_ARGSRelational Operators
+>functionfunctionbaseNO_ARGSRelational Operators
+>=functionfunctionbaseNO_ARGSRelational Operators
+|functionfunctionbaseNO_ARGSLogical Operators
+||functionfunctionbaseNO_ARGSLogical Operators
+-functionfunctionbaseNO_ARGSArithmetic Operators
+:functionfunctionbaseNO_ARGSColon Operator
+::functionfunctionbasepkg	nameDouble Colon and Triple Colon Operators
+:::functionfunctionbasepkg	nameDouble Colon and Triple Colon Operators
+!functionfunctionbaseNO_ARGSLogical Operators
+!=functionfunctionbaseNO_ARGSRelational Operators
+/functionfunctionbaseNO_ARGSArithmetic Operators
+(functionfunctionbaseNO_ARGSParentheses and Braces
+[functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+[<-functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+[[functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+[[<-functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+{functionfunctionbaseNO_ARGSParentheses and Braces
+@functionfunctionbaseNO_ARGSExtract Slots
+$functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+$<-functionfunctionbaseNO_ARGSExtract or Replace Parts of an Object
+*functionfunctionbaseNO_ARGSArithmetic Operators
+&functionfunctionbaseNO_ARGSLogical Operators
+&&functionfunctionbaseNO_ARGSLogical Operators
+%/%functionfunctionbaseNO_ARGSArithmetic Operators
+%*%functionfunctionbaseNO_ARGSMatrix Multiplication
+%%functionfunctionbaseNO_ARGSArithmetic Operators
++functionfunctionbaseNO_ARGSArithmetic Operators
+abbreviatefunctionfunctionbasenames.arg	use.classesTRUE	dotFALSE	strictFALSE	methodc("left.kept", "both.sides")Abbreviate Strings
+absfunctionfunctionbaseNO_ARGSMiscellaneous Mathematical Functions
+acosfunctionfunctionbaseNO_ARGSTrigonometric Functions
+acoshfunctionfunctionbaseNO_ARGSHyperbolic Functions
+addNAfunctionfunctionbasex	ifanyFALSEFactors
+addTaskCallbackfunctionfunctionbasef	dataNULL	namecharacter()Add or Remove a Top-Level Task Callback
+agrepfunctionfunctionbasepattern	x	max.distance0.1	costsNULL	ignore.caseFALSE	valueFALSE	fixedTRUE	useBytesFALSEApproximate String Matching (Fuzzy Matching)
+alistfunctionfunctionbase...Lists - Generic and Dotted Pairs
+allfunctionfunctionbaseNO_ARGSAre All Values True?
+all.equalfunctionfunctionbasetarget	current	...Test if Two Objects are (Nearly) Equal
+all.equal.characterfunctionfunctionbasetarget	current	check.attributesTRUE	...Test if Two Objects are (Nearly) Equal
+all.equal.defaultfunctionfunctionbasetarget	current	...Test if Two Objects are (Nearly) Equal
+all.equal.factorfunctionfunctionbasetarget	current	check.attributesTRUE	...Test if Two Objects are (Nearly) Equal
+all.equal.formulafunctionfunctionbasetarget	current	...Test if Two Objects are (Nearly) Equal
+all.equal.languagefunctionfunctionbasetarget	current	...Test if Two Objects are (Nearly) Equal
+all.equal.listfunctionfunctionbasetarget	current	check.attributesTRUE	...Test if Two Objects are (Nearly) Equal
+all.equal.numericfunctionfunctionbasetarget	current	tolerance.Machine$double.eps^0.5	scaleNULL	check.attributesTRUE	...Test if Two Objects are (Nearly) Equal
+all.equal.POSIXctfunctionfunctionbasetarget	current	...	scale1Date-Time Classes
+all.equal.rawfunctionfunctionbasetarget	current	check.attributesTRUE	...Test if Two Objects are (Nearly) Equal
+all.namesfunctionfunctionbaseexpr	functionsTRUE	max.names-1L	uniqueFALSEFind All Names in an Expression
+all.varsfunctionfunctionbaseexpr	functionsFALSE	max.names-1L	uniqueTRUEFind All Names in an Expression
+anyfunctionfunctionbaseNO_ARGSAre Some Values True?
+anyDuplicatedfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+anyDuplicated.arrayfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+anyDuplicated.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+anyDuplicated.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+anyDuplicated.matrixfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+apermfunctionfunctionbasea	permNULL	resizeTRUE	...Array Transposition
+aperm.defaultfunctionfunctionbasea	permNULL	resizeTRUE	...Array Transposition
+aperm.tablefunctionfunctionbasea	permNULL	resizeTRUE	keep.classTRUE	...Array Transposition
+appendfunctionfunctionbasex	values	afterlength(x)Vector Merging
+applyfunctionfunctionbaseX	MARGIN	FUN	...Apply Functions Over Array Margins
+ArgfunctionfunctionbaseNO_ARGSComplex Vectors
+argsfunctionfunctionbasenameArgument List of a Function
+arrayfunctionfunctionbasedataNA	dimlength(data)	dimnamesNULLMulti-way Arrays
+arrayIndfunctionfunctionbaseind	.dim	.dimnamesNULL	useNamesFALSEWhich indices are TRUE?
+as.arrayfunctionfunctionbasex	...Multi-way Arrays
+as.array.defaultfunctionfunctionbasex	...Multi-way Arrays
+as.callfunctionfunctionbaseNO_ARGSFunction Calls
+as.characterfunctionfunctionbasex	...Character Vectors
+as.character.conditionfunctionfunctionbasex	...Condition Handling and Recovery
+as.character.Datefunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.character.defaultfunctionfunctionbasex	...Character Vectors
+as.character.errorfunctionfunctionbasex	...Condition Handling and Recovery
+as.character.factorfunctionfunctionbasex	...Character Vectors
+as.character.hexmodefunctionfunctionbasex	...Display Numbers in Hexadecimal
+as.character.numeric_versionfunctionfunctionbasex	...Numeric Versions
+as.character.octmodefunctionfunctionbasex	...Display Numbers in Octal
+as.character.POSIXtfunctionfunctionbasex	...Date-time Conversion Functions to and from Character
+as.character.srcreffunctionfunctionbasex	useSourceTRUE	...References to source files
+as.complexfunctionfunctionbaseNO_ARGSComplex Vectors
+as.data.framefunctionfunctionbasex	...Coerce to a Data Frame
+as.data.frame.arrayfunctionfunctionbasex	row.namesNULL	optionalFALSE	...Coerce to a Data Frame
+as.data.frame.AsIsfunctionfunctionbasex	row.namesNULL	optionalFALSE	...Coerce to a Data Frame
+as.data.frame.characterfunctionfunctionbasex	...	stringsAsFactorsdefault.stringsAsFactors()Coerce to a Data Frame
+as.data.frame.complexfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.data.framefunctionfunctionbasex	row.namesNULL	...Coerce to a Data Frame
+as.data.frame.Datefunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Date Class
+as.data.frame.defaultfunctionfunctionbasex	...Coerce to a Data Frame
+as.data.frame.difftimefunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.factorfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.integerfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.listfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	stringsAsFactorsdefault.stringsAsFactors()Coerce to a Data Frame
+as.data.frame.logicalfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.matrixfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	stringsAsFactorsdefault.stringsAsFactors()Coerce to a Data Frame
+as.data.frame.model.matrixfunctionfunctionbasex	row.namesNULL	optionalFALSE	...Coerce to a Data Frame
+as.data.frame.numericfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.numeric_versionfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Numeric Versions
+as.data.frame.orderedfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.POSIXctfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Date-Time Classes
+as.data.frame.POSIXltfunctionfunctionbasex	row.namesNULL	optionalFALSE	...Date-Time Classes
+as.data.frame.rawfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.data.frame.tablefunctionfunctionbasex	row.namesNULL	...	responseName"Freq"	stringsAsFactorsTRUECross Tabulation and Table Creation
+as.data.frame.tsfunctionfunctionbasex	...Coerce to a Data Frame
+as.data.frame.vectorfunctionfunctionbasex	row.namesNULL	optionalFALSE	...	nmpaste(deparse(substitute(x), width.cutoff = 500L), collapse = " ")Coerce to a Data Frame
+as.Datefunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.Date.characterfunctionfunctionbasex	format""	...Date Conversion Functions to and from Character
+as.Date.datefunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.Date.datesfunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.Date.defaultfunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.Date.factorfunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.Date.numericfunctionfunctionbasex	origin	...Date Conversion Functions to and from Character
+as.Date.POSIXctfunctionfunctionbasex	tz"UTC"	...Date Conversion Functions to and from Character
+as.Date.POSIXltfunctionfunctionbasex	...Date Conversion Functions to and from Character
+as.difftimefunctionfunctionbasetim	format"%X"	units"auto"Time Intervals
+as.doublefunctionfunctionbaseNO_ARGSDouble-Precision Vectors
+as.double.difftimefunctionfunctionbasex	units"auto"	...Time Intervals
+as.double.POSIXltfunctionfunctionbasex	...Date-time Conversion Functions
+as.environmentfunctionfunctionbaseNO_ARGSCoerce to an Environment Object
+as.expressionfunctionfunctionbasex	...Unevaluated Expressions
+as.expression.defaultfunctionfunctionbasex	...Unevaluated Expressions
+as.factorfunctionfunctionbasexFactors
+as.functionfunctionfunctionbasex	envirparent.frame()	...Convert Object to Function
+as.function.defaultfunctionfunctionbasex	envirparent.frame()	...Convert Object to Function
+as.hexmodefunctionfunctionbasexDisplay Numbers in Hexadecimal
+asinfunctionfunctionbaseNO_ARGSTrigonometric Functions
+asinhfunctionfunctionbaseNO_ARGSHyperbolic Functions
+as.integerfunctionfunctionbaseNO_ARGSInteger Vectors
+[.AsIsfunctionfunctionbasex	i	...Inhibit Interpretation/Conversion of Objects
+as.listfunctionfunctionbasex	...Lists - Generic and Dotted Pairs
+as.list.data.framefunctionfunctionbasex	...Lists - Generic and Dotted Pairs
+as.list.Datefunctionfunctionbasex	...Date Class
+as.list.defaultfunctionfunctionbasex	...Lists - Generic and Dotted Pairs
+as.list.environmentfunctionfunctionbasex	all.namesFALSE	...Lists - Generic and Dotted Pairs
+as.list.factorfunctionfunctionbasex	...Lists - Generic and Dotted Pairs
+as.list.functionfunctionfunctionbasex	...Lists - Generic and Dotted Pairs
+as.list.numeric_versionfunctionfunctionbasex	...Numeric Versions
+as.list.POSIXctfunctionfunctionbasex	...Date-Time Classes
+as.logicalfunctionfunctionbaseNO_ARGSLogical Vectors
+as.logical.factorfunctionfunctionbasex	...Logical Vectors
+as.matrixfunctionfunctionbasex	...Matrices
+as.matrix.data.framefunctionfunctionbasex	rownames.forceNA	...Matrices
+as.matrix.defaultfunctionfunctionbasex	...Matrices
+as.matrix.noquotefunctionfunctionbasex	...Class for 'no quote' Printing of Character Strings
+as.matrix.POSIXltfunctionfunctionbasex	...Date-Time Classes
+as.namefunctionfunctionbasexNames and Symbols
+asNamespacefunctionfunctionbasens	base.OKTRUENamespace Internals
+as.nullfunctionfunctionbasex	...The Null Object
+as.null.defaultfunctionfunctionbasex	...The Null Object
+as.numericfunctionfunctionbaseNO_ARGSNumeric Vectors
+as.numeric_versionfunctionfunctionbasexNumeric Versions
+as.octmodefunctionfunctionbasexDisplay Numbers in Octal
+as.orderedfunctionfunctionbasexFactors
+as.package_versionfunctionfunctionbasexNumeric Versions
+as.pairlistfunctionfunctionbasexLists - Generic and Dotted Pairs
+as.POSIXctfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.POSIXct.datefunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXct.Datefunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXct.datesfunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXct.defaultfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.POSIXct.numericfunctionfunctionbasex	tz""	origin	...Date-time Conversion Functions
+as.POSIXct.POSIXltfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.POSIXltfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.POSIXlt.characterfunctionfunctionbasex	tz""	format	...Date-time Conversion Functions
+as.POSIXlt.datefunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXlt.Datefunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXlt.datesfunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXlt.defaultfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.POSIXlt.factorfunctionfunctionbasex	...Date-time Conversion Functions
+as.POSIXlt.numericfunctionfunctionbasex	tz""	origin	...Date-time Conversion Functions
+as.POSIXlt.POSIXctfunctionfunctionbasex	tz""	...Date-time Conversion Functions
+as.qrfunctionfunctionbasexThe QR Decomposition of a Matrix
+as.rawfunctionfunctionbaseNO_ARGSRaw Vectors
+as.realfunctionfunctionbaseNO_ARGSReal Vectors
+asS3functionfunctionbaseobject	flagTRUE	completeTRUETest for an S4 object
+asS4functionfunctionbaseobject	flagTRUE	completeTRUETest for an S4 object
+assignfunctionfunctionbasex	value	pos-1	enviras.environment(pos)	inheritsFALSE	immediateTRUEAssign a Value to a Name
+as.singlefunctionfunctionbasex	...Double-Precision Vectors
+as.single.defaultfunctionfunctionbasex	...Double-Precision Vectors
+as.symbolfunctionfunctionbasexNames and Symbols
+as.tablefunctionfunctionbasex	...Cross Tabulation and Table Creation
+as.table.defaultfunctionfunctionbasex	...Cross Tabulation and Table Creation
+as.vectorfunctionfunctionbasex	mode"any"Vectors
+as.vector.factorfunctionfunctionbasex	mode"any"Vectors
+atanfunctionfunctionbaseNO_ARGSTrigonometric Functions
+atan2functionfunctionbasey	xTrigonometric Functions
+atanhfunctionfunctionbaseNO_ARGSHyperbolic Functions
+attachfunctionfunctionbasewhat	pos2	namedeparse(substitute(what))	warn.conflictsTRUEAttach Set of R Objects to Search Path
+attachNamespacefunctionfunctionbasens	pos2	dataPathNULL	dependsNULLLoading and Unloading Namespaces
+attrfunctionfunctionbaseNO_ARGSObject Attributes
+attr<-functionfunctionbaseNO_ARGSObject Attributes
+attr.all.equalfunctionfunctionbasetarget	current	check.attributesTRUE	check.namesTRUE	...Test if Two Objects are (Nearly) Equal
+attributesfunctionfunctionbaseNO_ARGSObject Attribute Lists
+attributes<-functionfunctionbaseNO_ARGSObject Attribute Lists
+autoloadfunctionfunctionbasename	package	resetFALSE	...On-demand Loading of Packages
+autoloaderfunctionfunctionbasename	package	...On-demand Loading of Packages
+backsolvefunctionfunctionbaser	x	kncol(r)	upper.triTRUE	transposeFALSESolve an Upper or Lower Triangular System
+baseenvfunctionfunctionbaseNO_ARGSEnvironment Access
+basenamefunctionfunctionbasepathManipulate File Paths
+besselIfunctionfunctionbasex	nu	expon.scaledFALSEBessel Functions
+besselJfunctionfunctionbasex	nuBessel Functions
+besselKfunctionfunctionbasex	nu	expon.scaledFALSEBessel Functions
+besselYfunctionfunctionbasex	nuBessel Functions
+betafunctionfunctionbasea	bSpecial Functions of Mathematics
+bindingIsActivefunctionfunctionbasesym	envBinding and Environment Adjustments
+bindingIsLockedfunctionfunctionbasesym	envBinding and Environment Adjustments
+bindtextdomainfunctionfunctionbasedomain	dirnameNULLTranslate Text Messages
+bodyfunctionfunctionbasefunsys.function(sys.parent())Access to and Manipulation of the Body of a Function
+body<-functionfunctionbasefun	envirenvironment(fun)	valueAccess to and Manipulation of the Body of a Function
+bquotefunctionfunctionbaseexpr	whereparent.frame()Partial substitution in expressions
 breakflow-controlflow-controlbaseNot a function
-browserfunctionfunctionbaseNO_ARGS
-browserConditionfunctionfunctionbaseNO_ARGS
-browserSetDebugfunctionfunctionbaseNO_ARGS
-browserTextfunctionfunctionbaseNO_ARGS
-builtinsfunctionfunctionbaseinternalFALSE
-byfunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUE
-by.data.framefunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUE
-by.defaultfunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUE
-bzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression9
-cfunctionfunctionbaseNO_ARGS
-callfunctionfunctionbaseNO_ARGS
-callCCfunctionfunctionbasefun
-capabilitiesfunctionfunctionbasewhatNULL
-casefoldfunctionfunctionbasex	upperFALSE
-catfunctionfunctionbase...	file""	sep" "	fillFALSE	labelsNULL	appendFALSE
-categoryfunctionfunctionbase...
-cbindfunctionfunctionbase...	deparse.level1
-cbind.data.framefunctionfunctionbase...	deparse.level1
-c.Datefunctionfunctionbase...	recursiveFALSE
-ceilingfunctionfunctionbaseNO_ARGS
-characterfunctionfunctionbaseNO_ARGS
-char.expandfunctionfunctionbaseinput	target	nomatchstop("no match")
-charmatchfunctionfunctionbasex	table
-charToRawfunctionfunctionbasex
-chartrfunctionfunctionbaseold	new	x
-check_tzonesfunctionfunctionbase...
-cholfunctionfunctionbasex	pivotFALSE	LINPACK	...
-chol2invfunctionfunctionbasex	sizeNCOL(x)	LINPACKFALSE
-chol.defaultfunctionfunctionbasex	pivotFALSE	LINPACK	...
-choosefunctionfunctionbasen	k
-classfunctionfunctionbaseNO_ARGS
-class<-functionfunctionbaseNO_ARGS
-closefunctionfunctionbasecon	...
-closeAllConnectionsfunctionfunctionbaseNO_ARGS
-close.connectionfunctionfunctionbasecon	type"rw"	...
-close.srcfilefunctionfunctionbasecon	...
-close.srcfilealiasfunctionfunctionbasecon	...
-c.noquotefunctionfunctionbase...	recursiveFALSE
-c.numeric_versionfunctionfunctionbase...	recursiveFALSE
-codesfunctionfunctionbasex	...
-codes<-functionfunctionbasex	...	value
-codes.factorfunctionfunctionbasex	...
-codes.orderedfunctionfunctionbasex	...
-colfunctionfunctionbasex	as.factorFALSE
-colMeansfunctionfunctionbasex	na.rmFALSE
-colnamesfunctionfunctionbasex	do.NULLTRUE	prefix"col"
-colnames<-functionfunctionbasex	value
-colSumsfunctionfunctionbasex	na.rmFALSE
-commandArgsfunctionfunctionbasetrailingOnlyFALSE
-commentfunctionfunctionbasex
-comment<-functionfunctionbasex	value
-complexfunctionfunctionbaserealnumeric()	imaginarynumeric()	modulus1	argument0
-computeRestartsfunctionfunctionbasecondNULL
-conditionCallfunctionfunctionbasec
-conditionCall.conditionfunctionfunctionbasec
-conditionMessagefunctionfunctionbasec
-conditionMessage.conditionfunctionfunctionbasec
-conflictsfunctionfunctionbasewheresearch()	detailFALSE
-ConjfunctionfunctionbaseNO_ARGS
-contributorsfunctionfunctionbaseNO_ARGS
-cosfunctionfunctionbaseNO_ARGS
-coshfunctionfunctionbaseNO_ARGS
-c.POSIXctfunctionfunctionbase...	recursiveFALSE
-c.POSIXltfunctionfunctionbase...	recursiveFALSE
-crossprodfunctionfunctionbasex	yNULL
-Cstack_infofunctionfunctionbaseNO_ARGS
-cummaxfunctionfunctionbaseNO_ARGS
-cumminfunctionfunctionbaseNO_ARGS
-cumprodfunctionfunctionbaseNO_ARGS
-cumsumfunctionfunctionbaseNO_ARGS
-cutfunctionfunctionbasex	breaks	labelsNULL	include.lowestFALSE	rightTRUE	dig.lab3	ordered_resultFALSE	...
-cut.Datefunctionfunctionbasex	breaks	labelsNULL	start.on.mondayTRUE	rightFALSE	...
-cut.defaultfunctionfunctionbasex	breaks	labelsNULL	include.lowestFALSE	rightTRUE	dig.lab3	ordered_resultFALSE	...
-cut.POSIXtfunctionfunctionbasex	breaks	labelsNULL	start.on.mondayTRUE	rightFALSE	...
-data.classfunctionfunctionbasex
-[<-.data.framefunctionfunctionbasex	i	j	value
-[.data.framefunctionfunctionbasex	i	j	dropif (missing(i)) TRUE else length(cols) == 1
-[[<-.data.framefunctionfunctionbasex	i	j	value
-[[.data.framefunctionfunctionbasex	...	exactTRUE
-$<-.data.framefunctionfunctionbasex	name	value
-data.framefunctionfunctionbase...	row.namesNULL	check.rowsFALSE	check.namesTRUE	stringsAsFactorsdefault.stringsAsFactors()
-data.matrixfunctionfunctionbaseframe	rownames.forceNA
-datefunctionfunctionbaseNO_ARGS
--.Datefunctionfunctionbasee1	e2
-[<-.Datefunctionfunctionbasex	...	value
-[.Datefunctionfunctionbasex	...	dropTRUE
-[[.Datefunctionfunctionbasex	...	dropTRUE
-+.Datefunctionfunctionbasee1	e2
-debugfunctionfunctionbasefun	text""	conditionNULL
-debugoncefunctionfunctionbasefun	text""	conditionNULL
-default.stringsAsFactorsfunctionfunctionbaseNO_ARGS
-delayfunctionfunctionbasex	env
-delayedAssignfunctionfunctionbasex	value	eval.envparent.frame(1)	assign.envparent.frame(1)
-deparsefunctionfunctionbaseexpr	backtickmode(expr) %in% c("call", "expression", "(", "function")	controlc("keepInteger", "showAttributes", "keepNA")	nlines-1L
-detfunctionfunctionbasex	...
-detachfunctionfunctionbasename	pos2	unloadFALSE	character.onlyFALSE	forceFALSE
-determinantfunctionfunctionbasex	logarithmTRUE	...
-determinant.matrixfunctionfunctionbasex	logarithmTRUE	...
-dgetfunctionfunctionbasefile
-diagfunctionfunctionbasex1	nrow	ncol
-diag<-functionfunctionbasex	value
-difffunctionfunctionbasex	...
-diff.Datefunctionfunctionbasex	...
-diff.defaultfunctionfunctionbasex	...
-diff.POSIXtfunctionfunctionbasex	...
-difftimefunctionfunctionbasetime1	time2	tz	unitsc("auto", "secs", "mins", "hours", "days", "weeks")
-/.difftimefunctionfunctionbasee1	e2
-[.difftimefunctionfunctionbasex	...	dropTRUE
-*.difftimefunctionfunctionbasee1	e2
-digammafunctionfunctionbaseNO_ARGS
-dimfunctionfunctionbaseNO_ARGS
-dim<-functionfunctionbaseNO_ARGS
-dim.data.framefunctionfunctionbasex
-dimnamesfunctionfunctionbaseNO_ARGS
-dimnames<-functionfunctionbaseNO_ARGS
-dimnames<-.data.framefunctionfunctionbasex	value
-dimnames.data.framefunctionfunctionbasex
-dirfunctionfunctionbasepath"."	patternNULL	all.filesFALSE	full.namesFALSE	recursiveFALSE	ignore.caseFALSE	include.dirsFALSE
-dir.createfunctionfunctionbasepath	showWarningsTRUE	recursiveFALSE	mode"0777"
-dirnamefunctionfunctionbasepath
-$.DLLInfofunctionfunctionbasex	name
-do.callfunctionfunctionbasewhat	args	quoteFALSE	envirparent.frame()
-doublefunctionfunctionbaseNO_ARGS
-dputfunctionfunctionbasex	file""	controlc("keepNA", "keepInteger", "showAttributes")
-dQuotefunctionfunctionbasex
-dropfunctionfunctionbasex
-droplevelsfunctionfunctionbasex	...
-droplevels.data.framefunctionfunctionbasex	exceptNULL	...
-droplevels.factorfunctionfunctionbasex	...
-dumpfunctionfunctionbaselist	file"dumpdata.R"	appendFALSE	control"all"	envirparent.frame()	evaluateTRUE
-duplicatedfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-duplicated.arrayfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-duplicated.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-duplicated.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-duplicated.matrixfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-duplicated.numeric_versionfunctionfunctionbasex	incomparablesFALSE	...
-duplicated.POSIXltfunctionfunctionbasex	incomparablesFALSE	...
-dyn.loadfunctionfunctionbasex	localTRUE	nowTRUE	...
-dyn.unloadfunctionfunctionbasex
-eapplyfunctionfunctionbaseenv	FUN	...	all.namesFALSE	USE.NAMESTRUE
-eigenfunctionfunctionbasex	symmetric	only.valuesFALSE	EISPACKFALSE
-emptyenvfunctionfunctionbaseNO_ARGS
-enc2nativefunctionfunctionbaseNO_ARGS
-enc2utf8functionfunctionbaseNO_ARGS
-encodeStringfunctionfunctionbasex	quote""	na.encodeTRUE	justifyc("left", "right", "centre", "none")
-Encodingfunctionfunctionbasex
-Encoding<-functionfunctionbasex	value
-enquotefunctionfunctionbasecl
-environmentfunctionfunctionbasefunNULL
-environment<-functionfunctionbaseNO_ARGS
-environmentIsLockedfunctionfunctionbaseenv
-environmentNamefunctionfunctionbaseenv
-env.profilefunctionfunctionbaseenv
-evalfunctionfunctionbaseexpr	envirparent.frame()	enclosif (is.list(envir) || is.pairlist(envir)) parent.frame() else baseenv()
-eval.parentfunctionfunctionbaseexpr	n1
-evalqfunctionfunctionbaseexpr	envirparent.frame()	enclosif (is.list(envir) || is.pairlist(envir)) parent.frame() else baseenv()
-existsfunctionfunctionbasex	where-1	envirif (missing(frame)) as.environment(where) else sys.frame(frame)	frame	mode"any"	inheritsTRUE
-expfunctionfunctionbaseNO_ARGS
-expand.gridfunctionfunctionbase...	KEEP.OUT.ATTRSTRUE	stringsAsFactorsTRUE
-expm1functionfunctionbaseNO_ARGS
-expressionfunctionfunctionbaseNO_ARGS
+browserfunctionfunctionbaseNO_ARGSEnvironment Browser
+browserConditionfunctionfunctionbaseNO_ARGSFunctions to Retrieve Values Supplied by Calls to the Browser
+browserSetDebugfunctionfunctionbaseNO_ARGSFunctions to Retrieve Values Supplied by Calls to the Browser
+browserTextfunctionfunctionbaseNO_ARGSFunctions to Retrieve Values Supplied by Calls to the Browser
+builtinsfunctionfunctionbaseinternalFALSEReturns the Names of All Built-in Objects
+byfunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUEApply a Function to a Data Frame Split by Factors
+by.data.framefunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUEApply a Function to a Data Frame Split by Factors
+by.defaultfunctionfunctionbasedata	INDICES	FUN	...	simplifyTRUEApply a Function to a Data Frame Split by Factors
+bzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression9Functions to Manipulate Connections
+cfunctionfunctionbaseNO_ARGSCombine Values into a Vector or List
+callfunctionfunctionbaseNO_ARGSFunction Calls
+callCCfunctionfunctionbasefunCall With Current Continuation
+capabilitiesfunctionfunctionbasewhatNULLReport Capabilities of this Build of R
+casefoldfunctionfunctionbasex	upperFALSECharacter Translation and Casefolding
+catfunctionfunctionbase...	file""	sep" "	fillFALSE	labelsNULL	appendFALSEConcatenate and Print
+categoryfunctionfunctionbase...Defunct Functions in Package 'base'
+cbindfunctionfunctionbase...	deparse.level1Combine R Objects by Rows or Columns
+cbind.data.framefunctionfunctionbase...	deparse.level1Combine R Objects by Rows or Columns
+c.Datefunctionfunctionbase...	recursiveFALSEDate Class
+ceilingfunctionfunctionbaseNO_ARGSRounding of Numbers
+characterfunctionfunctionbaseNO_ARGSCharacter Vectors
+char.expandfunctionfunctionbaseinput	target	nomatchstop("no match")Expand a String with Respect to a Target Table
+charmatchfunctionfunctionbasex	tablePartial String Matching
+charToRawfunctionfunctionbasexConvert to or from Raw Vectors
+chartrfunctionfunctionbaseold	new	xCharacter Translation and Casefolding
+check_tzonesfunctionfunctionbase...Date-Time Classes
+cholfunctionfunctionbasex	pivotFALSE	LINPACK	...The Choleski Decomposition
+chol2invfunctionfunctionbasex	sizeNCOL(x)	LINPACKFALSEInverse from Choleski (or QR) Decomposition
+chol.defaultfunctionfunctionbasex	pivotFALSE	LINPACK	...The Choleski Decomposition
+choosefunctionfunctionbasen	kSpecial Functions of Mathematics
+classfunctionfunctionbaseNO_ARGSObject Classes
+class<-functionfunctionbaseNO_ARGSObject Classes
+closefunctionfunctionbasecon	...Functions to Manipulate Connections
+closeAllConnectionsfunctionfunctionbaseNO_ARGSDisplay Connections
+close.connectionfunctionfunctionbasecon	type"rw"	...Functions to Manipulate Connections
+close.srcfilefunctionfunctionbasecon	...References to source files
+close.srcfilealiasfunctionfunctionbasecon	...References to source files
+c.noquotefunctionfunctionbase...	recursiveFALSEClass for 'no quote' Printing of Character Strings
+c.numeric_versionfunctionfunctionbase...	recursiveFALSENumeric Versions
+codesfunctionfunctionbasex	...Defunct Functions in Package 'base'
+codes<-functionfunctionbasex	...	valueDefunct Functions in Package 'base'
+codes.factorfunctionfunctionbasex	...Defunct Functions in Package 'base'
+codes.orderedfunctionfunctionbasex	...Defunct Functions in Package 'base'
+colfunctionfunctionbasex	as.factorFALSEColumn Indexes
+colMeansfunctionfunctionbasex	na.rmFALSEForm Row and Column Sums and Means
+colnamesfunctionfunctionbasex	do.NULLTRUE	prefix"col"Row and Column Names
+colnames<-functionfunctionbasex	valueRow and Column Names
+colSumsfunctionfunctionbasex	na.rmFALSEForm Row and Column Sums and Means
+commandArgsfunctionfunctionbasetrailingOnlyFALSEExtract Command Line Arguments
+commentfunctionfunctionbasexQuery or Set a '"comment"' Attribute
+comment<-functionfunctionbasex	valueQuery or Set a '"comment"' Attribute
+complexfunctionfunctionbaserealnumeric()	imaginarynumeric()	modulus1	argument0Complex Vectors
+computeRestartsfunctionfunctionbasecondNULLCondition Handling and Recovery
+conditionCallfunctionfunctionbasecCondition Handling and Recovery
+conditionCall.conditionfunctionfunctionbasecCondition Handling and Recovery
+conditionMessagefunctionfunctionbasecCondition Handling and Recovery
+conditionMessage.conditionfunctionfunctionbasecCondition Handling and Recovery
+conflictsfunctionfunctionbasewheresearch()	detailFALSESearch for Masked Objects on the Search Path
+ConjfunctionfunctionbaseNO_ARGSComplex Vectors
+contributorsfunctionfunctionbaseNO_ARGSR Project Contributors
+cosfunctionfunctionbaseNO_ARGSTrigonometric Functions
+coshfunctionfunctionbaseNO_ARGSHyperbolic Functions
+c.POSIXctfunctionfunctionbase...	recursiveFALSEDate-Time Classes
+c.POSIXltfunctionfunctionbase...	recursiveFALSEDate-Time Classes
+crossprodfunctionfunctionbasex	yNULLMatrix Crossproduct
+Cstack_infofunctionfunctionbaseNO_ARGSReport Information on C Stack Size and Usage
+cummaxfunctionfunctionbaseNO_ARGSCumulative Sums, Products, and Extremes
+cumminfunctionfunctionbaseNO_ARGSCumulative Sums, Products, and Extremes
+cumprodfunctionfunctionbaseNO_ARGSCumulative Sums, Products, and Extremes
+cumsumfunctionfunctionbaseNO_ARGSCumulative Sums, Products, and Extremes
+cutfunctionfunctionbasex	breaks	labelsNULL	include.lowestFALSE	rightTRUE	dig.lab3	ordered_resultFALSE	...Convert Numeric to Factor
+cut.Datefunctionfunctionbasex	breaks	labelsNULL	start.on.mondayTRUE	rightFALSE	...Convert a Date or Date-Time Object to a Factor
+cut.defaultfunctionfunctionbasex	breaks	labelsNULL	include.lowestFALSE	rightTRUE	dig.lab3	ordered_resultFALSE	...Convert Numeric to Factor
+cut.POSIXtfunctionfunctionbasex	breaks	labelsNULL	start.on.mondayTRUE	rightFALSE	...Convert a Date or Date-Time Object to a Factor
+data.classfunctionfunctionbasexObject Classes
+[<-.data.framefunctionfunctionbasex	i	j	valueExtract or Replace Parts of a Data Frame
+[.data.framefunctionfunctionbasex	i	j	dropif (missing(i)) TRUE else length(cols) == 1Extract or Replace Parts of a Data Frame
+[[<-.data.framefunctionfunctionbasex	i	j	valueExtract or Replace Parts of a Data Frame
+[[.data.framefunctionfunctionbasex	...	exactTRUEExtract or Replace Parts of a Data Frame
+$<-.data.framefunctionfunctionbasex	name	valueExtract or Replace Parts of a Data Frame
+data.framefunctionfunctionbase...	row.namesNULL	check.rowsFALSE	check.namesTRUE	stringsAsFactorsdefault.stringsAsFactors()Data Frames
+data.matrixfunctionfunctionbaseframe	rownames.forceNAConvert a Data Frame to a Numeric Matrix
+datefunctionfunctionbaseNO_ARGSSystem Date and Time
+-.Datefunctionfunctionbasee1	e2Operators on the Date Class
+[<-.Datefunctionfunctionbasex	...	valueDate Class
+[.Datefunctionfunctionbasex	...	dropTRUEDate Class
+[[.Datefunctionfunctionbasex	...	dropTRUEDate Class
++.Datefunctionfunctionbasee1	e2Operators on the Date Class
+debugfunctionfunctionbasefun	text""	conditionNULLDebug a Function
+debugoncefunctionfunctionbasefun	text""	conditionNULLDebug a Function
+default.stringsAsFactorsfunctionfunctionbaseNO_ARGSData Frames
+delayfunctionfunctionbasex	envDefunct Functions in Package 'base'
+delayedAssignfunctionfunctionbasex	value	eval.envparent.frame(1)	assign.envparent.frame(1)Delay Evaluation
+deparsefunctionfunctionbaseexpr	backtickmode(expr) %in% c("call", "expression", "(", "function")	controlc("keepInteger", "showAttributes", "keepNA")	nlines-1LExpression Deparsing
+detfunctionfunctionbasex	...Calculate the Determinant of a Matrix
+detachfunctionfunctionbasename	pos2	unloadFALSE	character.onlyFALSE	forceFALSEDetach Objects from the Search Path
+determinantfunctionfunctionbasex	logarithmTRUE	...Calculate the Determinant of a Matrix
+determinant.matrixfunctionfunctionbasex	logarithmTRUE	...Calculate the Determinant of a Matrix
+dgetfunctionfunctionbasefileWrite an Object to a File or Recreate it
+diagfunctionfunctionbasex1	nrow	ncolMatrix Diagonals
+diag<-functionfunctionbasex	valueMatrix Diagonals
+difffunctionfunctionbasex	...Lagged Differences
+diff.Datefunctionfunctionbasex	...Lagged Differences
+diff.defaultfunctionfunctionbasex	...Lagged Differences
+diff.POSIXtfunctionfunctionbasex	...Lagged Differences
+difftimefunctionfunctionbasetime1	time2	tz	unitsc("auto", "secs", "mins", "hours", "days", "weeks")Time Intervals
+/.difftimefunctionfunctionbasee1	e2Time Intervals
+[.difftimefunctionfunctionbasex	...	dropTRUETime Intervals
+*.difftimefunctionfunctionbasee1	e2Time Intervals
+digammafunctionfunctionbaseNO_ARGSSpecial Functions of Mathematics
+dimfunctionfunctionbaseNO_ARGSDimensions of an Object
+dim<-functionfunctionbaseNO_ARGSDimensions of an Object
+dim.data.framefunctionfunctionbasexDimensions of an Object
+dimnamesfunctionfunctionbaseNO_ARGSDimnames of an Object
+dimnames<-functionfunctionbaseNO_ARGSDimnames of an Object
+dimnames<-.data.framefunctionfunctionbasex	valueDimnames of an Object
+dimnames.data.framefunctionfunctionbasexDimnames of an Object
+dirfunctionfunctionbasepath"."	patternNULL	all.filesFALSE	full.namesFALSE	recursiveFALSE	ignore.caseFALSE	include.dirsFALSEList the Files in a Directory/Folder
+dir.createfunctionfunctionbasepath	showWarningsTRUE	recursiveFALSE	mode"0777"Manipulaton of Directories and File Permissions
+dirnamefunctionfunctionbasepathManipulate File Paths
+$.DLLInfofunctionfunctionbasex	nameGet DLLs Loaded in Current Session
+do.callfunctionfunctionbasewhat	args	quoteFALSE	envirparent.frame()Execute a Function Call
+doublefunctionfunctionbaseNO_ARGSDouble-Precision Vectors
+dputfunctionfunctionbasex	file""	controlc("keepNA", "keepInteger", "showAttributes")Write an Object to a File or Recreate it
+dQuotefunctionfunctionbasexQuote Text
+dropfunctionfunctionbasexDrop Redundant Extent Information
+droplevelsfunctionfunctionbasex	...droplevels
+droplevels.data.framefunctionfunctionbasex	exceptNULL	...droplevels
+droplevels.factorfunctionfunctionbasex	...droplevels
+dumpfunctionfunctionbaselist	file"dumpdata.R"	appendFALSE	control"all"	envirparent.frame()	evaluateTRUEText Representations of R Objects
+duplicatedfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+duplicated.arrayfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+duplicated.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+duplicated.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+duplicated.matrixfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Determine Duplicate Elements
+duplicated.numeric_versionfunctionfunctionbasex	incomparablesFALSE	...Numeric Versions
+duplicated.POSIXltfunctionfunctionbasex	incomparablesFALSE	...Date-Time Classes
+dyn.loadfunctionfunctionbasex	localTRUE	nowTRUE	...Foreign Function Interface
+dyn.unloadfunctionfunctionbasexForeign Function Interface
+eapplyfunctionfunctionbaseenv	FUN	...	all.namesFALSE	USE.NAMESTRUEApply a Function Over Values in an Environment
+eigenfunctionfunctionbasex	symmetric	only.valuesFALSE	EISPACKFALSESpectral Decomposition of a Matrix
+emptyenvfunctionfunctionbaseNO_ARGSEnvironment Access
+enc2nativefunctionfunctionbaseNO_ARGSRead or Set the Declared Encodings for a Character Vector
+enc2utf8functionfunctionbaseNO_ARGSRead or Set the Declared Encodings for a Character Vector
+encodeStringfunctionfunctionbasex	quote""	na.encodeTRUE	justifyc("left", "right", "centre", "none")Encode Character Vector as for Printing
+EncodingfunctionfunctionbasexRead or Set the Declared Encodings for a Character Vector
+Encoding<-functionfunctionbasex	valueRead or Set the Declared Encodings for a Character Vector
+enquotefunctionfunctionbaseclSubstituting and Quoting Expressions
+environmentfunctionfunctionbasefunNULLEnvironment Access
+environment<-functionfunctionbaseNO_ARGSEnvironment Access
+environmentIsLockedfunctionfunctionbaseenvBinding and Environment Adjustments
+environmentNamefunctionfunctionbaseenvEnvironment Access
+env.profilefunctionfunctionbaseenvEnvironment Access
+evalfunctionfunctionbaseexpr	envirparent.frame()	enclosif (is.list(envir) || is.pairlist(envir)) parent.frame() else baseenv()Evaluate an (Unevaluated) Expression
+eval.parentfunctionfunctionbaseexpr	n1Evaluate an (Unevaluated) Expression
+evalqfunctionfunctionbaseexpr	envirparent.frame()	enclosif (is.list(envir) || is.pairlist(envir)) parent.frame() else baseenv()Evaluate an (Unevaluated) Expression
+existsfunctionfunctionbasex	where-1	envirif (missing(frame)) as.environment(where) else sys.frame(frame)	frame	mode"any"	inheritsTRUEIs an Object Defined?
+expfunctionfunctionbaseNO_ARGSLogarithms and Exponentials
+expand.gridfunctionfunctionbase...	KEEP.OUT.ATTRSTRUE	stringsAsFactorsTRUECreate a Data Frame from All Combinations of Factors
+expm1functionfunctionbaseNO_ARGSLogarithms and Exponentials
+expressionfunctionfunctionbaseNO_ARGSUnevaluated Expressions
 FlogicallogicalbaseNot a function
-factorfunctionfunctionbasexcharacter()	levels	labels	excludeNA	orderedis.ordered(x)
-[<-.factorfunctionfunctionbasex	...	value
-[.factorfunctionfunctionbasex	...	dropFALSE
-[[<-.factorfunctionfunctionbasex	...	value
-[[.factorfunctionfunctionbasex	...
-factorialfunctionfunctionbasex
-fifofunctionfunctionbasedescription	open""	blockingFALSE	encodinggetOption("encoding")
-filefunctionfunctionbasedescription""	open""	blockingTRUE	encodinggetOption("encoding")	rawFALSE
-file.accessfunctionfunctionbasenames	mode0
-file.appendfunctionfunctionbasefile1	file2
-file.choosefunctionfunctionbasenewFALSE
-file.copyfunctionfunctionbasefrom	to	overwrite	recursiveFALSE	copy.modeTRUE
-file.createfunctionfunctionbase...	showWarningsTRUE
-file.existsfunctionfunctionbase...
-file.infofunctionfunctionbase...
-file.linkfunctionfunctionbasefrom	to
-file.pathfunctionfunctionbase...	fsep.Platform$file.sep
-file.removefunctionfunctionbase...
-file.renamefunctionfunctionbasefrom	to
-file.showfunctionfunctionbase...	headerrep("", nfiles)	title"R Information"	delete.fileFALSE	pagergetOption("pager")	encoding""
-file.symlinkfunctionfunctionbasefrom	to
-Filterfunctionfunctionbasef	x
-Findfunctionfunctionbasef	x	rightFALSE	nomatchNULL
-findIntervalfunctionfunctionbasex	vec	rightmost.closedFALSE	all.insideFALSE
-find.packagefunctionfunctionbasepackageNULL	lib.locNULL	quietFALSE	verbosegetOption("verbose")
-findPackageEnvfunctionfunctionbaseinfo
-findRestartfunctionfunctionbasename	condNULL
-floorfunctionfunctionbaseNO_ARGS
-flushfunctionfunctionbasecon
-flush.connectionfunctionfunctionbasecon
+factorfunctionfunctionbasexcharacter()	levels	labels	excludeNA	orderedis.ordered(x)Factors
+[<-.factorfunctionfunctionbasex	...	valueExtract or Replace Parts of a Factor
+[.factorfunctionfunctionbasex	...	dropFALSEExtract or Replace Parts of a Factor
+[[<-.factorfunctionfunctionbasex	...	valueExtract or Replace Parts of a Factor
+[[.factorfunctionfunctionbasex	...Extract or Replace Parts of a Factor
+factorialfunctionfunctionbasexSpecial Functions of Mathematics
+fifofunctionfunctionbasedescription	open""	blockingFALSE	encodinggetOption("encoding")Functions to Manipulate Connections
+filefunctionfunctionbasedescription""	open""	blockingTRUE	encodinggetOption("encoding")	rawFALSEFunctions to Manipulate Connections
+file.accessfunctionfunctionbasenames	mode0Ascertain File Accessibility
+file.appendfunctionfunctionbasefile1	file2File Manipulation
+file.choosefunctionfunctionbasenewFALSEChoose a File Interactively
+file.copyfunctionfunctionbasefrom	to	overwrite	recursiveFALSE	copy.modeTRUEFile Manipulation
+file.createfunctionfunctionbase...	showWarningsTRUEFile Manipulation
+file.existsfunctionfunctionbase...File Manipulation
+file.infofunctionfunctionbase...Extract File Information
+file.linkfunctionfunctionbasefrom	toFile Manipulation
+file.pathfunctionfunctionbase...	fsep.Platform$file.sepConstruct Path to File
+file.removefunctionfunctionbase...File Manipulation
+file.renamefunctionfunctionbasefrom	toFile Manipulation
+file.showfunctionfunctionbase...	headerrep("", nfiles)	title"R Information"	delete.fileFALSE	pagergetOption("pager")	encoding""Display One or More Files
+file.symlinkfunctionfunctionbasefrom	toFile Manipulation
+Filterfunctionfunctionbasef	xCommon Higher-Order Functions in Functional Programming Languages
+Findfunctionfunctionbasef	x	rightFALSE	nomatchNULLCommon Higher-Order Functions in Functional Programming Languages
+findIntervalfunctionfunctionbasex	vec	rightmost.closedFALSE	all.insideFALSEFind Interval Numbers or Indices
+find.packagefunctionfunctionbasepackageNULL	lib.locNULL	quietFALSE	verbosegetOption("verbose")Find Packages
+findPackageEnvfunctionfunctionbaseinfoInternal Functions in Package 'base'
+findRestartfunctionfunctionbasename	condNULLCondition Handling and Recovery
+floorfunctionfunctionbaseNO_ARGSRounding of Numbers
+flushfunctionfunctionbaseconFunctions to Manipulate Connections
+flush.connectionfunctionfunctionbaseconFunctions to Manipulate Connections
 forflow-controlflow-controlbaseNot a function
-forcefunctionfunctionbasex
-formalsfunctionfunctionbasefunsys.function(sys.parent())
-formals<-functionfunctionbasefun	envirenvironment(fun)	value
-formatfunctionfunctionbasex	trimFALSE	digitsNULL	justifyc("left", "right", "centre", "none")	widthNULL	na.encodeTRUE	scientificNA	big.mark""	small.mark""	decimal.mark"."	zero.printNULL	drop0trailingFALSE	...
-format.AsIsfunctionfunctionbasex	width12	...
-formatCfunctionfunctionbasex	digitsNULL	widthNULL	formatNULL	flag""	modeNULL	big.mark""	small.mark""	decimal.mark"."	preserve.width"individual"	zero.printNULL	drop0trailingFALSE
-format.charfunctionfunctionbasex	widthNULL	flag"-"
-format.data.framefunctionfunctionbasex	...	justify"none"
-format.Datefunctionfunctionbasex	...
-format.defaultfunctionfunctionbasex	trimFALSE	digitsNULL	justifyc("left", "right", "centre", "none")	widthNULL	na.encodeTRUE	scientificNA	big.mark""	small.mark""	decimal.mark"."	zero.printNULL	drop0trailingFALSE	...
-format.difftimefunctionfunctionbasex	...
-formatDLfunctionfunctionbasex	y	stylec("table", "list")	width0.9 * getOption("width")	indentNULL
-format.factorfunctionfunctionbasex	...
-format.hexmodefunctionfunctionbasex	widthNULL	upper.caseFALSE	...
-format.infofunctionfunctionbasex	digitsNULL
-format.libraryIQRfunctionfunctionbasex	...
-format.numeric_versionfunctionfunctionbasex	...
-format.octmodefunctionfunctionbasex	widthNULL	...
-format.packageInfofunctionfunctionbasex	...
-format.POSIXctfunctionfunctionbasex	format""	tz""	usetzFALSE	...
-format.POSIXltfunctionfunctionbasex	format""	usetzFALSE	...
-format.pvalfunctionfunctionbasepv	digitsmax(1, getOption("digits") - 2)	eps.Machine$double.eps	na.form"NA"	...
-forwardsolvefunctionfunctionbasel	x	kncol(l)	upper.triFALSE	transposeFALSE
-functionfunctionfunctionbaseNO_ARGS
-gammafunctionfunctionbaseNO_ARGS
-gammaCodyfunctionfunctionbasex
-gcfunctionfunctionbaseverbosegetOption("verbose")	resetFALSE
-gcinfofunctionfunctionbaseverbose
-gc.timefunctionfunctionbaseNO_ARGS
-gctorturefunctionfunctionbaseonTRUE
-gctorture2functionfunctionbasestep	wait	inhibit_releaseFALSE
-getfunctionfunctionbasex	pos-1	enviras.environment(pos)	mode"any"	inheritsTRUE
-getAllConnectionsfunctionfunctionbaseNO_ARGS
-getCallingDLLfunctionfunctionbasefsys.function(-1)	doStopFALSE
-getCallingDLLefunctionfunctionbasee
-getCConverterDescriptionsfunctionfunctionbaseNO_ARGS
-getCConverterStatusfunctionfunctionbaseNO_ARGS
-getConnectionfunctionfunctionbasewhat
-getDLLRegisteredRoutinesfunctionfunctionbasedll	addNamesTRUE
-getDLLRegisteredRoutines.characterfunctionfunctionbasedll	addNamesTRUE
-getDLLRegisteredRoutines.DLLInfofunctionfunctionbasedll	addNamesTRUE
-getElementfunctionfunctionbaseobject	name
-getenvfunctionfunctionbase...
-geterrmessagefunctionfunctionbaseNO_ARGS
-getExportedValuefunctionfunctionbasens	name
-getHookfunctionfunctionbasehookName
-getLoadedDLLsfunctionfunctionbaseNO_ARGS
-getNamespacefunctionfunctionbasename
-getNamespaceExportsfunctionfunctionbasens
-getNamespaceImportsfunctionfunctionbasens
-getNamespaceInfofunctionfunctionbasens	which
-getNamespaceNamefunctionfunctionbasens
-getNamespaceUsersfunctionfunctionbasens
-getNamespaceVersionfunctionfunctionbasens
-getNativeSymbolInfofunctionfunctionbasename	PACKAGE	unlistTRUE	withRegistrationInfoFALSE
-getNumCConvertersfunctionfunctionbaseNO_ARGS
-getOptionfunctionfunctionbasex	defaultNULL
-getRversionfunctionfunctionbaseNO_ARGS
-getSrcLinesfunctionfunctionbasesrcfile	first	last
-getTaskCallbackNamesfunctionfunctionbaseNO_ARGS
-gettextfunctionfunctionbase...	domainNULL
-gettextffunctionfunctionbasefmt	...	domainNULL
-getwdfunctionfunctionbaseNO_ARGS
-glfunctionfunctionbasen	k	lengthn * k	labels1:n	orderedFALSE
-globalenvfunctionfunctionbaseNO_ARGS
-gregexprfunctionfunctionbasepattern	text	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSE
-grepfunctionfunctionbasepattern	x	ignore.caseFALSE	perlFALSE	valueFALSE	fixedFALSE	useBytesFALSE	invertFALSE
-greplfunctionfunctionbasepattern	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSE
-grepRawfunctionfunctionbasepattern	x	ignore.caseFALSE	valueFALSE	fixedFALSE	allFALSE	invertFALSE
-gsubfunctionfunctionbasepattern	replacement	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSE
-gzconfunctionfunctionbasecon	level6	allowNonCompressedTRUE
-gzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression6
-|.hexmodefunctionfunctionbasea	b
-!.hexmodefunctionfunctionbasea
-[.hexmodefunctionfunctionbasex	i
-&.hexmodefunctionfunctionbasea	b
-httpclientfunctionfunctionbaseurl	port80	error.is.fatalTRUE	check.MIME.typeTRUE	filetempfile()	drop.ctrl.zTRUE
-Ifunctionfunctionbasex
-iconvfunctionfunctionbasex	from""	to""	subNA	markTRUE	toRawFALSE
-iconvlistfunctionfunctionbaseNO_ARGS
-icuSetCollatefunctionfunctionbase...
-identicalfunctionfunctionbasex	y	num.eqTRUE	single.NATRUE	attrib.as.setTRUE	ignore.bytecodeTRUE
-identityfunctionfunctionbasex
+forcefunctionfunctionbasexForce Evaluation of an Argument
+formalsfunctionfunctionbasefunsys.function(sys.parent())Access to and Manipulation of the Formal Arguments
+formals<-functionfunctionbasefun	envirenvironment(fun)	valueAccess to and Manipulation of the Formal Arguments
+formatfunctionfunctionbasex	trimFALSE	digitsNULL	justifyc("left", "right", "centre", "none")	widthNULL	na.encodeTRUE	scientificNA	big.mark""	small.mark""	decimal.mark"."	zero.printNULL	drop0trailingFALSE	...Encode in a Common Format
+format.AsIsfunctionfunctionbasex	width12	...Encode in a Common Format
+formatCfunctionfunctionbasex	digitsNULL	widthNULL	formatNULL	flag""	modeNULL	big.mark""	small.mark""	decimal.mark"."	preserve.width"individual"	zero.printNULL	drop0trailingFALSEFormatting Using C-style Formats
+format.charfunctionfunctionbasex	widthNULL	flag"-"Defunct Functions in Package 'base'
+format.data.framefunctionfunctionbasex	...	justify"none"Encode in a Common Format
+format.Datefunctionfunctionbasex	...Date Conversion Functions to and from Character
+format.defaultfunctionfunctionbasex	trimFALSE	digitsNULL	justifyc("left", "right", "centre", "none")	widthNULL	na.encodeTRUE	scientificNA	big.mark""	small.mark""	decimal.mark"."	zero.printNULL	drop0trailingFALSE	...Encode in a Common Format
+format.difftimefunctionfunctionbasex	...Time Intervals
+formatDLfunctionfunctionbasex	y	stylec("table", "list")	width0.9 * getOption("width")	indentNULLFormat Description Lists
+format.factorfunctionfunctionbasex	...Encode in a Common Format
+format.hexmodefunctionfunctionbasex	widthNULL	upper.caseFALSE	...Display Numbers in Hexadecimal
+format.infofunctionfunctionbasex	digitsNULLformat(.) Information
+format.libraryIQRfunctionfunctionbasex	...Loading and Listing of Packages
+format.numeric_versionfunctionfunctionbasex	...Numeric Versions
+format.octmodefunctionfunctionbasex	widthNULL	...Display Numbers in Octal
+format.packageInfofunctionfunctionbasex	...Loading and Listing of Packages
+format.POSIXctfunctionfunctionbasex	format""	tz""	usetzFALSE	...Date-time Conversion Functions to and from Character
+format.POSIXltfunctionfunctionbasex	format""	usetzFALSE	...Date-time Conversion Functions to and from Character
+format.pvalfunctionfunctionbasepv	digitsmax(1, getOption("digits") - 2)	eps.Machine$double.eps	na.form"NA"	...Format P Values
+forwardsolvefunctionfunctionbasel	x	kncol(l)	upper.triFALSE	transposeFALSESolve an Upper or Lower Triangular System
+functionfunctionfunctionbaseNO_ARGSFunction Definition
+gammafunctionfunctionbaseNO_ARGSSpecial Functions of Mathematics
+gammaCodyfunctionfunctionbasexDefunct Functions in Package 'base'
+gcfunctionfunctionbaseverbosegetOption("verbose")	resetFALSEGarbage Collection
+gcinfofunctionfunctionbaseverboseGarbage Collection
+gc.timefunctionfunctionbaseNO_ARGSReport Time Spent in Garbage Collection
+gctorturefunctionfunctionbaseonTRUETorture Garbage Collector
+gctorture2functionfunctionbasestep	wait	inhibit_releaseFALSETorture Garbage Collector
+getfunctionfunctionbasex	pos-1	enviras.environment(pos)	mode"any"	inheritsTRUEReturn the Value of a Named Object
+getAllConnectionsfunctionfunctionbaseNO_ARGSDisplay Connections
+getCallingDLLfunctionfunctionbasefsys.function(-1)	doStopFALSECompute DLL for Native Interface Call
+getCallingDLLefunctionfunctionbaseeCompute DLL for Native Interface Call
+getCConverterDescriptionsfunctionfunctionbaseNO_ARGSManagement of .C argument conversion list
+getCConverterStatusfunctionfunctionbaseNO_ARGSManagement of .C argument conversion list
+getConnectionfunctionfunctionbasewhatDisplay Connections
+getDLLRegisteredRoutinesfunctionfunctionbasedll	addNamesTRUEReflectance Information for C/Fortran routines in a DLL
+getDLLRegisteredRoutines.characterfunctionfunctionbasedll	addNamesTRUEReflectance Information for C/Fortran routines in a DLL
+getDLLRegisteredRoutines.DLLInfofunctionfunctionbasedll	addNamesTRUEReflectance Information for C/Fortran routines in a DLL
+getElementfunctionfunctionbaseobject	nameExtract or Replace Parts of an Object
+getenvfunctionfunctionbase...Defunct Functions in Package 'base'
+geterrmessagefunctionfunctionbaseNO_ARGSStop Function Execution
+getExportedValuefunctionfunctionbasens	nameNamespace Reflection Support
+getHookfunctionfunctionbasehookNameFunctions to Get and Set Hooks for Load, Attach, Detach and Unload
+getLoadedDLLsfunctionfunctionbaseNO_ARGSGet DLLs Loaded in Current Session
+getNamespacefunctionfunctionbasenameNamespace Reflection Support
+getNamespaceExportsfunctionfunctionbasensNamespace Reflection Support
+getNamespaceImportsfunctionfunctionbasensNamespace Reflection Support
+getNamespaceInfofunctionfunctionbasens	whichNamespace Internals
+getNamespaceNamefunctionfunctionbasensNamespace Reflection Support
+getNamespaceUsersfunctionfunctionbasensNamespace Reflection Support
+getNamespaceVersionfunctionfunctionbasensNamespace Reflection Support
+getNativeSymbolInfofunctionfunctionbasename	PACKAGE	unlistTRUE	withRegistrationInfoFALSEObtain a Description of one or more Native (C/Fortran) Symbols
+getNumCConvertersfunctionfunctionbaseNO_ARGSManagement of .C argument conversion list
+getOptionfunctionfunctionbasex	defaultNULLOptions Settings
+getRversionfunctionfunctionbaseNO_ARGSNumeric Versions
+getSrcLinesfunctionfunctionbasesrcfile	first	lastReferences to source files
+getTaskCallbackNamesfunctionfunctionbaseNO_ARGSQuery the Names of the Current Internal Top-Level Task Callbacks
+gettextfunctionfunctionbase...	domainNULLTranslate Text Messages
+gettextffunctionfunctionbasefmt	...	domainNULLUse C-style String Formatting Commands
+getwdfunctionfunctionbaseNO_ARGSGet or Set Working Directory
+glfunctionfunctionbasen	k	lengthn * k	labels1:n	orderedFALSEGenerate Factor Levels
+globalenvfunctionfunctionbaseNO_ARGSEnvironment Access
+gregexprfunctionfunctionbasepattern	text	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+grepfunctionfunctionbasepattern	x	ignore.caseFALSE	perlFALSE	valueFALSE	fixedFALSE	useBytesFALSE	invertFALSEPattern Matching and Replacement
+greplfunctionfunctionbasepattern	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+grepRawfunctionfunctionbasepattern	x	ignore.caseFALSE	valueFALSE	fixedFALSE	allFALSE	invertFALSEPattern Matching for Raw Vectors
+gsubfunctionfunctionbasepattern	replacement	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+gzconfunctionfunctionbasecon	level6	allowNonCompressedTRUE(De)compress I/O Through Connections
+gzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression6Functions to Manipulate Connections
+|.hexmodefunctionfunctionbasea	bDisplay Numbers in Hexadecimal
+!.hexmodefunctionfunctionbaseaDisplay Numbers in Hexadecimal
+[.hexmodefunctionfunctionbasex	iDisplay Numbers in Hexadecimal
+&.hexmodefunctionfunctionbasea	bDisplay Numbers in Hexadecimal
+httpclientfunctionfunctionbaseurl	port80	error.is.fatalTRUE	check.MIME.typeTRUE	filetempfile()	drop.ctrl.zTRUEDefunct Functions in Package 'base'
+IfunctionfunctionbasexInhibit Interpretation/Conversion of Objects
+iconvfunctionfunctionbasex	from""	to""	subNA	markTRUE	toRawFALSEConvert Character Vector between Encodings
+iconvlistfunctionfunctionbaseNO_ARGSConvert Character Vector between Encodings
+icuSetCollatefunctionfunctionbase...Setup Collation by ICU
+identicalfunctionfunctionbasex	y	num.eqTRUE	single.NATRUE	attrib.as.setTRUE	ignore.bytecodeTRUETest Objects for Exact Equality
+identityfunctionfunctionbasexIdentity Function
 ifflow-controlflow-controlbaseNot a function
-ifelsefunctionfunctionbasetest	yes	no
-ImfunctionfunctionbaseNO_ARGS
-importIntoEnvfunctionfunctionbaseimpenv	impnames	expenv	expnames
-%in%functionfunctionbasex	table
-inheritsfunctionfunctionbasex	what	whichFALSE
-integerfunctionfunctionbaseNO_ARGS
-interactionfunctionfunctionbase...	dropFALSE	sep"."	lex.orderFALSE
-interactivefunctionfunctionbaseNO_ARGS
-intersectfunctionfunctionbasex	y
-intToBitsfunctionfunctionbasex
-intToUtf8functionfunctionbasex	multipleFALSE
-inverse.rlefunctionfunctionbasex	...
-invisiblefunctionfunctionbaseNO_ARGS
-invokeRestartfunctionfunctionbaser	...
-invokeRestartInteractivelyfunctionfunctionbaser
-is.arrayfunctionfunctionbaseNO_ARGS
-is.atomicfunctionfunctionbaseNO_ARGS
-isattyfunctionfunctionbasecon
-isBaseNamespacefunctionfunctionbasens
-is.callfunctionfunctionbaseNO_ARGS
-is.characterfunctionfunctionbaseNO_ARGS
-is.complexfunctionfunctionbaseNO_ARGS
-is.data.framefunctionfunctionbasex
-isdebuggedfunctionfunctionbasefun
-is.doublefunctionfunctionbaseNO_ARGS
-is.elementfunctionfunctionbaseel	set
-is.environmentfunctionfunctionbaseNO_ARGS
-is.expressionfunctionfunctionbaseNO_ARGS
-is.factorfunctionfunctionbasex
-is.finitefunctionfunctionbaseNO_ARGS
-is.functionfunctionfunctionbaseNO_ARGS
-isIncompletefunctionfunctionbasecon
-is.infinitefunctionfunctionbaseNO_ARGS
-is.integerfunctionfunctionbaseNO_ARGS
-is.languagefunctionfunctionbaseNO_ARGS
-is.listfunctionfunctionbaseNO_ARGS
-is.loadedfunctionfunctionbasesymbol	PACKAGE""	type""
-is.logicalfunctionfunctionbaseNO_ARGS
-is.matrixfunctionfunctionbaseNO_ARGS
-is.nafunctionfunctionbaseNO_ARGS
-is.na<-functionfunctionbasex	value
-is.na.data.framefunctionfunctionbasex
-is.na<-.defaultfunctionfunctionbasex	value
-is.na<-.factorfunctionfunctionbasex	value
-is.namefunctionfunctionbaseNO_ARGS
-isNamespacefunctionfunctionbasens
-is.nanfunctionfunctionbaseNO_ARGS
-is.na.numeric_versionfunctionfunctionbasex
-is.na.POSIXltfunctionfunctionbasex
-is.nullfunctionfunctionbaseNO_ARGS
-is.numericfunctionfunctionbaseNO_ARGS
-is.numeric.Datefunctionfunctionbasex
-is.numeric.difftimefunctionfunctionbasex
-is.numeric.POSIXtfunctionfunctionbasex
-is.numeric_versionfunctionfunctionbasex
-is.objectfunctionfunctionbaseNO_ARGS
-ISOdatefunctionfunctionbaseyear	month	day	hour12	min0	sec0	tz"GMT"
-ISOdatetimefunctionfunctionbaseyear	month	day	hour	min	sec	tz""
-isOpenfunctionfunctionbasecon	rw""
-is.orderedfunctionfunctionbasex
-is.package_versionfunctionfunctionbasex
-is.pairlistfunctionfunctionbaseNO_ARGS
-is.primitivefunctionfunctionbasex
-is.qrfunctionfunctionbasex
-is.RfunctionfunctionbaseNO_ARGS
-is.rawfunctionfunctionbaseNO_ARGS
-is.realfunctionfunctionbaseNO_ARGS
-is.recursivefunctionfunctionbaseNO_ARGS
-isRestartfunctionfunctionbasex
-isS4functionfunctionbaseobject
-isSeekablefunctionfunctionbasecon
-is.singlefunctionfunctionbaseNO_ARGS
-is.symbolfunctionfunctionbaseNO_ARGS
-isSymmetricfunctionfunctionbaseobject	...
-isSymmetric.matrixfunctionfunctionbaseobject	tol100 * .Machine$double.eps	...
-is.tablefunctionfunctionbasex
-isTRUEfunctionfunctionbasex
-is.unsortedfunctionfunctionbasex	na.rmFALSE	strictlyFALSE
-is.vectorfunctionfunctionbasex	mode"any"
-jitterfunctionfunctionbasex	factor1	amountNULL
-julianfunctionfunctionbasex	...
-julian.Datefunctionfunctionbasex	originas.Date("1970-01-01")	...
-julian.POSIXtfunctionfunctionbasex	originas.POSIXct("1970-01-01", tz = "GMT")	...
-kappafunctionfunctionbasez	exactFALSE	normNULL	methodc("qr", "direct")	...
-kappa.defaultfunctionfunctionbasez	exactFALSE	normNULL	methodc("qr", "direct")	...
-kappa.lmfunctionfunctionbasez	...
-kappa.qrfunctionfunctionbasez	...
-kappa.trifunctionfunctionbasez	exactFALSE	LINPACKTRUE	normNULL	...
-kroneckerfunctionfunctionbaseX	Y	FUN"*"	make.dimnamesFALSE	...
-l10n_infofunctionfunctionbaseNO_ARGS
-labelsfunctionfunctionbaseobject	...
-labels.defaultfunctionfunctionbaseobject	...
-La.cholfunctionfunctionbasex
-La.chol2invfunctionfunctionbasex	sizencol(x)
-La.eigenfunctionfunctionbasex	symmetric	only.valuesFALSE	methodc("dsyevr", "dsyev")
-lapplyfunctionfunctionbaseX	FUN	...
-La.svdfunctionfunctionbasex	numin(n, p)	nvmin(n, p)
-lazyLoadfunctionfunctionbasefilebase	envirparent.frame()	filter
-lazyLoadDBexecfunctionfunctionbasefilebase	fun	filter
-lazyLoadDBfetchfunctionfunctionbaseNO_ARGS
-lbetafunctionfunctionbasea	b
-lchoosefunctionfunctionbasen	k
-lengthfunctionfunctionbaseNO_ARGS
-length<-functionfunctionbaseNO_ARGS
-length<-.factorfunctionfunctionbasex	value
-length.POSIXltfunctionfunctionbasex
+ifelsefunctionfunctionbasetest	yes	noConditional Element Selection
+ImfunctionfunctionbaseNO_ARGSComplex Vectors
+importIntoEnvfunctionfunctionbaseimpenv	impnames	expenv	expnamesNamespace Internals
+%in%functionfunctionbasex	tableValue Matching
+inheritsfunctionfunctionbasex	what	whichFALSEObject Classes
+integerfunctionfunctionbaseNO_ARGSInteger Vectors
+interactionfunctionfunctionbase...	dropFALSE	sep"."	lex.orderFALSECompute Factor Interactions
+interactivefunctionfunctionbaseNO_ARGSIs R Running Interactively?
+intersectfunctionfunctionbasex	ySet Operations
+intToBitsfunctionfunctionbasexConvert to or from Raw Vectors
+intToUtf8functionfunctionbasex	multipleFALSEConvert to or from UTF-8-encoded Character Vectors
+inverse.rlefunctionfunctionbasex	...Run Length Encoding
+invisiblefunctionfunctionbaseNO_ARGSChange the Print Mode to Invisible
+invokeRestartfunctionfunctionbaser	...Condition Handling and Recovery
+invokeRestartInteractivelyfunctionfunctionbaserCondition Handling and Recovery
+is.arrayfunctionfunctionbaseNO_ARGSMulti-way Arrays
+is.atomicfunctionfunctionbaseNO_ARGSIs an Object Atomic or Recursive?
+isattyfunctionfunctionbaseconDisplay Connections
+isBaseNamespacefunctionfunctionbasensNamespace Internals
+is.callfunctionfunctionbaseNO_ARGSFunction Calls
+is.characterfunctionfunctionbaseNO_ARGSCharacter Vectors
+is.complexfunctionfunctionbaseNO_ARGSComplex Vectors
+is.data.framefunctionfunctionbasexCoerce to a Data Frame
+isdebuggedfunctionfunctionbasefunDebug a Function
+is.doublefunctionfunctionbaseNO_ARGSDouble-Precision Vectors
+is.elementfunctionfunctionbaseel	setSet Operations
+is.environmentfunctionfunctionbaseNO_ARGSEnvironment Access
+is.expressionfunctionfunctionbaseNO_ARGSUnevaluated Expressions
+is.factorfunctionfunctionbasexFactors
+is.finitefunctionfunctionbaseNO_ARGSFinite, Infinite and NaN Numbers
+is.functionfunctionfunctionbaseNO_ARGSIs an Object of Type (Primitive) Function?
+isIncompletefunctionfunctionbaseconFunctions to Manipulate Connections
+is.infinitefunctionfunctionbaseNO_ARGSFinite, Infinite and NaN Numbers
+is.integerfunctionfunctionbaseNO_ARGSInteger Vectors
+is.languagefunctionfunctionbaseNO_ARGSIs an Object a Language Object?
+is.listfunctionfunctionbaseNO_ARGSLists - Generic and Dotted Pairs
+is.loadedfunctionfunctionbasesymbol	PACKAGE""	type""Foreign Function Interface
+is.logicalfunctionfunctionbaseNO_ARGSLogical Vectors
+is.matrixfunctionfunctionbaseNO_ARGSMatrices
+is.nafunctionfunctionbaseNO_ARGS'Not Available' / Missing Values
+is.na<-functionfunctionbasex	value'Not Available' / Missing Values
+is.na.data.framefunctionfunctionbasex'Not Available' / Missing Values
+is.na<-.defaultfunctionfunctionbasex	value'Not Available' / Missing Values
+is.na<-.factorfunctionfunctionbasex	valueFactors
+is.namefunctionfunctionbaseNO_ARGSNames and Symbols
+isNamespacefunctionfunctionbasensNamespace Internals
+is.nanfunctionfunctionbaseNO_ARGSFinite, Infinite and NaN Numbers
+is.na.numeric_versionfunctionfunctionbasexNumeric Versions
+is.na.POSIXltfunctionfunctionbasexDate-Time Classes
+is.nullfunctionfunctionbaseNO_ARGSThe Null Object
+is.numericfunctionfunctionbaseNO_ARGSNumeric Vectors
+is.numeric.DatefunctionfunctionbasexNumeric Vectors
+is.numeric.difftimefunctionfunctionbasexTime Intervals
+is.numeric.POSIXtfunctionfunctionbasexNumeric Vectors
+is.numeric_versionfunctionfunctionbasexNumeric Versions
+is.objectfunctionfunctionbaseNO_ARGSIs an Object 'internally classed'?
+ISOdatefunctionfunctionbaseyear	month	day	hour12	min0	sec0	tz"GMT"Date-time Conversion Functions from Numeric Representations
+ISOdatetimefunctionfunctionbaseyear	month	day	hour	min	sec	tz""Date-time Conversion Functions from Numeric Representations
+isOpenfunctionfunctionbasecon	rw""Functions to Manipulate Connections
+is.orderedfunctionfunctionbasexFactors
+is.package_versionfunctionfunctionbasexNumeric Versions
+is.pairlistfunctionfunctionbaseNO_ARGSLists - Generic and Dotted Pairs
+is.primitivefunctionfunctionbasexIs an Object of Type (Primitive) Function?
+is.qrfunctionfunctionbasexThe QR Decomposition of a Matrix
+is.RfunctionfunctionbaseNO_ARGSAre we using R, rather than S?
+is.rawfunctionfunctionbaseNO_ARGSRaw Vectors
+is.realfunctionfunctionbaseNO_ARGSReal Vectors
+is.recursivefunctionfunctionbaseNO_ARGSIs an Object Atomic or Recursive?
+isRestartfunctionfunctionbasexCondition Handling and Recovery
+isS4functionfunctionbaseobjectTest for an S4 object
+isSeekablefunctionfunctionbaseconFunctions to Reposition Connections
+is.singlefunctionfunctionbaseNO_ARGSIs an Object of Single Precision Type?
+is.symbolfunctionfunctionbaseNO_ARGSNames and Symbols
+isSymmetricfunctionfunctionbaseobject	...Test if a Matrix or other Object is Symmetric
+isSymmetric.matrixfunctionfunctionbaseobject	tol100 * .Machine$double.eps	...Test if a Matrix or other Object is Symmetric
+is.tablefunctionfunctionbasexCross Tabulation and Table Creation
+isTRUEfunctionfunctionbasexLogical Operators
+is.unsortedfunctionfunctionbasex	na.rmFALSE	strictlyFALSETest if an Object is Not Sorted
+is.vectorfunctionfunctionbasex	mode"any"Vectors
+jitterfunctionfunctionbasex	factor1	amountNULL'Jitter' (Add Noise) to Numbers
+julianfunctionfunctionbasex	...Extract Parts of a POSIXt or Date Object
+julian.Datefunctionfunctionbasex	originas.Date("1970-01-01")	...Extract Parts of a POSIXt or Date Object
+julian.POSIXtfunctionfunctionbasex	originas.POSIXct("1970-01-01", tz = "GMT")	...Extract Parts of a POSIXt or Date Object
+kappafunctionfunctionbasez	exactFALSE	normNULL	methodc("qr", "direct")	...Compute or Estimate the Condition Number of a Matrix
+kappa.defaultfunctionfunctionbasez	exactFALSE	normNULL	methodc("qr", "direct")	...Compute or Estimate the Condition Number of a Matrix
+kappa.lmfunctionfunctionbasez	...Compute or Estimate the Condition Number of a Matrix
+kappa.qrfunctionfunctionbasez	...Compute or Estimate the Condition Number of a Matrix
+kappa.trifunctionfunctionbasez	exactFALSE	LINPACKTRUE	normNULL	...Compute or Estimate the Condition Number of a Matrix
+kroneckerfunctionfunctionbaseX	Y	FUN"*"	make.dimnamesFALSE	...Kronecker Products on Arrays
+l10n_infofunctionfunctionbaseNO_ARGSLocalization Information
+labelsfunctionfunctionbaseobject	...Find Labels from Object
+labels.defaultfunctionfunctionbaseobject	...Find Labels from Object
+La.cholfunctionfunctionbasexDefunct Functions in Package 'base'
+La.chol2invfunctionfunctionbasex	sizencol(x)Defunct Functions in Package 'base'
+La.eigenfunctionfunctionbasex	symmetric	only.valuesFALSE	methodc("dsyevr", "dsyev")Defunct Functions in Package 'base'
+lapplyfunctionfunctionbaseX	FUN	...Apply a Function over a List or Vector
+La.svdfunctionfunctionbasex	numin(n, p)	nvmin(n, p)Singular Value Decomposition of a Matrix
+lazyLoadfunctionfunctionbasefilebase	envirparent.frame()	filterLazy Load a Database of R Objects
+lazyLoadDBexecfunctionfunctionbasefilebase	fun	filterLazy Load a Database of R Objects
+lazyLoadDBfetchfunctionfunctionbaseNO_ARGSInternal Functions in Package 'base'
+lbetafunctionfunctionbasea	bSpecial Functions of Mathematics
+lchoosefunctionfunctionbasen	kSpecial Functions of Mathematics
+lengthfunctionfunctionbaseNO_ARGSLength of an Object
+length<-functionfunctionbaseNO_ARGSLength of an Object
+length<-.factorfunctionfunctionbasex	valueLength of an Object
+length.POSIXltfunctionfunctionbasexDate-Time Classes
 letterscharactercharacterbaseNot a function
 LETTERScharactercharacterbaseNot a function
-levelsfunctionfunctionbasex
-levels<-functionfunctionbaseNO_ARGS
-levels.defaultfunctionfunctionbasex
-levels<-.factorfunctionfunctionbasex	value
-lfactorialfunctionfunctionbasex
-lgammafunctionfunctionbaseNO_ARGS
-libraryfunctionfunctionbasepackage	help	pos2	lib.locNULL	character.onlyFALSE	logical.returnFALSE	warn.conflictsTRUE	quietlyFALSE	keep.sourcegetOption("keep.source.pkgs")	verbosegetOption("verbose")
-library.dynamfunctionfunctionbasechname	packageNULL	lib.locNULL	verbosegetOption("verbose")	file.ext.Platform$dynlib.ext	...
-library.dynam.unloadfunctionfunctionbasechname	libpath	verbosegetOption("verbose")	file.ext.Platform$dynlib.ext
-licencefunctionfunctionbaseNO_ARGS
-licensefunctionfunctionbaseNO_ARGS
-listfunctionfunctionbaseNO_ARGS
-list2envfunctionfunctionbasex	envirNULL	parentparent.frame()	hash(length(x) > 100)	sizemax(29L, length(x))
-list.dirsfunctionfunctionbasepath"."	full.namesTRUE	recursiveTRUE
-list.filesfunctionfunctionbasepath"."	patternNULL	all.filesFALSE	full.namesFALSE	recursiveFALSE	ignore.caseFALSE	include.dirsFALSE
-[.listoffunctionfunctionbasex	i	...
-loadfunctionfunctionbasefile	envirparent.frame()
-loadedNamespacesfunctionfunctionbaseNO_ARGS
-loadingNamespaceInfofunctionfunctionbaseNO_ARGS
-loadNamespacefunctionfunctionbasepackage	lib.locNULL	keep.sourcegetOption("keep.source.pkgs")	partialFALSE
-loadURLfunctionfunctionbaseurl	envirparent.frame()	quietTRUE	...
-localfunctionfunctionbaseexpr	envirnew.env()
-lockBindingfunctionfunctionbasesym	env
-lockEnvironmentfunctionfunctionbaseenv	bindingsFALSE
-logfunctionfunctionbaseNO_ARGS
-log10functionfunctionbaseNO_ARGS
-log1pfunctionfunctionbaseNO_ARGS
-log2functionfunctionbaseNO_ARGS
-logbfunctionfunctionbasex	baseexp(1)
-logicalfunctionfunctionbaseNO_ARGS
-lower.trifunctionfunctionbasex	diagFALSE
-lsfunctionfunctionbasename	pos-1	enviras.environment(pos)	all.namesFALSE	pattern
-machinefunctionfunctionbaseNO_ARGS
-MachinefunctionfunctionbaseNO_ARGS
-makeActiveBindingfunctionfunctionbasesym	fun	env
-make.namesfunctionfunctionbasenames	uniqueFALSE	allow_TRUE
-make.uniquefunctionfunctionbasenames	sep"."
-manglePackageNamefunctionfunctionbasepkgName	pkgVersion
-Mapfunctionfunctionbasef	...
-mapplyfunctionfunctionbaseFUN	...	MoreArgsNULL	SIMPLIFYTRUE	USE.NAMESTRUE
-margin.tablefunctionfunctionbasex	marginNULL
-matchfunctionfunctionbasex	table	incomparablesNULL
-match.argfunctionfunctionbasearg	choices	several.okFALSE
-match.callfunctionfunctionbasedefinitionNULL	callsys.call(sys.parent())	expand.dotsTRUE
-match.funfunctionfunctionbaseFUN	descendTRUE
-Math.data.framefunctionfunctionbasex	...
-Math.Datefunctionfunctionbasex	...
-Math.difftimefunctionfunctionbasex	...
-Math.factorfunctionfunctionbasex	...
-Math.POSIXtfunctionfunctionbasex	...
-mat.or.vecfunctionfunctionbasenr	nc
-matrixfunctionfunctionbasedataNA	nrow1	ncol1	byrowFALSE	dimnamesNULL
-maxfunctionfunctionbaseNO_ARGS
-max.colfunctionfunctionbasem	ties.methodc("random", "first", "last")
-meanfunctionfunctionbasex	trim0	na.rmFALSE	...
-mean.data.framefunctionfunctionbasex	...
-mean.Datefunctionfunctionbasex	...
-mean.defaultfunctionfunctionbasex	trim0	na.rmFALSE	...
-mean.difftimefunctionfunctionbasex	...
-mean.POSIXctfunctionfunctionbasex	...
-mean.POSIXltfunctionfunctionbasex	...
-memCompressfunctionfunctionbasefrom	typec("gzip", "bzip2", "xz", "none")
-memDecompressfunctionfunctionbasefrom	typec("unknown", "gzip", "bzip2", "xz", "none")	asCharFALSE
-mem.limitsfunctionfunctionbasensizeNA	vsizeNA
-memory.profilefunctionfunctionbaseNO_ARGS
-mergefunctionfunctionbasex	y	...
-merge.data.framefunctionfunctionbasex	y	byintersect(names(x), names(y))	by.x	by.y	allFALSE	all.x	all.y	sortTRUE	suffixesc(".x", ".y")	incomparablesNULL	...
-merge.defaultfunctionfunctionbasex	y	...
-messagefunctionfunctionbase...	domainNULL	appendLFTRUE
-mgetfunctionfunctionbasex	envir	mode"any"	ifnotfoundlist(function(x) stop(paste("value for '", x, "' not found", 	ifnotfound    sep = ""), call. = FALSE))	inheritsFALSE
-minfunctionfunctionbaseNO_ARGS
-missingfunctionfunctionbaseNO_ARGS
-ModfunctionfunctionbaseNO_ARGS
-modefunctionfunctionbasex
-mode<-functionfunctionbasex	value
+levelsfunctionfunctionbasexLevels Attributes
+levels<-functionfunctionbaseNO_ARGSLevels Attributes
+levels.defaultfunctionfunctionbasexLevels Attributes
+levels<-.factorfunctionfunctionbasex	valueLevels Attributes
+lfactorialfunctionfunctionbasexSpecial Functions of Mathematics
+lgammafunctionfunctionbaseNO_ARGSSpecial Functions of Mathematics
+libraryfunctionfunctionbasepackage	help	pos2	lib.locNULL	character.onlyFALSE	logical.returnFALSE	warn.conflictsTRUE	quietlyFALSE	keep.sourcegetOption("keep.source.pkgs")	verbosegetOption("verbose")Loading and Listing of Packages
+library.dynamfunctionfunctionbasechname	packageNULL	lib.locNULL	verbosegetOption("verbose")	file.ext.Platform$dynlib.ext	...Loading DLLs from Packages
+library.dynam.unloadfunctionfunctionbasechname	libpath	verbosegetOption("verbose")	file.ext.Platform$dynlib.extLoading DLLs from Packages
+licencefunctionfunctionbaseNO_ARGSThe R License Terms
+licensefunctionfunctionbaseNO_ARGSThe R License Terms
+listfunctionfunctionbaseNO_ARGSLists - Generic and Dotted Pairs
+list2envfunctionfunctionbasex	envirNULL	parentparent.frame()	hash(length(x) > 100)	sizemax(29L, length(x))From A List, Build or Add To an Environment
+list.dirsfunctionfunctionbasepath"."	full.namesTRUE	recursiveTRUEList the Files in a Directory/Folder
+list.filesfunctionfunctionbasepath"."	patternNULL	all.filesFALSE	full.namesFALSE	recursiveFALSE	ignore.caseFALSE	include.dirsFALSEList the Files in a Directory/Folder
+[.listoffunctionfunctionbasex	i	...Extract or Replace Parts of an Object
+loadfunctionfunctionbasefile	envirparent.frame()Reload Saved Datasets
+loadedNamespacesfunctionfunctionbaseNO_ARGSLoading and Unloading Namespaces
+loadingNamespaceInfofunctionfunctionbaseNO_ARGSNamespace Internals
+loadNamespacefunctionfunctionbasepackage	lib.locNULL	keep.sourcegetOption("keep.source.pkgs")	partialFALSELoading and Unloading Namespaces
+loadURLfunctionfunctionbaseurl	envirparent.frame()	quietTRUE	...Defunct Functions in Package 'base'
+localfunctionfunctionbaseexpr	envirnew.env()Evaluate an (Unevaluated) Expression
+lockBindingfunctionfunctionbasesym	envBinding and Environment Adjustments
+lockEnvironmentfunctionfunctionbaseenv	bindingsFALSEBinding and Environment Adjustments
+logfunctionfunctionbaseNO_ARGSLogarithms and Exponentials
+log10functionfunctionbaseNO_ARGSLogarithms and Exponentials
+log1pfunctionfunctionbaseNO_ARGSLogarithms and Exponentials
+log2functionfunctionbaseNO_ARGSLogarithms and Exponentials
+logbfunctionfunctionbasex	baseexp(1)Logarithms and Exponentials
+logicalfunctionfunctionbaseNO_ARGSLogical Vectors
+lower.trifunctionfunctionbasex	diagFALSELower and Upper Triangular Part of a Matrix
+lsfunctionfunctionbasename	pos-1	enviras.environment(pos)	all.namesFALSE	patternList Objects
+machinefunctionfunctionbaseNO_ARGSDefunct Functions in Package 'base'
+MachinefunctionfunctionbaseNO_ARGSDefunct Functions in Package 'base'
+makeActiveBindingfunctionfunctionbasesym	fun	envBinding and Environment Adjustments
+make.namesfunctionfunctionbasenames	uniqueFALSE	allow_TRUEMake Syntactically Valid Names
+make.uniquefunctionfunctionbasenames	sep"."Make Character Strings Unique
+manglePackageNamefunctionfunctionbasepkgName	pkgVersionDefunct Functions in Package 'base'
+Mapfunctionfunctionbasef	...Common Higher-Order Functions in Functional Programming Languages
+mapplyfunctionfunctionbaseFUN	...	MoreArgsNULL	SIMPLIFYTRUE	USE.NAMESTRUEApply a Function to Multiple List or Vector Arguments
+margin.tablefunctionfunctionbasex	marginNULLCompute table margin
+matchfunctionfunctionbasex	table	incomparablesNULLValue Matching
+match.argfunctionfunctionbasearg	choices	several.okFALSEArgument Verification Using Partial Matching
+match.callfunctionfunctionbasedefinitionNULL	callsys.call(sys.parent())	expand.dotsTRUEArgument Matching
+match.funfunctionfunctionbaseFUN	descendTRUEExtract a Function Specified by Name
+Math.data.framefunctionfunctionbasex	...S3 Group Generic Functions
+Math.Datefunctionfunctionbasex	...Date Class
+Math.difftimefunctionfunctionbasex	...Time Intervals
+Math.factorfunctionfunctionbasex	...Factors
+Math.POSIXtfunctionfunctionbasex	...Date-Time Classes
+mat.or.vecfunctionfunctionbasenr	ncCreate a Matrix or a Vector
+matrixfunctionfunctionbasedataNA	nrow1	ncol1	byrowFALSE	dimnamesNULLMatrices
+maxfunctionfunctionbaseNO_ARGSMaxima and Minima
+max.colfunctionfunctionbasem	ties.methodc("random", "first", "last")Find Maximum Position in Matrix
+meanfunctionfunctionbasex	trim0	na.rmFALSE	...Arithmetic Mean
+mean.data.framefunctionfunctionbasex	...Arithmetic Mean
+mean.Datefunctionfunctionbasex	...Date Class
+mean.defaultfunctionfunctionbasex	trim0	na.rmFALSE	...Arithmetic Mean
+mean.difftimefunctionfunctionbasex	...Time Intervals
+mean.POSIXctfunctionfunctionbasex	...Date-Time Classes
+mean.POSIXltfunctionfunctionbasex	...Date-Time Classes
+memCompressfunctionfunctionbasefrom	typec("gzip", "bzip2", "xz", "none")In-memory Compression and Decompression
+memDecompressfunctionfunctionbasefrom	typec("unknown", "gzip", "bzip2", "xz", "none")	asCharFALSEIn-memory Compression and Decompression
+mem.limitsfunctionfunctionbasensizeNA	vsizeNAMemory Available for Data Storage
+memory.profilefunctionfunctionbaseNO_ARGSProfile the Usage of Cons Cells
+mergefunctionfunctionbasex	y	...Merge Two Data Frames
+merge.data.framefunctionfunctionbasex	y	byintersect(names(x), names(y))	by.x	by.y	allFALSE	all.x	all.y	sortTRUE	suffixesc(".x", ".y")	incomparablesNULL	...Merge Two Data Frames
+merge.defaultfunctionfunctionbasex	y	...Merge Two Data Frames
+messagefunctionfunctionbase...	domainNULL	appendLFTRUEDiagnostic Messages
+mgetfunctionfunctionbasex	envir	mode"any"	ifnotfoundlist(function(x) stop(paste("value for '", x, "' not found", 	ifnotfound    sep = ""), call. = FALSE))	inheritsFALSEReturn the Value of a Named Object
+minfunctionfunctionbaseNO_ARGSMaxima and Minima
+missingfunctionfunctionbaseNO_ARGSDoes a Formal Argument have a Value?
+ModfunctionfunctionbaseNO_ARGSComplex Vectors
+modefunctionfunctionbasexThe (Storage) Mode of an Object
+mode<-functionfunctionbasex	valueThe (Storage) Mode of an Object
 month.abbcharactercharacterbaseNot a function
 month.namecharactercharacterbaseNot a function
-monthsfunctionfunctionbasex	abbreviate
-months.Datefunctionfunctionbasex	abbreviateFALSE
-months.POSIXtfunctionfunctionbasex	abbreviateFALSE
-mostattributes<-functionfunctionbaseobj	value
-namesfunctionfunctionbaseNO_ARGS
-names<-functionfunctionbaseNO_ARGS
-namespaceExportfunctionfunctionbasens	vars
-namespaceImportfunctionfunctionbaseself	...
-namespaceImportClassesfunctionfunctionbaseself	ns	vars
-namespaceImportFromfunctionfunctionbaseself	ns	vars	generics	packages
-namespaceImportMethodsfunctionfunctionbaseself	ns	vars
-names<-.POSIXltfunctionfunctionbasex	value
-names.POSIXltfunctionfunctionbasex
-nargsfunctionfunctionbaseNO_ARGS
-ncharfunctionfunctionbasex	type"chars"	allowNAFALSE
-ncolfunctionfunctionbasex
-NCOLfunctionfunctionbasex
-Negatefunctionfunctionbasef
-new.envfunctionfunctionbasehashTRUE	parentparent.frame()
+monthsfunctionfunctionbasex	abbreviateExtract Parts of a POSIXt or Date Object
+months.Datefunctionfunctionbasex	abbreviateFALSEExtract Parts of a POSIXt or Date Object
+months.POSIXtfunctionfunctionbasex	abbreviateFALSEExtract Parts of a POSIXt or Date Object
+mostattributes<-functionfunctionbaseobj	valueObject Attribute Lists
+namesfunctionfunctionbaseNO_ARGSThe Names of an Object
+names<-functionfunctionbaseNO_ARGSThe Names of an Object
+namespaceExportfunctionfunctionbasens	varsNamespace Internals
+namespaceImportfunctionfunctionbaseself	...Namespace Internals
+namespaceImportClassesfunctionfunctionbaseself	ns	varsNamespace Internals
+namespaceImportFromfunctionfunctionbaseself	ns	vars	generics	packagesNamespace Internals
+namespaceImportMethodsfunctionfunctionbaseself	ns	varsNamespace Internals
+names<-.POSIXltfunctionfunctionbasex	valueDate-Time Classes
+names.POSIXltfunctionfunctionbasexDate-Time Classes
+nargsfunctionfunctionbaseNO_ARGSThe Number of Arguments to a Function
+ncharfunctionfunctionbasex	type"chars"	allowNAFALSECount the Number of Characters (or Bytes or Width)
+ncolfunctionfunctionbasexThe Number of Rows/Columns of an Array
+NCOLfunctionfunctionbasexThe Number of Rows/Columns of an Array
+NegatefunctionfunctionbasefCommon Higher-Order Functions in Functional Programming Languages
+new.envfunctionfunctionbasehashTRUE	parentparent.frame()Environment Access
 nextflow-controlflow-controlbaseNot a function
-NextMethodfunctionfunctionbasegenericNULL	objectNULL	...
-ngettextfunctionfunctionbasen	msg1	msg2	domainNULL
-nlevelsfunctionfunctionbasex
-noquotefunctionfunctionbaseobj
-[.noquotefunctionfunctionbasex	...
-normfunctionfunctionbasex	typec("O", "I", "F", "M")
-normalizePathfunctionfunctionbasepath	winslash"\"	mustWorkNA
-nrowfunctionfunctionbasex
-NROWfunctionfunctionbasex
-numericfunctionfunctionbaseNO_ARGS
-[.numeric_versionfunctionfunctionbasex	i	j
-[[<-.numeric_versionfunctionfunctionbasex	...	value
-[[.numeric_versionfunctionfunctionbasex	...	exactNA
-numeric_versionfunctionfunctionbasex	strictTRUE
-nzcharfunctionfunctionbaseNO_ARGS
-%o%functionfunctionbaseX	Y
-objectsfunctionfunctionbasename	pos-1	enviras.environment(pos)	all.namesFALSE	pattern
-|.octmodefunctionfunctionbasea	b
-!.octmodefunctionfunctionbasea
-[.octmodefunctionfunctionbasex	i
-&.octmodefunctionfunctionbasea	b
-oldClassfunctionfunctionbaseNO_ARGS
-oldClass<-functionfunctionbaseNO_ARGS
-on.exitfunctionfunctionbaseNO_ARGS
-openfunctionfunctionbasecon	...
-open.connectionfunctionfunctionbasecon	open"r"	blockingTRUE	...
-open.srcfilefunctionfunctionbasecon	line	...
-open.srcfilealiasfunctionfunctionbasecon	line	...
-open.srcfilecopyfunctionfunctionbasecon	line	...
-Ops.data.framefunctionfunctionbasee1	e2NULL
-Ops.Datefunctionfunctionbasee1	e2
-Ops.difftimefunctionfunctionbasee1	e2
-Ops.factorfunctionfunctionbasee1	e2
-Ops.numeric_versionfunctionfunctionbasee1	e2
-Ops.orderedfunctionfunctionbasee1	e2
-Ops.POSIXtfunctionfunctionbasee1	e2
-optionsfunctionfunctionbase...
-orderfunctionfunctionbase...	na.lastTRUE	decreasingFALSE
-orderedfunctionfunctionbasex	...
-outerfunctionfunctionbaseX	Y	FUN"*"	...
-package.descriptionfunctionfunctionbasepkg	lib.locNULL	fieldsNULL
-packageEventfunctionfunctionbasepkgname	eventc("onLoad", "attach", "detach", "onUnload")
-packageHasNamespacefunctionfunctionbasepackage	package.lib
-packageStartupMessagefunctionfunctionbase...	domainNULL	appendLFTRUE
-$.package_versionfunctionfunctionbasex	name
-package_versionfunctionfunctionbasex	strictTRUE
-packBitsfunctionfunctionbasex	typec("raw", "integer")
-pairlistfunctionfunctionbase...
-parent.envfunctionfunctionbaseenv
-parent.env<-functionfunctionbaseenv	value
-parent.framefunctionfunctionbasen1
-parsefunctionfunctionbasefile""	nNULL	textNULL	prompt"?"	srcfileNULL	encoding"unknown"
-parse.dcffunctionfunctionbasetextNULL	file""	fieldsNULL	versionfixFALSE
-parseNamespaceFilefunctionfunctionbasepackage	package.lib	mustExistTRUE
-pastefunctionfunctionbase...	sep" "	collapseNULL
-path.expandfunctionfunctionbasepath
-path.packagefunctionfunctionbasepackageNULL	quietFALSE
-pentagammafunctionfunctionbasex
+NextMethodfunctionfunctionbasegenericNULL	objectNULL	...Class Methods
+ngettextfunctionfunctionbasen	msg1	msg2	domainNULLTranslate Text Messages
+nlevelsfunctionfunctionbasexThe Number of Levels of a Factor
+noquotefunctionfunctionbaseobjClass for 'no quote' Printing of Character Strings
+[.noquotefunctionfunctionbasex	...Class for 'no quote' Printing of Character Strings
+normfunctionfunctionbasex	typec("O", "I", "F", "M")Compute the Norm of a Matrix
+normalizePathfunctionfunctionbasepath	winslash"\"	mustWorkNAExpress File Paths in Canonical Form
+nrowfunctionfunctionbasexThe Number of Rows/Columns of an Array
+NROWfunctionfunctionbasexThe Number of Rows/Columns of an Array
+numericfunctionfunctionbaseNO_ARGSNumeric Vectors
+[.numeric_versionfunctionfunctionbasex	i	jNumeric Versions
+[[<-.numeric_versionfunctionfunctionbasex	...	valueNumeric Versions
+[[.numeric_versionfunctionfunctionbasex	...	exactNANumeric Versions
+numeric_versionfunctionfunctionbasex	strictTRUENumeric Versions
+nzcharfunctionfunctionbaseNO_ARGSCount the Number of Characters (or Bytes or Width)
+%o%functionfunctionbaseX	YOuter Product of Arrays
+objectsfunctionfunctionbasename	pos-1	enviras.environment(pos)	all.namesFALSE	patternList Objects
+|.octmodefunctionfunctionbasea	bDisplay Numbers in Octal
+!.octmodefunctionfunctionbaseaDisplay Numbers in Octal
+[.octmodefunctionfunctionbasex	iDisplay Numbers in Octal
+&.octmodefunctionfunctionbasea	bDisplay Numbers in Octal
+oldClassfunctionfunctionbaseNO_ARGSObject Classes
+oldClass<-functionfunctionbaseNO_ARGSObject Classes
+on.exitfunctionfunctionbaseNO_ARGSFunction Exit Code
+openfunctionfunctionbasecon	...Functions to Manipulate Connections
+open.connectionfunctionfunctionbasecon	open"r"	blockingTRUE	...Functions to Manipulate Connections
+open.srcfilefunctionfunctionbasecon	line	...References to source files
+open.srcfilealiasfunctionfunctionbasecon	line	...References to source files
+open.srcfilecopyfunctionfunctionbasecon	line	...References to source files
+Ops.data.framefunctionfunctionbasee1	e2NULLS3 Group Generic Functions
+Ops.Datefunctionfunctionbasee1	e2Operators on the Date Class
+Ops.difftimefunctionfunctionbasee1	e2Time Intervals
+Ops.factorfunctionfunctionbasee1	e2Factors
+Ops.numeric_versionfunctionfunctionbasee1	e2Numeric Versions
+Ops.orderedfunctionfunctionbasee1	e2Factors
+Ops.POSIXtfunctionfunctionbasee1	e2Date-Time Classes
+optionsfunctionfunctionbase...Options Settings
+orderfunctionfunctionbase...	na.lastTRUE	decreasingFALSEOrdering Permutation
+orderedfunctionfunctionbasex	...Factors
+outerfunctionfunctionbaseX	Y	FUN"*"	...Outer Product of Arrays
+package.descriptionfunctionfunctionbasepkg	lib.locNULL	fieldsNULLDefunct Functions in Package 'base'
+packageEventfunctionfunctionbasepkgname	eventc("onLoad", "attach", "detach", "onUnload")Functions to Get and Set Hooks for Load, Attach, Detach and Unload
+packageHasNamespacefunctionfunctionbasepackage	package.libNamespace Internals
+packageStartupMessagefunctionfunctionbase...	domainNULL	appendLFTRUEDiagnostic Messages
+$.package_versionfunctionfunctionbasex	nameNumeric Versions
+package_versionfunctionfunctionbasex	strictTRUENumeric Versions
+packBitsfunctionfunctionbasex	typec("raw", "integer")Convert to or from Raw Vectors
+pairlistfunctionfunctionbase...Lists - Generic and Dotted Pairs
+parent.envfunctionfunctionbaseenvEnvironment Access
+parent.env<-functionfunctionbaseenv	valueEnvironment Access
+parent.framefunctionfunctionbasen1Functions to Access the Function Call Stack
+parsefunctionfunctionbasefile""	nNULL	textNULL	prompt"?"	srcfileNULL	encoding"unknown"Parse Expressions
+parse.dcffunctionfunctionbasetextNULL	file""	fieldsNULL	versionfixFALSEDefunct Functions in Package 'base'
+parseNamespaceFilefunctionfunctionbasepackage	package.lib	mustExistTRUENamespace Internals
+pastefunctionfunctionbase...	sep" "	collapseNULLConcatenate Strings
+path.expandfunctionfunctionbasepathExpand File Paths
+path.packagefunctionfunctionbasepackageNULL	quietFALSEFind Packages
+pentagammafunctionfunctionbasexDefunct Functions in Package 'base'
 pinumericnumericbaseNot a function
-pipefunctionfunctionbasedescription	open""	encodinggetOption("encoding")
-PlatformfunctionfunctionbaseNO_ARGS
-pmatchfunctionfunctionbasex	table	duplicates.okFALSE
-pmaxfunctionfunctionbase...	na.rmFALSE
-pmax.intfunctionfunctionbase...	na.rmFALSE
-pminfunctionfunctionbase...	na.rmFALSE
-pmin.intfunctionfunctionbase...	na.rmFALSE
-polyrootfunctionfunctionbasez
-Positionfunctionfunctionbasef	x	rightFALSE
-[<-.POSIXctfunctionfunctionbasex	...	value
-[.POSIXctfunctionfunctionbasex	...	dropTRUE
-[[.POSIXctfunctionfunctionbasex	...	dropTRUE
-[<-.POSIXltfunctionfunctionbasex	i	value
-[.POSIXltfunctionfunctionbasex	...	dropTRUE
--.POSIXtfunctionfunctionbasee1	e2
-+.POSIXtfunctionfunctionbasee1	e2
-pos.to.envfunctionfunctionbaseNO_ARGS
-prettyfunctionfunctionbasex	n5	min.nn%/%3	shrink.sml0.75	high.u.bias1.5	u5.bias0.5 + 1.5 * high.u.bias	eps.correct0	...
-pretty.defaultfunctionfunctionbasex	n5	min.nn%/%3	shrink.sml0.75	high.u.bias1.5	u5.bias0.5 + 1.5 * high.u.bias	eps.correct0	...
-prettyNumfunctionfunctionbasex	big.mark""	small.mark""	decimal.mark"."	preserve.widthc("common", "individual", "none")	zero.printNULL	drop0trailingFALSE	is.cmplxNA	...
-printfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	maxNULL	useSourceTRUE	...
-print.AsIsfunctionfunctionbasex	...
-print.byfunctionfunctionbasex	...	vsep
-print.conditionfunctionfunctionbasex	...
-print.connectionfunctionfunctionbasex	...
-print.data.framefunctionfunctionbasex	...	digitsNULL	quoteFALSE	rightTRUE	row.namesTRUE
-print.Datefunctionfunctionbasex	...
-print.defaultfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	maxNULL	useSourceTRUE	...
-print.difftimefunctionfunctionbasex	digitsgetOption("digits")	...
-print.DLLInfofunctionfunctionbasex	...
-print.DLLInfoListfunctionfunctionbasex	...
-print.DLLRegisteredRoutinesfunctionfunctionbasex	...
-print.factorfunctionfunctionbasex	quoteFALSE	max.levelsNULL	widthgetOption("width")	...
-print.functionfunctionfunctionbasex	useSourceTRUE	...
-print.hexmodefunctionfunctionbasex	...
-print.libraryIQRfunctionfunctionbasex	...
-print.listoffunctionfunctionbasex	...
-print.NativeRoutineListfunctionfunctionbasex	...
-printNoClassfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	...
-print.noquotefunctionfunctionbasex	...
-print.numeric_versionfunctionfunctionbasex	...
-print.octmodefunctionfunctionbasex	...
-print.packageInfofunctionfunctionbasex	...
-print.POSIXctfunctionfunctionbasex	...
-print.POSIXltfunctionfunctionbasex	...
-print.proc_timefunctionfunctionbasex	...
-print.restartfunctionfunctionbasex	...
-print.rlefunctionfunctionbasex	digitsgetOption("digits")	prefix""	...
-print.simple.listfunctionfunctionbasex	...
-print.srcfilefunctionfunctionbasex	...
-print.srcreffunctionfunctionbasex	useSourceTRUE	...
-print.summaryDefaultfunctionfunctionbasex	...
-print.summary.tablefunctionfunctionbasex	digitsmax(1, getOption("digits") - 3)	...
-print.tablefunctionfunctionbasex	digitsgetOption("digits")	quoteFALSE	na.print""	zero.print"0"	justify"none"	...
-print.warningsfunctionfunctionbasex	...
-prmatrixfunctionfunctionbasex	rowlabdn[[1]]	collabdn[[2]]	quoteTRUE	rightFALSE	na.printNULL	...
-proc.timefunctionfunctionbaseNO_ARGS
-prodfunctionfunctionbaseNO_ARGS
-prop.tablefunctionfunctionbasex	marginNULL
-providefunctionfunctionbasepackage
-psigammafunctionfunctionbasex
-pushBackfunctionfunctionbasedata	connection	newLineTRUE
-pushBackLengthfunctionfunctionbaseconnection
-qfunctionfunctionbasesave"default"	status0	runLastTRUE
-qrfunctionfunctionbasex	tol1e-07	LAPACKFALSE	...
-qr.coeffunctionfunctionbaseqr	y
-qr.defaultfunctionfunctionbasex	tol1e-07	LAPACKFALSE	...
-qr.fittedfunctionfunctionbaseqr	y	kqr$rank
-qr.Qfunctionfunctionbaseqr	completeFALSE	Dvecrep.int(if (cmplx) 1 + (0+0i) else 1, if (complete) dqr[1] else min(dqr))
-qr.qtyfunctionfunctionbaseqr	y
-qr.qyfunctionfunctionbaseqr	y
-qr.Rfunctionfunctionbaseqr	completeFALSE
-qr.residfunctionfunctionbaseqr	y
-qr.solvefunctionfunctionbasea	b	tol1e-07
-qr.Xfunctionfunctionbaseqr	completeFALSE	ncolif (complete) nrow(R) else min(dim(R))
-quartersfunctionfunctionbasex	abbreviate
-quarters.Datefunctionfunctionbasex	...
-quarters.POSIXtfunctionfunctionbasex	...
-quitfunctionfunctionbasesave"default"	status0	runLastTRUE
-quotefunctionfunctionbaseNO_ARGS
-rangefunctionfunctionbase...	na.rmFALSE	finiteFALSE
-range.defaultfunctionfunctionbase...	na.rmFALSE	finiteFALSE
-rankfunctionfunctionbasex	na.lastTRUE	ties.methodc("average", "first", "random", "max", "min")
-rapplyfunctionfunctionbaseobject	f	classes"ANY"	defltNULL	howc("unlist", "replace", "list")	...
-rawfunctionfunctionbaseNO_ARGS
-rawConnectionfunctionfunctionbaseobject	open"r"
-rawConnectionValuefunctionfunctionbasecon
-rawShiftfunctionfunctionbasex	n
-rawToBitsfunctionfunctionbasex
-rawToCharfunctionfunctionbasex	multipleFALSE
-rbindfunctionfunctionbase...	deparse.level1
-rbind.data.framefunctionfunctionbase...	deparse.level1
-rcondfunctionfunctionbasex	normc("O", "I", "1")	triangularFALSE	...
-RefunctionfunctionbaseNO_ARGS
-readBinfunctionfunctionbasecon	what	signedTRUE	endian.Platform$endian
-readCharfunctionfunctionbasecon	nchars	useBytesFALSE
-read.dcffunctionfunctionbasefile	fieldsNULL	allFALSE	keep.whiteNULL
-readlinefunctionfunctionbaseprompt""
-readLinesfunctionfunctionbaseconstdin()	n-1L	okTRUE	warnTRUE	encoding"unknown"
-readRDSfunctionfunctionbasefile	refhookNULL
-readRenvironfunctionfunctionbasepath
-read.table.urlfunctionfunctionbaseurl	method	...
-realfunctionfunctionbaseNO_ARGS
-Recallfunctionfunctionbase...
-Reducefunctionfunctionbasef	x	init	rightFALSE	accumulateFALSE
-regexecfunctionfunctionbasepattern	text	ignore.caseFALSE	fixedFALSE	useBytesFALSE
-regexprfunctionfunctionbasepattern	text	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSE
-reg.finalizerfunctionfunctionbasee	f	onexitFALSE
-registerS3methodfunctionfunctionbasegenname	class	method	envirparent.frame()
-registerS3methodsfunctionfunctionbaseinfo	package	env
-regmatchesfunctionfunctionbasex	m	invertFALSE
-regmatches<-functionfunctionbasex	m	invertFALSE	value
-removefunctionfunctionbase...	listcharacter()	pos-1	enviras.environment(pos)	inheritsFALSE
-removeCConverterfunctionfunctionbaseid
-removeTaskCallbackfunctionfunctionbaseid
-repfunctionfunctionbaseNO_ARGS
-rep.Datefunctionfunctionbasex	...
+pipefunctionfunctionbasedescription	open""	encodinggetOption("encoding")Functions to Manipulate Connections
+PlatformfunctionfunctionbaseNO_ARGSDefunct Functions in Package 'base'
+pmatchfunctionfunctionbasex	table	duplicates.okFALSEPartial String Matching
+pmaxfunctionfunctionbase...	na.rmFALSEMaxima and Minima
+pmax.intfunctionfunctionbase...	na.rmFALSEMaxima and Minima
+pminfunctionfunctionbase...	na.rmFALSEMaxima and Minima
+pmin.intfunctionfunctionbase...	na.rmFALSEMaxima and Minima
+polyrootfunctionfunctionbasezFind Zeros of a Real or Complex Polynomial
+Positionfunctionfunctionbasef	x	rightFALSECommon Higher-Order Functions in Functional Programming Languages
+[<-.POSIXctfunctionfunctionbasex	...	valueDate-Time Classes
+[.POSIXctfunctionfunctionbasex	...	dropTRUEDate-Time Classes
+[[.POSIXctfunctionfunctionbasex	...	dropTRUEDate-Time Classes
+[<-.POSIXltfunctionfunctionbasex	i	valueDate-Time Classes
+[.POSIXltfunctionfunctionbasex	...	dropTRUEDate-Time Classes
+-.POSIXtfunctionfunctionbasee1	e2Date-Time Classes
++.POSIXtfunctionfunctionbasee1	e2Date-Time Classes
+pos.to.envfunctionfunctionbaseNO_ARGSConvert Positions in the Search Path to Environments
+prettyfunctionfunctionbasex	n5	min.nn%/%3	shrink.sml0.75	high.u.bias1.5	u5.bias0.5 + 1.5 * high.u.bias	eps.correct0	...Pretty Breakpoints
+pretty.defaultfunctionfunctionbasex	n5	min.nn%/%3	shrink.sml0.75	high.u.bias1.5	u5.bias0.5 + 1.5 * high.u.bias	eps.correct0	...Pretty Breakpoints
+prettyNumfunctionfunctionbasex	big.mark""	small.mark""	decimal.mark"."	preserve.widthc("common", "individual", "none")	zero.printNULL	drop0trailingFALSE	is.cmplxNA	...Formatting Using C-style Formats
+printfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	maxNULL	useSourceTRUE	...Print Values
+print.AsIsfunctionfunctionbasex	...Inhibit Interpretation/Conversion of Objects
+print.byfunctionfunctionbasex	...	vsepApply a Function to a Data Frame Split by Factors
+print.conditionfunctionfunctionbasex	...Condition Handling and Recovery
+print.connectionfunctionfunctionbasex	...Functions to Manipulate Connections
+print.data.framefunctionfunctionbasex	...	digitsNULL	quoteFALSE	rightTRUE	row.namesTRUEPrinting Data Frames
+print.Datefunctionfunctionbasex	...Date Class
+print.defaultfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	maxNULL	useSourceTRUE	...Default Printing
+print.difftimefunctionfunctionbasex	digitsgetOption("digits")	...Time Intervals
+print.DLLInfofunctionfunctionbasex	...Get DLLs Loaded in Current Session
+print.DLLInfoListfunctionfunctionbasex	...Get DLLs Loaded in Current Session
+print.DLLRegisteredRoutinesfunctionfunctionbasex	...Reflectance Information for C/Fortran routines in a DLL
+print.factorfunctionfunctionbasex	quoteFALSE	max.levelsNULL	widthgetOption("width")	...Print Values
+print.functionfunctionfunctionbasex	useSourceTRUE	...Print Values
+print.hexmodefunctionfunctionbasex	...Display Numbers in Hexadecimal
+print.libraryIQRfunctionfunctionbasex	...Loading and Listing of Packages
+print.listoffunctionfunctionbasex	...Print Values
+print.NativeRoutineListfunctionfunctionbasex	...Reflectance Information for C/Fortran routines in a DLL
+printNoClassfunctionfunctionbasex	digitsNULL	quoteTRUE	na.printNULL	print.gapNULL	rightFALSE	...Defunct Functions in Package 'base'
+print.noquotefunctionfunctionbasex	...Class for 'no quote' Printing of Character Strings
+print.numeric_versionfunctionfunctionbasex	...Numeric Versions
+print.octmodefunctionfunctionbasex	...Display Numbers in Octal
+print.packageInfofunctionfunctionbasex	...Loading and Listing of Packages
+print.POSIXctfunctionfunctionbasex	...Date-Time Classes
+print.POSIXltfunctionfunctionbasex	...Date-Time Classes
+print.proc_timefunctionfunctionbasex	...Running Time of R
+print.restartfunctionfunctionbasex	...Condition Handling and Recovery
+print.rlefunctionfunctionbasex	digitsgetOption("digits")	prefix""	...Run Length Encoding
+print.simple.listfunctionfunctionbasex	...Print Values
+print.srcfilefunctionfunctionbasex	...References to source files
+print.srcreffunctionfunctionbasex	useSourceTRUE	...References to source files
+print.summaryDefaultfunctionfunctionbasex	...Object Summaries
+print.summary.tablefunctionfunctionbasex	digitsmax(1, getOption("digits") - 3)	...Cross Tabulation and Table Creation
+print.tablefunctionfunctionbasex	digitsgetOption("digits")	quoteFALSE	na.print""	zero.print"0"	justify"none"	...Print Values
+print.warningsfunctionfunctionbasex	...Print Warning Messages
+prmatrixfunctionfunctionbasex	rowlabdn[[1]]	collabdn[[2]]	quoteTRUE	rightFALSE	na.printNULL	...Print Matrices, Old-style
+proc.timefunctionfunctionbaseNO_ARGSRunning Time of R
+prodfunctionfunctionbaseNO_ARGSProduct of Vector Elements
+prop.tablefunctionfunctionbasex	marginNULLExpress Table Entries as Fraction of Marginal Table
+providefunctionfunctionbasepackageDefunct Functions in Package 'base'
+psigammafunctionfunctionbasexSpecial Functions of Mathematics
+pushBackfunctionfunctionbasedata	connection	newLineTRUEPush Text Back on to a Connection
+pushBackLengthfunctionfunctionbaseconnectionPush Text Back on to a Connection
+qfunctionfunctionbasesave"default"	status0	runLastTRUETerminate an R Session
+qrfunctionfunctionbasex	tol1e-07	LAPACKFALSE	...The QR Decomposition of a Matrix
+qr.coeffunctionfunctionbaseqr	yThe QR Decomposition of a Matrix
+qr.defaultfunctionfunctionbasex	tol1e-07	LAPACKFALSE	...The QR Decomposition of a Matrix
+qr.fittedfunctionfunctionbaseqr	y	kqr$rankThe QR Decomposition of a Matrix
+qr.Qfunctionfunctionbaseqr	completeFALSE	Dvecrep.int(if (cmplx) 1 + (0+0i) else 1, if (complete) dqr[1] else min(dqr))Reconstruct the Q, R, or X Matrices from a QR Object
+qr.qtyfunctionfunctionbaseqr	yThe QR Decomposition of a Matrix
+qr.qyfunctionfunctionbaseqr	yThe QR Decomposition of a Matrix
+qr.Rfunctionfunctionbaseqr	completeFALSEReconstruct the Q, R, or X Matrices from a QR Object
+qr.residfunctionfunctionbaseqr	yThe QR Decomposition of a Matrix
+qr.solvefunctionfunctionbasea	b	tol1e-07The QR Decomposition of a Matrix
+qr.Xfunctionfunctionbaseqr	completeFALSE	ncolif (complete) nrow(R) else min(dim(R))Reconstruct the Q, R, or X Matrices from a QR Object
+quartersfunctionfunctionbasex	abbreviateExtract Parts of a POSIXt or Date Object
+quarters.Datefunctionfunctionbasex	...Extract Parts of a POSIXt or Date Object
+quarters.POSIXtfunctionfunctionbasex	...Extract Parts of a POSIXt or Date Object
+quitfunctionfunctionbasesave"default"	status0	runLastTRUETerminate an R Session
+quotefunctionfunctionbaseNO_ARGSSubstituting and Quoting Expressions
+rangefunctionfunctionbase...	na.rmFALSE	finiteFALSERange of Values
+range.defaultfunctionfunctionbase...	na.rmFALSE	finiteFALSERange of Values
+rankfunctionfunctionbasex	na.lastTRUE	ties.methodc("average", "first", "random", "max", "min")Sample Ranks
+rapplyfunctionfunctionbaseobject	f	classes"ANY"	defltNULL	howc("unlist", "replace", "list")	...Recursively Apply a Function to a List
+rawfunctionfunctionbaseNO_ARGSRaw Vectors
+rawConnectionfunctionfunctionbaseobject	open"r"Raw Connections
+rawConnectionValuefunctionfunctionbaseconRaw Connections
+rawShiftfunctionfunctionbasex	nConvert to or from Raw Vectors
+rawToBitsfunctionfunctionbasexConvert to or from Raw Vectors
+rawToCharfunctionfunctionbasex	multipleFALSEConvert to or from Raw Vectors
+rbindfunctionfunctionbase...	deparse.level1Combine R Objects by Rows or Columns
+rbind.data.framefunctionfunctionbase...	deparse.level1Combine R Objects by Rows or Columns
+rcondfunctionfunctionbasex	normc("O", "I", "1")	triangularFALSE	...Compute or Estimate the Condition Number of a Matrix
+RefunctionfunctionbaseNO_ARGSComplex Vectors
+readBinfunctionfunctionbasecon	what	signedTRUE	endian.Platform$endianTransfer Binary Data To and From Connections
+readCharfunctionfunctionbasecon	nchars	useBytesFALSETransfer Character Strings To and From Connections
+read.dcffunctionfunctionbasefile	fieldsNULL	allFALSE	keep.whiteNULLRead and Write Data in DCF Format
+readlinefunctionfunctionbaseprompt""Read a Line from the Terminal
+readLinesfunctionfunctionbaseconstdin()	n-1L	okTRUE	warnTRUE	encoding"unknown"Read Text Lines from a Connection
+readRDSfunctionfunctionbasefile	refhookNULLSerialization Interface for Single Objects
+readRenvironfunctionfunctionbasepathSet Environment Variables from a File
+read.table.urlfunctionfunctionbaseurl	method	...Defunct Functions in Package 'base'
+realfunctionfunctionbaseNO_ARGSReal Vectors
+Recallfunctionfunctionbase...Recursive Calling
+Reducefunctionfunctionbasef	x	init	rightFALSE	accumulateFALSECommon Higher-Order Functions in Functional Programming Languages
+regexecfunctionfunctionbasepattern	text	ignore.caseFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+regexprfunctionfunctionbasepattern	text	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+reg.finalizerfunctionfunctionbasee	f	onexitFALSEFinalization of Objects
+registerS3methodfunctionfunctionbasegenname	class	method	envirparent.frame()Namespace Internals
+registerS3methodsfunctionfunctionbaseinfo	package	envNamespace Internals
+regmatchesfunctionfunctionbasex	m	invertFALSEExtract or Replace Matched Substrings
+regmatches<-functionfunctionbasex	m	invertFALSE	valueExtract or Replace Matched Substrings
+removefunctionfunctionbase...	listcharacter()	pos-1	enviras.environment(pos)	inheritsFALSERemove Objects from a Specified Environment
+removeCConverterfunctionfunctionbaseidManagement of .C argument conversion list
+removeTaskCallbackfunctionfunctionbaseidAdd or Remove a Top-Level Task Callback
+repfunctionfunctionbaseNO_ARGSReplicate Elements of Vectors and Lists
+rep.Datefunctionfunctionbasex	...Replicate Elements of Vectors and Lists
 repeatflow-controlflow-controlbaseNot a function
-rep.factorfunctionfunctionbasex	...
-rep.intfunctionfunctionbasex	times
-replacefunctionfunctionbasex	list	values
-replicatefunctionfunctionbasen	expr	simplify"array"
-rep.numeric_versionfunctionfunctionbasex	...
-rep.POSIXctfunctionfunctionbasex	...
-rep.POSIXltfunctionfunctionbasex	...
-requirefunctionfunctionbasepackage	lib.locNULL	quietlyFALSE	warn.conflictsTRUE	keep.sourcegetOption("keep.source.pkgs")	character.onlyFALSE
-requireNamespacefunctionfunctionbasepackage	...	quietlyFALSE
-restartfunctionfunctionbaseNO_ARGS
-restartDescriptionfunctionfunctionbaser
-restartFormalsfunctionfunctionbaser
-retracememfunctionfunctionbaseNO_ARGS
-returnfunctionfunctionbaseNO_ARGS
-revfunctionfunctionbasex
-rev.defaultfunctionfunctionbasex
-R.homefunctionfunctionbasecomponent"home"
-rlefunctionfunctionbasex
-rmfunctionfunctionbase...	listcharacter()	pos-1	enviras.environment(pos)	inheritsFALSE
-RNGkindfunctionfunctionbasekindNULL	normal.kindNULL
-RNGversionfunctionfunctionbasevstr
-roundfunctionfunctionbaseNO_ARGS
-round.Datefunctionfunctionbasex	...
-round.POSIXtfunctionfunctionbasex	unitsc("secs", "mins", "hours", "days")
-rowfunctionfunctionbasex	as.factorFALSE
-rowMeansfunctionfunctionbasex	na.rmFALSE
-rownamesfunctionfunctionbasex	do.NULLTRUE	prefix"row"
-row.namesfunctionfunctionbasex
-row.names<-functionfunctionbasex	value
-rownames<-functionfunctionbasex	value
-row.names<-.data.framefunctionfunctionbasex	value
-row.names.data.framefunctionfunctionbasex
-row.names<-.defaultfunctionfunctionbasex	value
-row.names.defaultfunctionfunctionbasex
-rowsumfunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...
-rowsum.data.framefunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...
-rowsum.defaultfunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...
-rowSumsfunctionfunctionbasex	na.rmFALSE
-R_system_versionfunctionfunctionbasex	strictTRUE
+rep.factorfunctionfunctionbasex	...Replicate Elements of Vectors and Lists
+rep.intfunctionfunctionbasex	timesReplicate Elements of Vectors and Lists
+replacefunctionfunctionbasex	list	valuesReplace Values in a Vector
+replicatefunctionfunctionbasen	expr	simplify"array"Apply a Function over a List or Vector
+rep.numeric_versionfunctionfunctionbasex	...Numeric Versions
+rep.POSIXctfunctionfunctionbasex	...Replicate Elements of Vectors and Lists
+rep.POSIXltfunctionfunctionbasex	...Replicate Elements of Vectors and Lists
+requirefunctionfunctionbasepackage	lib.locNULL	quietlyFALSE	warn.conflictsTRUE	keep.sourcegetOption("keep.source.pkgs")	character.onlyFALSELoading and Listing of Packages
+requireNamespacefunctionfunctionbasepackage	...	quietlyFALSELoading and Unloading Namespaces
+restartfunctionfunctionbaseNO_ARGSDefunct Functions in Package 'base'
+restartDescriptionfunctionfunctionbaserCondition Handling and Recovery
+restartFormalsfunctionfunctionbaserCondition Handling and Recovery
+retracememfunctionfunctionbaseNO_ARGSTrace Copying of Objects
+returnfunctionfunctionbaseNO_ARGSFunction Definition
+revfunctionfunctionbasexReverse Elements
+rev.defaultfunctionfunctionbasexReverse Elements
+R.homefunctionfunctionbasecomponent"home"Return the R Home Directory
+rlefunctionfunctionbasexRun Length Encoding
+rmfunctionfunctionbase...	listcharacter()	pos-1	enviras.environment(pos)	inheritsFALSERemove Objects from a Specified Environment
+RNGkindfunctionfunctionbasekindNULL	normal.kindNULLRandom Number Generation
+RNGversionfunctionfunctionbasevstrRandom Number Generation
+roundfunctionfunctionbaseNO_ARGSRounding of Numbers
+round.Datefunctionfunctionbasex	...Round / Truncate Data-Time Objects
+round.POSIXtfunctionfunctionbasex	unitsc("secs", "mins", "hours", "days")Round / Truncate Data-Time Objects
+rowfunctionfunctionbasex	as.factorFALSERow Indexes
+rowMeansfunctionfunctionbasex	na.rmFALSEForm Row and Column Sums and Means
+rownamesfunctionfunctionbasex	do.NULLTRUE	prefix"row"Row and Column Names
+row.namesfunctionfunctionbasexGet and Set Row Names for Data Frames
+row.names<-functionfunctionbasex	valueGet and Set Row Names for Data Frames
+rownames<-functionfunctionbasex	valueRow and Column Names
+row.names<-.data.framefunctionfunctionbasex	valueGet and Set Row Names for Data Frames
+row.names.data.framefunctionfunctionbasexGet and Set Row Names for Data Frames
+row.names<-.defaultfunctionfunctionbasex	valueGet and Set Row Names for Data Frames
+row.names.defaultfunctionfunctionbasexGet and Set Row Names for Data Frames
+rowsumfunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...Give Column Sums of a Matrix or Data Frame, Based on a Grouping Variable
+rowsum.data.framefunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...Give Column Sums of a Matrix or Data Frame, Based on a Grouping Variable
+rowsum.defaultfunctionfunctionbasex	group	reorderTRUE	na.rmFALSE	...Give Column Sums of a Matrix or Data Frame, Based on a Grouping Variable
+rowSumsfunctionfunctionbasex	na.rmFALSEForm Row and Column Sums and Means
+R_system_versionfunctionfunctionbasex	strictTRUENumeric Versions
 R.versionsimple.listlistbaseNot a function
 R.version$platformcharactercharacterbaseNot a function
 R.version$archcharactercharacterbaseNot a function
@@ -926,245 +926,245 @@ R.version$daycharactercharacterbaseNot a function
 R.version$svn revunknown baseNot a function
 R.version$languagecharactercharacterbaseNot a function
 R.version$version.stringcharactercharacterbaseNot a function
-R.VersionfunctionfunctionbaseNO_ARGS
+R.VersionfunctionfunctionbaseNO_ARGSVersion Information
 R.version.stringcharactercharacterbaseNot a function
-samplefunctionfunctionbasex	size	replaceFALSE	probNULL
-sample.intfunctionfunctionbasen	size	replaceFALSE	probNULL
-sapplyfunctionfunctionbaseX	FUN	...	simplifyTRUE	USE.NAMESTRUE
-savefunctionfunctionbase...	listcharacter()	filestop("'file' must be specified")	asciiFALSE	versionNULL	envirparent.frame()	compress!ascii	compression_level	eval.promisesTRUE	precheckTRUE
-save.imagefunctionfunctionbasefile".RData"	versionNULL	asciiFALSE	compress!ascii	safeTRUE
-saveRDSfunctionfunctionbaseobject	file""	asciiFALSE	versionNULL	compressTRUE	refhookNULL
-scalefunctionfunctionbasex	centerTRUE	scaleTRUE
-scale.defaultfunctionfunctionbasex	centerTRUE	scaleTRUE
-scanfunctionfunctionbasefile""	whatdouble()	nmax-1L	n-1L	sep""	quoteif (identical(sep, "\n")) "" else "'\""	dec"."	na.strings"NA"	flushFALSE	fillFALSE	strip.whiteFALSE	quietFALSE	blank.lines.skipTRUE	multi.lineTRUE	comment.char""	allowEscapesFALSE	fileEncoding""	encoding"unknown"	text
-scan.urlfunctionfunctionbaseurl	filetempfile()	method	...
-searchfunctionfunctionbaseNO_ARGS
-searchpathsfunctionfunctionbaseNO_ARGS
-seekfunctionfunctionbasecon	...
-seek.connectionfunctionfunctionbasecon	whereNA	origin"start"	rw""	...
-seqfunctionfunctionbasefrom1	to1	by((to - from)/(length.out - 1))	length.outNULL	along.withNULL	...
-seq_alongfunctionfunctionbaseNO_ARGS
-seq.Datefunctionfunctionbasefrom	to	by	length.outNULL	along.withNULL	...
-seq.defaultfunctionfunctionbasefrom1	to1	by((to - from)/(length.out - 1))	length.outNULL	along.withNULL	...
-seq.intfunctionfunctionbaseNO_ARGS
-seq_lenfunctionfunctionbaseNO_ARGS
-seq.POSIXtfunctionfunctionbasefrom	to	by	length.outNULL	along.withNULL	...
-sequencefunctionfunctionbasenvec
-serializefunctionfunctionbaseobject	connection	asciiFALSE	versionNULL	refhookNULL
-setCConverterStatusfunctionfunctionbaseid	status
-setdifffunctionfunctionbasex	y
-setequalfunctionfunctionbasex	y
-setHookfunctionfunctionbasehookName	value	actionc("append", "prepend", "replace")
-setNamespaceInfofunctionfunctionbasens	which	val
-set.seedfunctionfunctionbaseseed	kindNULL	normal.kindNULL
-setSessionTimeLimitfunctionfunctionbasecpuInf	elapsedInf
-setTimeLimitfunctionfunctionbasecpuInf	elapsedInf	transientFALSE
-setwdfunctionfunctionbasedir
-showConnectionsfunctionfunctionbaseallFALSE
-shQuotefunctionfunctionbasestring	typec("sh", "csh", "cmd")
-signfunctionfunctionbaseNO_ARGS
-signalConditionfunctionfunctionbasecond
-signiffunctionfunctionbaseNO_ARGS
-simpleConditionfunctionfunctionbasemessage	callNULL
-simpleErrorfunctionfunctionbasemessage	callNULL
-[.simple.listfunctionfunctionbasex	i	...
-simpleMessagefunctionfunctionbasemessage	callNULL
-simpleWarningfunctionfunctionbasemessage	callNULL
-simplify2arrayfunctionfunctionbasex	higherTRUE
-sinfunctionfunctionbaseNO_ARGS
-singlefunctionfunctionbaseNO_ARGS
-sinhfunctionfunctionbaseNO_ARGS
-sinkfunctionfunctionbasefileNULL	appendFALSE	typec("output", "message")	splitFALSE
-sink.numberfunctionfunctionbasetypec("output", "message")
-slice.indexfunctionfunctionbasex	MARGIN
-socketConnectionfunctionfunctionbasehost"localhost"	port	serverFALSE	blockingFALSE	open"a+"	encodinggetOption("encoding")	timeoutgetOption("timeout")
-socketSelectfunctionfunctionbasesocklist	writeFALSE	timeoutNULL
-solvefunctionfunctionbasea	b	tolifelse(LINPACK, 1e-07, .Machine$double.eps)	LINPACKFALSE	...
-solve.defaultfunctionfunctionbasea	b	tolifelse(LINPACK, 1e-07, .Machine$double.eps)	LINPACKFALSE	...
-solve.qrfunctionfunctionbasea	b	...
-sortfunctionfunctionbasex	decreasingFALSE	na.lastNA	...
-sort.defaultfunctionfunctionbasex	decreasingFALSE	na.lastNA	...
-sort.intfunctionfunctionbasex	partialNULL	na.lastNA	decreasingFALSE	methodc("shell", "quick")	index.returnFALSE
-sort.listfunctionfunctionbasex	partialNULL	na.lastTRUE	decreasingFALSE	methodc("shell", "quick", "radix")
-sort.POSIXltfunctionfunctionbasex	decreasingFALSE	na.lastNA	...
-sourcefunctionfunctionbasefile	localFALSE	echo	print.eval	verbosegetOption("verbose")	prompt.echogetOption("prompt")	max.deparse.length150	chdirFALSE	encodinggetOption("encoding")	continue.echogetOption("continue")	skip.echo0	keep.sourcegetOption("keep.source")
-source.urlfunctionfunctionbaseurl	filetempfile()	method	...
-splitfunctionfunctionbasex	f	dropFALSE	...
-split<-functionfunctionbasex	f	dropFALSE	...	value
-split<-.data.framefunctionfunctionbasex	f	dropFALSE	...	value
-split.data.framefunctionfunctionbasex	f	dropFALSE	...
-split.Datefunctionfunctionbasex	f	dropFALSE	...
-split<-.defaultfunctionfunctionbasex	f	dropFALSE	...	value
-split.defaultfunctionfunctionbasex	f	dropFALSE	...
-split.POSIXctfunctionfunctionbasex	f	dropFALSE	...
-sprintffunctionfunctionbasefmt	...
-sqrtfunctionfunctionbaseNO_ARGS
-sQuotefunctionfunctionbasex
-srcfilefunctionfunctionbasefilename	encodinggetOption("encoding")	Enc"unknown"
-srcfilealiasfunctionfunctionbasefilename	srcfile
-srcfilecopyfunctionfunctionbasefilename	lines	timestampSys.time()
-srcreffunctionfunctionbasesrcfile	lloc
-standardGenericfunctionfunctionbaseNO_ARGS
-stderrfunctionfunctionbaseNO_ARGS
-stdinfunctionfunctionbaseNO_ARGS
-stdoutfunctionfunctionbaseNO_ARGS
-stopfunctionfunctionbase...	call.TRUE	domainNULL
-stopifnotfunctionfunctionbase...
-storage.modefunctionfunctionbasex
-storage.mode<-functionfunctionbaseNO_ARGS
-strftimefunctionfunctionbasex	format""	tz""	usetzFALSE	...
-strptimefunctionfunctionbasex	format	tz""
-strsplitfunctionfunctionbasex	split	fixedFALSE	perlFALSE	useBytesFALSE
-strtoifunctionfunctionbasex
-strtrimfunctionfunctionbasex	width
-structurefunctionfunctionbase.Data	...
-strwrapfunctionfunctionbasex	width0.9 * getOption("width")	indent0	exdent0	prefix""	simplifyTRUE	initial
-subfunctionfunctionbasepattern	replacement	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSE
-subsetfunctionfunctionbasex	subset	...
-subset.data.framefunctionfunctionbasex	subset	select	dropFALSE	...
-subset.defaultfunctionfunctionbasex	subset	...
-subset.matrixfunctionfunctionbasex	subset	select	dropFALSE	...
-substitutefunctionfunctionbaseNO_ARGS
-substrfunctionfunctionbasex	start	stop
-substr<-functionfunctionbasex	start	stop	value
-substringfunctionfunctionbasetext	first
-substring<-functionfunctionbasetext	first	value
-sumfunctionfunctionbaseNO_ARGS
-summaryfunctionfunctionbaseobject	...	digitsmax(3, getOption("digits") - 3)
-summary.connectionfunctionfunctionbaseobject	...
-summary.data.framefunctionfunctionbaseobject	maxsum7	digitsmax(3, getOption("digits") - 3)	...
-Summary.data.framefunctionfunctionbase...	na.rm
-summary.Datefunctionfunctionbaseobject	digits12	...
-Summary.Datefunctionfunctionbase...	na.rm
-summary.defaultfunctionfunctionbaseobject	...	digitsmax(3, getOption("digits") - 3)
-Summary.difftimefunctionfunctionbase...	na.rm
-summary.factorfunctionfunctionbaseobject	maxsum100	...
-Summary.factorfunctionfunctionbase...	na.rm
-summary.matrixfunctionfunctionbaseobject	...
-Summary.numeric_versionfunctionfunctionbase...	na.rm
-Summary.orderedfunctionfunctionbase...	na.rm
-summary.POSIXctfunctionfunctionbaseobject	digits15	...
-Summary.POSIXctfunctionfunctionbase...	na.rm
-summary.POSIXltfunctionfunctionbaseobject	digits15	...
-Summary.POSIXltfunctionfunctionbase...	na.rm
-summary.srcfilefunctionfunctionbaseobject	...
-summary.srcreffunctionfunctionbaseobject	useSourceFALSE	...
-summary.tablefunctionfunctionbaseobject	...
-suppressMessagesfunctionfunctionbaseexpr
-suppressPackageStartupMessagesfunctionfunctionbaseexpr
-suppressWarningsfunctionfunctionbaseexpr
-svdfunctionfunctionbasex	numin(n, p)	nvmin(n, p)	LINPACKFALSE
-sweepfunctionfunctionbasex	MARGIN	STATS	FUN"-"	check.marginTRUE	...
-switchfunctionfunctionbaseNO_ARGS
-symbol.Cfunctionfunctionbasename
-symbol.Forfunctionfunctionbasename
-sys.callfunctionfunctionbaseNO_ARGS
-sys.callsfunctionfunctionbaseNO_ARGS
-Sys.chmodfunctionfunctionbasepaths	mode"0777"	use_umaskTRUE
-Sys.DatefunctionfunctionbaseNO_ARGS
-sys.framefunctionfunctionbaseNO_ARGS
-sys.framesfunctionfunctionbaseNO_ARGS
-sys.functionfunctionfunctionbaseNO_ARGS
-Sys.getenvfunctionfunctionbasexNULL	unset""	namesNA
-Sys.getlocalefunctionfunctionbasecategory"LC_ALL"
-Sys.getpidfunctionfunctionbaseNO_ARGS
-Sys.globfunctionfunctionbasepaths	dirmarkFALSE
-Sys.infofunctionfunctionbaseNO_ARGS
-sys.load.imagefunctionfunctionbasename	quiet
-Sys.localeconvfunctionfunctionbaseNO_ARGS
-sys.nframefunctionfunctionbaseNO_ARGS
-sys.on.exitfunctionfunctionbaseNO_ARGS
-sys.parentfunctionfunctionbaseNO_ARGS
-sys.parentsfunctionfunctionbaseNO_ARGS
-Sys.putenvfunctionfunctionbase...
-Sys.readlinkfunctionfunctionbasepaths
-sys.save.imagefunctionfunctionbasename
-Sys.setenvfunctionfunctionbase...
-Sys.setFileTimefunctionfunctionbasepath	time
-Sys.setlocalefunctionfunctionbasecategory"LC_ALL"	locale""
-Sys.sleepfunctionfunctionbasetime
-sys.sourcefunctionfunctionbasefile	envirbaseenv()	chdirFALSE	keep.sourcegetOption("keep.source.pkgs")
-sys.statusfunctionfunctionbaseNO_ARGS
-systemfunctionfunctionbasecommand	internFALSE	ignore.stdoutFALSE	ignore.stderrFALSE	waitTRUE	inputNULL	show.output.on.consoleTRUE	minimizedFALSE	invisibleTRUE
-system2functionfunctionbasecommand	argscharacter()	stdout""	stderr""	stdin""	inputNULL	envcharacter()	waitTRUE	minimizedFALSE	invisibleTRUE
-system.filefunctionfunctionbase...	package"base"	lib.locNULL	mustWorkFALSE
-system.timefunctionfunctionbaseexpr	gcFirstTRUE
-Sys.timefunctionfunctionbaseNO_ARGS
-Sys.timezonefunctionfunctionbaseNO_ARGS
-Sys.umaskfunctionfunctionbasemodeNA
-Sys.unsetenvfunctionfunctionbasex
-Sys.whichfunctionfunctionbasenames
-tfunctionfunctionbasex
+samplefunctionfunctionbasex	size	replaceFALSE	probNULLRandom Samples and Permutations
+sample.intfunctionfunctionbasen	size	replaceFALSE	probNULLRandom Samples and Permutations
+sapplyfunctionfunctionbaseX	FUN	...	simplifyTRUE	USE.NAMESTRUEApply a Function over a List or Vector
+savefunctionfunctionbase...	listcharacter()	filestop("'file' must be specified")	asciiFALSE	versionNULL	envirparent.frame()	compress!ascii	compression_level	eval.promisesTRUE	precheckTRUESave R Objects
+save.imagefunctionfunctionbasefile".RData"	versionNULL	asciiFALSE	compress!ascii	safeTRUESave R Objects
+saveRDSfunctionfunctionbaseobject	file""	asciiFALSE	versionNULL	compressTRUE	refhookNULLSerialization Interface for Single Objects
+scalefunctionfunctionbasex	centerTRUE	scaleTRUEScaling and Centering of Matrix-like Objects
+scale.defaultfunctionfunctionbasex	centerTRUE	scaleTRUEScaling and Centering of Matrix-like Objects
+scanfunctionfunctionbasefile""	whatdouble()	nmax-1L	n-1L	sep""	quoteif (identical(sep, "\n")) "" else "'\""	dec"."	na.strings"NA"	flushFALSE	fillFALSE	strip.whiteFALSE	quietFALSE	blank.lines.skipTRUE	multi.lineTRUE	comment.char""	allowEscapesFALSE	fileEncoding""	encoding"unknown"	textRead Data Values
+scan.urlfunctionfunctionbaseurl	filetempfile()	method	...Defunct Functions in Package 'base'
+searchfunctionfunctionbaseNO_ARGSGive Search Path for R Objects
+searchpathsfunctionfunctionbaseNO_ARGSGive Search Path for R Objects
+seekfunctionfunctionbasecon	...Functions to Reposition Connections
+seek.connectionfunctionfunctionbasecon	whereNA	origin"start"	rw""	...Functions to Reposition Connections
+seqfunctionfunctionbasefrom1	to1	by((to - from)/(length.out - 1))	length.outNULL	along.withNULL	...Sequence Generation
+seq_alongfunctionfunctionbaseNO_ARGSSequence Generation
+seq.Datefunctionfunctionbasefrom	to	by	length.outNULL	along.withNULL	...Generate Regular Sequences of Dates
+seq.defaultfunctionfunctionbasefrom1	to1	by((to - from)/(length.out - 1))	length.outNULL	along.withNULL	...Sequence Generation
+seq.intfunctionfunctionbaseNO_ARGSSequence Generation
+seq_lenfunctionfunctionbaseNO_ARGSSequence Generation
+seq.POSIXtfunctionfunctionbasefrom	to	by	length.outNULL	along.withNULL	...Generate Regular Sequences of Times
+sequencefunctionfunctionbasenvecCreate A Vector of Sequences
+serializefunctionfunctionbaseobject	connection	asciiFALSE	versionNULL	refhookNULLSimple Serialization Interface
+setCConverterStatusfunctionfunctionbaseid	statusManagement of .C argument conversion list
+setdifffunctionfunctionbasex	ySet Operations
+setequalfunctionfunctionbasex	ySet Operations
+setHookfunctionfunctionbasehookName	value	actionc("append", "prepend", "replace")Functions to Get and Set Hooks for Load, Attach, Detach and Unload
+setNamespaceInfofunctionfunctionbasens	which	valNamespace Internals
+set.seedfunctionfunctionbaseseed	kindNULL	normal.kindNULLRandom Number Generation
+setSessionTimeLimitfunctionfunctionbasecpuInf	elapsedInfSet CPU and/or Elapsed Time Limits
+setTimeLimitfunctionfunctionbasecpuInf	elapsedInf	transientFALSESet CPU and/or Elapsed Time Limits
+setwdfunctionfunctionbasedirGet or Set Working Directory
+showConnectionsfunctionfunctionbaseallFALSEDisplay Connections
+shQuotefunctionfunctionbasestring	typec("sh", "csh", "cmd")Quote Strings for Use in OS Shells
+signfunctionfunctionbaseNO_ARGSSign Function
+signalConditionfunctionfunctionbasecondCondition Handling and Recovery
+signiffunctionfunctionbaseNO_ARGSRounding of Numbers
+simpleConditionfunctionfunctionbasemessage	callNULLCondition Handling and Recovery
+simpleErrorfunctionfunctionbasemessage	callNULLCondition Handling and Recovery
+[.simple.listfunctionfunctionbasex	i	...Extract or Replace Parts of an Object
+simpleMessagefunctionfunctionbasemessage	callNULLCondition Handling and Recovery
+simpleWarningfunctionfunctionbasemessage	callNULLCondition Handling and Recovery
+simplify2arrayfunctionfunctionbasex	higherTRUEApply a Function over a List or Vector
+sinfunctionfunctionbaseNO_ARGSTrigonometric Functions
+singlefunctionfunctionbaseNO_ARGSDouble-Precision Vectors
+sinhfunctionfunctionbaseNO_ARGSHyperbolic Functions
+sinkfunctionfunctionbasefileNULL	appendFALSE	typec("output", "message")	splitFALSESend R Output to a File
+sink.numberfunctionfunctionbasetypec("output", "message")Send R Output to a File
+slice.indexfunctionfunctionbasex	MARGINSlice Indexes in an Array
+socketConnectionfunctionfunctionbasehost"localhost"	port	serverFALSE	blockingFALSE	open"a+"	encodinggetOption("encoding")	timeoutgetOption("timeout")Functions to Manipulate Connections
+socketSelectfunctionfunctionbasesocklist	writeFALSE	timeoutNULLWait on Socket Connections
+solvefunctionfunctionbasea	b	tolifelse(LINPACK, 1e-07, .Machine$double.eps)	LINPACKFALSE	...Solve a System of Equations
+solve.defaultfunctionfunctionbasea	b	tolifelse(LINPACK, 1e-07, .Machine$double.eps)	LINPACKFALSE	...Solve a System of Equations
+solve.qrfunctionfunctionbasea	b	...The QR Decomposition of a Matrix
+sortfunctionfunctionbasex	decreasingFALSE	na.lastNA	...Sorting or Ordering Vectors
+sort.defaultfunctionfunctionbasex	decreasingFALSE	na.lastNA	...Sorting or Ordering Vectors
+sort.intfunctionfunctionbasex	partialNULL	na.lastNA	decreasingFALSE	methodc("shell", "quick")	index.returnFALSESorting or Ordering Vectors
+sort.listfunctionfunctionbasex	partialNULL	na.lastTRUE	decreasingFALSE	methodc("shell", "quick", "radix")Ordering Permutation
+sort.POSIXltfunctionfunctionbasex	decreasingFALSE	na.lastNA	...Sorting or Ordering Vectors
+sourcefunctionfunctionbasefile	localFALSE	echo	print.eval	verbosegetOption("verbose")	prompt.echogetOption("prompt")	max.deparse.length150	chdirFALSE	encodinggetOption("encoding")	continue.echogetOption("continue")	skip.echo0	keep.sourcegetOption("keep.source")Read R Code from a File or a Connection
+source.urlfunctionfunctionbaseurl	filetempfile()	method	...Defunct Functions in Package 'base'
+splitfunctionfunctionbasex	f	dropFALSE	...Divide into Groups and Reassemble
+split<-functionfunctionbasex	f	dropFALSE	...	valueDivide into Groups and Reassemble
+split<-.data.framefunctionfunctionbasex	f	dropFALSE	...	valueDivide into Groups and Reassemble
+split.data.framefunctionfunctionbasex	f	dropFALSE	...Divide into Groups and Reassemble
+split.Datefunctionfunctionbasex	f	dropFALSE	...Date Class
+split<-.defaultfunctionfunctionbasex	f	dropFALSE	...	valueDivide into Groups and Reassemble
+split.defaultfunctionfunctionbasex	f	dropFALSE	...Divide into Groups and Reassemble
+split.POSIXctfunctionfunctionbasex	f	dropFALSE	...Date-Time Classes
+sprintffunctionfunctionbasefmt	...Use C-style String Formatting Commands
+sqrtfunctionfunctionbaseNO_ARGSMiscellaneous Mathematical Functions
+sQuotefunctionfunctionbasexQuote Text
+srcfilefunctionfunctionbasefilename	encodinggetOption("encoding")	Enc"unknown"References to source files
+srcfilealiasfunctionfunctionbasefilename	srcfileReferences to source files
+srcfilecopyfunctionfunctionbasefilename	lines	timestampSys.time()References to source files
+srcreffunctionfunctionbasesrcfile	llocReferences to source files
+standardGenericfunctionfunctionbaseNO_ARGSFormal Method System - Dispatching S4 Methods
+stderrfunctionfunctionbaseNO_ARGSDisplay Connections
+stdinfunctionfunctionbaseNO_ARGSDisplay Connections
+stdoutfunctionfunctionbaseNO_ARGSDisplay Connections
+stopfunctionfunctionbase...	call.TRUE	domainNULLStop Function Execution
+stopifnotfunctionfunctionbase...Ensure the Truth of R Expressions
+storage.modefunctionfunctionbasexThe (Storage) Mode of an Object
+storage.mode<-functionfunctionbaseNO_ARGSThe (Storage) Mode of an Object
+strftimefunctionfunctionbasex	format""	tz""	usetzFALSE	...Date-time Conversion Functions to and from Character
+strptimefunctionfunctionbasex	format	tz""Date-time Conversion Functions to and from Character
+strsplitfunctionfunctionbasex	split	fixedFALSE	perlFALSE	useBytesFALSESplit the Elements of a Character Vector
+strtoifunctionfunctionbasexConvert Strings to Integers
+strtrimfunctionfunctionbasex	widthTrim Character Strings to Specified Widths
+structurefunctionfunctionbase.Data	...Attribute Specification
+strwrapfunctionfunctionbasex	width0.9 * getOption("width")	indent0	exdent0	prefix""	simplifyTRUE	initialWrap Character Strings to Format Paragraphs
+subfunctionfunctionbasepattern	replacement	x	ignore.caseFALSE	perlFALSE	fixedFALSE	useBytesFALSEPattern Matching and Replacement
+subsetfunctionfunctionbasex	subset	...Subsetting Vectors, Matrices and Data Frames
+subset.data.framefunctionfunctionbasex	subset	select	dropFALSE	...Subsetting Vectors, Matrices and Data Frames
+subset.defaultfunctionfunctionbasex	subset	...Subsetting Vectors, Matrices and Data Frames
+subset.matrixfunctionfunctionbasex	subset	select	dropFALSE	...Subsetting Vectors, Matrices and Data Frames
+substitutefunctionfunctionbaseNO_ARGSSubstituting and Quoting Expressions
+substrfunctionfunctionbasex	start	stopSubstrings of a Character Vector
+substr<-functionfunctionbasex	start	stop	valueSubstrings of a Character Vector
+substringfunctionfunctionbasetext	firstSubstrings of a Character Vector
+substring<-functionfunctionbasetext	first	valueSubstrings of a Character Vector
+sumfunctionfunctionbaseNO_ARGSSum of Vector Elements
+summaryfunctionfunctionbaseobject	...	digitsmax(3, getOption("digits") - 3)Object Summaries
+summary.connectionfunctionfunctionbaseobject	...Functions to Manipulate Connections
+summary.data.framefunctionfunctionbaseobject	maxsum7	digitsmax(3, getOption("digits") - 3)	...Object Summaries
+Summary.data.framefunctionfunctionbase...	na.rmS3 Group Generic Functions
+summary.Datefunctionfunctionbaseobject	digits12	...Date Class
+Summary.Datefunctionfunctionbase...	na.rmDate Class
+summary.defaultfunctionfunctionbaseobject	...	digitsmax(3, getOption("digits") - 3)Object Summaries
+Summary.difftimefunctionfunctionbase...	na.rmTime Intervals
+summary.factorfunctionfunctionbaseobject	maxsum100	...Object Summaries
+Summary.factorfunctionfunctionbase...	na.rmFactors
+summary.matrixfunctionfunctionbaseobject	...Object Summaries
+Summary.numeric_versionfunctionfunctionbase...	na.rmNumeric Versions
+Summary.orderedfunctionfunctionbase...	na.rmFactors
+summary.POSIXctfunctionfunctionbaseobject	digits15	...Date-Time Classes
+Summary.POSIXctfunctionfunctionbase...	na.rmDate-Time Classes
+summary.POSIXltfunctionfunctionbaseobject	digits15	...Date-Time Classes
+Summary.POSIXltfunctionfunctionbase...	na.rmDate-Time Classes
+summary.srcfilefunctionfunctionbaseobject	...References to source files
+summary.srcreffunctionfunctionbaseobject	useSourceFALSE	...References to source files
+summary.tablefunctionfunctionbaseobject	...Cross Tabulation and Table Creation
+suppressMessagesfunctionfunctionbaseexprDiagnostic Messages
+suppressPackageStartupMessagesfunctionfunctionbaseexprDiagnostic Messages
+suppressWarningsfunctionfunctionbaseexprWarning Messages
+svdfunctionfunctionbasex	numin(n, p)	nvmin(n, p)	LINPACKFALSESingular Value Decomposition of a Matrix
+sweepfunctionfunctionbasex	MARGIN	STATS	FUN"-"	check.marginTRUE	...Sweep out Array Summaries
+switchfunctionfunctionbaseNO_ARGSSelect One of a List of Alternatives
+symbol.CfunctionfunctionbasenameDefunct Functions in Package 'base'
+symbol.ForfunctionfunctionbasenameDefunct Functions in Package 'base'
+sys.callfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.callsfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+Sys.chmodfunctionfunctionbasepaths	mode"0777"	use_umaskTRUEManipulaton of Directories and File Permissions
+Sys.DatefunctionfunctionbaseNO_ARGSGet Current Date and Time
+sys.framefunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.framesfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.functionfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+Sys.getenvfunctionfunctionbasexNULL	unset""	namesNAGet Environment Variables
+Sys.getlocalefunctionfunctionbasecategory"LC_ALL"Query or Set Aspects of the Locale
+Sys.getpidfunctionfunctionbaseNO_ARGSGet the Process ID of the R Session
+Sys.globfunctionfunctionbasepaths	dirmarkFALSEWildcard Expansion on File Paths
+Sys.infofunctionfunctionbaseNO_ARGSExtract System and User Information
+sys.load.imagefunctionfunctionbasename	quietInternal Functions in Package 'base'
+Sys.localeconvfunctionfunctionbaseNO_ARGSFind Details of the Numerical and Monetary Representations in the Current Locale
+sys.nframefunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.on.exitfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.parentfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+sys.parentsfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+Sys.putenvfunctionfunctionbase...Deprecated Functions in Package 'base'
+Sys.readlinkfunctionfunctionbasepathsRead File Symbolic Links
+sys.save.imagefunctionfunctionbasenameInternal Functions in Package 'base'
+Sys.setenvfunctionfunctionbase...Set or Unset Environment Variables
+Sys.setFileTimefunctionfunctionbasepath	timeSet File Time
+Sys.setlocalefunctionfunctionbasecategory"LC_ALL"	locale""Query or Set Aspects of the Locale
+Sys.sleepfunctionfunctionbasetimeSuspend Execution for a Time Interval
+sys.sourcefunctionfunctionbasefile	envirbaseenv()	chdirFALSE	keep.sourcegetOption("keep.source.pkgs")Parse and Evaluate Expressions from a File
+sys.statusfunctionfunctionbaseNO_ARGSFunctions to Access the Function Call Stack
+systemfunctionfunctionbasecommand	internFALSE	ignore.stdoutFALSE	ignore.stderrFALSE	waitTRUE	inputNULL	show.output.on.consoleTRUE	minimizedFALSE	invisibleTRUEInvoke a System Command
+system2functionfunctionbasecommand	argscharacter()	stdout""	stderr""	stdin""	inputNULL	envcharacter()	waitTRUE	minimizedFALSE	invisibleTRUEInvoke a System Command
+system.filefunctionfunctionbase...	package"base"	lib.locNULL	mustWorkFALSEFind Names of R System Files
+system.timefunctionfunctionbaseexpr	gcFirstTRUECPU Time Used
+Sys.timefunctionfunctionbaseNO_ARGSGet Current Date and Time
+Sys.timezonefunctionfunctionbaseNO_ARGSTime Zones
+Sys.umaskfunctionfunctionbasemodeNAManipulaton of Directories and File Permissions
+Sys.unsetenvfunctionfunctionbasexSet or Unset Environment Variables
+Sys.whichfunctionfunctionbasenamesFind Full Paths to Executables
+tfunctionfunctionbasexMatrix Transpose
 TlogicallogicalbaseNot a function
-tablefunctionfunctionbase...	excludeif (useNA == "no") c(NA, NaN)	useNAc("no", "ifany", "always")	dnnlist.names(...)	deparse.level1
-tabulatefunctionfunctionbasebin	nbinsmax(1L, bin, na.rm = TRUE)
-tanfunctionfunctionbaseNO_ARGS
-tanhfunctionfunctionbaseNO_ARGS
-tapplyfunctionfunctionbaseX	INDEX	FUNNULL	...	simplifyTRUE
-taskCallbackManagerfunctionfunctionbasehandlerslist()	registeredFALSE	verboseFALSE
-tcrossprodfunctionfunctionbasex	yNULL
-t.data.framefunctionfunctionbasex
-t.defaultfunctionfunctionbasex
-tempdirfunctionfunctionbaseNO_ARGS
-tempfilefunctionfunctionbasepattern"file"	tmpdirtempdir()	fileext""
-testPlatformEquivalencefunctionfunctionbasebuilt	run
-tetragammafunctionfunctionbasex
-textConnectionfunctionfunctionbaseobject	open"r"	localFALSE	encodingc("", "bytes", "UTF-8")
-textConnectionValuefunctionfunctionbasecon
-tolowerfunctionfunctionbasex
-topenvfunctionfunctionbaseenvirparent.frame()	matchThisEnvgetOption("topLevelEnvironment")
-toStringfunctionfunctionbasex	widthNULL	...
-toString.defaultfunctionfunctionbasex	widthNULL	...
-toupperfunctionfunctionbasex
-tracefunctionfunctionbasewhat	tracer	exit	at	print	signature	wheretopenv(parent.frame())	editFALSE
-tracebackfunctionfunctionbasexNULL	max.linesgetOption("deparse.max.lines")
-tracememfunctionfunctionbaseNO_ARGS
-tracingStatefunctionfunctionbaseonNULL
-transformfunctionfunctionbase_data	...
-transform.data.framefunctionfunctionbase_data	...
-transform.defaultfunctionfunctionbase_data	...
-trigammafunctionfunctionbaseNO_ARGS
-truncfunctionfunctionbaseNO_ARGS
-truncatefunctionfunctionbasecon	...
-truncate.connectionfunctionfunctionbasecon	...
-trunc.Datefunctionfunctionbasex	...
-trunc.POSIXtfunctionfunctionbasex	unitsc("secs", "mins", "hours", "days")	...
-tryfunctionfunctionbaseexpr	silentFALSE
-tryCatchfunctionfunctionbaseexpr	...	finally
-typeoffunctionfunctionbasex
-unclassfunctionfunctionbaseNO_ARGS
-undebugfunctionfunctionbasefun
-unionfunctionfunctionbasex	y
-uniquefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-unique.arrayfunctionfunctionbasex	incomparablesFALSE	MARGIN1	fromLastFALSE	...
-unique.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-unique.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...
-unique.matrixfunctionfunctionbasex	incomparablesFALSE	MARGIN1	fromLastFALSE	...
-unique.numeric_versionfunctionfunctionbasex	incomparablesFALSE	...
-unique.POSIXltfunctionfunctionbasex	incomparablesFALSE	...
-unitsfunctionfunctionbasex
-units<-functionfunctionbasex	value
-units<-.difftimefunctionfunctionbasex	value
-units.difftimefunctionfunctionbasex
-unixfunctionfunctionbasecall	internFALSE
-unix.timefunctionfunctionbaseexpr	gcFirstTRUE
-unlinkfunctionfunctionbasex	recursiveFALSE	forceFALSE
-unlistfunctionfunctionbasex	recursiveTRUE	use.namesTRUE
-unloadNamespacefunctionfunctionbasens
-unlockBindingfunctionfunctionbasesym	env
-unnamefunctionfunctionbaseobj	forceFALSE
-unserializefunctionfunctionbaseconnection	refhookNULL
-unsplitfunctionfunctionbasevalue	f	dropFALSE
-untracefunctionfunctionbasewhat	signatureNULL	wheretopenv(parent.frame())
-untracememfunctionfunctionbaseNO_ARGS
-unzfunctionfunctionbasedescription	filename	open""	encodinggetOption("encoding")
-upper.trifunctionfunctionbasex	diagFALSE
-urlfunctionfunctionbasedescription	open""	blockingTRUE	encodinggetOption("encoding")
-UseMethodfunctionfunctionbaseNO_ARGS
-utf8ToIntfunctionfunctionbasex
-vapplyfunctionfunctionbaseX	FUN	FUN.VALUE	...	USE.NAMESTRUE
-vectorfunctionfunctionbasemode"logical"
-VectorizefunctionfunctionbaseFUN	vectorize.args	SIMPLIFYTRUE	USE.NAMESTRUE
+tablefunctionfunctionbase...	excludeif (useNA == "no") c(NA, NaN)	useNAc("no", "ifany", "always")	dnnlist.names(...)	deparse.level1Cross Tabulation and Table Creation
+tabulatefunctionfunctionbasebin	nbinsmax(1L, bin, na.rm = TRUE)Tabulation for Vectors
+tanfunctionfunctionbaseNO_ARGSTrigonometric Functions
+tanhfunctionfunctionbaseNO_ARGSHyperbolic Functions
+tapplyfunctionfunctionbaseX	INDEX	FUNNULL	...	simplifyTRUEApply a Function Over a Ragged Array
+taskCallbackManagerfunctionfunctionbasehandlerslist()	registeredFALSE	verboseFALSECreate an R-level Task Callback Manager
+tcrossprodfunctionfunctionbasex	yNULLMatrix Crossproduct
+t.data.framefunctionfunctionbasexMatrix Transpose
+t.defaultfunctionfunctionbasexMatrix Transpose
+tempdirfunctionfunctionbaseNO_ARGSCreate Names for Temporary Files
+tempfilefunctionfunctionbasepattern"file"	tmpdirtempdir()	fileext""Create Names for Temporary Files
+testPlatformEquivalencefunctionfunctionbasebuilt	runInternal Functions in Package 'base'
+tetragammafunctionfunctionbasexDefunct Functions in Package 'base'
+textConnectionfunctionfunctionbaseobject	open"r"	localFALSE	encodingc("", "bytes", "UTF-8")Text Connections
+textConnectionValuefunctionfunctionbaseconText Connections
+tolowerfunctionfunctionbasexCharacter Translation and Casefolding
+topenvfunctionfunctionbaseenvirparent.frame()	matchThisEnvgetOption("topLevelEnvironment")Top Level Environment
+toStringfunctionfunctionbasex	widthNULL	...Convert an R Object to a Character String
+toString.defaultfunctionfunctionbasex	widthNULL	...Convert an R Object to a Character String
+toupperfunctionfunctionbasexCharacter Translation and Casefolding
+tracefunctionfunctionbasewhat	tracer	exit	at	print	signature	wheretopenv(parent.frame())	editFALSEInteractive Tracing and Debugging of Calls to a Function or Method
+tracebackfunctionfunctionbasexNULL	max.linesgetOption("deparse.max.lines")Print Call Stacks
+tracememfunctionfunctionbaseNO_ARGSTrace Copying of Objects
+tracingStatefunctionfunctionbaseonNULLInteractive Tracing and Debugging of Calls to a Function or Method
+transformfunctionfunctionbase_data	...Transform an Object, for Example a Data Frame
+transform.data.framefunctionfunctionbase_data	...Transform an Object, for Example a Data Frame
+transform.defaultfunctionfunctionbase_data	...Transform an Object, for Example a Data Frame
+trigammafunctionfunctionbaseNO_ARGSSpecial Functions of Mathematics
+truncfunctionfunctionbaseNO_ARGSRounding of Numbers
+truncatefunctionfunctionbasecon	...Functions to Reposition Connections
+truncate.connectionfunctionfunctionbasecon	...Functions to Reposition Connections
+trunc.Datefunctionfunctionbasex	...Round / Truncate Data-Time Objects
+trunc.POSIXtfunctionfunctionbasex	unitsc("secs", "mins", "hours", "days")	...Round / Truncate Data-Time Objects
+tryfunctionfunctionbaseexpr	silentFALSETry an Expression Allowing Error Recovery
+tryCatchfunctionfunctionbaseexpr	...	finallyCondition Handling and Recovery
+typeoffunctionfunctionbasexThe Type of an Object
+unclassfunctionfunctionbaseNO_ARGSObject Classes
+undebugfunctionfunctionbasefunDebug a Function
+unionfunctionfunctionbasex	ySet Operations
+uniquefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Extract Unique Elements
+unique.arrayfunctionfunctionbasex	incomparablesFALSE	MARGIN1	fromLastFALSE	...Extract Unique Elements
+unique.data.framefunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Extract Unique Elements
+unique.defaultfunctionfunctionbasex	incomparablesFALSE	fromLastFALSE	...Extract Unique Elements
+unique.matrixfunctionfunctionbasex	incomparablesFALSE	MARGIN1	fromLastFALSE	...Extract Unique Elements
+unique.numeric_versionfunctionfunctionbasex	incomparablesFALSE	...Numeric Versions
+unique.POSIXltfunctionfunctionbasex	incomparablesFALSE	...Date-Time Classes
+unitsfunctionfunctionbasexTime Intervals
+units<-functionfunctionbasex	valueTime Intervals
+units<-.difftimefunctionfunctionbasex	valueTime Intervals
+units.difftimefunctionfunctionbasexTime Intervals
+unixfunctionfunctionbasecall	internFALSEDefunct Functions in Package 'base'
+unix.timefunctionfunctionbaseexpr	gcFirstTRUECPU Time Used
+unlinkfunctionfunctionbasex	recursiveFALSE	forceFALSEDelete Files and Directories
+unlistfunctionfunctionbasex	recursiveTRUE	use.namesTRUEFlatten Lists
+unloadNamespacefunctionfunctionbasensLoading and Unloading Namespaces
+unlockBindingfunctionfunctionbasesym	envBinding and Environment Adjustments
+unnamefunctionfunctionbaseobj	forceFALSERemove 'names' or 'dimnames'
+unserializefunctionfunctionbaseconnection	refhookNULLSimple Serialization Interface
+unsplitfunctionfunctionbasevalue	f	dropFALSEDivide into Groups and Reassemble
+untracefunctionfunctionbasewhat	signatureNULL	wheretopenv(parent.frame())Interactive Tracing and Debugging of Calls to a Function or Method
+untracememfunctionfunctionbaseNO_ARGSTrace Copying of Objects
+unzfunctionfunctionbasedescription	filename	open""	encodinggetOption("encoding")Functions to Manipulate Connections
+upper.trifunctionfunctionbasex	diagFALSELower and Upper Triangular Part of a Matrix
+urlfunctionfunctionbasedescription	open""	blockingTRUE	encodinggetOption("encoding")Functions to Manipulate Connections
+UseMethodfunctionfunctionbaseNO_ARGSClass Methods
+utf8ToIntfunctionfunctionbasexConvert to or from UTF-8-encoded Character Vectors
+vapplyfunctionfunctionbaseX	FUN	FUN.VALUE	...	USE.NAMESTRUEApply a Function over a List or Vector
+vectorfunctionfunctionbasemode"logical"Vectors
+VectorizefunctionfunctionbaseFUN	vectorize.args	SIMPLIFYTRUE	USE.NAMESTRUEVectorize a Scalar Function
 versionsimple.listlistbaseNot a function
 version$platformcharactercharacterbaseNot a function
 version$archcharactercharacterbaseNot a function
@@ -1179,44 +1179,44 @@ version$daycharactercharacterbaseNot a function
 version$svn revunknown baseNot a function
 version$languagecharactercharacterbaseNot a function
 version$version.stringcharactercharacterbaseNot a function
-VersionfunctionfunctionbaseNO_ARGS
-warningfunctionfunctionbase...	call.TRUE	immediate.FALSE	domainNULL
-warningsfunctionfunctionbase...
-weekdaysfunctionfunctionbasex	abbreviate
-weekdays.Datefunctionfunctionbasex	abbreviateFALSE
-weekdays.POSIXtfunctionfunctionbasex	abbreviateFALSE
-whichfunctionfunctionbasex	arr.indFALSE	useNamesTRUE
-which.maxfunctionfunctionbasex
-which.minfunctionfunctionbasex
+VersionfunctionfunctionbaseNO_ARGSDefunct Functions in Package 'base'
+warningfunctionfunctionbase...	call.TRUE	immediate.FALSE	domainNULLWarning Messages
+warningsfunctionfunctionbase...Print Warning Messages
+weekdaysfunctionfunctionbasex	abbreviateExtract Parts of a POSIXt or Date Object
+weekdays.Datefunctionfunctionbasex	abbreviateFALSEExtract Parts of a POSIXt or Date Object
+weekdays.POSIXtfunctionfunctionbasex	abbreviateFALSEExtract Parts of a POSIXt or Date Object
+whichfunctionfunctionbasex	arr.indFALSE	useNamesTRUEWhich indices are TRUE?
+which.maxfunctionfunctionbasexWhere is the Min() or Max() ?
+which.minfunctionfunctionbasexWhere is the Min() or Max() ?
 whileflow-controlflow-controlbaseNot a function
-withfunctionfunctionbasedata	expr	...
-withCallingHandlersfunctionfunctionbaseexpr	...
-with.defaultfunctionfunctionbasedata	expr	...
-withinfunctionfunctionbasedata	expr	...
-within.data.framefunctionfunctionbasedata	expr	...
-within.listfunctionfunctionbasedata	expr	...
-withRestartsfunctionfunctionbaseexpr	...
-withVisiblefunctionfunctionbasex
-writefunctionfunctionbasex	file"data"	ncolumnsif (is.character(x)) 1 else 5	appendFALSE	sep" "
-writeBinfunctionfunctionbaseobject	con	endian.Platform$endian	useBytesFALSE
-writeCharfunctionfunctionbaseobject	con	ncharsnchar(object, type = "chars")	eos""	useBytesFALSE
-write.dcffunctionfunctionbasex	file""	appendFALSE	indent0.1 * getOption("width")	width0.9 * getOption("width")	keep.whiteNULL
-writeLinesfunctionfunctionbasetext	constdout()	sep"\n"	useBytesFALSE
-write.table0functionfunctionbasex	file""	appendFALSE	quoteTRUE	sep" "	eol"\n"	na"NA"	dec"."	row.namesTRUE	col.namesTRUE	qmethodc("escape", "double")
-%x%functionfunctionbaseX	Y
-xorfunctionfunctionbasex	y
-xor.hexmodefunctionfunctionbasea	b
-xor.octmodefunctionfunctionbasea	b
-xpdrows.data.framefunctionfunctionbasex	old.rows	new.rows
-xtfrmfunctionfunctionbasex
-xtfrm.AsIsfunctionfunctionbasex
-xtfrm.Datefunctionfunctionbasex
-xtfrm.defaultfunctionfunctionbasex
-xtfrm.difftimefunctionfunctionbasex
-xtfrm.factorfunctionfunctionbasex
-xtfrm.numeric_versionfunctionfunctionbasex
-xtfrm.POSIXctfunctionfunctionbasex
-xtfrm.POSIXltfunctionfunctionbasex
-xtfrm.Survfunctionfunctionbasex
-xzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression6
-zapsmallfunctionfunctionbasex	digitsgetOption("digits")
+withfunctionfunctionbasedata	expr	...Evaluate an Expression in a Data Environment
+withCallingHandlersfunctionfunctionbaseexpr	...Condition Handling and Recovery
+with.defaultfunctionfunctionbasedata	expr	...Evaluate an Expression in a Data Environment
+withinfunctionfunctionbasedata	expr	...Evaluate an Expression in a Data Environment
+within.data.framefunctionfunctionbasedata	expr	...Evaluate an Expression in a Data Environment
+within.listfunctionfunctionbasedata	expr	...Evaluate an Expression in a Data Environment
+withRestartsfunctionfunctionbaseexpr	...Condition Handling and Recovery
+withVisiblefunctionfunctionbasexReturn both a value and its visibility
+writefunctionfunctionbasex	file"data"	ncolumnsif (is.character(x)) 1 else 5	appendFALSE	sep" "Write Data to a File
+writeBinfunctionfunctionbaseobject	con	endian.Platform$endian	useBytesFALSETransfer Binary Data To and From Connections
+writeCharfunctionfunctionbaseobject	con	ncharsnchar(object, type = "chars")	eos""	useBytesFALSETransfer Character Strings To and From Connections
+write.dcffunctionfunctionbasex	file""	appendFALSE	indent0.1 * getOption("width")	width0.9 * getOption("width")	keep.whiteNULLRead and Write Data in DCF Format
+writeLinesfunctionfunctionbasetext	constdout()	sep"\n"	useBytesFALSEWrite Lines to a Connection
+write.table0functionfunctionbasex	file""	appendFALSE	quoteTRUE	sep" "	eol"\n"	na"NA"	dec"."	row.namesTRUE	col.namesTRUE	qmethodc("escape", "double")Defunct Functions in Package 'base'
+%x%functionfunctionbaseX	YKronecker Products on Arrays
+xorfunctionfunctionbasex	yLogical Operators
+xor.hexmodefunctionfunctionbasea	bDisplay Numbers in Hexadecimal
+xor.octmodefunctionfunctionbasea	bDisplay Numbers in Octal
+xpdrows.data.framefunctionfunctionbasex	old.rows	new.rowsData Frame Auxiliary Functions
+xtfrmfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.AsIsfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.DatefunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.defaultfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.difftimefunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.factorfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.numeric_versionfunctionfunctionbasexNumeric Versions
+xtfrm.POSIXctfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.POSIXltfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xtfrm.SurvfunctionfunctionbasexAuxiliary Function for Sorting and Ranking
+xzfilefunctionfunctionbasedescription	open""	encodinggetOption("encoding")	compression6Functions to Manipulate Connections
+zapsmallfunctionfunctionbasex	digitsgetOption("digits")Rounding of Numbers

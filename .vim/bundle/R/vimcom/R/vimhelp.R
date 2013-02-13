@@ -2,7 +2,7 @@
 # Code based on all.R (src/library/utils)
 vim.help <- function(topic, w, classfor, package)
 {
-    if(!missing(classfor) & length(grep(topic, names(.knownS3Generics))) > 0){
+    if(!missing(classfor) & length(grep(topic, names(.knownS3Generics), fixed=TRUE)) > 0){
         curwarn <- getOption("warn")
         options(warn = -1)
         try(classfor <- classfor, silent = TRUE)  # classfor may be a function
