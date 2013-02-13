@@ -347,19 +347,29 @@ function! InsertWord()"{{{
   let l:currente = getpos(".")
   call setpos('.', l:current)
 
-  if l:current[2] > l:currentb[2] && l:current[2] < l:currente[2] 
-    "echo "middle"
-    execute "normal i".l:user_word
+  if l:current[2] == 1 
+    execute "normal i".l:user_word." "
+    return ""
   endif
 
-  if l:current[2] > l:currentb[2] && l:current[2] > l:currente[2] 
-    "echo "begin"
+  if l:current[2] == (col('$')-1)
+    execute "normal a ".l:user_word
+    return ""
+  endif
+
+  if l:current[2] > l:currentb[2] && l:current[2] < l:currente[2] 
+    execute "normal i".l:user_word
+    return ""
+  endif
+
+  if l:current[2] > l:currentb[2] && l:current[2] > l:currente[2]
     execute "normal i".l:user_word." "
+    return ""
   endif
 
   if l:current[2] > l:currentb[2] && l:current[2] == l:currente[2] 
-    "echo "end"
     execute "normal a ".l:user_word
+    return ""
   endif
 endfunction"}}}
 
@@ -793,20 +803,22 @@ let g:inccomplete_appendslash     = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_keys      = 'abceghimnopqrtuvwxyzsldfjk'
+let g:EasyMotion_keys       = 'abceghimnopqrtuvwxyzsldfjk'
 "let g:EasyMotion_keys      = 'abceghimnopqrtuvwxyzABCEGHIMNOPQRTUVWXYZSLDFJKsldfjk'
-let g:EasyMotion_mapping_w = '<leader>w'
-let g:EasyMotion_mapping_W = '<leader>W'
-let g:EasyMotion_mapping_b = '<leader>b'
-let g:EasyMotion_mapping_B = '<leader>B'
-let g:EasyMotion_mapping_e = '<leader>e'
-let g:EasyMotion_mapping_E = '<leader>E'
-let g:EasyMotion_mapping_f = '<leader>f'
-let g:EasyMotion_mapping_F = '<leader>F'
-let g:EasyMotion_mapping_n = '<leader>n'
-let g:EasyMotion_mapping_N = '<leader>N'
-let g:EasyMotion_mapping_j = '<leader>j'
-let g:EasyMotion_mapping_k = '<leader>k'
+let g:EasyMotion_mapping_w  = '<leader>w'
+let g:EasyMotion_mapping_W  = '<leader>W'
+let g:EasyMotion_mapping_b  = '<leader>b'
+let g:EasyMotion_mapping_B  = '<leader>B'
+let g:EasyMotion_mapping_e  = '<leader>e'
+let g:EasyMotion_mapping_E  = '<leader>E'
+let g:EasyMotion_mapping_ge = '<leader>me'
+let g:EasyMotion_mapping_gE = '<leader>mE'
+let g:EasyMotion_mapping_f  = '<leader>f'
+let g:EasyMotion_mapping_F  = '<leader>F'
+let g:EasyMotion_mapping_n  = '<leader>n'
+let g:EasyMotion_mapping_N  = '<leader>N'
+let g:EasyMotion_mapping_j  = '<leader>j'
+let g:EasyMotion_mapping_k  = '<leader>k'
 imap <leader>w <ESC><leader>w
 imap <leader>W <ESC><leader>W
 imap <leader>b <ESC><leader>b
@@ -902,10 +914,11 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Repmo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:repmo_key = '\'
-let g:repmo_revkey = 'g\'
+let g:repmo_key = ';'
+let g:repmo_revkey = '\'
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
-      \]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c"
+      \]\"|[\" ]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c 
+      \f|F t|T ,f|,F ,w|,b ,W|,B ,e|,me ,E|,mE ,j|,k ,n|,N"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AmbiCompletion

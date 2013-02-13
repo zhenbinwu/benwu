@@ -2,10 +2,12 @@
 " General: {{{1
 " File:         repmo.vim
 " Created:      2008 Jan 27
-" Last Change:  2012 Sep 25
-" Rev Days:     8
+" Last Change:  2009 Jun 03
+" Rev Days:     7
 " Author:	Andy Wokula <anwoku@yahoo.de>
-" Version:	0.5.1
+" Editor:       Ben Wu <benwu@fnal.gov> (I made some significant changes to
+" this script so that it could work with user defined mapping. )
+" Version:	0.5
 
 " Question: BML schrieb: Is there a way/command to repeat the last movement,
 "   like ; and , repeat the last f command? It would be nice to be able to
@@ -79,9 +81,6 @@
 " + added :sil! before  unmap ;  in case user unmapped ";" by hand
 " + :normal didn't work with <Space> (i.e. " ")
 " + let f/F/t/T accept a count when unmapping
-" v0.5.1
-" + make "v5j" work again after vim7.3.100 (:normal resets the count)
-"   (fix by Joseph McCullough)
 
 " }}}
 
@@ -106,15 +105,13 @@ set cpo&vim
 " keys used to repeat motions:
 if !exists("g:repmo_key")
     " " key notation is like in mappings:
-    " let g:repmo_key = "<Space>"
-    " let g:repmo_revkey = "<BS>"
     let g:repmo_key = ";"
     let g:repmo_revkey = ","
 endif
 
 " motions to map per default
 if !exists("g:repmo_mapmotions")
-    let g:repmo_mapmotions = "j|k h|l <C-E>|<C-Y> zh|zl"
+    let g:repmo_mapmotions = "j|k h|l <C-E>|<C-Y> zh|zl w|b W|B e|ge E|gE"
     " use "<bar>" to map "|"
 endif
 
@@ -129,29 +126,55 @@ let s:lastrevkey = ""
 nn <sid>repmo( :<c-u>call<sid>MapRepeatMotion(0,
 vn <sid>repmo( :<c-u>call<sid>MapRepeatMotion(1,
 
-nn <silent> <sid>lastkey :<c-u>call<sid>MapRepMo(0)<cr>
-vn <silent> <sid>lastkey :<c-u>call<sid>MapRepMo(1)<cr>
-
-no <expr> <sid>cnt<Space> <sid>Count("get")
-" straight (v:count>0 ? v:count : "") doesn't yet work with gVim7.1.315
-
-let s:SNR = matchstr(maparg("<sid>lastkey", "n"), '<SNR>\d\+_')
  "}}}
 
-func! RepmoMap(key, revkey, ...) abort "{{{
+"" Load all the original mapping into b:repmo_maparg
+fun! s:MapArg(key) "{{{
+  if maparg(a:key, 'n') == ""
+    "" No such mapping
+    let b:repmo_maparg[a:key] = {'lhs': a:key, 'rhs':a:key}
+  else
+    "" Mapping exist
+    let b:repmo_maparg[a:key] = maparg(a:key, 'n', 0, 1)
+  endif
+
+  let l:mapflag = ""
+  if has_key(b:repmo_maparg[a:key], 'silent')
+    let l:mapflag .= b:repmo_maparg[a:key]['silent'] ? "<silent>" : ''
+  endif
+  if has_key(b:repmo_maparg[a:key], 'buffer')
+    let l:mapflag .= b:repmo_maparg[a:key]['buffer'] ? "<buffer>" : ''
+  endif
+  if has_key(b:repmo_maparg[a:key], 'expr')
+    let l:mapflag .= b:repmo_maparg[a:key]['expr'] ? "<expr>" : ''
+  endif
+  let b:repmo_maparg[a:key]['flag'] = l:mapflag
+endfunction "}}}
+
+func! s:RepmoMap(key, revkey, ...) abort "{{{
     " Args: {motion} {rev-motion}
     " map the {motion} key; {motion}+{rev-motion} on RHS
     let unique = a:0>=1 && a:1 ? "<unique>" : ""
-    let lhs = printf("<special><script><silent>%s %s", unique, a:key)
-    let rhs = "<sid>repmo('". substitute(a:key."','".a:revkey,"<","<lt>","g"). "')<cr>"
-    if maparg(a:key, "o") == ""
-	" makes the output of :map look better
+    " Load the mapping status of this key
+    if match(maparg(a:key, 'n'), "repmo(") == -1
+      call s:MapArg(a:key)
+    endif
+    let lhs = printf("<special><script><silent><buffer>%s %s", unique, a:key)
+    let rhs = "<sid>repmo('". substitute(a:key."','".a:revkey,"<","<lt>","g"). "')<cr>" . b:repmo_maparg[a:key]['rhs']
+    if maparg(a:key, "o") == "" 
+        "" prevent overloaded
+        if match(b:repmo_maparg[a:key]['rhs'], "repmo(")
+          return ""
+        endif
+
+	" unmap this mapping
+        if has_key(b:repmo_maparg[a:key], 'silent')
+          exec "silent nunmap " . b:repmo_maparg[a:key]['flag'] . " " . a:key
+        endif
 	exec "noremap" lhs rhs
-	exec "ounmap <special>" a:key
-	exec "sunmap <special>" a:key
     else
-	exec "nnoremap" lhs rhs
-	exec "xnoremap" lhs rhs
+	exec "nmap <buffer>" lhs rhs
+	exec "xmap <buffer>" lhs rhs
     endif
     " omit :omap and :smap, protect alien :omaps (but not :smaps)
 endfunc "}}}
@@ -162,63 +185,42 @@ func! <sid>MapRepeatMotion(vmode, key, revkey) "{{{
     if a:vmode
 	normal! gv
     endif
-    let cnt = v:count
-    let rawkey = eval('"'.escape(a:key, '\<"').'"')
+    let cnt = v:count1
+    let rawkey = eval('"'.escape(b:repmo_maparg[a:key]['rhs'], '\<"').'"')
     let whitecnt = (rawkey=~'^\s$' ? "1" : "")
-    exec "normal!" (cnt >= 1 ? cnt : whitecnt). rawkey
 
-    if s:lastkey != "" && s:lastkey != a:key
-	" restore "full" mapping
-	call RepmoMap(s:lastkey, s:lastrevkey)
-    endif
-
-    if cnt >= 0
-        if cnt == 0
-           let cnt = 1
-        endif
-	" map ";" and ","
-	let hasrepmo = 0
+    if cnt > 0
+	"  map ";" and ","
 	if exists("g:repmo_key") && g:repmo_key != ''
-            exec "noremap <special>" g:repmo_key cnt.a:key
-	    exec "sunmap <special>" g:repmo_key
-	    let hasrepmo = 1
+	    exec "nmap <buffer><special>" g:repmo_key cnt.b:repmo_maparg[a:key]['rhs']
 	endif
 	if exists("g:repmo_revkey") && g:repmo_revkey != ''
-	    exec "noremap <special>" g:repmo_revkey cnt.a:revkey
-	    exec "sunmap <special>" g:repmo_revkey
-	    let hasrepmo = 1
-	endif
-	if hasrepmo
-	    call s:TransRepeatMaps()
+	    exec "nmap <buffer><special>" g:repmo_revkey cnt.b:repmo_maparg[a:revkey]['rhs']
+	    "exec "sunmap <buffer><special>" g:repmo_revkey
 	endif
     endif
-
-    " map to leightweight func
-    exec "nmap <special>" a:key "<sid>lastkey"
-    exec "xmap <special>" a:key "<sid>lastkey"
 
     let s:lastkey = a:key
     let s:lastkeynorm = whitecnt. rawkey
     let s:lastrevkey = a:revkey
 
-endfunc "}}}
-func! <sid>MapRepMo(vmode) "{{{
-    " lightweight version of <sid>MapRepeatMotion()
-    if v:count==0
-	if a:vmode
-	    normal! gv
-	endif
-	exec "normal!" s:lastkeynorm
-	return
-    endif
-    call <sid>MapRepeatMotion(a:vmode, s:lastkey, s:lastrevkey)
-endfunc "}}}
-func! <sid>Count(...) "{{{
-    " count for zap motions when restoring
-    if a:0 == 0
-	let s:count = v:count>=1 ? v:count : ""
-    else
-	return s:count
+    "" For vim bulit in f 
+    for cmd in ["f", "F", "t", "T"]
+      if s:lastkey == cmd || s:lastrevkey == cmd
+        call s:TransRepeatMaps()
+        break
+      endif
+    endfor
+
+    "" For EasyMotion f
+    if match(b:repmo_maparg[a:key]['rhs'], "EasyMotion#F") != -1 ||
+ \     match(b:repmo_maparg[a:revkey]['rhs'], "EasyMotion#F") != -1 
+        if exists("g:repmo_key") && g:repmo_key != ''
+	    exec "nmap <buffer><special>" g:repmo_key cnt.substitute(b:repmo_maparg[a:key]['rhs'], "#F", "#REPF", 'g')
+        endif
+        if exists("g:repmo_revkey") && g:repmo_revkey != ''
+	    exec "nmap <buffer><special>" g:repmo_revkey cnt.substitute(b:repmo_maparg[a:revkey]['rhs'], "#F", "#REPF", 'g')
+        endif
     endif
 endfunc "}}}
 
@@ -226,28 +228,19 @@ func! s:TransRepeatMaps() "{{{
     " trans is for transparent
     " check if repeating keys (e.g. ";" and ",") are overloaded, remap the
     " original commands (here: "f", "F", "t", "T")
-    let cmdtype = ""
-    let repmounmap = ""
     if g:repmo_key == ';' || g:repmo_revkey == ';'
-	let repmounmap .= "<bar>sil! unmap ;"
-	let cmdtype = "zap"
+	exec "sil! unmap <buffer> ;"
     endif
     if g:repmo_key == ',' || g:repmo_revkey == ','
-	let repmounmap .= "<bar>sil! unmap ,"
-	let cmdtype = "zap"
+	exec  "sil! unmap <buffer> ,"
     endif
-    if cmdtype == "zap"
-	let cmdunmap = ""
-	for zapcmd in ["f", "F", "t", "T"]
-	    if !(maparg(zapcmd) == "" || maparg(zapcmd, "n") =~ s:SNR)
-		continue
-	    endif
-	    exec "nn <special><script><silent>" zapcmd ":<c-u><sid>cmdunmap<cr><sid>cnt" zapcmd
-	    exec "xn <special><script><silent>" zapcmd ":<c-u><sid>cmdunmap<bar>norm!gv<cr><sid>cnt" zapcmd
-	    let cmdunmap .= "<bar>sil! unmap ". zapcmd
-	endfor
-	exec "cno <special><sid>cmdunmap call <sid>Count()". repmounmap. cmdunmap
-    endif
+    " Remap ; and , commands so they also work after t and T
+    " Only do the remapping for normal and visual mode, not operator pending
+    " Use @= instead of :call to prevent leaving visual mode
+    nmap ; @=FixCommaAndSemicolon(';')<CR>
+    nmap , @=FixCommaAndSemicolon(',')<CR>
+    vmap ; @=FixCommaAndSemicolon(';')<CR>
+    vmap , @=FixCommaAndSemicolon(',')<CR>
 endfunc "}}}
 
 func! s:CreateMappings(pairs) "{{{
@@ -255,12 +248,16 @@ func! s:CreateMappings(pairs) "{{{
 	echomsg "Usage:  :RepmoMap {motion}|{rev-motion} ... [<unique>] ..."
 	return
     endif
+
+    if !exists('b:repmo_maparg')
+      let b:repmo_maparg = {}
+    endif
     let unique = 0
     for pair in split(a:pairs)
 	let keys = split(pair, "|")
 	if len(keys) == 2
-	    call RepmoMap(keys[0], keys[1], unique)
-	    call RepmoMap(keys[1], keys[0], unique)
+	    call s:RepmoMap(keys[0], keys[1], unique)
+	    call s:RepmoMap(keys[1], keys[0], unique)
 	elseif pair == "<unique>"
 	    let unique = 1
 	else
@@ -269,25 +266,55 @@ func! s:CreateMappings(pairs) "{{{
     endfor
 endfunc "}}}
 
+fun! s:EasyMotionFT(dir) "{{{
+  if a:dir == 0
+    exec ":call " . b:repmo_maparg[s:lastkey]['rhs']
+    echo "normal! " . b:repmo_maparg[s:lastkey]['rhs']
+  else
+    exec b:repmo_maparg[s:lastrevkey]['rhs'] . b:repmo_easyFT
+  endif
+  
+endfunction "}}}
+
+function FixCommaAndSemicolon(command)"{{{
+   let s:pos1 = getpos(".")
+   execute "normal! " . a:command
+   let s:pos2 = getpos(".")
+
+   "" In case of at the end of line
+   if s:pos1 == s:pos2
+     let s:org = s:pos1
+
+     while s:pos1 == s:pos2
+       if a:command == ";"
+         execute "normal! j0"
+       else
+         execute "normal! k$"
+       endif
+       let s:pos1 = getpos(".")
+       if s:pos1 == s:pos2
+         call setpos('.', s:org)
+         break
+       endif
+       execute "normal! " . a:command
+       let s:pos2 = getpos(".")
+     endwhile
+   endif
+   return ""
+endfunction"}}}
+
 " Commands: {{{1
 " map motions to be repeatable:
 com! -nargs=* RepmoMap call s:CreateMappings(<q-args>)
 
 " Do Inits: {{{1
 if g:repmo_mapmotions != ""
-    exec "RepmoMap" g:repmo_mapmotions
+    autocmd VimEnter,BufCreate,BufReadPost * exec "RepmoMap" g:repmo_mapmotions
 endif
 
 " Modeline: {{{1
-
 let &cpo = s:sav_cpo
 unlet s:sav_cpo
 
-" Feeling:
-"   The script might look a bit bloated for such a little thing, but this is
-"   due the work done to make the actual mappings lightweight.  For example,
-"   if you type "jjjjj", then only the first "j" will call the big function
-"   MapRepeatMotion(), the others call MapRepMo().  ";" and "," are always
-"   mapped directly to what they are going to repeat.
 
 " vim:set fdm=marker ts=8:

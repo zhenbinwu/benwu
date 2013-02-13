@@ -4,8 +4,6 @@
 
 [*] Vimgdb: How to interact with the debugging program
 
-[*] Repmo: How can it be used for my defined mapping? noremap? 
-
 [*] Fugitive: Gdiff doesnt work with tex file?
 
 [*] Speeddating: Add chinese support for increasing
@@ -34,8 +32,6 @@ project. Or a better managerment of the left windowo
 
 [*] Repeat support for text object, using v:operator
 
-[*] R: Add the one line description of the function to the omnilist
-[*] R: Enable syntax highlight in the preview window
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

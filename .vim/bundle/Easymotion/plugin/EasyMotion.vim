@@ -58,6 +58,8 @@
 		\ , 'B' : { 'name': 'WBW', 'dir': 1 }
 		\ , 'e' : { 'name': 'E'  , 'dir': 0 }
 		\ , 'E' : { 'name': 'EW' , 'dir': 0 }
+		\ , 'ge': { 'name': 'E'  , 'dir': 1 }
+		\ , 'gE': { 'name': 'EW' , 'dir': 1 }
 		\ , 'j' : { 'name': 'JK' , 'dir': 0 }
 		\ , 'k' : { 'name': 'JK' , 'dir': 1 }
 		\ , 'n' : { 'name': 'Search' , 'dir': 0 }
@@ -68,6 +70,4 @@
 
 		"\ , 't' : { 'name': 'T'  , 'dir': 0 }
 		"\ , 'T' : { 'name': 'T'  , 'dir': 1 }
-		"\ , 'ge': { 'name': 'E'  , 'dir': 1 }
-		"\ , 'gE': { 'name': 'EW' , 'dir': 1 }
 " vim: fdm=marker:noet:ts=4:sw=4:sts=4

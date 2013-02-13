@@ -61,6 +61,7 @@
 " Motion functions {{{
 	function! EasyMotion#F(visualmode, direction) " {{{
 		let char = s:GetSearchChar(a:visualmode)
+		let b:repmo_easyFT = char
 
 		if empty(char)
 			return
@@ -72,6 +73,7 @@
 	endfunction " }}}
 	function! EasyMotion#T(visualmode, direction) " {{{
 		let char = s:GetSearchChar(a:visualmode)
+		let b:repmo_easyFT = char
 
 		if empty(char)
 			return
@@ -81,6 +83,38 @@
 			let re = '\C' . escape(char, '.$^~') . '\zs.'
 		else
 			let re = '\C.' . escape(char, '.$^~')
+		endif
+
+		call s:EasyMotion(re, a:direction, a:visualmode ? visualmode() : '', mode(1))
+	endfunction " }}}
+	function! EasyMotion#REPF(visualmode, direction) " {{{
+		if !exists('b:repmo_easyFT')
+			let char = s:GetSearchChar(a:visualmode)
+			let b:repmo_easyFT = char
+		endif
+
+		if empty(b:repmo_easyFT)
+			return
+		endif
+
+		let re = '\C' . escape(b:repmo_easyFT, '.$^~')
+
+		call s:EasyMotion(re, a:direction, a:visualmode ? visualmode() : '', mode(1))
+	endfunction " }}}
+	function! EasyMotion#REPT(visualmode, direction) " {{{
+		if !exists('b:repmo_easyFT')
+			let char = s:GetSearchChar(a:visualmode)
+			let b:repmo_easyFT = char
+		endif
+
+		if empty(b:repmo_easyFT)
+			return
+		endif
+
+		if a:direction == 1
+			let re = '\C' . escape(b:repmo_easyFT, '.$^~') . '\zs.'
+		else
+			let re = '\C.' . escape(b:repmo_easyFT, '.$^~')
 		endif
 
 		call s:EasyMotion(re, a:direction, a:visualmode ? visualmode() : '', mode(1))
