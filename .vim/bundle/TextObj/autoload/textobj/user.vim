@@ -24,6 +24,8 @@
 " Interfaces  "{{{1
 " simple  "{{{2
 
+let s:MapNamePlug = {}
+
 function! textobj#user#move(pattern, flags, previous_mode)
   call s:prepare_movement(a:previous_mode)
 
@@ -386,11 +388,14 @@ function! s:plugin.define_interface_key_mappings()  "{{{3
     for spec_name in filter(keys(specs), 'v:val[0] != "*" && v:val[-1] != "*"')
       " lhs
       let lhs = '<silent> ' . self.interface_mapping_name(obj_name, spec_name)
-
       " rhs
       let _ = '*' . spec_name . '-function*'
       if has_key(specs, _)
         let rhs = printf(RHS_FUNCTION, obj_name, _)
+        let temp = eval(printf('g:__textobj_' . self.name . '.obj_specs["%s"]["%s"]', obj_name, _))
+        let s:MapNamePlug[temp] =
+              \ self.interface_mapping_name(obj_name, spec_name)
+
       elseif has_key(specs, '*pattern*')
         if spec_name =~# '^move-[npNP]$'
           let flags = ''
@@ -502,9 +507,11 @@ function! s:select_function_wrapper(function_name, previous_mode)
     normal! o
     call setpos('.', end_position)
   endif
+
+  silent! call repeat#set(v:operator . "\<Plug>" . substitute(s:MapNamePlug[a:function_name], '<Plug>', '', 'g'), v:count1)
+  let g:repeat_tick = b:changedtick + 1
+
 endfunction
-
-
 
 
 " Etc  "{{{2
@@ -586,12 +593,6 @@ function! s:proper_visual_mode(lhs)
   \                   '')
   return s2 =~# '^\p' ? 'x' : 'v'
 endfunction
-
-
-
-
-
-
 
 
 " __END__  "{{{1

@@ -90,7 +90,7 @@ if exists("loaded_repmo")
 endif
 let loaded_repmo = 1
 
-if v:version < 700 || &cp
+if v:version < 703 || !has('patch032') || &cp
     echo "Repmo: you need at least Vim 7 and 'nocp' set"
     finish
 endif

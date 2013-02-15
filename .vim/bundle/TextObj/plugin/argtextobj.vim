@@ -218,6 +218,8 @@ function! s:MoveRight(num)
 endfunction
 
 function! s:MotionArgument(inner, visual)
+  silent! call repeat#set(v:operator . ":call Motion(". a:inner . ", " . a:visual. ")\<CR>", v:count1)
+
   let current_c = getline('.')[getpos('.')[2]-1]
   if current_c==',' || current_c=='('
     normal l
@@ -293,7 +295,13 @@ function! s:MotionArgument(inner, visual)
     call <SID>MoveToNextNonSpace()
     exe 'normal h'
   endif
+
+  let g:repeat_tick = b:changedtick + 1
 endfunction
+
+fun! Motion(inner, visual) "{{{
+  call <SID>MotionArgument(a:inner, a:visual)
+endfunction "}}}
 
 " maping definition
 vnoremap <silent> ia <ESC>:call <SID>MotionArgument(1, 1)<CR>

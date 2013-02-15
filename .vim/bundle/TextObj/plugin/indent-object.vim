@@ -220,5 +220,13 @@ function! <Sid>TextObject(inner, incbelow, vis, range, count)
 endfunction
 
 function! <Sid>HandleTextObjectMapping(inner, incbelow, vis, range)
-	call <Sid>TextObject(a:inner, a:incbelow, a:vis, a:range, v:count1)
+  call <Sid>TextObject(a:inner, a:incbelow, a:vis, a:range, v:count1)
+  call repeat#set(v:operator . ":call TextObjectIndent(". a:inner . ", " .  a:incbelow . ", " . a:vis . 
+        \ ")\<CR>", v:count1)
+  let g:repeat_tick = b:changedtick + 1
 endfunction
+
+fun! TextObjectIndent(inner, incbelow, vis) "{{{
+ call <Sid>HandleTextObjectMapping(a:inner, a:incbelow, a:vis, [line("."), line("."), col("."), col(".")])
+endfunction "}}}
+

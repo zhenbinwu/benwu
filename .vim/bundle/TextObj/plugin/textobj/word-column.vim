@@ -20,6 +20,9 @@ function! TextObjWordBasedColumn(textobj)
   endif
 
   exec "keepjumps silent normal!" . start_line . "gg" . col_bounds[0] . "|" . stop_line . "gg" . col_bounds[1] . "|"
+
+  silent! call repeat#set(v:operator . ":call  TextObjWordBasedColumn('" . a:textobj . "')\<cr>", v:count1)
+  let g:repeat_tick = b:changedtick + 1
 endfunction
 
 function! s:find_smart_boundary_cols(start_line, stop_line, cursor_col, textobj, whitespace_only)
