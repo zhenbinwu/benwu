@@ -278,6 +278,20 @@ function! Toggle() "{{{
       let s:wordUnderCursor_tmp = "true"
       let s:toggleDone = 1
 
+    elseif (s:wordUnderCursor ==? "max")
+      let s:wordUnderCursor_tmp = "min"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "min")
+      let s:wordUnderCursor_tmp = "max"
+      let s:toggleDone = 1
+
+    elseif (s:wordUnderCursor ==? "first")
+      let s:wordUnderCursor_tmp = "second"
+      let s:toggleDone = 1
+    elseif (s:wordUnderCursor ==? "second")
+      let s:wordUnderCursor_tmp = "first"
+      let s:toggleDone = 1
+
     elseif (s:wordUnderCursor ==? "on")
       let s:wordUnderCursor_tmp = "off"
       let s:toggleDone = 1
