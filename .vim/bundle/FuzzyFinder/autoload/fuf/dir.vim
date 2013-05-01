@@ -112,7 +112,11 @@ endfunction
 
 "
 function s:handler.onOpen(word, mode)
-  execute ':cd ' . fnameescape(a:word)
+  if exists(":NERDTree") == 2
+    execute ':NERDTree ' . fnameescape(a:word)
+  else
+    execute ':cd ' . fnameescape(a:word)
+  endif
 endfunction
 
 "

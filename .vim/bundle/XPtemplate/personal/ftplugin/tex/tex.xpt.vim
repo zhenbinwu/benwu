@@ -22,7 +22,13 @@ XPT graphics wrap=content hint=[color]...[/color]
 
 XPT tikzpicture " \begin{tikzpicture}{..} .. \end{tikzpicture}
 \begin{tikzpicture}
-    `cursor^
+    \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=`0.9^\textwidth]{`content^}};
+    \begin{scope}[x={(image.south east)},y={(image.north west)}]
+      \draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1,1);
+      \foreach \x in {0,1,...,9} { \node [anchor=north] at (\x/10,0) {0.\x}; }
+      \foreach \y in {0,1,...,9} { \node [anchor=east] at (0,\y/10) {0.\y}; }
+      \draw[red,ultra thick,rounded corners] (0.15,0.10) rectangle (0.20,0.95);
+    \end{scope}
 \end{tikzpicture}
  
 "XPT documentclass " documentclass[..]{..}

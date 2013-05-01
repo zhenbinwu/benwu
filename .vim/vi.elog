@@ -25,13 +25,7 @@ send the command to execute for the main file
 [*] Map <leader>u for undo, whether persistence undo or undo till the pervious
 write (or some way better to deal with this)
 
-[*] Close the right window (project, winmanage etc. ) when open another
-project. Or a better managerment of the left windowo
-
 [*] Fuzzyfinder, dir open with nerdtree
-
-[*] Repeat support for text object, using v:operator
-
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

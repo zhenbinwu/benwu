@@ -87,6 +87,8 @@
 "     > Project          ( V1.4.1      2012_12_22 )
 "     > AsyncCommand     ( V4.0        2012_12_27 )
 "     > R-plugin         ( V0.9.9.1    2013_01_29 )
+"     > PSeach           ( V0.3        2013_02_28 )
+"     > Startify         ( V1.3        2013_05_01 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -433,8 +435,15 @@ noremap <leader>o mayiw`a:exe "!kdict " . @" . "" <CR><CR>
 if v:version >= '703'
   set undodir=$HOME/.vim/undo
   set undofile
-  map <silent> <F11> :GundoToggle<CR>
-  let g:gundo_width = 35
+
+  fun! OnlyGundo() "{{{
+    if exists(":WMClose") == 2
+      :WMClose
+    endif
+    :GundoToggle
+  endfunction "}}}
+  map <silent> <F11> :call OnlyGundo()<CR>
+  let g:gundo_width = 30
   let g:gundo_preview_height = 20
   let g:gundo_close_on_revert = 1
 endif
@@ -532,7 +541,13 @@ let g:winManagerWindowLayout = 'TagList,NERDTree|BufExplorer'
 let g:winManagerWidth        = 30
 let g:persistentBehaviour    = 0
 let g:defaultExplorer        = 0
-map <silent> <F12> :WMToggle<CR>
+map <silent> <F12> :call OnlyWin()<CR>
+fun! OnlyWin() "{{{
+  if exists("g:gundo_target_n") && exists(":GundoHide") == 2
+    :GundoHide
+  endif
+  :WMToggle
+endfunction "}}}
 
 
 """"""""""""""""""""""""""""""""""""""""
@@ -915,7 +930,7 @@ augroup END
 " => Repmo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:repmo_key = ';'
-let g:repmo_revkey = '\'
+let g:repmo_revkey = "'"
 let g:repmo_mapmotions = "<C-E>|<C-Y> zh|zl )|( }|{ ]]|[[ 
       \]\"|[\" ]`|[` ](|[( ])|[) ]{|[{ ]}|[} ]m|[m ]s|[s ]c|[c 
       \f|F t|T ,f|,F ,w|,b ,W|,B ,e|,me ,E|,mE ,j|,k ,n|,N"
@@ -992,7 +1007,6 @@ let g:proj_igndir = "CVS, objects, obj, dict"
 let g:proj_filter = "*.vim *.C *.cc *.hh"
 let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => AsyncCommand
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1007,3 +1021,14 @@ let g:cscope_database = "cscope.out"
 let g:vimrplugin_screenplugin = 0
 let vimrplugin_objbr_w        = 30
 let vimrplugin_vimpager       = "horizontal"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => PSearch
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:pse_max_height = 8
+let g:pse_prompt='☻  '
+ 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Startify
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:startify_bookmarks = [ '~/.vimrc' ]

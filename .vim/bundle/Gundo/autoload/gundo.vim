@@ -437,6 +437,14 @@ endfunction"}}}
 
 "{{{ Misc
 
+function! gundo#GundoShow()"{{{
+    call s:GundoOpen()
+endfunction"}}}
+
+function! gundo#GundoHide()"{{{
+    call s:GundoClose()
+endfunction"}}}
+
 function! gundo#GundoToggle()"{{{
     call s:GundoToggle()
 endfunction"}}}

@@ -163,7 +163,7 @@ func! s:RepmoMap(key, revkey, ...) abort "{{{
     let rhs = "<sid>repmo('". substitute(a:key."','".a:revkey,"<","<lt>","g"). "')<cr>" . b:repmo_maparg[a:key]['rhs']
     if maparg(a:key, "o") == "" 
         "" prevent overloaded
-        if match(b:repmo_maparg[a:key]['rhs'], "repmo(")
+        if match(b:repmo_maparg[a:key]['rhs'], "repmo(") != -1
           return ""
         endif
 
@@ -192,11 +192,10 @@ func! <sid>MapRepeatMotion(vmode, key, revkey) "{{{
     if cnt > 0
 	"  map ";" and ","
 	if exists("g:repmo_key") && g:repmo_key != ''
-	    exec "nmap <buffer><special>" g:repmo_key cnt.b:repmo_maparg[a:key]['rhs']
+	    exec "nnoremap <buffer><special>" g:repmo_key cnt.b:repmo_maparg[a:key]['rhs']
 	endif
 	if exists("g:repmo_revkey") && g:repmo_revkey != ''
-	    exec "nmap <buffer><special>" g:repmo_revkey cnt.b:repmo_maparg[a:revkey]['rhs']
-	    "exec "sunmap <buffer><special>" g:repmo_revkey
+	    exec "nnoremap <buffer><special>" g:repmo_revkey cnt.b:repmo_maparg[a:revkey]['rhs']
 	endif
     endif
 
@@ -237,10 +236,10 @@ func! s:TransRepeatMaps() "{{{
     " Remap ; and , commands so they also work after t and T
     " Only do the remapping for normal and visual mode, not operator pending
     " Use @= instead of :call to prevent leaving visual mode
-    nmap ; @=FixCommaAndSemicolon(';')<CR>
-    nmap , @=FixCommaAndSemicolon(',')<CR>
-    vmap ; @=FixCommaAndSemicolon(';')<CR>
-    vmap , @=FixCommaAndSemicolon(',')<CR>
+    exec "nmap <buffer> " . g:repmo_key    . " @=FixCommaAndSemicolon(';')<CR>"
+    exec "nmap <buffer> " . g:repmo_revkey . " @=FixCommaAndSemicolon(',')<CR>"
+    exec "vmap <buffer> " . g:repmo_key    . " @=FixCommaAndSemicolon(';')<CR>"
+    exec "vmap <buffer> " . g:repmo_revkey . " @=FixCommaAndSemicolon(',')<CR>"
 endfunc "}}}
 
 func! s:CreateMappings(pairs) "{{{
@@ -309,7 +308,7 @@ com! -nargs=* RepmoMap call s:CreateMappings(<q-args>)
 
 " Do Inits: {{{1
 if g:repmo_mapmotions != ""
-    autocmd VimEnter,BufCreate,BufReadPost * exec "RepmoMap" g:repmo_mapmotions
+    autocmd VimEnter,BufCreate * exec "RepmoMap" g:repmo_mapmotions
 endif
 
 " Modeline: {{{1

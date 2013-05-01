@@ -39,6 +39,10 @@ map <buffer> <leader>i <ESC>:call FreezeImap()<CR>
 " Det<buffer> ect documentclass, let g:Tex_DefaultTargetFormat='pdf' if it is a beamer
 function! CheckBeamer() "{{{
 
+    if exists("b:Tex_package_detected")
+      return
+    endif
+
 	" For package files without \begin and \end{document}, we might be told to
 	" search from beginning to end.
 	if a:0 < 2
@@ -115,11 +119,13 @@ function! CheckBeamer() "{{{
     
     if exists("b:Tex_package_detected")
       if b:Tex_package_detected == 'beamer'
-        let g:Tex_DefaultTargetFormat='pdf'
+        unlet g:Tex_FormatDependency_pdf  
+        let g:Tex_DefaultTargetFormat = 'pdf'
+        let g:Tex_CompileRule_pdf     = 'pdflatex -shell-escape -src-specials -interaction = nonstopmode $*'
       endif
     endif
 endfunction "}}}
-call CheckBeamer()
+autocmd BufWritePre *.tex call CheckBeamer()
 
 " If buffer modified, update the date in the file
 " Restores cursor and window position using save_cursor variable.
