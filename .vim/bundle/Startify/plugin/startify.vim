@@ -72,7 +72,7 @@ function! s:insane_in_the_membrane() abort
     let cnt = idx
   endif
 
-  let index = 'abcdefghjklmnoprstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ'
+  let index = 'asdfghjklbcemnoprtuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ'
   let cnt   = 0
   if exists('g:startify_bookmarks')
     call append('$', '')

@@ -553,12 +553,14 @@ endfunction "}}}
 """"""""""""""""""""""""""""""""""""""""
 " NERDTree Setting
 """"""""""""""""""""""""""""""""""""""""
-let g:NERDTreeMapChdir  = 'd'
+let g:NERDTreeMapChdir           = 'd'
 let g:NERDTreeMapJumpNextSibling = 'gj'
 let g:NERDTreeMapJumpPrevSibling = 'gk'
-let NERDTreeIgnore      = ['\~$']
-let NERDTreeWinSize     = 30
-let g:nerdtree_open_cmd = 'gnome-open'
+let g:NERDTreeMapOpenSplit       = 's'
+let g:NERDTreeMapOpenVSplit      = 'v'
+let NERDTreeIgnore               = ['\~$']
+let NERDTreeWinSize              = 30
+let g:nerdtree_open_cmd          = 'gnome-open'
 exe 'nnoremap gb :!' . g:nerdtree_open_cmd . ' <cfile> &<CR><CR>'
 nmap <silent> <Leader>g :NERDTreeToggle<CR>:redraw!<CR>
 
@@ -729,6 +731,7 @@ let g:alternateSearchPath        .= 'sfr:src,sfr:WHAM,reg:/WHAM/src/g/,reg:/src/
 let g:alternateSearchPath        .= 'sfr:source,sfr:include,reg:/include/source/g/,reg:/source/include/g/'
 let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
+let g:alternateExtensions_C       = "inc,h,hh,H,HPP,hpp"
 nmap <Leader>aa :A<CR>
 nmap <Leader>as :AS<CR>
 nmap <Leader>av :AV<CR>
@@ -814,6 +817,8 @@ autocmd filetype python set omnifunc=pythoncomplete#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:inccomplete_addclosebracket = 'no'
 let g:inccomplete_appendslash     = 1
+"Temporary disable inccomplete due to the conflict with CppOmnicomplete
+let g:loaded_inccomplete = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EasyMotion
@@ -1031,4 +1036,4 @@ let g:pse_prompt='☻  '
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:startify_bookmarks = [ '~/.vimrc' ]
+let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]

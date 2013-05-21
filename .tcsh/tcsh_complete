@@ -275,7 +275,7 @@ if ($?_complete) then
 	set hosts=($hosts $f)
     endif
     if ( -r $HOME/.ssh/known_hosts ) then
-	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ ` >& /dev/null
+	set f=`cat $HOME/.ssh/known_hosts | cut -f 1 -d \ | cut -f 1 -d ,` >& /dev/null
 	set hosts=($hosts $f)
     endif
     unset f

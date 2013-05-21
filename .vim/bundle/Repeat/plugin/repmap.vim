@@ -91,14 +91,12 @@ endif
 let loaded_repmo = 1
 
 if v:version < 703 || !has('patch032') || &cp
-    echo "Repmo: you need at least Vim 7 and 'nocp' set"
+    echo "Repmo: you need at least Vim 7.3 with patch 032"
     finish
 endif
 
 let s:sav_cpo = &cpo
 set cpo&vim
-" " doesn't help, we need absent cpo-< all the time
-" :h map-<special>
 
 " Customization: {{{1
 
@@ -254,6 +252,10 @@ func! s:CreateMappings(pairs) "{{{
     let unique = 0
     for pair in split(a:pairs)
 	let keys = split(pair, "|")
+        if &filetype == 'nerdtree' && pair == 't|T' 
+          echo pair
+          continue
+        endif 
 	if len(keys) == 2
 	    call s:RepmoMap(keys[0], keys[1], unique)
 	    call s:RepmoMap(keys[1], keys[0], unique)
@@ -314,6 +316,5 @@ endif
 " Modeline: {{{1
 let &cpo = s:sav_cpo
 unlet s:sav_cpo
-
 
 " vim:set fdm=marker ts=8:

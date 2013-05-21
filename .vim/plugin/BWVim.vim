@@ -93,7 +93,7 @@ fun! MapMake(output) "{{{
   elseif a:output == 1
     execute "silent make " . g:make_target
   endif
-  cwindow
+  botright cwindow
   cc
   if exists("g:syntastic_enable") && exists("syntastic_temp")
     let g:syntastic_enable = syntastic_temp

@@ -24,6 +24,19 @@ fun! Runexe() "{{{
       exe		"!".Run
     endif
   endif
+
+  if !executable(Exe) && !executable(Run)
+    let exefiles = glob("`find . -executable -type f`")
+    let exelist = split(exefiles, '\n')
+    for i in range(len(exelist))
+      if match(exelist[i], '.so') != -1
+        unlet exelist[i]
+      endif
+    endfor
+    if len(exelist) == 1
+      exe '!'.exelist[0]
+    endif
+  endif
 endfunction "}}}
 
 fun! Showexe() "{{{
@@ -241,4 +254,5 @@ fun! s:SyntasticCppC_Boost(mode) "{{{
 endfunction "}}}
 
 set tags+=~/.vim/ftplugin/cpp/cpp_tags
+set tags+=~/.vim/ftplugin/cpp/root_tags
 "set tags+=~/.vim/ftplugin/cpp/boost_tags
