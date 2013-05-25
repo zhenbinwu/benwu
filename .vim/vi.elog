@@ -34,8 +34,10 @@ write (or some way better to deal with this)
 be able to search the Makefile under the project and get the included path.
 Also each time it is involved, it check the timestamp of the Makefile to
 include the recently added include path.
+
 [*] Syntastic: Similar to the inccomplete include path from Makefile. But make
 sure it is a unique set of path though.
+[*] Syntastic: Take advantage of the Clang_complete file.
 
 [*] Fix the problem with omni complete : Inccomplete and Cppomnicomplete?
 -> Move Inccomplete into cppomnicomplete? Since it is more useful in
@@ -50,6 +52,12 @@ cppomnicomplete!!
 [*] NerdCommenter: Get the sexy commenter style more sexier so that it can be
 pick up by the locator. 
 -> Normal input, put the cursor in the right position
+
+[*] Tagbar: add mapping to split (and vertical split) window and jump
+
+[*] ClangComplete: How to make it faster
+
+[*] Fugitive: diff window on the right handside as the VCScommand
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

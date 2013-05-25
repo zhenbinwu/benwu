@@ -44,7 +44,7 @@
 "     > DirDiff          ( V1.1.4      2011_10_27 )
 "     > Indent_py        ( V0.3        2011_07_24 )
 "     > Python_fn        ( V1.13       2011_07_24 )
-"     > Pydoc            ( V1.3.6      2011_07_24 )  " 
+"     > Pydoc            ( V2.0        2013_05_24 )
 "     > Pep8             ( V0.3.1      2011_07_24 )
 "     > Pythoncomplete   ( V0.9        2011_09_01 )
 "     > SrollColors      ( V0719       2012_05_09 )
@@ -52,7 +52,7 @@
 "     > Ambicomplete     ( V0.2a       2012_08_11 )
 "
 "     ------> Plugins within Pathogen
-"     > NERD_Tree        ( V4.1.0      2011_01_29 )  " 
+"     > NERD_Tree        ( V4.2.0      2013_05_24 )
 "     > WinManager       ( V2.3        2011_01_29 ) 
 "     > BufExplorer      ( V7.3.0      2012_10_09 )  " 
 "     > Align            ( V36/42      2012_11_25 ) 
@@ -73,9 +73,9 @@
 "     > Python_ifold     ( V2.9        2011_07_24 )
 "     > Inccomplete      ( V1.6.32     2013_01_16 ) 
 "     > NERD_Commenter   ( V2.3.0      2012_06_17 ) 
-"     > Repeat           ( V1.0        2012_05_09 )  " 
-"     > Surrond          ( V1.90       2012_05_09 )  " 
-"     > Tagbar           ( V2.4        2012_06_17 )  " 
+"     > Repeat           ( V1.1        2013_05_24 )
+"     > Surrond          ( V2.0        2013_05_24 )
+"     > Tagbar           ( V2.5        2013_05_24 )
 "     > Fugitive         ( V1.2        2012_06_18 )
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
@@ -89,6 +89,7 @@
 "     > R-plugin         ( V0.9.9.1    2013_01_29 )
 "     > PSeach           ( V0.3        2013_02_28 )
 "     > Startify         ( V1.3        2013_05_01 )
+"     > ClangComplete    ( V2.0        2013_05_24 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,6 +110,12 @@ if v:version < '702'
 endif
 if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
+endif
+
+if executable("clang")
+  call add(g:pathogen_disabled, 'OmniCppComplete')
+else
+  call add(g:pathogen_disabled, 'ClangComplete')
 endif
 
 call pathogen#infect()
@@ -507,7 +514,7 @@ let g:SuperTabRetainCompletionDuration = 'completion'
 inoremap <expr> <C-f>  pumvisible()?"\<PageDown>\<C-N><C-P>":"\<C-f>"
 inoremap <expr> <C-b>  pumvisible()?"\<PageUp>\<C-N><C-P>":"\<C-b>"
 au CursorMovedI,InsertLeave * if pumvisible()==0| silent! pclose |endif
-""set completeopt-=preview
+set completeopt-=preview
 set include="#include \\(<boost\\)\\@!"
 
 """""""""""""""""""""""""""""""""
@@ -560,6 +567,7 @@ let g:NERDTreeMapOpenSplit       = 's'
 let g:NERDTreeMapOpenVSplit      = 'v'
 let NERDTreeIgnore               = ['\~$']
 let NERDTreeWinSize              = 30
+let NERDTreeDirArrows            = 0
 let g:nerdtree_open_cmd          = 'gnome-open'
 exe 'nnoremap gb :!' . g:nerdtree_open_cmd . ' <cfile> &<CR><CR>'
 nmap <silent> <Leader>g :NERDTreeToggle<CR>:redraw!<CR>
@@ -1037,3 +1045,25 @@ let g:pse_prompt='☻  '
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Twiki
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup filetypedetect
+        au BufNewFile,BufRead *.twiki     setf twiki
+augroup END
+let g:Twiki_FoldAtHeadings = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Clang
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:clang_hl_errors = 0
+let g:clang_snippets = 1
+let g:clang_use_library = 0
+let g:clang_snippets_engine = 'clang_complete'
+let g:clang_complete_copen = 1
+" conceal in insert (i), normal (n) and visual (v) modes
+set concealcursor=inv
+" hide concealed text completely unless replacement character is defined
+set conceallevel=2
+let g:clang_user_options = '-I/home/benwu/BenSys/include/root/'
