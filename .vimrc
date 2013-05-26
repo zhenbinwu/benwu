@@ -1062,8 +1062,11 @@ let g:clang_snippets = 1
 let g:clang_use_library = 0
 let g:clang_snippets_engine = 'clang_complete'
 let g:clang_complete_copen = 1
+let g:clang_trailing_placeholder =1
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
-let g:clang_user_options = '-I/home/benwu/BenSys/include/root/'
+if executable("root-config")
+  let g:clang_user_options = split(system("root-config --cflags"))[2]
+endif
