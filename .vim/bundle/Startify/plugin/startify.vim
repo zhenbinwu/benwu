@@ -86,10 +86,12 @@ function! s:insane_in_the_membrane() abort
     endfor
   endif
 
+  call append('$', ['', '   [g]  Gstatus'])
   call append('$', ['', '   [q]  quit'])
 
   setlocal nomodifiable nomodified
 
+  nnoremap <buffer> g :Gstatus<cr>
   nnoremap <buffer> q :quit<cr>
   nnoremap <buffer><silent> i :enew<cr>i
   nnoremap <buffer><silent> <cr> :normal <c-r><c-w><cr>

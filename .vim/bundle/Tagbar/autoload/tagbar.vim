@@ -455,7 +455,8 @@ function! s:InitTypes() abort
     let type_make = s:TypeInfo.New()
     let type_make.ctagstype = 'make'
     let type_make.kinds     = [
-        \ {'short' : 'm', 'long' : 'macros', 'fold' : 0, 'stl' : 1}
+        \ {'short' : 'm', 'long' : 'macros', 'fold' : 0, 'stl' : 1},
+        \ {'short' : 't', 'long' : 'target', 'fold' : 0, 'stl' : 1}
     \ ]
     let s:known_types.make = type_make
     " Matlab {{{3

@@ -67,7 +67,7 @@
 "     > Matchit          ( V1.13.2     2011_01_29 )
 "     > FuzzyFinder      ( V4.2.2      2011_01_30 )
 "     > A                ( V2.18       2011_05_08 )
-"     > Taskpaper        ( v0.6        2011_05_29 )  " 
+"     > Taskpaper        ( v0.7        2013_05_26 )
 "     > Cscope           ( V1          2011_01_30 )
 "     > Pydiction        ( V1.2        2011_07_24 )
 "     > Python_ifold     ( V2.9        2011_07_24 )
@@ -1068,5 +1068,5 @@ set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
 if executable("root-config")
-  let g:clang_user_options = split(system("root-config --cflags"))[2]
+  let g:clang_user_options = split(system("root-config --cflags"))[-1]
 endif

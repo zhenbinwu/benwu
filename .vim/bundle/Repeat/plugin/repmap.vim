@@ -236,8 +236,8 @@ func! s:TransRepeatMaps() "{{{
     " Use @= instead of :call to prevent leaving visual mode
     exec "nmap <buffer> " . g:repmo_key    . " @=FixCommaAndSemicolon(';')<CR>"
     exec "nmap <buffer> " . g:repmo_revkey . " @=FixCommaAndSemicolon(',')<CR>"
-    exec "vmap <buffer> " . g:repmo_key    . " @=FixCommaAndSemicolon(';')<CR>"
-    exec "vmap <buffer> " . g:repmo_revkey . " @=FixCommaAndSemicolon(',')<CR>"
+    "exec "vmap <buffer> " . g:repmo_key    . " @=FixCommaAndSemicolon(';')<CR>"
+    "exec "vmap <buffer> " . g:repmo_revkey . " @=FixCommaAndSemicolon(',')<CR>"
 endfunc "}}}
 
 func! s:CreateMappings(pairs) "{{{

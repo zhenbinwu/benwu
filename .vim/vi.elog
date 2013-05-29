@@ -37,7 +37,6 @@ include the recently added include path.
 
 [*] Syntastic: Similar to the inccomplete include path from Makefile. But make
 sure it is a unique set of path though.
-[*] Syntastic: Take advantage of the Clang_complete file.
 
 [*] Fix the problem with omni complete : Inccomplete and Cppomnicomplete?
 -> Move Inccomplete into cppomnicomplete? Since it is more useful in
@@ -58,6 +57,8 @@ pick up by the locator.
 [*] ClangComplete: How to make it faster
 
 [*] Fugitive: diff window on the right handside as the VCScommand
+
+[*] Omnicomplete: case insensitive 
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

@@ -96,7 +96,15 @@ if !exists('g:syntastic_cpp_config_file')
 endif
 
 function! SyntaxCheckers_cpp_GetLocList()
-    call SyntasticCppC()
+
+    if exists('b:clang_user_options') 
+        exec "let b:syntastic_" . &filetype . "_includes = b:clang_user_options"
+        if exists('g:clang_user_options')
+            exec "let b:syntastic_" . &filetype . "_includes .= ' '. g:clang_user_options"
+        endif
+    else
+        call SyntasticCppC()
+    endif
 
     let makeprg = g:syntastic_cpp_compiler . ' -x c++ -fsyntax-only ' .
                 \ g:syntastic_cpp_compiler_options
