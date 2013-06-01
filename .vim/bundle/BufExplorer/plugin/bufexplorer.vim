@@ -1,5 +1,5 @@
 "=============================================================================
-"    Copyright: Copyright (C) 2001-2012 Jeff Lanzarotta
+"    Copyright: Copyright (C) 2001-2013 Jeff Lanzarotta
 "               Permission is hereby granted to use and distribute this code,
 "               with or without modifications, provided that this copyright
 "               notice is copied with it. Like anything else that's free,
@@ -10,7 +10,7 @@
 " Name Of File: bufexplorer.vim
 "  Description: Buffer Explorer Vim Plugin
 "   Maintainer: Jeff Lanzarotta (delux256-vim at yahoo dot com)
-" Last Changed: Sunday, 23 Dec 2012
+" Last Changed: Monday, 06 May 2013
 "      Version: See g:bufexplorer_version for version number.
 "        Usage: This file should reside in the plugin directory and be
 "               automatically sourced.
@@ -38,6 +38,7 @@
 "      History: See supplied documentation.
 "      Issues: 'D' and 'd' remove the buffer from the list but the list is not
 "              displayed correctly.
+"              - Add ability to open a buffer in a new split when \be is used.
 "=============================================================================
 
 " Plugin Code {{{1
@@ -48,7 +49,7 @@ endif
 "2}}}
 
 " Version number
-let g:bufexplorer_version = "7.3.2"
+let g:bufexplorer_version = "7.3.6"
 
 " Check for Vim version {{{2
 if v:version < 700
@@ -59,7 +60,7 @@ if v:version < 700
 endif
 
 " Create commands {{{2
-command! BufExplorer :call BufExplorer(has ("gui") ? "drop" : "hide edit")
+command! BufExplorer :call BufExplorer()
 command! BufExplorerHorizontalSplit :call BufExplorerHorizontalSplit()
 command! BufExplorerVerticalSplit :call BufExplorerVerticalSplit()
 command! BufExplorerTab :call BufExplorerTab()
@@ -68,9 +69,9 @@ command! BufExplorerTab :call BufExplorerTab()
 function! s:Set(var, default)
     if !exists(a:var)
         if type(a:default)
-            exec "let" a:var "=" string(a:default)
+            execute "let" a:var "=" string(a:default)
         else
-            exec "let" a:var "=" a:default
+            execute "let" a:var "=" a:default
         endif
 
         return 1
@@ -103,12 +104,9 @@ function! s:Setup()
         autocmd BufEnter,BufNew * call s:ActivateBuffer()
         autocmd BufWipeOut * call s:DeactivateBuffer(1)
         autocmd BufDelete * call s:DeactivateBuffer(0)
-
         autocmd BufWinEnter \[BufExplorer\] call s:Initialize()
         autocmd BufWinLeave \[BufExplorer\] call s:Cleanup()
-
         autocmd TabEnter * call s:TabEnter()
-
         autocmd SessionLoadPost * call s:Reset()
     augroup END
 endfunction
@@ -137,7 +135,7 @@ function! s:Reset()
     let s:tabSpace = []
     let i = 0
 
-    while( tabpagenr('$') > 0 && i <= tabpagenr('$') )
+    while(tabpagenr('$') > 0 && i <= tabpagenr('$'))
         call add(s:tabSpace, [-1])
         let i = i + 1
     endwhile
@@ -239,11 +237,6 @@ function! s:ShouldIgnore(buf)
         return 1
     endif
 
-    " Ignore unlisted buffers.
-    if buflisted(a:buf) == 0
-        return 1
-    endif
-
     " Ignore buffers with no name.
     if empty(bufname(a:buf)) == 1
         return 1
@@ -322,13 +315,13 @@ endfunction
 " BufExplorerHorizontalSplit {{{2
 function! BufExplorerHorizontalSplit()
     let s:splitMode = "sp"
-    exec "BufExplorer"
+    execute "BufExplorer"
 endfunction
 
 " BufExplorerVerticalSplit {{{2
 function! BufExplorerVerticalSplit()
     let s:splitMode = "vsp"
-    exec "BufExplorer"
+    execute "BufExplorer"
 endfunction
 
 " BufExplorerTab {{{1
@@ -338,7 +331,7 @@ function! BufExplorerTab()
 endfunction
 
 " BufExplorer {{{2
-function! BufExplorer(open)
+function! BufExplorer()
     let name = s:name
 
     if !has("win32")
@@ -350,7 +343,7 @@ function! BufExplorer(open)
     if s:running == 1
         " Go to the open buffer.
         if has("gui")
-            exec "drop" name
+            execute "drop" name
         endif
 
         return
@@ -361,21 +354,6 @@ function! BufExplorer(open)
 
     silent let s:raw_buffer_listing = s:GetBufferInfo(0)
 
-    let buffer_listing_copy = copy(s:raw_buffer_listing)
-
-    if (g:bufExplorerShowUnlisted == 0)
-        call filter(buffer_listing_copy, 'v:val.attributes !~ "u"')
-    endif
-
-    if (!empty(buffer_listing_copy))
-        call filter(buffer_listing_copy, 'v:val.shortname !~ "\\\[No Name\\\]"')
-    endif
-
-"   if len(buffer_listing_copy) <= 1
-"       call s:Warning("Sorry, there are no more buffers to explore")
-"       return
-"   endif
-
     " We may have to split the current window.
     if (s:splitMode != "")
         " Save off the original settings.
@@ -383,22 +361,31 @@ function! BufExplorer(open)
 
         " Set the setting to ours.
         let [&splitbelow, &splitright] = [g:bufExplorerSplitBelow, g:bufExplorerSplitRight]
+        let _size = (s:splitMode == 'sp') ? g:bufExplorerSplitHorzSize : g:bufExplorerSplitVertSize
 
-        " Do it.
-        exe 'keepalt '.s:splitMode
+        " Split the window either horizontally or vertically.
+        if _size <= 0
+            execute 'keepalt ' . s:splitMode
+        else
+            execute 'keepalt ' . _size . s:splitMode
+        endif
 
         " Restore the original settings.
         let [&splitbelow, &splitright] = [_splitbelow, _splitright]
     endif
 
-    if !exists("b:displayMode") || b:displayMode != "winmanager"
+    if !exists('b:displayMode') || b:displayMode != 'winmanager'
         " Do not use keepalt when opening bufexplorer to allow the buffer that
         " we are leaving to become the new alternate buffer
-        exec "silent keepjumps ".a:open." ".name
+        execute 'silent keepjumps hide edit'.name
     endif
 
-    setlocal nonumber
     call s:DisplayBufferList()
+
+    " Position the cursor in the newly displayed list on the line representing
+    " the active buffer.  The active buffer is the line with the '%' character
+    " in it.
+    execute search('%')
 endfunction
 
 " DisplayBufferList {{{2
@@ -412,6 +399,12 @@ function! s:DisplayBufferList()
 
     call s:SetupSyntax()
     call s:MapKeys()
+
+    " Wipe out any existing lines in case BufExplorer buffer exists and the
+    " user had changed any global settings that might reduce the number of
+    " lines needed in the buffer.
+    keepjumps 1,$d _
+
     call setline(1, s:CreateHelp())
     call s:BuildBufferList()
     call cursor(s:firstBufferLine, 1)
@@ -450,7 +443,7 @@ function! s:MapKeys()
     nnoremap <script> <silent> <buffer> u             :call <SID>ToggleShowUnlisted()<CR>
 
     for k in ["G", "n", "N", "L", "M", "H"]
-        exec "nnoremap <buffer> <silent>" k ":keepjumps normal!" k."<CR>"
+        execute "nnoremap <buffer> <silent>" k ":keepjumps normal!" k."<CR>"
     endfor
 endfunction
 
@@ -508,7 +501,7 @@ function! s:ToggleHelp()
 
     " Remove old header.
     if (s:firstBufferLine > 1)
-        exec "keepjumps 1,".(s:firstBufferLine - 1) "d _"
+        execute "keepjumps 1,".(s:firstBufferLine - 1) "d _"
     endif
 
     call append(0, s:CreateHelp())
@@ -599,10 +592,19 @@ function! s:GetBufferInfo(bufnr)
     " Loop over each line in the buffer.
     for buf in split(bufoutput, '\n')
         let bits = split(buf, '"')
-        let b = {"attributes": bits[0], "line": substitute(bits[2], '\s*', '', '')}
+
+        " Use first and last components after the split on '"', in case a
+        " filename with an embedded '"' is present.
+        let b = {"attributes": bits[0], "line": substitute(bits[-1], '\s*', '', '')}
+
+        let name = bufname(str2nr(b.attributes))
+        let b["hasNoName"] = empty(name)
+        if b.hasNoName
+            let name = "[No Name]"
+        endif
 
         for [key, val] in items(s:types)
-            let b[key] = fnamemodify(bits[1], val)
+            let b[key] = fnamemodify(name, val)
         endfor
 
         if getftype(b.fullname) == "dir" && g:bufExplorerShowDirectories == 1
@@ -642,11 +644,12 @@ function! s:BuildBufferList()
             continue
         endif
 
-        " Ignore buffers with no name.
-        if empty(bufname(str2nr(buf.attributes))) == 1
+        " Skip "No Name" buffers if we are not to show them.
+        if (!g:bufExplorerShowNoName && buf.hasNoName)
             continue
         endif
 
+        " Are we to show only buffer(s) for this tab?
         if (g:bufExplorerShowTabBuffer)
             let show_buffer = 0
 
@@ -665,7 +668,8 @@ function! s:BuildBufferList()
 
         let line = buf.attributes." "
 
-        if g:bufExplorerSplitOutPathName
+        " Are we to split the path and file name?
+        if (g:bufExplorerSplitOutPathName)
             let type = (g:bufExplorerShowRelativePath) ? "relativepath" : "path"
             let path = buf[type]
             let pad  = (g:bufExplorerShowUnlisted) ? s:allpads.shortname : s:listedpads.shortname
@@ -688,7 +692,6 @@ function! s:BuildBufferList()
     endfor
 
     call setline(s:firstBufferLine, lines)
-
     call s:SortListing()
 endfunction
 
@@ -696,11 +699,11 @@ endfunction
 function! s:SelectBuffer(...)
     " Sometimes messages are not cleared when we get here so it looks like an
     " error has occurred when it really has not.
-" 3/25/2012    echo ""
+    "echo ""
 
     " Are we on a line with a file name?
     if line('.') < s:firstBufferLine
-        exec "normal! \<CR>"
+        execute "normal! \<CR>"
         return
     endif
 
@@ -729,7 +732,7 @@ function! s:SelectBuffer(...)
             " Yes, we are to open the selected buffer in a tab.
 
             " Restore [BufExplorer] buffer.
-            exec "keepjumps silent buffer!".s:originBuffer
+            execute "keepjumps silent buffer!".s:originBuffer
 
             " Get the tab nmber where this bufer is located in.
             let tabNbr = s:GetTabNbr(_bufNbr)
@@ -737,20 +740,20 @@ function! s:SelectBuffer(...)
             " Was the tab found?
             if tabNbr == 0
                 " _bufNbr is not opened in any tabs. Open a new tab with the selected buffer in it.
-                exec "999tab split +buffer" . _bufNbr
+                execute "999tab split +buffer" . _bufNbr
             else
                 " The _bufNbr is already opened in a tab, go to that tab.
-                exec tabNbr . "tabnext"
+                execute tabNbr . "tabnext"
 
                 " Focus window.
-                exec s:GetWinNbr(tabNbr, _bufNbr) . "wincmd w"
+                execute s:GetWinNbr(tabNbr, _bufNbr) . "wincmd w"
             endif
         else
             " No, the user did not ask to open the selected buffer in a tab.
 
             " Are we suppose to move to the tab where the active buffer is?
             if exists("g:bufExplorerChgWin")
-                exe g:bufExplorerChgWin."wincmd w"
+                execute g:bufExplorerChgWin."wincmd w"
             elseif bufloaded(_bufNbr) && g:bufExplorerFindActive
                 call s:Close()
 
@@ -760,17 +763,17 @@ function! s:SelectBuffer(...)
                 " Was the tab found?
                 if tabNbr != 0
                     " Yes, the buffer is located in a tab. Go to that tab number.
-                    exec tabNbr . "tabnext"
+                    execute tabNbr . "tabnext"
                 else
                     "Nope, the buffer is not in a tab. Simply switch to that
                     "buffer.
                     let _bufName = expand("#"._bufNbr.":p")
-                    exec _bufName ? "drop ".escape(_bufName, " ") : "buffer "._bufNbr
+                    execute _bufName ? "drop ".escape(_bufName, " ") : "buffer "._bufNbr
                 endif
             endif
 
             " Switch to the buffer.
-            exec "keepalt keepjumps silent b!" _bufNbr
+            execute "keepalt keepjumps silent b!" _bufNbr
         endif
 
         " Make the buffer 'listed' again.
@@ -840,9 +843,9 @@ function! s:DeleteBuffer(buf, mode)
     try
         " Wipe/Delete buffer from Vim.
         if a:mode == "wipe"
-            exe "silent bwipe" a:buf
+            execute "silent bwipe" a:buf
         else
-            exe "silent bdelete" a:buf
+            execute "silent bdelete" a:buf
         endif
 
         " Delete the buffer from the list on screen.
@@ -864,18 +867,19 @@ function! s:Close()
 
     " If we needed to split the main window, close the split one.
     if (s:splitMode != "")
-        exec "wincmd c"
+        execute "wincmd c"
     endif
 
     " Check to see if there are anymore buffers listed.
     if len(listed) == 0
         " Since there are no buffers left to switch to, open a new empty
         " buffers.
-        exe "enew"
+        execute "enew"
     else
-        " Since there are buffers left to switch to, swith to them...
+        " Since there are buffers left to switch to, swith to the previous and
+        " then the current.
         for b in reverse(listed[0:1])
-            exec "keepjumps silent b ".b
+            execute "keepjumps silent b ".b
         endfor
     endif
 
@@ -930,9 +934,9 @@ function! s:RebuildBufferList(...)
 
     let curPos = getpos('.')
 
-    if a:0
+    if a:0 && a:000[0] && (line('$') >= s:firstBufferLine)
         " Clear the list first.
-        exec "keepjumps ".s:firstBufferLine.',$d "_'
+        execute "keepjumps ".s:firstBufferLine.',$d _'
     endif
 
     let num_bufs = s:BuildBufferList()
@@ -997,22 +1001,22 @@ function! s:SortListing()
 
     if g:bufExplorerSortBy == "number"
         " Easiest case.
-        exec sort 'n'
+        execute sort 'n'
     elseif g:bufExplorerSortBy == "name"
         if g:bufExplorerSplitOutPathName
-            exec sort 'ir /\d.\{7}\zs\f\+\ze/'
+            execute sort 'ir /\d.\{7}\zs\f\+\ze/'
         else
-            exec sort 'ir /\zs[^\/\\]\+\ze\s*line/'
+            execute sort 'ir /\zs[^\/\\]\+\ze\s*line/'
         endif
     elseif g:bufExplorerSortBy == "fullpath"
         if g:bufExplorerSplitOutPathName
             " Sort twice - first on the file name then on the path.
-            exec sort 'ir /\d.\{7}\zs\f\+\ze/'
+            execute sort 'ir /\d.\{7}\zs\f\+\ze/'
         endif
 
-        exec sort 'ir /\zs\f\+\ze\s\+line/'
+        execute sort 'ir /\zs\f\+\ze\s\+line/'
     elseif g:bufExplorerSortBy == "extension"
-        exec sort 'ir /\.\zs\w\+\ze\s/'
+        execute sort 'ir /\.\zs\w\+\ze\s/'
     elseif g:bufExplorerSortBy == "mru"
         let l = getline(s:firstBufferLine, "$")
 
@@ -1107,7 +1111,7 @@ function! BufExplorer_ReSize()
 
     let nlines = min([line("$"), g:bufExplorerMaxHeight])
 
-    exe nlines." wincmd _"
+    execute nlines." wincmd _"
 
     " The following lines restore the layout so that the last file line is also
     " the last window line. Sometimes, when a line is deleted, although the
@@ -1115,7 +1119,7 @@ function! BufExplorer_ReSize()
     " the lines are pushed up and we see some lagging '~'s.
     let pres = getpos(".")
 
-    exe $
+    execute $
 
     let _scr = &scrolloff
     let &scrolloff = 0
@@ -1150,10 +1154,13 @@ call s:Set("g:bufExplorerShowDirectories", 1)       " (Dir's are added by comman
 call s:Set("g:bufExplorerShowRelativePath", 0)      " Show listings with relative or absolute paths?
 call s:Set("g:bufExplorerShowTabBuffer", 0)         " Show only buffer(s) for this tab?
 call s:Set("g:bufExplorerShowUnlisted", 0)          " Show unlisted buffers?
+call s:Set("g:bufExplorerShowNoName", 0)            " Show "No Name" buffers?
 call s:Set("g:bufExplorerSortBy", "mru")            " Sorting methods are in s:sort_by:
 call s:Set("g:bufExplorerSplitBelow", &splitbelow)  " Should horizontal splits be below or above current window?
 call s:Set("g:bufExplorerSplitOutPathName", 1)      " Split out path and file name?
 call s:Set("g:bufExplorerSplitRight", &splitright)  " Should vertical splits be on the right or left of current window?
+call s:Set("g:bufExplorerSplitVertSize", 0)        " Height for a vertical split. If <=0, default Vim size is used.
+call s:Set("g:bufExplorerSplitHorzSize", 0)        " Height for a horizontal split. If <=0, default Vim size is used.
 "1}}}
 
 " vim:ft=vim foldmethod=marker sw=4
