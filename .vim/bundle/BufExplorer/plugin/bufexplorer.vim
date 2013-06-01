@@ -1090,7 +1090,8 @@ call s:Set("g:bufExplorerMaxHeight", 25) " Handles dynamic resizing of the windo
 " or by winmanager.
 function! BufExplorer_Start()
     let b:displayMode = "winmanager"
-    call BufExplorer("e")
+    call BufExplorer()
+    "call BufExplorer("e")
 endfunction
 
 " Returns whether the display is okay or not.
@@ -1101,7 +1102,8 @@ endfunction
 " Handles dynamic refreshing of the window.
 function! BufExplorer_Refresh()
     let b:displayMode = "winmanager"
-    call BufExplorer("e")
+    call BufExplorer()
+    "call BufExplorer("e")
 endfunction
 
 function! BufExplorer_ReSize()
