@@ -34,10 +34,10 @@ $-------------------------------------------------------------------------
 #endif     // -----  not |CONDITION|  -----
 $-------------------------------------------------------------------------
 == preprocessor.ifndef-def-endif ==
-#ifndef  |?BASENAME:L|_INC
-#define  |BASENAME|_INC
+#ifndef  __|?BASENAME:L|_INC__
+#define  __|BASENAME|_INC__
 <CURSOR><SPLIT>
-#endif   // ----- #ifndef |BASENAME|_INC  -----
+#endif   // ----- #ifndef __|BASENAME|_INC__  -----
 $-------------------------------------------------------------------------
 == preprocessor.error ==
 #error	"<CURSOR>"			//

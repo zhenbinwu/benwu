@@ -2,6 +2,7 @@ let g:Powerline#Themes#benwu#theme = Pl#Theme#Create(
 	\ Pl#Theme#Buffer(''
 		\ , 'paste_indicator'
 		\ , 'mode_indicator'
+		\ , 'fugitive:branch'
 		\ , 'vimim'
 		\ , 'hgrev:branch'
 		\ , 'fileinfo'

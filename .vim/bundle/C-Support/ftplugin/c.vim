@@ -66,10 +66,10 @@ if exists("loaded_alternateFile")
   imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
 endif
 "
-command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert     (<f-args>)
-command! -nargs=1 -complete=customlist,C#HFileSectionList        HFileSection       call C#HFileSectionListInsert     (<f-args>)
+"command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert     (<f-args>) // :BUG:05/22/2013 09:43:22 PM:benwu: 
+"command! -nargs=1 -complete=customlist,C#HFileSectionList        HFileSection       call C#HFileSectionListInsert     (<f-args>)
 command! -nargs=1 -complete=customlist,C#KeywordCommentList      KeywordComment     call C#KeywordCommentListInsert   (<f-args>)
-command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert   (<f-args>)
+"command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#StdLibraryIncludesList  IncludeStdLibrary  call C#StdLibraryIncludesInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#C99LibraryIncludesList  IncludeC99Library  call C#C99LibraryIncludesInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#CppLibraryIncludesList  IncludeCppLibrary  call C#CppLibraryIncludesInsert   (<f-args>)
@@ -100,14 +100,14 @@ vnoremap    <buffer>  <silent>  <LocalLeader>c*         :call C#CodeToCommentC()
  "noremap    <buffer>  <silent>  <LocalLeader>co         :call C#CommentToCode()<CR>:nohlsearch<CR>
 "vnoremap    <buffer>  <silent>  <LocalLeader>co    <Esc>:call C#CommentToCode()<CR>:nohlsearch<CR>
 
-noremap    <buffer>  <silent>  <LocalLeader>cfr        :call C#InsertTemplateNoIndent("comment.frame")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>ch        :call C#InsertTemplateNoIndent("comment.frame")<CR>
 noremap    <buffer>  <silent>  <LocalLeader>cu        :call C#InsertTemplateNoIndent("comment.function")<CR>
 noremap    <buffer>  <silent>  <LocalLeader>cm        :call C#InsertTemplateNoIndent("comment.method")<CR>
 noremap    <buffer>  <silent>  <LocalLeader>cs        :call C#InsertTemplateNoIndent("comment.class")<CR>
 "noremap    <buffer>  <silent>  <LocalLeader>cfdi       :call C#InsertTemplateNoIndent("comment.file-description")<CR>
 "noremap    <buffer>  <silent>  <LocalLeader>cfdh       :call C#InsertTemplateNoIndent("comment.file-description-header")<CR>
 
-inoremap    <buffer>  <silent>  <LocalLeader>cfr   <Esc>:call C#InsertTemplateNoIndent("comment.frame")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ch   <Esc>:call C#InsertTemplateNoIndent("comment.frame")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cu   <Esc>:call C#InsertTemplateNoIndent("comment.function")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cm   <Esc>:call C#InsertTemplateNoIndent("comment.method")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cs   <Esc>:call C#InsertTemplateNoIndent("comment.class")<CR>
@@ -127,15 +127,15 @@ vnoremap    <buffer>  <silent>  <LocalLeader>ct   s<Esc>:call C#InsertDateAndTim
 "
 " call the above defined commands:
 "
- noremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
- noremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
+ "noremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
+ "noremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
  noremap    <buffer>            <LocalLeader>ck   <Esc>:KeywordComment<Space>
- noremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
+ "noremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
 "
-inoremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
-inoremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
+"inoremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
+"inoremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
 inoremap    <buffer>            <LocalLeader>ck   <Esc>:KeywordComment<Space>
-inoremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
+"inoremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
 " 
 " ---------- statements menu  ------------------------------------------------
 "

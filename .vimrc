@@ -33,7 +33,7 @@
 " Plugins_Included:
 "     ------> Common Plugins 
 "     > SuperTab         ( V2.0        2012_06_17 )
-"     > TagList          ( V4.5        2011_01_29 )
+"     > TagList          ( V4.6        2013_05_31 )
 "     > Calendar         ( V2.5        2011_01_29 )
 "     > LargeFile        ( V4          2011_01_29 )
 "     > ShowMarks        ( V2.2        2011_01_29 )
@@ -54,10 +54,10 @@
 "     ------> Plugins within Pathogen
 "     > NERD_Tree        ( V4.2.0      2013_05_24 )
 "     > WinManager       ( V2.3        2011_01_29 ) 
-"     > BufExplorer      ( V7.3.0      2012_10_09 )  " 
+"     > BufExplorer      ( V7.3.6      2013_05_31 )
 "     > Align            ( V36/42      2012_11_25 ) 
-"     > VCSCommand       ( V1.99.45    2011_10_27 )  " 
-"     > XPtemplate       ( V0.4.8-0707 2011_10_27 )  " 
+"     > VCSCommand       ( V1.99.47    2013_05_31 )
+"     > XPtemplate       ( V0.4.8-1201 2013_05_31 )
 "     > C-Support        ( V5.16       2011_11_06 ) 
 "     > Conque Shell     ( V2.2        2011_10_27 )   
 "     > LaTeX-Suite      ( V1.5        2011_01_29 ) 
@@ -962,9 +962,16 @@ nnoremap gk :SidewaysRight<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Powerline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:Powerline_theme       = 'benwu'
-let g:Powerline_colorscheme = 'benwu'
-let g:qflist_done           = 'done, successful'
+let g:Powerline_theme            = 'benwu'
+let g:Powerline_colorscheme      = 'benwu'
+let g:qflist_done                = 'done, successful'
+let g:Powerline_symbols_override = {
+        \ 'BRANCH': [0x169C],
+        \ 'LINE': 'L',
+        \ }
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERD_Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1045,6 +1052,7 @@ let g:pse_prompt='☻  '
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]
+let g:startify_custom_indices = ['a','s','d','f']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Twiki
@@ -1057,12 +1065,13 @@ let g:Twiki_FoldAtHeadings = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clang
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:clang_hl_errors = 0
-let g:clang_snippets = 1
-let g:clang_use_library = 0
-let g:clang_snippets_engine = 'clang_complete'
-let g:clang_complete_copen = 1
-let g:clang_trailing_placeholder =1
+let g:clang_hl_errors            = 1
+let g:clang_snippets             = 1
+let g:clang_use_library          = 1
+let g:clang_snippets_engine      = 'clang_complete'
+let g:clang_complete_copen       = 1
+let g:clang_complete_auto        = 1
+let g:clang_trailing_placeholder = 1
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
