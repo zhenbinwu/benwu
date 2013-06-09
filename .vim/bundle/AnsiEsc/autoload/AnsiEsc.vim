@@ -659,7 +659,7 @@ fun! AnsiEsc#AnsiEsc(rebuild)
   endif
   let b:AnsiEsc = 1
 "  call Dret("AnsiEsc#AnsiEsc")
-%s///g
+%s///ge
 endfun
 
 " ---------------------------------------------------------------------

@@ -761,7 +761,7 @@ imap <Leader>ht <ESC>:w<CR>:IHT<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pydiction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+let g:pydiction_location = '~/.vim/bundle/Plydiction/complete-dict'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pyflakes
@@ -966,12 +966,14 @@ let g:Powerline_theme            = 'benwu'
 let g:Powerline_colorscheme      = 'benwu'
 let g:qflist_done                = 'done, successful'
 let g:Powerline_symbols_override = {
-        \ 'BRANCH': [0x169C],
-        \ 'LINE': 'L',
+        \ 'BRANCH' : [0x2387, 0x20],
+        \ 'RO'     : [0x2620],
+        \ 'LINE'   : [0x2424],
+        \ 'FT'     : [0x2691]
         \ }
 
-
-
+        "\ 'BRANCH' : [0x2325],
+        "\ 'BRANCH' : [0x169C],
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERD_Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1052,7 +1054,7 @@ let g:pse_prompt='☻  '
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]
-let g:startify_custom_indices = ['a','s','d','f']
+let g:startify_custom_indices = ['a','d','f']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Twiki
@@ -1070,7 +1072,7 @@ let g:clang_snippets             = 1
 let g:clang_use_library          = 1
 let g:clang_snippets_engine      = 'clang_complete'
 let g:clang_complete_copen       = 1
-let g:clang_complete_auto        = 1
+let g:clang_complete_auto        = 0
 let g:clang_trailing_placeholder = 1
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv

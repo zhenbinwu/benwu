@@ -49,6 +49,7 @@ fun! Showexe() "{{{
     let ExeSrc = ":!".Exe." ".name
     exe         ExeSrc
   endif
+
   if !executable(Exe) && executable(Run)
     call inputsave()
     let name = input(':!'.Run.' ')
@@ -70,6 +71,23 @@ fun! Showexe() "{{{
       call inputrestore()
       let RunSrc = ":!".Run." ".name
       exe         RunSrc
+    endif
+  endif
+
+  if !executable(Exe) && !executable(Run)
+    let exefiles = glob("`find . -executable -type f`")
+    let exelist = split(exefiles, '\n')
+    for i in range(len(exelist))
+      if match(exelist[i], '.so') != -1
+        unlet exelist[i]
+      endif
+    endfor
+    if len(exelist) == 1
+      call inputsave()
+      let name = input(':!'.exelist[0].' ')
+      call inputrestore()
+      let ExeSrc = ":!".exelist[0]." ".name
+      exe         ExeSrc
     endif
   endif
 endfunction "}}}

@@ -10,8 +10,6 @@
 
 [*] 农历 needs further improvments for 节气
 
-[*] Tagbar, display the current tag based on whether the function is inside or out
-
 [*] Vimtips, plugin that can obtain the example script from the vimtips.txt
 and put it in a temp buffer. After the user edited the command, then a map can
 send the command to execute for the main file
@@ -46,26 +44,25 @@ cppomnicomplete!!
 ->Show the cmd line in the file
 ->Colorful output?
 
-[*] C-support :  ,ce ,ch ,cx are useless. Recycle these mapping
-
 [*] NerdCommenter: Get the sexy commenter style more sexier so that it can be
 pick up by the locator. 
 -> Normal input, put the cursor in the right position
 
 [*] Tagbar: add mapping to split (and vertical split) window and jump
 
-[*] ClangComplete: How to make it faster
-
 [*] Fugitive: diff window on the right handside as the VCScommand
 
 [*] Omnicomplete: case insensitive 
+
+[*] Locator: it picks up too many braskets
+
+[*] Powerline: color the branch?
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
 <leader>: u, i
 gr gz
 zp zq zy
-
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z

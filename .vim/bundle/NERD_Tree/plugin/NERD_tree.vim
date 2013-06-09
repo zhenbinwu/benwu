@@ -1224,6 +1224,14 @@ function! s:TreeFileNode.openVSplit()
         return
     endif
 
+    if exists("g:Win_NERDTree")
+        " Attempt to go to adjacent window
+        let s:main = GetCurrentMainWindow()
+        exe s:main . 'wincmd w'
+        exec "silent vsplit " . self.path.str({'format': 'Edit'})
+        return
+    endif
+
     let winwidth = winwidth(".")
     if winnr("$")==#1
         let winwidth = g:NERDTreeWinSize
@@ -2863,11 +2871,22 @@ function! s:createTreeWin()
 
     if !exists('t:NERDTreeBufName')
         let t:NERDTreeBufName = s:nextBufferName()
-        silent! exec splitLocation . 'vertical ' . splitSize . ' new'
-        silent! exec "edit " . t:NERDTreeBufName
+        if exists('g:Win_NERDTree')
+            silent! exec g:Win_NERDTree . "wincmd w"
+            silent! exec "buffer " . t:NERDTreeBufName
+        else
+            silent! exec splitLocation . 'vertical ' . splitSize . ' new'
+            silent! exec splitLocation . 'vertical ' . splitSize . ' new'
+            silent! exec "edit " . t:NERDTreeBufName
+        endif
     else
-        silent! exec splitLocation . 'vertical ' . splitSize . ' split'
-        silent! exec "buffer " . t:NERDTreeBufName
+        if exists('g:Win_NERDTree')
+            silent! exec g:Win_NERDTree . "wincmd w"
+            silent! exec "buffer " . t:NERDTreeBufName
+        else
+            silent! exec splitLocation . 'vertical ' . splitSize . ' split'
+            silent! exec "buffer " . t:NERDTreeBufName
+        endif 
     endif
 
     setlocal winfixwidth
@@ -4013,5 +4032,15 @@ endfunction
 
 "reset &cpo back to users setting
 let &cpo = s:old_cpo
+
+" Used by winmanager {{{1
+let g:NERDTree_title = "[NERDTree]"
+function! NERDTree_Start()
+    exe 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+    return 1
+endfunction
 
 " vim: set sw=4 sts=4 et fdm=marker:

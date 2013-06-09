@@ -380,6 +380,7 @@ function! BufExplorer()
         execute 'silent keepjumps hide edit'.name
     endif
 
+    setlocal nonumber
     call s:DisplayBufferList()
 
     " Position the cursor in the newly displayed list on the line representing

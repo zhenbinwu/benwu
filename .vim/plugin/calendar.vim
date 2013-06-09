@@ -1882,9 +1882,12 @@ def ChangeCal(weather, caldir):
 
 
 if __name__ == "__main__":
-    w = GetWeather()
-    caldir = vim.eval("b:CalendarDir")
-    ChangeCal(w, caldir)
+    try:
+        w =GetWeather()
+        caldir = vim.eval("b:CalendarDir")
+        ChangeCal(w, caldir)
+    except urllib2.URLError:
+        print "No connection to get weather!"
 EOF
 
 endfunction "}}}

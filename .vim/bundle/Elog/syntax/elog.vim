@@ -16,7 +16,7 @@ syn match bbcodeArgument contained "\s[-a-zA-Z0-9]\+\s*="ms=s+1,me=e-1 contains=
 syn region bbcodeValue contained start="\"" end="\"" contains=@NoSpell,elogType
 syn region bbcodeValue contained start="'" end="'" contains=@NoSpell,elogType
 syn match bbcodeValue contained "=[\t ]*[^'" \t\]][^ \t\]]*"hs=s+1 contains=@NoSpell,elogType
-syn region bbcodeTag start="\[" end="\]" contains=@NoSpell,bbcodeItem,bbcodeArgument,bbcodeValue,elogType
+syn region bbcodeTag start="\[" end="\]" contains=bbcodeItem,bbcodeArgument,bbcodeValue,elogType
 "syn region bbcodeTag start="\[/\{0,1}" end="\]" contains=@NoSpell,bbcodeItem,bbcodeArgument,bbcodeValue,elogType
 syn match elogComment /#.*/ contains=elogCat
 syn match elogComment /|-/ contains=elogCat
