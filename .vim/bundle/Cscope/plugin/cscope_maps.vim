@@ -29,7 +29,7 @@ if has("cscope")
 
 function s:SetCscope()
     let curdir = getcwd()
-    while !filereadable("cscope.out") && matchend(getcwd(), expand("$USER")) == len(getcwd())
+    while !filereadable("cscope.out") && matchend(getcwd(), expand("$USER")) != len(getcwd())
 	cd ..
     endwhile
 

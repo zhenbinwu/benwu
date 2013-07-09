@@ -715,4 +715,4 @@ EOF
 
 endfunction "}}}
 
-map  <F4> :call MapAutoMake()<CR>
+map <buffer> <F4> :call MapAutoMake()<CR>
