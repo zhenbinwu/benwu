@@ -6,7 +6,7 @@
 " Remark:	ROOT webite: http://root.cern.ch
 
 if !exists("c_no_cern_root")
-   syn keyword	cType		TH1 TH1C TH1D TH1F TH1I TH1K TH1S 
+   syn keyword	cType		TH1 TH1C TH1D TH1F TH1I TH1K TH1S TProfile
    syn keyword	cType		TH2 TH2C TH2D TH2F TH2I TH2S
    syn keyword	cType		TH3 TH3C TH3D TH3F TH3I TH3S
    syn keyword	cType		TF1 TF2 TF3

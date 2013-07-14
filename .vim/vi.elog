@@ -50,13 +50,13 @@ pick up by the locator.
 
 [*] Tagbar: add mapping to split (and vertical split) window and jump
 
-[*] Fugitive: diff window on the right handside as the VCScommand
-
 [*] Omnicomplete: case insensitive 
 
 [*] Locator: it picks up too many braskets
 
 [*] Powerline: color the branch?
+
+[*] Quickfix: link error
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

@@ -568,6 +568,14 @@ endfunction
 
 function! ClangComplete(findstart, base)
   if a:findstart
+    ""  Check for include complete
+    unlet! s:doinclude
+    let s:passnext = getline('.') !~ '^\s*#\s*include\s*\%(<\|"\)'
+    if !s:passnext
+      let s:doinclude = 1
+      return match(getline('.'), '<\|"') + 1
+    endif
+
     let l:line = getline('.')
     let l:start = col('.') - 1
     let b:clang_complete_type = 1
@@ -594,6 +602,10 @@ function! ClangComplete(findstart, base)
   else
     if g:clang_debug == 1
       let l:time_start = reltime()
+    endif
+
+    if exists("s:doinclude")
+      return INC#ICComplete_2(a:findstart, a:base)
     endif
 
     if g:clang_snippets == 1
@@ -674,7 +686,7 @@ endfunction
 
 function! s:ShouldComplete()
   if (getline('.') =~ '#\s*\(include\|import\)')
-    return 0
+    return 1
   else
     if col('.') == 1
       return 1

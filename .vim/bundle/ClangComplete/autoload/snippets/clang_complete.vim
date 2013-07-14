@@ -54,7 +54,7 @@ function! UpdateSnips()
   let l:line = getline('.')
   let l:pattern = '<#[^#]*#>'
   if match(l:line, l:pattern) == -1
-    return "\<esc>f)a"
+    return "\<C-o>k"
   endif
 
   let l:commands = ""
@@ -72,7 +72,11 @@ function! UpdateSnips()
     let l:commands .= "l"
   endif
 
-  let l:commands .= "v`'o\<C-G>"
+  if eval(col("''")-col(".")) == -2
+    let l:commands .= "v`'o\<C-G>o\<BS>"
+  else
+    let l:commands .= "v`'o\<C-G>"
+  endif
 
   return l:commands
 endfunction

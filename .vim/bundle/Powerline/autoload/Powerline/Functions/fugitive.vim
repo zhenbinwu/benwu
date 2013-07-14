@@ -12,15 +12,22 @@ function! Powerline#Functions#fugitive#GetDirtyBranch(symbol) " {{{
   endif
 
   let temp = split(b:branch_status, ' ')[0]
+  if b:branch_status[0] == ' '
+    let temp = '_'.temp
+  endif
 
-  if temp  == ' M' 
-    let b:branch_sym = "☂ "
-  elseif temp  == 'M' 
+  if temp  == '_M' 
     let b:branch_sym = "✍ "
+  elseif temp  == 'M' 
+    let b:branch_sym = "☂ "
   elseif temp  == 'MM' 
     let b:branch_sym = "☔ "
   elseif temp  == '??' 
     let b:branch_sym = "☯ "
+  elseif temp  == 'A' 
+    let b:branch_sym = "⛃ "
+  else
+    let b:branch_sym = temp."|"
   endif
 
   let b:branch_ret = fugitive#statusline()
