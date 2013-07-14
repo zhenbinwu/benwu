@@ -167,6 +167,8 @@ augroup fugitive
   autocmd User NERDTreeInit,NERDTreeNewRoot call s:Detect(b:NERDTreeRoot.path.str())
   autocmd VimEnter * if expand('<amatch>')==''|call s:Detect(getcwd())|endif
   autocmd BufWinLeave * execute getwinvar(+bufwinnr(+expand('<abuf>')), 'fugitive_leave')
+  autocmd BufWritePost,BufReadPost  *       if &ft != 'gitcommit' | let b:force_check_state = 1 | endif
+  autocmd BufEnter      index   let b:force_check_state = 1
 augroup END
 
 " }}}1
@@ -2408,6 +2410,52 @@ function! fugitive#head(...)
   endif
 
   return s:repo().head(a:0 ? a:1 : 0)
+endfunction
+
+"getting 'git status' command result procedure for dirty_flag and untracked_flag
+"  because 'git' command doesn't work in GIT_DIR ('.git/')
+"  temporally change directory to GIT_WORK_TREE [just assume that GIT_WORK_TREE is '.git/..']
+"  then, return 'git status' result
+function! s:repo_get_status() dict abort
+  let b:git_work_tree = substitute(b:git_dir, '\.git$', '', '')
+  if empty(b:git_work_tree) | let b:git_work_tree = '.' | endif
+  let b:curr_path = getcwd()
+  exe 'cd! ' . b:git_work_tree
+  let b:git_status = self.git_chomp('status', '--porcelain', expand('%'))
+  exe 'cd! ' . b:curr_path
+  return b:git_status
+endfunction
+
+call s:add_methods('repo',['get_status'])
+
+function! s:repo_check_stash() dict abort
+  return filereadable(self.dir('refs/stash')) ? '$' : ''
+endfunction
+
+call s:add_methods('repo',['check_stash'])
+
+function! fugitive#filestatus(...)
+  if !exists('b:git_dir')
+    return ''
+  endif
+
+  if exists('b:branch_status')
+    let s:branchstatus = b:branch_status
+  else
+    let s:branchstatus = ''
+  endif
+
+  let l:git_index_mod_time = getftime(b:git_dir . "/index")
+  if exists('b:force_check_state') ||
+        \   (exists('b:git_index_mod_time_old') && b:git_index_mod_time_old != l:git_index_mod_time)
+    "let s:branchstatus = system(g:fugitive_git_executable . " status --porcelain " .  shellescape(expand('%:t')))
+    "let s:branchstatus = system(s:repo().git_command('status', '--porcelain', expand('%')))
+    let s:branchstatus = s:repo().get_status()
+    unlet! b:force_check_state
+    let b:git_index_mod_time_old = l:git_index_mod_time
+  endif
+
+  return s:branchstatus
 endfunction
 
 " }}}1

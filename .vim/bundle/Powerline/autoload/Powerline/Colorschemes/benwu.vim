@@ -101,13 +101,13 @@ let g:Powerline#Colorschemes#benwu#colorscheme = Pl#Colorscheme#Init([
 		\ 'i': ['gray8', 'gray2'],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['branch', 'lineinfo'], {
+	\ Pl#Hi#Segments(['clean_branch', 'lineinfo'], {
 		\ 'n': ['gray2', 'gray10', ['bold']],
 		\ 'i': ['gray2', 'gray10', ['bold']],
 		\ 'N': ['gray7', 'gray1', ['bold']],
 		\ }),
 	\
-	\ Pl#Hi#Segments(['errors'], {
+	\ Pl#Hi#Segments(['dirty_branch', 'errors'], {
 		\ 'n': ['brightestorange', 'gray2', ['bold']],
 		\ 'i': ['brightestorange', 'gray2', ['bold']],
 		\ }),
