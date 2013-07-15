@@ -928,9 +928,16 @@ function! s:MapKeys() abort
     inoremap <script> <silent> <buffer> <LeftRelease>
                             \ <LeftRelease><C-o>:call <SID>CheckMouseClick()<CR>
 
-    nnoremap <script> <silent> <buffer> <CR>    :call <SID>JumpToTag(0)<CR>
-    nnoremap <script> <silent> <buffer> p       :call <SID>JumpToTag(1)<CR>
-    nnoremap <script> <silent> <buffer> <Space> :call <SID>ShowPrototype(0)<CR>
+    nnoremap <script> <silent> <buffer> <CR>     :call <SID>JumpToTag(0)<CR>
+    nnoremap <script> <silent> <buffer> p        :call <SID>JumpToTag(1)<CR>
+    nnoremap <script> <silent> <buffer> e        :call <SID>PreviewTag(0)<CR>
+    nnoremap <script> <silent> <buffer> ge       :call <SID>PreviewTag(1)<CR>
+    nnoremap <script> <silent> <buffer> <Space>  :call <SID>ShowPrototype(0)<CR>
+    "My mapping for split view, gs and gv will stay in tagbar window
+    nnoremap <script> <silent> <buffer> s        :call <SID>SplitJumpTag(1, 0)<CR>
+    nnoremap <script> <silent> <buffer> v        :call <SID>SplitJumpTag(0, 0)<CR>
+    nnoremap <script> <silent> <buffer> gs       :call <SID>SplitJumpTag(1, 1)<CR>
+    nnoremap <script> <silent> <buffer> gv       :call <SID>SplitJumpTag(0, 1)<CR>
 
     nnoremap <script> <silent> <buffer> +        :call <SID>OpenFold()<CR>
     nnoremap <script> <silent> <buffer> <kPlus>  :call <SID>OpenFold()<CR>
@@ -941,22 +948,24 @@ function! s:MapKeys() abort
     nnoremap <script> <silent> <buffer> o        :call <SID>ToggleFold()<CR>
     nnoremap <script> <silent> <buffer> za       :call <SID>ToggleFold()<CR>
 
-    nnoremap <script> <silent> <buffer> *    :call <SID>SetFoldLevel(99, 1)<CR>
+    nnoremap <script> <silent> <buffer> *        :call <SID>SetFoldLevel(99, 1)<CR>
     nnoremap <script> <silent> <buffer> <kMultiply>
-                                           \ :call <SID>SetFoldLevel(99, 1)<CR>
-    nnoremap <script> <silent> <buffer> zR   :call <SID>SetFoldLevel(99, 1)<CR>
-    nnoremap <script> <silent> <buffer> =    :call <SID>SetFoldLevel(0, 1)<CR>
-    nnoremap <script> <silent> <buffer> zM   :call <SID>SetFoldLevel(0, 1)<CR>
+                                           \     :call <SID>SetFoldLevel(99, 1)<CR>
+    nnoremap <script> <silent> <buffer> zR       :call <SID>SetFoldLevel(99, 1)<CR>
+    nnoremap <script> <silent> <buffer> =        :call <SID>SetFoldLevel(0, 1)<CR>
+    nnoremap <script> <silent> <buffer> zM       :call <SID>SetFoldLevel(0, 1)<CR>
 
     nnoremap <script> <silent> <buffer> <C-N>
                                         \ :call <SID>GotoNextToplevelTag(1)<CR>
     nnoremap <script> <silent> <buffer> <C-P>
                                         \ :call <SID>GotoNextToplevelTag(-1)<CR>
 
-    nnoremap <script> <silent> <buffer> s    :call <SID>ToggleSort()<CR>
+    nnoremap <script> <silent> <buffer> S    :call <SID>ToggleSort()<CR>
     nnoremap <script> <silent> <buffer> x    :call <SID>ZoomWindow()<CR>
     nnoremap <script> <silent> <buffer> q    :call <SID>CloseWindow()<CR>
     nnoremap <script> <silent> <buffer> <F1> :call <SID>ToggleHelp()<CR>
+
+
 endfunction
 
 " s:CreateAutocommands() {{{2
@@ -2694,6 +2703,15 @@ function! s:PrintHelp() abort
         silent  put ='\" <C-N>   : Go to next top-level tag'
         silent  put ='\" <C-P>   : Go to previous top-level tag'
         silent  put ='\" <Space> : Display tag prototype'
+        silent  put ='\" e       : Preview the tag definition'
+        silent  put ='\" ge      : As above, but stay in'
+        silent  put ='\"           Tagbar window'
+        silent  put ='\" s       : Split the tag definition'
+        silent  put ='\" gs      : As above, but stay in'
+        silent  put ='\"           Tagbar window'
+        silent  put ='\" v       : VSplit the tag definition'
+        silent  put ='\" gv      : As above, but stay in'
+        silent  put ='\"           Tagbar window'
         silent  put ='\"'
         silent  put ='\" ---------- Folds ----------'
         silent  put ='\" +, zo   : Open fold'
@@ -2703,7 +2721,7 @@ function! s:PrintHelp() abort
         silent  put ='\" =, zM   : Close all folds'
         silent  put ='\"'
         silent  put ='\" ---------- Misc -----------'
-        silent  put ='\" s       : Toggle sort'
+        silent  put ='\" S       : Toggle sort'
         silent  put ='\" x       : Zoom window in/out'
         silent  put ='\" q       : Close window'
         silent  put ='\" <F1>    : Remove help'
@@ -2804,6 +2822,40 @@ function! s:HighlightTag(openfolds, ...) abort
     redraw
 endfunction
 
+fun! s:SplitJumpTag(split_mode, stay_in_tagbar) "{{{
+    if a:stay_in_tagbar 
+        let orgcursor = getpos('.')
+    endif
+
+    let taginfo = s:GetTagInfo(line('.'), 1)
+
+    if empty(taginfo) || !taginfo.isNormalTag()
+        return
+    endif
+
+    call s:GotoPreviousWindow(taginfo.fileinfo)
+    if a:split_mode
+        split
+    else
+        vertical split
+    endif
+
+    let  orgwinnr = winnr('#')
+    call s:winexec(bufwinnr('__Tagbar__') . 'wincmd w')
+    call s:JumpToTag(a:stay_in_tagbar)
+    call s:GotoPreviousWindow(taginfo.fileinfo)
+    normal! zv
+    normal zt
+
+    if a:stay_in_tagbar 
+        call s:winexec(bufwinnr('__Tagbar__') . 'wincmd w')
+        call cursor(orgcursor)
+    else
+        call s:winexec(orgwinnr . 'wincmd w')
+    endif
+endfunction "}}}
+
+
 " s:JumpToTag() {{{2
 function! s:JumpToTag(stay_in_tagbar) abort
     let taginfo = s:GetTagInfo(line('.'), 1)
@@ -2869,6 +2921,84 @@ function! s:JumpToTag(stay_in_tagbar) abort
     else
         call s:HighlightTag(0)
     endif
+endfunction
+
+" s:JumpToPreviewTag() {{{2
+function! s:PreviewTag(stay_in_tagbar) abort
+    if a:stay_in_tagbar 
+        let orgcursor = getpos('.')
+    endif
+
+    let taginfo = s:GetTagInfo(line('.'), 1)
+
+    if empty(taginfo) || !taginfo.isNormalTag()
+        return
+    endif
+
+    call s:GotoPreviousWindow(taginfo.fileinfo)
+
+    """ Mark current position so it can be jumped back to
+    normal m'
+
+    execute "pedit +:call\\ <SID>JumpToPreviewTag(" . taginfo.fields.line .")\ %"
+
+    normal g`'
+    normal! zv
+
+    if a:stay_in_tagbar 
+        call s:winexec(bufwinnr('__Tagbar__') . 'wincmd w')
+        call cursor(orgcursor)
+    endif
+endfunction
+
+
+function! s:JumpToPreviewTag(taginfo) abort
+    " Jump to the line where the tag is defined. Don't use the search pattern
+    " since it doesn't take the scope into account and thus can fail if tags
+    " with the same name are defined in different scopes (e.g. classes)
+    execute a:taginfo
+    normal! zv
+    return 
+    "execute taginfo.fields.line
+
+    " If the file has been changed but not saved, the tag may not be on the
+    " saved line anymore, so search for it in the vicinity of the saved line
+    if match(getline('.'), taginfo.pattern) == -1
+        let interval = 1
+        let forward  = 1
+        while search(taginfo.pattern, 'W' . forward ? '' : 'b') == 0
+            if !forward
+                if interval > line('$')
+                    break
+                else
+                    let interval = interval * 2
+                endif
+            endif
+            let forward = !forward
+        endwhile
+    endif
+
+    " If the tag is on a different line after unsaved changes update the tag
+    " and file infos/objects
+    let curline = line('.')
+    if taginfo.fields.line != curline
+        let taginfo.fields.line = curline
+        let taginfo.fileinfo.fline[curline] = taginfo
+    endif
+
+    " Center the tag in the window and jump to the correct column if available
+    normal! z.
+    call cursor(taginfo.fields.line, taginfo.fields.column)
+
+    if foldclosed('.') != -1
+        .foldopen
+    endif
+
+    call s:GotoPreviousWindow(taginfo.fileinfo)
+
+    g`'
+    redraw
+
 endfunction
 
 " s:ShowPrototype() {{{2
