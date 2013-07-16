@@ -27,19 +27,6 @@ write (or some way better to deal with this)
 
 [*] publish repmap.vim
 
-[*] Inccomplete: use g:clang_user_options for global include path <>
-[*] Inccomplete: use b:clang_user_options for local include path "". It should
-be able to search the Makefile under the project and get the included path.
-Also each time it is involved, it check the timestamp of the Makefile to
-include the recently added include path.
-
-[*] Syntastic: Similar to the inccomplete include path from Makefile. But make
-sure it is a unique set of path though.
-
-[*] Fix the problem with omni complete : Inccomplete and Cppomnicomplete?
--> Move Inccomplete into cppomnicomplete? Since it is more useful in
-cppomnicomplete!!
-
 [*] CPPOmnicomplete: no preview window, but maybe echo the function 
 ->Show the cmd line in the file
 ->Colorful output?
@@ -48,15 +35,13 @@ cppomnicomplete!!
 pick up by the locator. 
 -> Normal input, put the cursor in the right position
 
-[*] Tagbar: add mapping to split (and vertical split) window and jump
-
 [*] Omnicomplete: case insensitive 
 
 [*] Locator: it picks up too many braskets
 
-[*] Powerline: color the branch?
-
 [*] Quickfix: link error
+
+
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
@@ -139,3 +124,4 @@ public static string ChineseTwentyFourDay(DateTime date1)
 }
 }
 [/code]
+ 

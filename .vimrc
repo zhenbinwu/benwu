@@ -626,7 +626,7 @@ imap <silent> <Leader>mk <Esc>:MarksBrowser<CR>
 " C Support
 """""""""""""""""""""""""""""""""""""""""""
 let g:C_MapLeader = ','
-let g:C_Styles = { '*.c,*.h' : 'default', '*.C,*.cc,*.cpp,*.hh' : 'CPP' }
+let g:C_Styles = { '*.c' : 'default', '*.C,*.cc,*.cpp,*.hh,*.h' : 'CPP' }
 au FileType c let dictionary=g:C_Dictionary_File
 ""set dictionary=/usr/share/dict/words 
 let g:C_LineEndCommColDefault    = 35
@@ -1081,3 +1081,6 @@ set conceallevel=2
 if executable("root-config")
   let g:clang_user_options = split(system("root-config --cflags"))[-1]
 endif
+
+"" Disable cpp auto include so far
+let g:loaded_cpp_auto_include = "true"

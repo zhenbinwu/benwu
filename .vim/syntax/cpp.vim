@@ -1086,6 +1086,7 @@ endif
 "syn keyword cppSTLtype bit_vector char_producer hash_map hash_multimap hash_multiset hash_set rope
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syn keyword	cRepeat     BOOST_FOREACH
 
 syn match cppCast		"\<\(const\|static\|dynamic\|reinterpret\)_cast\s*<"me=e-1
 syn match cppCast		"\<\(const\|static\|dynamic\|reinterpret\)_cast\s*$"
