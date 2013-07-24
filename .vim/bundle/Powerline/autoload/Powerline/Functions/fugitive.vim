@@ -25,7 +25,11 @@ function! Powerline#Functions#fugitive#GetDirtyBranch(symbol) " {{{
   elseif temp  == '??' 
     let b:branch_sym = "☯ "
   elseif temp  == 'A' 
-    let b:branch_sym = "⛃ "
+    let b:branch_sym = "✚ "
+  elseif temp  == 'AM' 
+    let b:branch_sym = "✜ "
+  elseif temp  == 'UU' 
+    let b:branch_sym = "⚒ "
   else
     let b:branch_sym = temp."|"
   endif
