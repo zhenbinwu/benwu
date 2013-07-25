@@ -310,7 +310,7 @@ com! -nargs=* RepmoMap call s:CreateMappings(<q-args>)
 
 " Do Inits: {{{1
 if g:repmo_mapmotions != ""
-    autocmd VimEnter,BufCreate * exec "RepmoMap" g:repmo_mapmotions
+    autocmd VimEnter,BufCreate,BufReadPost * exec "RepmoMap" g:repmo_mapmotions
 endif
 
 " Modeline: {{{1

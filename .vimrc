@@ -266,6 +266,10 @@ map <tab> :tabnext <ESC>
 map <silent> <leader><cr> :noh<cr>
 map <silent> <leader>z :set foldmethod=syntax<CR>
 map <silent> zu :checktime<CR>
+
+"" Map to go through the buffer list
+map <silent> g<space> :bnext<CR>
+map <silent> g<Enter> :bprevious<CR>
   		
 
 " Smart way to move btw. windows
@@ -565,6 +569,7 @@ let g:NERDTreeMapJumpNextSibling = 'gj'
 let g:NERDTreeMapJumpPrevSibling = 'gk'
 let g:NERDTreeMapOpenSplit       = 's'
 let g:NERDTreeMapOpenVSplit      = 'v'
+let g:NERDTreeMapToggleZoom      = '<space>'
 let NERDTreeIgnore               = ['\~$']
 let NERDTreeWinSize              = 30
 let NERDTreeDirArrows            = 0
