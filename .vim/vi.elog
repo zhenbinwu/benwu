@@ -36,13 +36,14 @@ pick up by the locator.
 -> Normal input, put the cursor in the right position
 
 [*] Omnicomplete: case insensitive 
+
 [*] Locator: it picks up too many braskets
 
 [*] Quickfix: link error
 
 [*] C-support: pick up method with vector<double> ...
 
-[*] ,g open nerdtree without addition window
+[*] startify: add fortune in the head when open up
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

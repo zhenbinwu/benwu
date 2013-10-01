@@ -278,7 +278,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 template < class T >
 |CLASSNAME| <T>:: |CLASSNAME| ()
 {<CURSOR>
@@ -420,7 +420,7 @@ if (!ifs) {
 ifs.close ();                                 // close ifstream
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.open-output-file ==
-string    ofs_file_name = "<CURSOR>";                 // input  file name
+string    ofs_file_name = "<CURSOR>";         // input  file name
 ofstream  ofs;                                // create ofstream object
 
 ofs.open ( ofs_file_name.c_str() );           // open ofstream

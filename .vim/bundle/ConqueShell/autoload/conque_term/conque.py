@@ -148,7 +148,8 @@ class Conque:
 
         # open command
         self.proc = ConqueSubprocess()
-        self.proc.open(command, {'TERM': options['TERM'], 'CONQUE': '1', 'LINES': str(self.lines), 'COLUMNS': str(self.columns)})
+        self.proc.open(command, {'TERM': options['TERM'], 'CONQUE': str(vim.eval('v:servername')), 
+                                 'LINES': str(self.lines), 'COLUMNS': str(self.columns)})
 
         # send window size signal, in case LINES/COLUMNS is ignored
         self.update_window_size(True)
