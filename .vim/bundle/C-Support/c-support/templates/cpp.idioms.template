@@ -66,7 +66,7 @@ sizeof(<CURSOR><SPLIT>)
 assert(<CURSOR><SPLIT>);
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.open-input-file ==
-FILE	*|?FILEPOINTER|;										// input-file pointer
+FILE	*|?FILEPOINTER|;							// input-file pointer
 char	*|FILEPOINTER|_file_name = "<CURSOR>";		// input-file name
 
 |FILEPOINTER|	= fopen( |FILEPOINTER|_file_name, "r" );
@@ -84,7 +84,7 @@ if( fclose(|FILEPOINTER|) == EOF ) {			// close input file
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == idioms.open-output-file ==
-FILE	*|?FILEPOINTER|;										// output-file pointer
+FILE	*|?FILEPOINTER|;							// output-file pointer
 char	*|FILEPOINTER|_file_name = "<CURSOR>";		// output-file name
 
 |FILEPOINTER|	= fopen( |FILEPOINTER|_file_name, "w" );

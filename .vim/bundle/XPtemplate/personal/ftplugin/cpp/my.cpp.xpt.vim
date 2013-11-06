@@ -55,3 +55,9 @@ BOOST_FOREACH(`content^, `sequence^)
 {
     `cursor^
 }
+
+XPT fa wrap " for (auto = begin; !=;++)
+for(auto `i^=`class^.begin(); `i^!=`class^.end(); `i^++)
+{
+    `cursor^
+}

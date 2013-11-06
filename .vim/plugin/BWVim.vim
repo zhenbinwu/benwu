@@ -81,6 +81,7 @@ nmap <silent> <leader>tt :call <sid>LastTab()<CR>
 "" Re-define make
 let g:make_target = "%:r"
 fun! MapMake(output) "{{{
+  silent %s/<##>//eg
   if exists("g:syntastic_enable") 
     let syntastic_temp = g:syntastic_enable
     if g:syntastic_enable == 1

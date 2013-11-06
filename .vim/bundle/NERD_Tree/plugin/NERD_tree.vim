@@ -2876,7 +2876,6 @@ function! s:createTreeWin()
             silent! exec "buffer " . t:NERDTreeBufName
         else
             silent! exec splitLocation . 'vertical ' . splitSize . ' new'
-            silent! exec splitLocation . 'vertical ' . splitSize . ' new'
             silent! exec "edit " . t:NERDTreeBufName
         endif
     else
@@ -2956,8 +2955,8 @@ function! s:dumpHelp()
         let @h=@h."\"    but leave old root open\n"
         let @h=@h."\" ". g:NERDTreeMapRefresh .": refresh cursor dir\n"
         let @h=@h."\" ". g:NERDTreeMapRefreshRoot .": refresh current root\n"
-        let @h=@h."\" ". g:NERDTreeMapMenu .": Show menu\n"
-        let @h=@h."\" ". g:NERDTreeMapChdir .":change the CWD to the\n"
+        let @h=@h."\" ". g:NERDTreeMapMenu .": show menu\n"
+        let @h=@h."\" ". g:NERDTreeMapChdir .": change the CWD to the\n"
         let @h=@h."\"    selected dir\n"
 
         let @h=@h."\"\n\" ----------------------------\n"

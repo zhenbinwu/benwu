@@ -119,9 +119,11 @@ function! CheckBeamer() "{{{
     
     if exists("b:Tex_package_detected")
       if b:Tex_package_detected == 'beamer'
-        unlet g:Tex_FormatDependency_pdf  
+        if exists("g:Tex_FormatDependency_pdf")
+          unlet g:Tex_FormatDependency_pdf  
+        endif
         let g:Tex_DefaultTargetFormat = 'pdf'
-        let g:Tex_CompileRule_pdf     = 'pdflatex -shell-escape -src-specials -interaction = nonstopmode $*'
+        let g:Tex_CompileRule_pdf     = 'pdflatex -synctex=1 -shell-escape -src-specials -interaction=nonstopmode $*'
       endif
     endif
 endfunction "}}}

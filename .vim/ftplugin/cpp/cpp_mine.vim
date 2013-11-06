@@ -8,20 +8,29 @@ nnoremap <buffer> <silent> ]/  :call search('^.*//.*$', 'W')<CR>zvz.
 nnoremap <buffer> <silent> [/ 0:call search('^.*//.*$', 'bW')<CR>zvz.
 
 fun! Runexe() "{{{
+  if exists("g:cpp_run") && g:cpp_run != "" && executable("./".g:cpp_run)
+    exe "!./".g:cpp_run
+    return 
+  endif
+
   let Exe  = "./".expand("%:r").".exe"
   let Run  = "./".expand("%:r")
   if executable(Exe) && !executable(Run)
     exe		"!".Exe
+    return 
   endif
   if !executable(Exe) && executable(Run)
     exe		"!".Run
+    return 
   endif
 
   if executable(Exe) && executable(Run)
     if getftime(Exe) >= getftime(Run) 
       exe		"!".Exe
+      return 
     else
       exe		"!".Run
+      return 
     endif
   endif
 
@@ -35,11 +44,27 @@ fun! Runexe() "{{{
     endfor
     if len(exelist) == 1
       exe '!'.exelist[0]
+      return 
     endif
+  endif
+
+  if exists("g:cpp_run") && g:cpp_run != ""
+    echo g:cpp_run . " is not found! Please setup the correct file name."
+  else
+    echo "No executable assign! Can manually set g:cpp_run"
   endif
 endfunction "}}}
 
 fun! Showexe() "{{{
+  if exists("g:cpp_run") && g:cpp_run != "" && executable("./".g:cpp_run)
+    call inputsave()
+    let name = input(':!'.g:cpp_run.' ')
+    call inputrestore()
+    let ExeSrc = ":!".g:cpp_run." ".name
+    exe         ExeSrc
+    return 
+  endif
+
   let Exe  = "./".expand("%:r").".exe"
   let Run  = "./".expand("%:r")
   if executable(Exe) && !executable(Run)
@@ -48,6 +73,7 @@ fun! Showexe() "{{{
     call inputrestore()
     let ExeSrc = ":!".Exe." ".name
     exe         ExeSrc
+    return 
   endif
 
   if !executable(Exe) && executable(Run)
@@ -56,6 +82,7 @@ fun! Showexe() "{{{
     call inputrestore()
     let RunSrc = ":!".Run." ".name
     exe         RunSrc
+    return
   endif
 
   if executable(Exe) && executable(Run)
@@ -65,12 +92,14 @@ fun! Showexe() "{{{
       call inputrestore()
       let ExeSrc = ":!".Exe." ".name
       exe         ExeSrc
+      return
     else
       call inputsave()
       let name = input(':!'.Run.' ')
       call inputrestore()
       let RunSrc = ":!".Run." ".name
       exe         RunSrc
+      return
     endif
   endif
 
@@ -88,7 +117,14 @@ fun! Showexe() "{{{
       call inputrestore()
       let ExeSrc = ":!".exelist[0]." ".name
       exe         ExeSrc
+      return
     endif
+  endif
+
+  if exists("g:cpp_run") && g:cpp_run != ""
+    echo g:cpp_run . " is not found! Please setup the correct file name."
+  else
+    echo "No executable assign! Can manually set g:cpp_run"
   endif
 endfunction "}}}
 

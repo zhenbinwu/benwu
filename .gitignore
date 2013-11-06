@@ -1,5 +1,5 @@
 ## Ignore the whole home directory
-* 
+*
 ## Expect what we care about
 !.vimrc
 !.vim/*

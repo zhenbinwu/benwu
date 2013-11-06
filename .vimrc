@@ -569,7 +569,10 @@ let g:NERDTreeMapJumpNextSibling = 'gj'
 let g:NERDTreeMapJumpPrevSibling = 'gk'
 let g:NERDTreeMapOpenSplit       = 's'
 let g:NERDTreeMapOpenVSplit      = 'v'
-let g:NERDTreeMapToggleZoom      = '<space>'
+let g:NERDTreeMapToggleZoom      = 'x'
+let g:NERDTreeMapCloseDir        = 'c'
+let g:NERDTreeMapCloseChildren   = 'C'
+let g:NERDTreeMapChangeRoot      = 'X'
 let NERDTreeIgnore               = ['\~$']
 let NERDTreeWinSize              = 30
 let NERDTreeDirArrows            = 0
@@ -580,9 +583,9 @@ nmap <silent> <Leader>g :NERDTreeToggle<CR>:redraw!<CR>
 """"""""""""""""""""""""""""""
 " BufExplorer Setting
 """"""""""""""""""""""""""""""
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerShowRelativePath=1
-let g:bufExplorerSortBy='mru'
+let g:bufExplorerDefaultHelp      = 0
+let g:bufExplorerShowRelativePath = 1
+let g:bufExplorerSortBy           = 'mru'
 nmap <silent> <Leader>le :BufExplorer<CR>
 nmap <silent> <Leader>ls :BufExplorerHorizontalSplit<CR>
 nmap <silent> <Leader>lv :BufExplorerVerticalSplit<CR>
@@ -612,8 +615,8 @@ let showmarks_hlline_lower = 1
 let showmarks_hlline_upper = 1 
 
 " For showmarks plugin
-hi ShowMarksHLl ctermbg=lightcyan  ctermfg=Black guibg=#FFDB72 guifg=Black
-hi ShowMarksHLu ctermbg=Magenta ctermfg=Black guibg=#FFB3FF guifg=Black
+hi ShowMarksHLl ctermbg=lightcyan ctermfg=Black guibg=#FFDB72 guifg=Black
+hi ShowMarksHLu ctermbg=Magenta   ctermfg=Black guibg=#FFB3FF guifg=Black
 
 imap <silent> <Leader>mt <Esc><Leader>mt i
 imap <silent> <Leader>mo <Esc><Leader>mo i
@@ -669,10 +672,10 @@ if &term == 'linux'
   let g:Tex_ViewRule_dvi='dvifb'
   let g:Tex_ExecuteUNIXViewerInForeground = 1 "For dvifb 
 else
-  let g:Tex_ViewRule_pdf='acroread'
-  "let g:Tex_ViewRule_pdf='xpdf'
-  "let g:Tex_ViewRule_pdf='xpdf -remote vimlatex'
-  let g:Tex_ViewRule_dvi='xdvi'
+  "let g:Tex_ViewRule_pdf='acroread'
+  let g:Tex_ViewRule_pdf='okular'
+  "let g:Tex_ViewRule_pdf='xpdf -remote benwu'
+  "let g:Tex_ViewRule_dvi='xdvi'
 endif
 let g:Tex_ViewRule_ps='gv'
 let g:Tex_UseEditorSettingInDVIViewer=1
@@ -688,6 +691,7 @@ let g:ConqueTerm_CWInsert      = 1
 let g:ConqueTerm_SendVisKey    = '<F9>'
 let g:ConqueTerm_TERM          = 'xterm'
 let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 0
 
 """"""""""""""""""""""""""""""
 " => Vim grep
@@ -766,14 +770,14 @@ imap <Leader>ht <ESC>:w<CR>:IHT<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pydiction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pydiction_location = '~/.vim/bundle/Plydiction/complete-dict'
+let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pyflakes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:pyflakes_use_quickfix = 1
-let g:pyflakes_autostart = 0
-autocmd FileType python map <F3> :PyflakesToggle<cr>
+let g:pyflakes_autostart    = 0
+autocmd FileType python map <buffer> <F3> :PyflakesToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pep8
@@ -977,8 +981,6 @@ let g:Powerline_symbols_override = {
         \ 'FT'     : [0x2691]
         \ }
 
-        "\ 'BRANCH' : [0x2325],
-        "\ 'BRANCH' : [0x169C],
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NERD_Commenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
