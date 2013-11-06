@@ -145,3 +145,16 @@ if (  $SHORT_HOST =~ cmslpc* ) then
     alias cms 'cmsenv;set cdpath=($PWD ~/);setenv LANG en_US.UTF8'
 endif
 
+
+if (  $SHORT_HOST =~ lxplus* ) then 
+	setenv PATH $HOME/BenSys/bin:${PATH};
+    setenv LANG en_US.UTF-8
+    setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
+    setenv PYTHONPATH $HOME/BenSys/python/
+	setenv CVSEIDTOR vim73
+    alias vi  '$CVSEIDTOR -X'
+    stty erase 
+    #alias vi  'source $HOME/.tcsh/vitex';
+    #alias cms 'cmsenv;set cdpath=($PWD ~/);setenv LANG en_US.UTF8'
+endif
+
