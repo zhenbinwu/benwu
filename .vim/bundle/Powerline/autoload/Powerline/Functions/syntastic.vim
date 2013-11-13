@@ -31,7 +31,9 @@ function! Powerline#Functions#syntastic#Enable() " {{{
       let output .= ''
     endif
 
-    let output .= asynccommand#powerline()
+    if exists('*asynccommand#powerline')
+      let output .= asynccommand#powerline()
+    endif
 
     return output
 endfunction " }}}
