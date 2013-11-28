@@ -127,26 +127,23 @@ python << EOF
 import sys
 import vim
 
+ToDis = vim.eval("g:pathogen_disabled")
+
 if sys.version_info[:2] < (2, 6):
-    vim.command("call add(g:pathogen_disabled, 'jedi-vim')")
-    vim.command("call add(g:pathogen_disabled, 'python-mode')")
+    ToDis.append('Python_Jedi')
+    ToDis.append('Python_mode')
 else:
-    vim.command("call add(g:pathogen_disabled, 'Pydiction')")
-    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
-    vim.command("call add(g:pathogen_disabled, 'Python_ifold')")
+    ToDis.append('Pydiction')
+    ToDis.append('Pyflakes')
+    ToDis.append('Python_Com')
 
 if sys.version_info[:2] < (2, 5):
-    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
+    ToDis.append('Pyflakes')
 
 if sys.version_info[:2] < (2, 3):
-    vim.command("call add(g:pathogen_disabled, 'Pydiction')")
+    ToDis.append('Pydiction')
 
-if sys.version_info[:2] < (2, 6):
-    vim.command("call add(g:pathogen_disabled, 'jedi-vim')")
-    vim.command("call add(g:pathogen_disabled, 'python-mode')")
-elif sys.version_info[:2] < (2, 5):
-    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
-
+vim.command("let g:pathogen_disabled =  %s" % list(set(ToDis)))
 EOF
 endif
 
