@@ -1,0 +1,6 @@
+[submodule ".vim/bundle/Python_mode"]
+	path = .vim/bundle/Python_mode
+	url = https://github.com/klen/python-mode.git
+[submodule ".vim/bundle/Python_Jedi"]
+	path = .vim/bundle/Python_Jedi
+	url = https://github.com/davidhalter/jedi-vim.git

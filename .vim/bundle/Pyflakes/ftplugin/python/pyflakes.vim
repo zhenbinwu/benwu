@@ -359,4 +359,4 @@ if g:pyflakes_autostart == 1
 endif
 
 command! -nargs=0 -bar PyflakesToggle call s:PyflakesToggle()
-
+autocmd FileType python map <buffer> <F3> :PyflakesToggle<cr>

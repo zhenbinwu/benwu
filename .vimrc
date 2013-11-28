@@ -103,6 +103,8 @@ set nocompatible
 set history=5000
 
 let g:pathogen_disabled = []
+
+"" Limitation of Vim
 if v:version < '702'
   call add(g:pathogen_disabled, 'XPtemplate')
   call add(g:pathogen_disabled, 'FuzzyFinder')
@@ -112,10 +114,40 @@ if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
 
+"" Limitation of Clang
 if executable("clang")
   call add(g:pathogen_disabled, 'OmniCppComplete')
 else
   call add(g:pathogen_disabled, 'ClangComplete')
+endif
+
+"" Limitation of Python
+if has('python')
+python << EOF
+import sys
+import vim
+
+if sys.version_info[:2] < (2, 6):
+    vim.command("call add(g:pathogen_disabled, 'jedi-vim')")
+    vim.command("call add(g:pathogen_disabled, 'python-mode')")
+else:
+    vim.command("call add(g:pathogen_disabled, 'Pydiction')")
+    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
+    vim.command("call add(g:pathogen_disabled, 'Python_ifold')")
+
+if sys.version_info[:2] < (2, 5):
+    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
+
+if sys.version_info[:2] < (2, 3):
+    vim.command("call add(g:pathogen_disabled, 'Pydiction')")
+
+if sys.version_info[:2] < (2, 6):
+    vim.command("call add(g:pathogen_disabled, 'jedi-vim')")
+    vim.command("call add(g:pathogen_disabled, 'python-mode')")
+elif sys.version_info[:2] < (2, 5):
+    vim.command("call add(g:pathogen_disabled, 'Pyflakes')")
+
+EOF
 endif
 
 call pathogen#infect()
@@ -646,15 +678,15 @@ let g:C_LineEndCommColDefault    = 35
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
 let g:tex_flavor                = 'latex'
-let g:Tex_DefaultTargetFormat   = 'dvi'
-"let g:Tex_DefaultTargetFormat  = 'pdf'
+"let g:Tex_DefaultTargetFormat   = 'dvi'
+let g:Tex_DefaultTargetFormat  = 'pdf'
 "let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
-let g:Tex_FormatDependency_pdf  = 'dvi,pdf'
-let g:Tex_CompileRule_dvi       = 'latex -src-specials --interaction=nonstopmode $*'
+"let g:Tex_FormatDependency_pdf  = 'dvi,pdf'
+"let g:Tex_CompileRule_dvi       = 'latex -src-specials --interaction=nonstopmode $*'
 "let g:Tex_CompileRule_ps       = 'dvips -Ppdf -o $*.ps $*.dvi'
 "let g:Tex_CompileRule_pdf      = 'ps2pdf $*.ps'
-let g:Tex_CompileRule_pdf       = 'dvipdfm $*.dvi'
-"let g:Tex_CompileRule_pdf      = 'pdflatex -shell-escape -src-specials -interaction=nonstopmode $*'
+"let g:Tex_CompileRule_pdf       = 'dvipdfm $*.dvi'
+let g:Tex_CompileRule_pdf      = 'pdflatex -shell-escape -src-specials -interaction=nonstopmode $*'
 let g:Tex_IgnoredWarnings       =
     \"Underfull\n".
     \"Overfull\n".
@@ -777,7 +809,6 @@ let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:pyflakes_use_quickfix = 1
 let g:pyflakes_autostart    = 0
-autocmd FileType python map <buffer> <F3> :PyflakesToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pep8
@@ -1064,14 +1095,6 @@ let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]
 let g:startify_custom_indices = ['a','d','f']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Twiki
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup filetypedetect
-        au BufNewFile,BufRead *.twiki     setf twiki
-augroup END
-let g:Twiki_FoldAtHeadings = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Clang
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:clang_hl_errors            = 1
@@ -1085,9 +1108,12 @@ let g:clang_trailing_placeholder = 1
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
-if executable("root-config")
-  let g:clang_user_options = split(system("root-config --cflags"))[-1]
-endif
 
 "" Disable cpp auto include so far
 let g:loaded_cpp_auto_include = "true"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Python-Mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map keys for autocompletion
+let g:pymode_rope = 0
