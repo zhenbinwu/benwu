@@ -114,17 +114,12 @@ if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
 
-"" Limitation of Clang
-if executable("clang")
-  call add(g:pathogen_disabled, 'OmniCppComplete')
-else
-  call add(g:pathogen_disabled, 'ClangComplete')
-endif
 
 "" Limitation of Python
 if has('python')
 python << EOF
 import sys
+import os
 import vim
 
 ToDis = vim.eval("g:pathogen_disabled")
@@ -142,6 +137,19 @@ if sys.version_info[:2] < (2, 5):
 
 if sys.version_info[:2] < (2, 3):
     ToDis.append('Pydiction')
+
+## Limitation of Clang
+if vim.eval("executable('clang')") == 1:
+    ToDis.append('OmniCppComplete')
+else:
+    ToDis.append('ClangComplete')
+
+
+## If python version is too low, revert the ClangComplete
+if sys.version_info[:2] < (2, 5):
+    ToDis.append('ClangComplete')
+    if 'OmniCppComplete' in ToDis:
+        ToDis.remove('OmniCppComplete')
 
 vim.command("let g:pathogen_disabled =  %s" % list(set(ToDis)))
 EOF
