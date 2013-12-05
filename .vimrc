@@ -773,8 +773,9 @@ nnoremap <silent> gno :FufDirWithFullCwd<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:alternateSearchPath         = 'sfr:../,'
 let g:alternateSearchPath        .= 'sfr:src,sfr:inc,reg:/inc/src/g/,reg:/src/inc/g/,'
-let g:alternateSearchPath        .= 'sfr:src,sfr:WHAM,reg:/WHAM/src/g/,reg:/src/WHAM/g/,'
 let g:alternateSearchPath        .= 'sfr:source,sfr:include,reg:/include/source/g/,reg:/source/include/g/'
+let g:alternateSearchPath        .= 'sfr:src,sfr:interface,reg:/interface/src/g/,reg:/src/interface/g/,' "CMSSW style 
+let g:alternateSearchPath        .= 'sfr:src,sfr:WHAM,reg:/WHAM/src/g/,reg:/src/WHAM/g/,'                "WHAM style 
 let g:alternateNoDefaultAlternate = 1
 let g:alternateExtensions_CPP     = "inc,h,hh,H,HPP,hpp"
 let g:alternateExtensions_C       = "inc,h,hh,H,HPP,hpp"
