@@ -44,6 +44,12 @@ pick up by the locator.
 [*] C-support: pick up method with vector<double> ...
 
 [*] startify: add fortune in the head when open up
+
+[*] CMSTag: a python script to read the BuildFile.xml; git checkout the
+all the needed interface and create a list of header files. Create a local
+tags file for each projects. (Not the best idea but we can live with this)
+This can speed up the code completion with omni function within the CMSSW
+development.
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
