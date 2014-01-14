@@ -2,7 +2,7 @@
 call omni#cpp#complete#Init()
 
 "" Setup CMS Tag file
-fun! SetCMSTag() "{{{
+fun! s:SetCMSTag() "{{{
   let curdir = getcwd()
   "" Setup for CMSSW
   if  !exists("$CMSSW_BASE") || match(curdir, expand("$CMSSW_BASE")) == -1 
@@ -23,23 +23,17 @@ fun! SetCMSTag() "{{{
   execute "cd " . curdir
   return 1
 endfunction "}}}
-call SetCMSTag()
+call s:SetCMSTag()
 
 
 fun! s:PreviewSyn() "{{{
   if ! &pvw 
     return 0
-  endi
+  endif
 
-  syn match CalLocation /cmd:.*$/hs=s+4
-  syn match CalTemp /Temp:.*$/hs=s+5
-  syn match CalCond /Cond:.*$/hs=s+5
-  syn match CalWind /Wind:.*$/hs=s+5
-  syn match CalHumidity /signature:.*$/hs=s+10
-  hi link CalLocation Identifier
-  hi link CalTemp Keyword
-  hi link CalCond Define
-  hi link CalWind Special
-  hi link CalHumidity Todo
+  syn match CppFunc /cmd:.*$/hs=s+4
+  syn match CppSig /signature:.*$/hs=s+10
+  hi link CppFunc Keyword
+  hi link CppSig Define
 endfunction "}}}
 autocmd BufWinEnter * call s:PreviewSyn()
