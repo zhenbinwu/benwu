@@ -446,6 +446,13 @@ endfunc
 function! omni#cpp#complete#Main(findstart, base)
     if a:findstart
         "call omni#common#debug#Start()
+        ""  Check for include complete
+        unlet! s:doinclude
+        let s:passnext = getline('.') !~ '^\s*#\s*include\s*\%(<\|"\)'
+        if !s:passnext
+          let s:doinclude = 1
+          return match(getline('.'), '<\|"') + 1
+        endif
 
         call s:InitComplete()
 
@@ -473,6 +480,10 @@ function! omni#cpp#complete#Main(findstart, base)
         " Reinit of may complete indicator
         let s:bMayComplete = 0
         return s:FindStartPositionOfCompletion()
+    endif
+
+    if exists("s:doinclude")
+      return INC#ICComplete_2(a:findstart, a:base)
     endif
 
     " If the cursor is in a comment we return an empty result
