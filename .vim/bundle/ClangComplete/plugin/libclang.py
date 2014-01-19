@@ -3,6 +3,7 @@ import vim
 import time
 import threading
 import os
+import types
 
 # Check if libclang is able to find the builtin include files.
 #
@@ -12,7 +13,10 @@ import os
 def canFindBuiltinHeaders(index, args = []):
   flags = 0
   currentFile = ("test.c", '#include "stddef.h"')
-  tu = index.parse("test.c", args, [currentFile], flags)
+  try:
+    tu = index.parse("test.c", args, [currentFile], flags)
+  except TranslationUnitLoadError, e:
+    return 0
   return len(tu.diagnostics) == 0
 
 # Derive path to clang builtin headers.
@@ -27,6 +31,7 @@ def getBuiltinHeaderPath(library_path):
           library_path + "/../clang",      # gentoo
           library_path + "/clang",         # opensuse
           library_path + "/",              # Google
+          "/usr/lib64/clang",              # x86_64 (openSUSE, Fedora)
           "/usr/lib/clang"
   ]
 
@@ -48,11 +53,10 @@ def getBuiltinHeaderPath(library_path):
   return None
 
 def initClangComplete(clang_complete_flags, clang_compilation_database, \
-                      library_path, user_requested):
+                      library_path):
   global index
 
   debug = int(vim.eval("g:clang_debug")) == 1
-  printWarnings = (user_requested != "0") or debug
 
   if library_path != "":
     Config.set_library_path(library_path)
@@ -62,12 +66,11 @@ def initClangComplete(clang_complete_flags, clang_compilation_database, \
   try:
     index = Index.create()
   except Exception, e:
-    if printWarnings:
-      print "Loading libclang failed, falling back to clang executable. ",
-      if library_path == "":
-        print "Consider setting g:clang_library_path"
-      else:
-        print "Are you sure '%s' contains libclang?" % library_path
+    print "Loading libclang failed, completion won't be available"
+    if library_path == "":
+      print "Consider setting g:clang_library_path"
+    else:
+      print "Are you sure '%s' contains libclang?" % library_path
     return 0
 
   global builtinHeaderPath
@@ -75,7 +78,7 @@ def initClangComplete(clang_complete_flags, clang_compilation_database, \
   if not canFindBuiltinHeaders(index):
     builtinHeaderPath = getBuiltinHeaderPath(library_path)
 
-    if not builtinHeaderPath and printWarnings:
+    if not builtinHeaderPath:
       print "WARNING: libclang can not find the builtin includes."
       print "         This will cause slow code completion."
       print "         Please report the problem."
@@ -96,7 +99,7 @@ def initClangComplete(clang_complete_flags, clang_compilation_database, \
 # Get a tuple (fileName, fileContent) for the file opened in the current
 # vim buffer. The fileContent contains the unsafed buffer content.
 def getCurrentFile():
-  file = "\n".join(vim.current.buffer[:])
+  file = "\n".join(vim.current.buffer[:] + ["\n"])
   return (vim.current.buffer.name, file)
 
 class CodeCompleteTimer:
@@ -160,11 +163,13 @@ def getCurrentTranslationUnit(args, currentFile, fileName, timer,
       timer.registerEvent("Reparsing")
     return tu
 
-  flags = TranslationUnit.PARSE_PRECOMPILED_PREAMBLE
-  tu = index.parse(fileName, args, [currentFile], flags)
-  timer.registerEvent("First parse")
-
-  if tu == None:
+  flags = TranslationUnit.PARSE_PRECOMPILED_PREAMBLE | \
+          TranslationUnit.PARSE_DETAILED_PROCESSING_RECORD
+  flags |= TranslationUnit.PARSE_INCLUDE_BRIEF_COMMENTS_IN_CODE_COMPLETION
+  try:
+    tu = index.parse(fileName, args, [currentFile], flags)
+    timer.registerEvent("First parse")
+  except TranslationUnitLoadError, e:
     return None
 
   translationUnits[fileName] = tu
@@ -364,9 +369,8 @@ def formatResult(result):
   completion = dict()
   returnValue = None
   abbr = ""
-  args_pos = []
-  cur_pos = 0
   word = ""
+  info = ""
 
   for chunk in result.string:
 
@@ -382,23 +386,24 @@ def formatResult(result):
     if chunk.isKindTypedText():
       abbr = chunk_spelling
 
-    chunk_len = len(chunk_spelling)
     if chunk.isKindPlaceHolder():
-      args_pos += [[ cur_pos, cur_pos + chunk_len ]]
-    cur_pos += chunk_len
-    word += chunk_spelling
+      word += snippetsFormatPlaceHolder(chunk_spelling)
+    else:
+      word += chunk_spelling
 
-  menu = word
+    info += chunk_spelling
+
+  menu = info
 
   if returnValue:
     menu = returnValue.spelling + " " + menu
 
-  completion['word'] = word
+  completion['word'] = snippetsAddSnippet(info, word, abbr)
   completion['abbr'] = abbr
   completion['menu'] = menu
-  completion['info'] = word
-  completion['args_pos'] = args_pos
+  completion['info'] = info
   completion['dup'] = 1
+  completion['brief_comment'] = result.string.briefComment.spelling or ""
 
   # Replace the number that represents a specific kind with a better
   # textual representation.
@@ -420,8 +425,8 @@ class CompleteThread(threading.Thread):
     self.timer = timer
 
   def run(self):
-    with workingDir(self.cwd):
-      with libclangLock:
+    with libclangLock:
+      with workingDir(self.cwd):
         if self.line == -1:
           # Warm up the caches. For this it is sufficient to get the
           # current translation unit. No need to retrieve completion
@@ -492,13 +497,128 @@ def getCurrentCompletions(base):
   result = map(formatResult, results)
 
   timer.registerEvent("Format")
-  return (str(result), timer)
+  return (result, timer)
+
+class VimReprHelper:
+  def __init__(self):
+    self._result = []
+
+  def getResult(self):
+    return ''.join(self._result)
+
+  def append(self, v):
+    t = type(v)
+    if t in [types.IntType, types.LongType, types.FloatType]:
+      self._result.append(repr(v))
+    if t in [types.StringType, types.UnicodeType]:
+      self.appendString(v)
+    if t is types.ListType:
+      self.appendList(v)
+    if t is types.DictType:
+      self.appendDict(v)
+
+  def appendString(self, s):
+    if '\'' in s:
+      self._result.append('\'')
+      self._result.append(s.replace('\'', '\'\''))
+      self._result.append('\'')
+    else:
+      self._result.append(repr(s))
+
+  def appendList(self, l):
+    self._result.append('[')
+    for i in xrange(len(l)):
+      self.append(l[i])
+      if i != len(l) - 1:
+        self._result.append(',')
+    self._result.append(']')
+
+  def appendDict(self, d):
+    self._result.append('{')
+    keys = d.keys()
+    for i in xrange(len(keys)):
+      k = keys[i]
+      self.append(k)
+      self._result.append(':')
+      self.append(d[k])
+      if i != len(keys) - 1:
+        self._result.append(',')
+    self._result.append('}')
+
+def needsSpecialConversion(v):
+  t = type(v)
+  if t in [types.IntType, types.LongType, types.FloatType]:
+    return False
+  if t in [types.StringType, types.UnicodeType]:
+    return '\'' in v
+  if t is types.ListType:
+    for e in v:
+      if needsSpecialConversion(e):
+        return True
+  if t is types.DictType:
+    for k, val in v.items():
+      if needsSpecialConversion(k):
+        return True
+      if needsSpecialConversion(val):
+        return True
+  return False
+
+def toVimRepr(v):
+  if needsSpecialConversion(v):
+    helper = VimReprHelper()
+    helper.append(v)
+    return helper.getResult()
+  else:
+    return repr(v)
 
 def getAbbr(strings):
   for chunks in strings:
     if chunks.isKindTypedText():
       return chunks.spelling
   return ""
+
+def jumpToLocation(filename, line, column):
+  if filename != vim.current.buffer.name:
+    try:
+      vim.command("edit %s" % filename)
+    except:
+      # For some unknown reason, whenever an exception occurs in
+      # vim.command, vim goes crazy and output tons of useless python
+      # errors, catch those.
+      return
+  else:
+    vim.command("normal m'")
+  vim.current.window.cursor = (line, column - 1)
+
+def gotoDeclaration():
+  global debug
+  debug = int(vim.eval("g:clang_debug")) == 1
+  params = getCompileParams(vim.current.buffer.name)
+  line, col = vim.current.window.cursor
+  timer = CodeCompleteTimer(debug, vim.current.buffer.name, line, col, params)
+
+  with libclangLock:
+    with workingDir(params['cwd']):
+      tu = getCurrentTranslationUnit(params['args'], getCurrentFile(),
+                                     vim.current.buffer.name, timer,
+                                     update = True)
+      if tu is None:
+        print "Couldn't get the TranslationUnit"
+        return
+
+      f = File.from_name(tu, vim.current.buffer.name)
+      loc = SourceLocation.from_position(tu, f, line, col + 1)
+      cursor = Cursor.from_location(tu, loc)
+      defs = [cursor.get_definition(), cursor.referenced]
+
+      for d in defs:
+        if d is not None and loc != d.location:
+          loc = d.location
+          if loc.file is not None:
+            jumpToLocation(loc.file.name, loc.line, loc.column)
+            break
+
+  timer.finish()
 
 # Manually extracted from Index.h
 # Doing it by hand is long, error prone and horrible, we must find a way

@@ -1274,7 +1274,7 @@ class Cursor(Structure):
     @property
     def referenced(self):
         """
-        For a cursor that is a reference, returns a cursor 
+        For a cursor that is a reference, returns a cursor
         representing the entity that it references.
         """
         if not hasattr(self, '_referenced'):
@@ -2015,7 +2015,7 @@ class TranslationUnit(ClangObject):
                                     len(args), unsaved_array,
                                     len(unsaved_files), options)
 
-        if ptr is None:
+        if not ptr:
             raise TranslationUnitLoadError("Error parsing translation unit.")
 
         return cls(ptr, index=index)
@@ -2037,7 +2037,7 @@ class TranslationUnit(ClangObject):
             index = Index.create()
 
         ptr = conf.lib.clang_createTranslationUnit(index, filename)
-        if ptr is None:
+        if not ptr:
             raise TranslationUnitLoadError(filename)
 
         return cls(ptr=ptr, index=index)
@@ -2238,6 +2238,8 @@ class TranslationUnit(ClangObject):
 
         if include_brief_comments:
             options += 4
+
+        options = 7
 
         if unsaved_files is None:
             unsaved_files = []
