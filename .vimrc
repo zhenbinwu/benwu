@@ -139,7 +139,7 @@ if sys.version_info[:2] < (2, 3):
     ToDis.append('Pydiction')
 
 ## Limitation of Clang
-if vim.eval("executable('clang')") == 1:
+if vim.eval("executable('clang')") == '1':
     ToDis.append('OmniCppComplete')
 else:
     ToDis.append('ClangComplete')
