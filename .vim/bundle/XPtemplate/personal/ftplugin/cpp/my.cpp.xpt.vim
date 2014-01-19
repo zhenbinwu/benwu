@@ -61,3 +61,10 @@ for(auto `i^=`class^.begin(); `i^!=`class^.end(); `i^++)
 {
     `cursor^
 }
+
+XPT fs wrap " for (unsigned = 0; < size;++)
+for(unsigned int `i^=0; `i^ < `class^`opt^size(); `i^++)
+{
+    `type^ `var^ = `class^`opt^at(`i^);
+    `cursor^
+}
