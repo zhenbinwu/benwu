@@ -147,9 +147,9 @@ endif
 if (  $SHORT_HOST =~ cmslpc* ) then 
 	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
-    setenv VIM $HOME/BenSys/share/vim/vim73/
+    setenv VIM $HOME/BenSys/share/vim/vim74/
     setenv PYTHONPATH $HOME/BenSys/python/
-	setenv CVSEIDTOR vim73
+	setenv CVSEIDTOR vim74
     alias vi  'source $HOME/.tcsh/vitex';
     alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-checkdeps $__git_cmd_names"'
 endif
