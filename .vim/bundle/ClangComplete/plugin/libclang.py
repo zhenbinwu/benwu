@@ -397,6 +397,9 @@ def formatResult(result):
 
   if returnValue:
     menu = returnValue.spelling + " " + menu
+    completion['return'] = returnValue.spelling
+  else:
+    completion['return'] = ""
 
   completion['word'] = snippetsAddSnippet(info, word, abbr)
   completion['abbr'] = abbr

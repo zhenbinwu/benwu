@@ -380,7 +380,7 @@ function! ClangComplete(findstart, base)
     python timer.registerEvent("Load into vimscript")
 
     for item in l:res
-      let item['info'] = item['info'] . "\n" . item['brief_comment']
+      let item['info'] = item['menu'] . "\nReturn: " . item['return'] . "\n//" . item['brief_comment']
     endfor
 
     inoremap <expr> <buffer> <C-Y> <SID>HandlePossibleSelectionCtrlY()

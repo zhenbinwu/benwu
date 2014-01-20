@@ -26,7 +26,7 @@ r = re.compile('<#[^#]*#>')
 
 def snippetsTrigger():
   if r.search(vim.current.line) is None:
-    return
+    return None
   vim.command('call feedkeys("\<esc>^\<tab>")')
 
 def snippetsReset():
@@ -41,11 +41,14 @@ def updateSnips():
     result = r.search(line)
     if result is None:
       vim.command('call feedkeys("\<c-o>k", "n")')
-      return
+      return None
 
   start, end = result.span()
   vim.current.window.cursor = row, start
   isInclusive = vim.eval("&selection") == "inclusive"
-  vim.command('call feedkeys("\<ESC>v%dl\<C-G>", "n")' % (end - start - isInclusive))
+  if end - start - isInclusive == 3:
+    vim.command('call feedkeys("\<ESC>v%dl\<C-G>o\<BS>", "n")' % (end - start - isInclusive))
+  else:
+    vim.command('call feedkeys("\<ESC>v%dl\<C-G>", "n")' % (end - start - isInclusive))
 
 # vim: set ts=2 sts=2 sw=2 expandtab :

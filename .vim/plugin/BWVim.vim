@@ -78,13 +78,6 @@ nmap <silent> <leader>tt :call <sid>LastTab()<CR>
 "============================================================================"
 "                            QuickFix & LocalList                            "
 "============================================================================"
-fun! s:SetMakeprg() "{{{
-  "" Setup for CMSSW
-  if  exists("$CMSSW_BASE") && match(expand("%:p:h"), expand("$CMSSW_BASE")) != -1 && executable("scram")
-    set makeprg =scram\ b\ -j\ 8
-  endif
-  return 1
-endfunction "}}}
 
 "" Re-define make
 let g:make_target = "%:r"
@@ -97,12 +90,10 @@ fun! MapMake(output) "{{{
     endif
   endif
 
-  if exists("g:UpdateMake")
-  else
-    if (&filetype == 'c' || &filetype == 'cpp')
-      call s:SetMakeprg()
+  if !exists("g:UpdateMake")
+    if exists("*SetMakeprg")
+      call SetMakeprg()
     endif
-    let g:UpdateMake = 1
   endif
 
   w
