@@ -10,8 +10,7 @@ fun! s:SetCMSTag() "{{{
   endif
   set tags+=CMSTag
 
-  while !filereadable("CMSTag") 
-  "while !filereadable("CMSTag") && matchend(getcwd(), expand("$CMSSW_BASE")) != len(getcwd())
+  while !filereadable("CMSTag") && matchend(getcwd(), expand("$CMSSW_BASE")) != len(getcwd())
     cd ..
   endwhile
   let g:test = getcwd()

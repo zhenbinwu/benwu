@@ -139,7 +139,7 @@ if sys.version_info[:2] < (2, 3):
     ToDis.append('Pydiction')
 
 ## Limitation of Clang
-if vim.eval("executable('clang')") == 1:
+if vim.eval("executable('clang')") == '1':
     ToDis.append('OmniCppComplete')
 else:
     ToDis.append('ClangComplete')
@@ -1108,8 +1108,11 @@ let g:clang_snippets             = 1
 let g:clang_use_library          = 1
 let g:clang_snippets_engine      = 'clang_complete'
 let g:clang_complete_copen       = 1
-let g:clang_complete_auto        = 0
+let g:clang_complete_auto        = 1
 let g:clang_trailing_placeholder = 1
+if( match(hostname(), 'nbay04') >=0 )
+  let g:clang_library_path="/home/benwu/BenSys/lib/"
+endif
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
