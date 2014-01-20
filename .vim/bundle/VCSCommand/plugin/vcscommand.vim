@@ -1428,7 +1428,7 @@ endif
 
 let s:defaultMappings = [
 			\['a', 'VCSAdd'],
-			\['e', 'VCSCommit'],
+			\['m', 'VCSCommit'],
 			\['D', 'VCSDelete'],
 			\['d', 'VCSDiff'],
 			\['G', 'VCSClearAndGotoOriginal'],

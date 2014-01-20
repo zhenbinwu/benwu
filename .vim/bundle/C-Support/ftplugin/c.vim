@@ -102,14 +102,14 @@ vnoremap    <buffer>  <silent>  <LocalLeader>c*         :call C#CodeToCommentC()
 
 noremap    <buffer>  <silent>  <LocalLeader>ch        :call C#InsertTemplateNoIndent("comment.frame")<CR>
 noremap    <buffer>  <silent>  <LocalLeader>cu        :call C#InsertTemplateNoIndent("comment.function")<CR>
-noremap    <buffer>  <silent>  <LocalLeader>cm        :call C#InsertTemplateNoIndent("comment.method")<CR>
+noremap    <buffer>  <silent>  <LocalLeader>ce        :call C#InsertTemplateNoIndent("comment.method")<CR>
 noremap    <buffer>  <silent>  <LocalLeader>cs        :call C#InsertTemplateNoIndent("comment.class")<CR>
 "noremap    <buffer>  <silent>  <LocalLeader>cfdi       :call C#InsertTemplateNoIndent("comment.file-description")<CR>
 "noremap    <buffer>  <silent>  <LocalLeader>cfdh       :call C#InsertTemplateNoIndent("comment.file-description-header")<CR>
 
 inoremap    <buffer>  <silent>  <LocalLeader>ch   <Esc>:call C#InsertTemplateNoIndent("comment.frame")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cu   <Esc>:call C#InsertTemplateNoIndent("comment.function")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>cm   <Esc>:call C#InsertTemplateNoIndent("comment.method")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ce   <Esc>:call C#InsertTemplateNoIndent("comment.method")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>cs   <Esc>:call C#InsertTemplateNoIndent("comment.class")<CR>
 "inoremap    <buffer>  <silent>  <LocalLeader>cfdi  <Esc>:call C#InsertTemplateNoIndent("comment.file-description")<CR>
 "inoremap    <buffer>  <silent>  <LocalLeader>cfdh  <Esc>:call C#InsertTemplateNoIndent("comment.file-description-header")<CR>
