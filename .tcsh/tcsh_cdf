@@ -56,6 +56,11 @@ alias opr   	'ssh -t cdfopr@fcdflnx1.fnal.gov "cd ~cdfopr/scripts; bash" '
 alias proj      'ssh -t fcdflnx5.fnal.gov " cd /cdf/proj/302.higgs/WHAM/CatoTree; tcsh" '
 alias spool      'ssh -t fcdflnx2.fnal.gov " cd /cdf/spool/benwu/; tcsh" '
 
+# SSH aliases for my account (for CMS)
+alias lpc      'ssh -X cmslpc-sl5.fnal.gov'
+alias lxplus    'ssh -X lxplus5.cern.ch'
+alias kodiak    'ssh -X kodiak.baylor.edu'
+
 ########################## Setup Environment ###############################
 
 if (  $SHORT_HOST =~ nbay04 ) then 
@@ -71,7 +76,7 @@ if (  $SHORT_HOST =~ nbay04 ) then
     else
       setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib64/:/home/benwu/BenSys/lib/:$LD_LIBRARY_PATH
     endif
-    alias cms 'cmsenv;set cdpath=($PWD ~/);setenv LANG en_US.UTF8'
+    alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-checkdeps $__git_cmd_names"'
 else if (  $SHORT_HOST =~ nbay0[1-5] ) then 
     # Setup CDF 6.1.4 for root
     alias sr 	'source $HOME/.tcsh/setup614'
@@ -164,6 +169,6 @@ if (  $SHORT_HOST =~ lxplus* ) then
     alias vi  '$CVSEIDTOR -X'
     stty erase 
     #alias vi  'source $HOME/.tcsh/vitex';
-    #alias cms 'cmsenv;set cdpath=($PWD ~/);setenv LANG en_US.UTF8'
+    alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-checkdeps $__git_cmd_names"'
 endif
 
