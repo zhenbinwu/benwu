@@ -14,22 +14,17 @@ let g:loaded_project=1
 let g:project_powerline=''
 
 function s:SetProj() "<<<
-    let curdir = getcwd()
-    while !filereadable(".vimproject") && getcwd() != "/"
-	cd ..
-    endwhile
+  let s:temppath = SearchFile(".vimproject")
+  let g:temp = s:temppath
 
-    if filereadable(".vimproject")
-        let temp = getcwd() . "/.vimproject"
-        if filereadable(".lvimrc")
-          source .lvimrc
-        endif
-    else
-        let temp = "~/.vimprojects"
+  if s:temppath != ""
+    if filereadable( fnamemodify(s:temppath, ':p:h') . "/.lvimrc")
+      execute "source ". fnamemodify(s:temppath, ':p:h') . "/.lvimrc"
     endif
-
-    execute "cd " . curdir
-    return temp
+    return s:temppath."/.vimproject"
+  else
+    return "~/.vimprojects"
+  endif
 endfunction ">>>
 
 function s:SourceLvimrc() "<<<
@@ -70,7 +65,6 @@ function! s:Project(filename) " <<<
     else
         if strlen(a:filename) == 0
             let filename=s:SetProj()
-            echo filename
         else
             let filename = a:filename
         endif
