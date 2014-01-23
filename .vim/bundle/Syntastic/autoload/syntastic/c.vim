@@ -85,7 +85,7 @@ endfunction
 " the file format and its parsing mechanism is inspired by clang_complete
 function! syntastic#c#ReadConfig(file)
     " search in the current file's directory upwards
-    let config = findfile(a:file, '.;')
+    let config = SearchFile(a:file)
     if config == '' || !filereadable(config) | return '' | endif
 
     " convert filename into absolute path

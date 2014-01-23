@@ -543,6 +543,21 @@ map <C-W>{ <C-W>g}
 "                        Plugin Setting             			+
 "   							                            	+
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+fun! SearchFile(filename) "{{{
+    let curdir = getcwd()
+    while !filereadable(a:filename) && getcwd() != '/' && split(getcwd(),'/')[-1] != expand("$USER")
+      lcd ..
+    endwhile
+
+    if filereadable(a:filename)
+      let s:filepath = getcwd()
+      execute "lcd " . curdir
+      return s:filepath . "/" . a:filename
+    else
+      execute "lcd " . curdir
+      return ''
+    end
+endfunction "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""
 "" Super tab and Omnicomplete

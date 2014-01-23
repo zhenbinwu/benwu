@@ -203,7 +203,7 @@ function! LoadUserOptions()
 endfunction
 
 function! s:parseConfig()
-  let l:local_conf = findfile('.clang_complete', getcwd() . ',.;')
+  let l:local_conf = SearchFile('.clang_complete')
   if l:local_conf == '' || !filereadable(l:local_conf)
     return
   endif
@@ -231,7 +231,7 @@ endfunction
 
 function! s:findCompilationDatase(cdb)
   if g:clang_compilation_database == ''
-    let l:local_conf = findfile(a:cdb, getcwd() . ',.;')
+    let l:local_conf = SearchFile(a:cdb)
     if l:local_conf != '' && filereadable(l:local_conf)
       let g:clang_compilation_database = fnamemodify(l:local_conf, ":p:h")
     endif
