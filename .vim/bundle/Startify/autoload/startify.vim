@@ -89,6 +89,7 @@ function! startify#insane_in_the_membrane() abort
     call append('$', ['', '   [c]  <Calendar>'])
     call append('$', ['   [t]  <Task>'])
     call append('$', ['   [g]  <Gstatus>'])
+    call append('$', ['   [p]  <Project>'])
     call append('$', ['', '   [q]  <quit>'])
   endif
 
@@ -102,6 +103,7 @@ function! startify#insane_in_the_membrane() abort
   nnoremap <buffer>         <cr>    :call <SID>open_buffers(expand('<cword>'))<cr>
   nnoremap <buffer>         <2-LeftMouse> :execute 'normal '. matchstr(getline('.'), '\w\+')<cr>
   nnoremap <buffer><silent> g       :Gstatus<cr>
+  nnoremap <buffer><silent> p       :Project<cr>
   nnoremap <buffer><silent> c       :CalendarH<cr>
   nnoremap <buffer><silent> t       :Task<cr>
   nnoremap <buffer>         q
