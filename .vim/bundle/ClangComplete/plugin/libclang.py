@@ -480,6 +480,10 @@ def getCurrentCompletions(base):
     return (str([]), timer)
 
   results = cr.results
+  # Filter out completions of which any use of it will be an error
+  # Ref: index.h (CXAvailabilityKind)
+  results = filter(lambda x: str(x.string.availability) != 'NotAccessible' \
+            and str(x.string.availability) != "NotAvailable", results)
 
   timer.registerEvent("Count # Results (%s)" % str(len(results)))
 
