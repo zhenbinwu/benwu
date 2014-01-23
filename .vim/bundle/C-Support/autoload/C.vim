@@ -2215,9 +2215,9 @@ let s:C_Makefile			= ''
 "------------------------------------------------------------------------------
 function! C#ChooseMakefile ()
 	let s:C_Makefile	= ''
-	let mkfile	= findfile( "Makefile", ".;" )    " try to find a Makefile
+	let mkfile	= SearchFile("Makefile")  " try to find a Makefile
 	if mkfile == ''
-    let mkfile  = findfile( "makefile", ".;" )  " try to find a makefile
+    let mkfile  = SearchFile("makefile") " try to find a makefile
 	endif
 	if mkfile == ''
 		let mkfile	= getcwd()

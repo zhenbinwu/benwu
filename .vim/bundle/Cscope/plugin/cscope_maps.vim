@@ -28,17 +28,12 @@
 if has("cscope")
 
 function s:SetCscope()
-    let curdir = getcwd()
-    while !filereadable("cscope.out") && matchend(getcwd(), expand("$USER")) != len(getcwd())
-	cd ..
-    endwhile
+  let s:temppath = SearchFile("cscope.out")
 
-    if filereadable("cscope.out")
-        cs add cscope.out  
-        let g:cscope_relative_path = getcwd()
-    endif
-
-    execute "cd " . curdir
+  if s:temppath != ''
+    execute "cs add ". s:temppath
+    let g:cscope_relative_path = fnamemodify(s:temppath, ":p:h")
+  endif
 endfunction
 
 fun! CscopeQuickfix(mode, word) "{{{
