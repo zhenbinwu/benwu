@@ -604,6 +604,18 @@ def gotoDeclaration():
   line, col = vim.current.window.cursor
   timer = CodeCompleteTimer(debug, vim.current.buffer.name, line, col, params)
 
+  ############# Jump to include file?
+  result = re.search(r"#include\s*[<\"]([^>\"]*)[>\"]", vim.current.line)
+  if result != None and col >= result.start(1) and col <= result.end(1):
+    parlist = params['args']
+    parlist.append("-I%s" % vim.eval('expand("%:p:h")'))
+    for lit in parlist:
+      if re.search("-I.*", lit) != None and \
+         os.path.isfile("%s/%s" % (lit.strip('-I'), result.group(1))):
+        jumpToLocation("%s/%s" % (lit.strip('-I'), result.group(1)), 1, 1)
+        break
+
+
   with libclangLock:
     with workingDir(params['cwd']):
       tu = getCurrentTranslationUnit(params['args'], getCurrentFile(),
