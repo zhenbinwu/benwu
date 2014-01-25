@@ -1141,3 +1141,10 @@ let g:loaded_cpp_auto_include = "true"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map keys for autocompletion
 let g:pymode_rope = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => DoxygenToolkit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au Syntax {cpp,c,idl} runtime syntax/doxygen.vim
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_briefTag_post = "<++>"

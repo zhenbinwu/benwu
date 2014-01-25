@@ -203,18 +203,6 @@ command! -nargs=0 DirDiffPrev call <SID>DirDiffPrev ()
 command! -nargs=0 DirDiffUpdate call <SID>DirDiffUpdate ()
 command! -nargs=0 DirDiffQuit call <SID>DirDiffQuit ()
 
-if !hasmapto('<Plug>DirDiffGet')
-  map <unique> <Leader>dg <Plug>DirDiffGet
-endif
-if !hasmapto('<Plug>DirDiffPut')
-  map <unique> <Leader>dp <Plug>DirDiffPut
-endif
-if !hasmapto('<Plug>DirDiffNext')
-  map <unique> <Leader>dj <Plug>DirDiffNext
-endif
-if !hasmapto('<Plug>DirDiffPrev')
-  map <unique> <Leader>dk <Plug>DirDiffPrev
-endif
 
 " Global Maps:
 map <unique> <script> <Plug>DirDiffGet    :diffget<CR>
@@ -449,6 +437,19 @@ function! <SID>DirDiff(srcA, srcB)
     nnoremap <buffer> <CR>  :call <SID>DirDiffOpen()<CR>  
     nnoremap <buffer> <2-Leftmouse> :call <SID>DirDiffOpen()<CR>
     call <SID>SetupSyntax()
+
+    if !hasmapto('<Plug>DirDiffGet')
+      map <unique> <Leader>dg <Plug>DirDiffGet
+    endif
+    if !hasmapto('<Plug>DirDiffPut')
+      map <unique> <Leader>dp <Plug>DirDiffPut
+    endif
+    if !hasmapto('<Plug>DirDiffNext')
+      map <unique> <Leader>dj <Plug>DirDiffNext
+    endif
+    if !hasmapto('<Plug>DirDiffPrev')
+      map <unique> <Leader>dk <Plug>DirDiffPrev
+    endif
 
     " Open the first diff
     call <SID>DirDiffNext()
