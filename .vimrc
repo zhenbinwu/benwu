@@ -1133,9 +1133,6 @@ set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
 
-"" Disable cpp auto include so far
-let g:loaded_cpp_auto_include = "true"
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Python-Mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
