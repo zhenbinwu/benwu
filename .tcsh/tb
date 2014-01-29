@@ -1,0 +1,8 @@
+#!/bin/tcsh
+
+
+if (`which root >& /dev/null ; echo $?`  == 0 ) then
+  root -l $* $HOME/.tcsh/newBrowser.C
+else
+  echo "ROOT is not setup yet!"
+endif

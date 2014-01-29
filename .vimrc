@@ -1133,11 +1133,15 @@ set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
 
-"" Disable cpp auto include so far
-let g:loaded_cpp_auto_include = "true"
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Python-Mode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map keys for autocompletion
 let g:pymode_rope = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => DoxygenToolkit
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au Syntax {cpp,c,idl} runtime syntax/doxygen.vim
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_briefTag_post = "<++>"

@@ -21,7 +21,7 @@ function s:SetProj() "<<<
     if filereadable( fnamemodify(s:temppath, ':p:h') . "/.lvimrc")
       execute "source ". fnamemodify(s:temppath, ':p:h') . "/.lvimrc"
     endif
-    return s:temppath."/.vimproject"
+    return s:temppath
   else
     return "~/.vimprojects"
   endif
@@ -1253,13 +1253,17 @@ function! s:Project(filename) " <<<
             if winbufnr(0) != g:proj_running
                 let lzsave=&lz
                 set lz
+                let tagbarwinnr = bufwinnr('__Tagbar__')
+                let currentbufnr = bufname("%")
                 only
                 Project
-                silent! wincmd p
                 if !empty(getqflist())
-                  copen
-                  silent! wincmd p
+                  cc
                 endif
+                if tagbarwinnr != -1
+                  TagbarOpen
+                endif
+                  silent! exec bufwinnr(currentbufnr) . "wincmd w"
                 let &lz=lzsave
                 unlet lzsave
             endif

@@ -480,6 +480,10 @@ def getCurrentCompletions(base):
     return (str([]), timer)
 
   results = cr.results
+  # Filter out completions of which any use of it will be an error
+  # Ref: index.h (CXAvailabilityKind)
+  results = filter(lambda x: str(x.string.availability) != 'NotAccessible' \
+            and str(x.string.availability) != "NotAvailable", results)
 
   timer.registerEvent("Count # Results (%s)" % str(len(results)))
 
@@ -599,6 +603,18 @@ def gotoDeclaration():
   params = getCompileParams(vim.current.buffer.name)
   line, col = vim.current.window.cursor
   timer = CodeCompleteTimer(debug, vim.current.buffer.name, line, col, params)
+
+  ############# Jump to include file?
+  result = re.search(r"#include\s*[<\"]([^>\"]*)[>\"]", vim.current.line)
+  if result != None and col >= result.start(1) and col <= result.end(1):
+    parlist = params['args']
+    parlist.append("-I%s" % vim.eval('expand("%:p:h")'))
+    for lit in parlist:
+      if re.search("-I.*", lit) != None and \
+         os.path.isfile("%s/%s" % (lit.strip('-I'), result.group(1))):
+        jumpToLocation("%s/%s" % (lit.strip('-I'), result.group(1)), 1, 1)
+        break
+
 
   with libclangLock:
     with workingDir(params['cwd']):

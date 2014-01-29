@@ -151,9 +151,13 @@ class |CLASSNAME|
 	|CLASSNAME|& operator = ( const |CLASSNAME| &other ); // assignment operator
 
     protected:
-	// ====================  DATA MEMBERS  ===============================
+    // ====================  METHODS       ======================================= 
+
+    // ====================  DATA MEMBERS  ===============================
 
     private:
+    // ====================  METHODS       ======================================= 
+
 	// ====================  DATA MEMBERS  ===============================
 
 }; // -----  end of class |CLASSNAME|  -----
@@ -319,48 +323,48 @@ class |CLASSNAME|
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-class-using-new-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 template < class T >
-|CLASSNAME|<T>::|CLASSNAME| ()
-{
-}  // ~~~~~  end of constructor of template class |CLASSNAME|  ~~~~~
+|CLASSNAME|< T >::|CLASSNAME| ()
+{<CURSOR>
+}  // ----------  end of constructor of template class |CLASSNAME|  ---------- 
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  copy constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 template < class T >
-|CLASSNAME|<T>::|CLASSNAME| ( const |CLASSNAME| &other )
-{<CURSOR>
-}  // ~~~~~  end of copy constructor of template class |CLASSNAME|  ~~~~~
+|CLASSNAME|< T >::|CLASSNAME| ( const |CLASSNAME| &other )
+{
+}  // ----------  end of copy constructor of template class |CLASSNAME|  ---------- 
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  ~|CLASSNAME|
 // Description:  destructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 template < class T >
-|CLASSNAME|<T>::~|CLASSNAME| ()
+|CLASSNAME|< T >::~|CLASSNAME| ()
 {
-}  // ~~~~~  end of destructor of template class |CLASSNAME|  ~~~~~
+}  // ----------  end of destructor of template class |CLASSNAME|  ---------- 
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  operator =
 // Description:  assignment operator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------------------------------------------------------
 template < class T >
-|CLASSNAME|<T>& |CLASSNAME|<T>::operator = ( const |CLASSNAME| &other )
+|CLASSNAME|< T >& |CLASSNAME|< T >::operator = ( const |CLASSNAME| &other )
 {
   if ( this != &other ) {
   }
   return *this;
-}  // ~~~~~  end of assignment operator of template class |CLASSNAME|  ~~~~~
+}  // ----------  end of assignment operator of template class |CLASSNAME|  ---------- 
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-function ==

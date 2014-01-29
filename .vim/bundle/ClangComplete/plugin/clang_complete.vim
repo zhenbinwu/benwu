@@ -504,4 +504,8 @@ function! g:ClangUpdateQuickFix()
   return ''
 endfunction
 
+fun! s:UpdateCK() "{{{
+  inoremap <silent> <buffer> <c-k> <ESC>:python updateSnips()<CR>
+endfunction "}}}
+command! -nargs=0 UpdateCK :call <SID>UpdateCK()
 " vim: set ts=2 sts=2 sw=2 expandtab :
