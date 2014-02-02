@@ -1,7 +1,7 @@
 map  <buffer> <F5> :call Runexe()<CR>
 map  <buffer> <F6> :call Showexe()<CR>
-map  <buffer> <leader>rr :w<cr>:!root -l  %<CR>
-imap <buffer> <leader>rr <Esc>:w<CR>:!root -l  %<CR>
+map  <buffer> <leader>rr :update<cr>:!root -l  %<CR>
+imap <buffer> <leader>rr <Esc>:update<CR>:!root -l  %<CR>
 map  <buffer> <leader>dd :g/\(.*__func__.*\\|.*__FILE__.*\\|.*__LINE__.*\)\+/d<cr>:nohl<cr>
 
 nnoremap <buffer> <silent> ]/  :call search('^.*//.*$', 'W')<CR>zvz.

@@ -418,6 +418,10 @@ inoremap    <buffer>  <silent>  <LocalLeader>t{   <Esc>:call C#InsertTemplate("c
 vnoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("cpp.catch-points", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("cpp.catch-points")<CR>
 "
+ noremap    <buffer>  <silent>  <LocalLeader>tw        :call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tw   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tW        :call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tW   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
 " ---------- run menu --------------------------------------------------------
 "
  map    <buffer>  <silent>  <LocalLeader>rc         :call C#Compile()<CR>:call C#HlMessage()<CR>
