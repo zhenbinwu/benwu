@@ -461,6 +461,14 @@ $
 dynamic_cast<<CURSOR>>(<-SPLIT->)
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-definition  ==
+/**\class |?CLASSNAME|
+
+ Description: [one line class summary]
+
+ Implementation:
+     [Notes on implementation]
+*/
+
 // system include files
 #include <memory>
 #include <string>
@@ -480,8 +488,8 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 
 
-#ifndef  __EDAnalyzer_|?CLASSNAME|_INC__
-#define  __EDAnalyzer_|CLASSNAME|_INC__
+#ifndef  __EDAnalyzer_|CLASSNAME:u|_INC__
+#define  __EDAnalyzer_|CLASSNAME:u|_INC__
 
 class |CLASSNAME| : public edm::EDAnalyzer {
    public:
