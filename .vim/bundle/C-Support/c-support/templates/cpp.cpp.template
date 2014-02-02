@@ -463,10 +463,10 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-definition  ==
 /**\class |?CLASSNAME|
 
- Description: [one line class summary]
+ Description: <+one line class summary+>
 
  Implementation:
-     [Notes on implementation]
+     <+Notes on implementation+>
 */
 
 // system include files
@@ -483,10 +483,10 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+
 //
 // class declaration
 //
-
 
 #ifndef  __EDAnalyzer_|CLASSNAME:u|_INC__
 #define  __EDAnalyzer_|CLASSNAME:u|_INC__
@@ -504,10 +504,10 @@ class |CLASSNAME| : public edm::EDAnalyzer {
       virtual void analyze(const edm::Event&, const edm::EventSetup&) override;
       virtual void endJob() override;
 
-      //virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
-      //virtual void endRun(edm::Run const&, edm::EventSetup const&) override;
-      //virtual void beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
-      //virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
+      virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
+      virtual void endRun(edm::Run const&, edm::EventSetup const&) override;
+      virtual void beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
+      virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
 
       // ----------member data ---------------------------
 };
@@ -581,36 +581,351 @@ void
 }
 
 // ------------ method called when starting to processes a run  ------------
-/*
 void 
 |CLASSNAME|::beginRun(edm::Run const&, edm::EventSetup const&)
 {
 }
-*/
 
 // ------------ method called when ending the processing of a run  ------------
-/*
 void 
 |CLASSNAME|::endRun(edm::Run const&, edm::EventSetup const&)
 {
 }
-*/
 
 // ------------ method called when starting to processes a luminosity block  ------------
-/*
 void 
 |CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
-*/
 
 // ------------ method called when ending the processing of a luminosity block  ------------
-/*
 void 
 |CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
+
+// ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
+void
+|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+  //The following says we do not know what parameters are allowed so do no validation
+  // Please change this to state exactly what you do use, even if it is no parameters
+  edm::ParameterSetDescription desc;
+  desc.setUnknown();
+  descriptions.addDefault(desc);
+}
+$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+== cpp.EDFilter-definition  ==
+/**\class |?CLASSNAME|
+
+ Description: <+one line class summary+>
+
+ Implementation:
+     <+Notes on implementation+>
 */
+
+// system include files
+#include <memory>
+#include <string>
+#include <vector>
+#include <iostream>
+
+// user include files
+#include "FWCore/Framework/interface/Frameworkfwd.h"
+#include "FWCore/Framework/interface/EDFilter.h"
+
+#include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/MakerMacros.h"
+
+#include "FWCore/ParameterSet/interface/ParameterSet.h"
+
+//
+// class declaration
+//
+
+#ifndef  __EDFilter_|CLASSNAME:u|_INC__
+#define  __EDFilter_|CLASSNAME:u|_INC__
+
+class |CLASSNAME| : public edm::EDFilter {
+   public:
+      explicit |CLASSNAME|(const edm::ParameterSet&);
+      ~|CLASSNAME|();
+
+      static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
+
+   private:
+      virtual void beginJob() ;
+      virtual bool filter(edm::Event&, const edm::EventSetup&);
+      virtual void endJob() ;
+      
+      virtual bool beginRun(edm::Run&, edm::EventSetup const&);
+      virtual bool endRun(edm::Run&, edm::EventSetup const&);
+      virtual bool beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+      virtual bool endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+
+      // ----------member data ---------------------------
+};
+
+//
+// constants, enums and typedefs
+//
+
+//
+// static data member definitions
+//
+
+//define this as a plug-in
+DEFINE_FWK_MODULE(|CLASSNAME|);
+#endif   // ----- #ifndef __EDFilter_|CLASSNAME:u|_INC__  -----
+
+$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+== cpp.EDFilter-inplementation  ==
+//
+// constructors and destructor
+//
+|CLASSNAME|::|CLASSNAME|(const edm::ParameterSet& iConfig)
+{
+   //now do what ever initialization is needed
+
+}
+
+
+|CLASSNAME|::~|CLASSNAME|()
+{
+ 
+   // do anything here that needs to be done at desctruction time
+   // (e.g. close files, deallocate resources etc.)
+
+}
+
+
+//
+// member functions
+//
+
+// ------------ method called on each new Event  ------------
+bool
+|CLASSNAME|::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
+{
+   using namespace edm;
+#ifdef THIS_IS_AN_EVENT_EXAMPLE
+   Handle<ExampleData> pIn;
+   iEvent.getByLabel("example",pIn);
+#endif
+
+#ifdef THIS_IS_AN_EVENTSETUP_EXAMPLE
+   ESHandle<SetupData> pSetup;
+   iSetup.get<SetupRecord>().get(pSetup);
+#endif
+   return true;
+}
+
+// ------------ method called once each job just before starting event loop  ------------
+void 
+|CLASSNAME|::beginJob()
+{
+}
+
+// ------------ method called once each job just after ending the event loop  ------------
+void 
+|CLASSNAME|::endJob() {
+}
+
+// ------------ method called when starting to processes a run  ------------
+bool 
+|CLASSNAME|::beginRun(edm::Run&, edm::EventSetup const&)
+{ 
+  return true;
+}
+
+// ------------ method called when ending the processing of a run  ------------
+bool 
+|CLASSNAME|::endRun(edm::Run&, edm::EventSetup const&)
+{
+  return true;
+}
+
+// ------------ method called when starting to processes a luminosity block  ------------
+bool 
+|CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+{
+  return true;
+}
+
+// ------------ method called when ending the processing of a luminosity block  ------------
+bool 
+|CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+{
+  return true;
+}
+
+// ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
+void
+|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+  //The following says we do not know what parameters are allowed so do no validation
+  // Please change this to state exactly what you do use, even if it is no parameters
+  edm::ParameterSetDescription desc;
+  desc.setUnknown();
+  descriptions.addDefault(desc);
+}
+
+$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+== cpp.EDProducer-definition  ==
+/**\class |?CLASSNAME|
+
+ Description: <+one line class summary+>
+
+ Implementation:
+     <+Notes on implementation+>
+*/
+
+// system include files
+#include <memory>
+#include <string>
+#include <vector>
+#include <iostream>
+
+// user include files
+#include "FWCore/Framework/interface/Frameworkfwd.h"
+#include "FWCore/Framework/interface/EDProducer.h"
+
+#include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/MakerMacros.h"
+
+#include "FWCore/ParameterSet/interface/ParameterSet.h"
+
+//
+// class declaration
+//
+
+#ifndef  __EDProducer_|CLASSNAME:u|_INC__
+#define  __EDProducer_|CLASSNAME:u|_INC__
+
+class |CLASSNAME| : public edm::EDProducer {
+   public:
+      explicit |CLASSNAME|(const edm::ParameterSet&);
+      ~|CLASSNAME|();
+
+      static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
+
+   private:
+      virtual void beginJob() ;
+      virtual void produce(edm::Event&, const edm::EventSetup&);
+      virtual void endJob() ;
+      
+      virtual void beginRun(edm::Run&, edm::EventSetup const&);
+      virtual void endRun(edm::Run&, edm::EventSetup const&);
+      virtual void beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+      virtual void endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&);
+
+      // ----------member data ---------------------------
+};
+
+//
+// constants, enums and typedefs
+//
+
+
+//
+// static data member definitions
+//
+
+//define this as a plug-in
+DEFINE_FWK_MODULE(|CLASSNAME|);
+#endif   // ----- #ifndef __EDProducer_|CLASSNAME:u|_INC__  -----
+
+$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+== cpp.EDProducer-inplementation  ==
+//
+// constructors and destructor
+//
+|?CLASSNAME|::|CLASSNAME|(const edm::ParameterSet& iConfig)
+{
+   //register your products
+/* Examples
+   produces<ExampleData2>();
+
+   //if do put with a label
+   produces<ExampleData2>("label");
+ 
+   //if you want to put into the Run
+   produces<ExampleData2,InRun>();
+*/
+   //now do what ever other initialization is needed
+  
+}
+
+
+|CLASSNAME|::~|CLASSNAME|()
+{
+ 
+   // do anything here that needs to be done at desctruction time
+   // (e.g. close files, deallocate resources etc.)
+
+}
+
+
+//
+// member functions
+//
+
+// ------------ method called to produce the data  ------------
+void
+|CLASSNAME|::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+{
+   using namespace edm;
+/* This is an event example
+   //Read 'ExampleData' from the Event
+   Handle<ExampleData> pIn;
+   iEvent.getByLabel("example",pIn);
+
+   //Use the ExampleData to create an ExampleData2 which 
+   // is put into the Event
+   std::auto_ptr<ExampleData2> pOut(new ExampleData2(*pIn));
+   iEvent.put(pOut);
+*/
+
+/* this is an EventSetup example
+   //Read SetupData from the SetupRecord in the EventSetup
+   ESHandle<SetupData> pSetup;
+   iSetup.get<SetupRecord>().get(pSetup);
+*/
+ 
+}
+
+// ------------ method called once each job just before starting event loop  ------------
+void 
+|CLASSNAME|::beginJob()
+{
+}
+
+// ------------ method called once each job just after ending the event loop  ------------
+void 
+|CLASSNAME|::endJob() {
+}
+
+// ------------ method called when starting to processes a run  ------------
+void 
+|CLASSNAME|::beginRun(edm::Run&, edm::EventSetup const&)
+{
+}
+
+// ------------ method called when ending the processing of a run  ------------
+void 
+|CLASSNAME|::endRun(edm::Run&, edm::EventSetup const&)
+{
+}
+
+// ------------ method called when starting to processes a luminosity block  ------------
+void 
+|CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+{
+}
+
+// ------------ method called when ending the processing of a luminosity block  ------------
+void 
+|CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+{
+}
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
