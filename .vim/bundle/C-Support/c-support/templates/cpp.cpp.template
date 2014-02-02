@@ -68,26 +68,26 @@ void<CURSOR>
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.accessor-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  get_|?ATTRIBUTE|
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 inline |?RETURNTYPE|
 |CLASSNAME|::get_|ATTRIBUTE| (  ) const
 {
 	return |ATTRIBUTE|;
-}		// ~~~~~  end of method |CLASSNAME|::get_|ATTRIBUTE|  ~~~~~
+}		// -----  end of method |CLASSNAME|::get_|ATTRIBUTE|  -----
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  set_|ATTRIBUTE|
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 inline void
 |CLASSNAME|::set_|ATTRIBUTE| ( |RETURNTYPE| value )
 {
 	|ATTRIBUTE|	= value;
 	return ;
-}		// ~~~~~  end of method |CLASSNAME|::set_|ATTRIBUTE|  ~~~~~
+}		// -----  end of method |CLASSNAME|::set_|ATTRIBUTE|  -----
 <CURSOR>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.class-definition ==
@@ -118,14 +118,14 @@ class |CLASSNAME|
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.class-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 |CLASSNAME|::|CLASSNAME| ()
 {<CURSOR>
-}  // ~~~~~  end of method |CLASSNAME|::|CLASSNAME|  (constructor)  ~~~~~
+}  // -----  end of method |CLASSNAME|::|CLASSNAME|  (constructor)  -----
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.class-using-new-definition ==
@@ -150,13 +150,15 @@ class |CLASSNAME|
 
 	|CLASSNAME|& operator = ( const |CLASSNAME| &other ); // assignment operator
 
+	// ====================  DATA MEMBERS  ===============================
+
     protected:
-    // ====================  METHODS       ======================================= 
+    // ====================  METHODS       ===============================
 
     // ====================  DATA MEMBERS  ===============================
 
     private:
-    // ====================  METHODS       ======================================= 
+    // ====================  METHODS       ===============================
 
 	// ====================  DATA MEMBERS  ===============================
 
@@ -164,45 +166,45 @@ class |CLASSNAME|
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.class-using-new-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 |CLASSNAME|::|CLASSNAME| ()
 {<CURSOR>
-}  // ~~~~~  end of method |CLASSNAME|::|CLASSNAME|  (constructor)  ~~~~~
+}  // -----  end of method |CLASSNAME|::|CLASSNAME|  (constructor)  -----
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  copy constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 |CLASSNAME|::|CLASSNAME| ( const |CLASSNAME| &other )
 {
-}  // ~~~~~  end of method |CLASSNAME|::|CLASSNAME|  (copy constructor)  ~~~~~
+}  // -----  end of method |CLASSNAME|::|CLASSNAME|  (copy constructor)  -----
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  ~|CLASSNAME|
 // Description:  destructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 |CLASSNAME|::~|CLASSNAME| ()
 {
-}  // ~~~~~  end of method |CLASSNAME|::~|CLASSNAME|  (destructor)  ~~~~~
+}  // -----  end of method |CLASSNAME|::-|CLASSNAME|  (destructor)  -----
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  operator =
 // Description:  assignment operator
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
     |CLASSNAME|&
 |CLASSNAME|::operator = ( const |CLASSNAME| &other )
 {
     if ( this != &other ) {
     }
     return *this;
-}  // ~~~~~  end of method |CLASSNAME|::operator =  (assignment operator)  ~~~
+}  // -----  end of method |CLASSNAME|::operator =  (assignment operator)  ---
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.error-class ==
@@ -227,26 +229,26 @@ void<CURSOR> |?CLASSNAME|<T>::|?METHODNAME| ( <+argument list+> )
 }		// -----  end of method |CLASSNAME|<T>::|METHODNAME|  -----
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-accessor-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  get_|?ATTRIBUTE|
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 template < class T >
 inline |?RETURNTYPE| |CLASSNAME|<T>::get_|ATTRIBUTE| (  ) const
 {
     return |ATTRIBUTE|;
-}		// ~~~~~  end of method |CLASSNAME|<T>::get_|ATTRIBUTE|  ~~~~~
+}		// -----  end of method |CLASSNAME|<T>::get_|ATTRIBUTE|  -----
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  set_|ATTRIBUTE|
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 template < class T >
 inline void |CLASSNAME|<T>::set_|ATTRIBUTE| ( |RETURNTYPE| value )
 {
     |ATTRIBUTE|	= value;
     return ;
-}		// ~~~~~  end of method |CLASSNAME|<T>::set_|ATTRIBUTE|  ~~~~~
+}		// -----  end of method |CLASSNAME|<T>::set_|ATTRIBUTE|  -----
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-class-definition ==
 // ===========================================================================
@@ -278,15 +280,15 @@ class |CLASSNAME|
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-class-implementation ==
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------------------------------------------------
 template < class T >
 |CLASSNAME| <T>:: |CLASSNAME| ()
 {<CURSOR>
-}  // ~~~~~  end of constructor of template class |CLASSNAME|  ~~~~~
+}  // -----  end of constructor of template class |CLASSNAME|  -----
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-class-using-new-definition ==
@@ -323,41 +325,41 @@ class |CLASSNAME|
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.template-class-using-new-implementation ==
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //       Class:  |?CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  constructor
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 template < class T >
 |CLASSNAME|< T >::|CLASSNAME| ()
 {<CURSOR>
 }  // ----------  end of constructor of template class |CLASSNAME|  ---------- 
 
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  |CLASSNAME|
 // Description:  copy constructor
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 template < class T >
 |CLASSNAME|< T >::|CLASSNAME| ( const |CLASSNAME| &other )
 {
-}  // ----------  end of copy constructor of template class |CLASSNAME|  ---------- 
+}  // --------  end of copy constructor of template class |CLASSNAME|  -------- 
 
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  ~|CLASSNAME|
 // Description:  destructor
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 template < class T >
 |CLASSNAME|< T >::~|CLASSNAME| ()
 {
 }  // ----------  end of destructor of template class |CLASSNAME|  ---------- 
 
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 //       Class:  |CLASSNAME|
 //      Method:  operator =
 // Description:  assignment operator
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 template < class T >
 |CLASSNAME|< T >& |CLASSNAME|< T >::operator = ( const |CLASSNAME| &other )
 {
@@ -446,19 +448,19 @@ namespace |?NAMESPACE| {<CURSOR>
 namespace |?NAMESPACE_ALIAS|	= {-original namespace name-};
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.rtti-typeid == insert ==
-typeid(<CURSOR><SPLIT>)
+typeid(<CURSOR><SPLIT>)<++>
 $
 == cpp.rtti-static-cast == insert ==
-static_cast<<CURSOR>>(<-SPLIT->)
+static_cast<<CURSOR>>(<-SPLIT->)<++>
 $
 == cpp.rtti-const-cast == insert ==
-const_cast<<CURSOR>>(<-SPLIT->)
+const_cast<<CURSOR>>(<-SPLIT->)<++>
 $
 == cpp.rtti-reinterpret-cast == insert ==
-reinterpret_cast<<CURSOR>>(<-SPLIT->)
+reinterpret_cast<<CURSOR>>(<-SPLIT->)<++>
 $
 == cpp.rtti-dynamic-cast == insert ==
-dynamic_cast<<CURSOR>>(<-SPLIT->)
+dynamic_cast<<CURSOR>>(<-SPLIT->)<++>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-definition  ==
 /**\class |?CLASSNAME|

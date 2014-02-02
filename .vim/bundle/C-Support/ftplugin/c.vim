@@ -349,8 +349,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>ml   <Esc>:call C#BrowseTemplateFil
 inoremap    <buffer>  <silent>  <LocalLeader>mp   <Esc>:call C#RereadTemplates()<CR>
 inoremap    <buffer>            <LocalLeader>my   <Esc>:CStyle<Space>
 "
- noremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
-inoremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
+ noremap    <buffer>            <LocalLeader>mo   <Esc>:OutputManipulator<Space>
+inoremap    <buffer>            <LocalLeader>mo   <Esc>:OutputManipulator<Space>
 " ---------- C++ menu ----------------------------------------------------
 "
  noremap    <buffer>  <silent>  <LocalLeader>t[        :call C#InsertTemplate("cpp.cout-operator")<CR>
