@@ -77,7 +77,7 @@ if (  $SHORT_HOST =~ nbay04 ) then
     else
       setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib64/:/home/benwu/BenSys/lib/:$LD_LIBRARY_PATH
     endif
-    alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"'
+    alias cms 'source $HOME/.tcsh/cms'
 else if (  $SHORT_HOST =~ nbay0[1-5] ) then 
     # Setup CDF 6.1.4 for root
     alias sr 	'source $HOME/.tcsh/setup614'
@@ -157,7 +157,7 @@ if (  $SHORT_HOST =~ cmslpc* ) then
     setenv PYTHONPATH $HOME/BenSys/python/
 	setenv CVSEIDTOR vim74
     alias vi  'source $HOME/.tcsh/vitex';
-    alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"'
+    alias cms 'source $HOME/.tcsh/cms'
 endif
 
 
@@ -170,7 +170,7 @@ if (  $SHORT_HOST =~ lxplus* ) then
     alias vi  '$CVSEIDTOR -X'
     stty erase 
     #alias vi  'source $HOME/.tcsh/vitex';
-    alias cms 'cmsenv;set cdpath=($CMSSW_BASE/src ~/);setenv LANG en_US.UTF8;set __git_cmd_names="cms-addpkg cms-checkdeps cms-merge-topic $__git_cmd_names"'
+    alias cms 'source $HOME/.tcsh/cms'
 endif
 
 
