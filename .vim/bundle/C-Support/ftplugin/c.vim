@@ -349,8 +349,8 @@ inoremap    <buffer>  <silent>  <LocalLeader>ml   <Esc>:call C#BrowseTemplateFil
 inoremap    <buffer>  <silent>  <LocalLeader>mp   <Esc>:call C#RereadTemplates()<CR>
 inoremap    <buffer>            <LocalLeader>my   <Esc>:CStyle<Space>
 "
- noremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
-inoremap    <buffer>            <LocalLeader>mn   <Esc>:OutputManipulator<Space>
+ noremap    <buffer>            <LocalLeader>mo   <Esc>:OutputManipulator<Space>
+inoremap    <buffer>            <LocalLeader>mo   <Esc>:OutputManipulator<Space>
 " ---------- C++ menu ----------------------------------------------------
 "
  noremap    <buffer>  <silent>  <LocalLeader>t[        :call C#InsertTemplate("cpp.cout-operator")<CR>
@@ -376,10 +376,10 @@ inoremap    <buffer>  <silent>  <LocalLeader>tG   <Esc>:call C#InsertTemplate("c
  noremap    <buffer>  <silent>  <LocalLeader>tH        :call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tH   <Esc>:call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>ty        :call C#InsertTemplate("cpp.method-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ty   <Esc>:call C#InsertTemplate("cpp.method-implementation")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>tu        :call C#InsertTemplate("cpp.accessor-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tu  <Esc>:call C#InsertTemplate("cpp.accessor-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tw        :call C#InsertTemplate("cpp.method-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tw   <Esc>:call C#InsertTemplate("cpp.method-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>ta        :call C#InsertTemplate("cpp.accessor-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ta  <Esc>:call C#InsertTemplate("cpp.accessor-implementation")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>tj        :call C#InsertTemplate("cpp.template-class-definition")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tj   <Esc>:call C#InsertTemplate("cpp.template-class-definition")<CR>
@@ -391,10 +391,10 @@ inoremap    <buffer>  <silent>  <LocalLeader>tJ  <Esc>:call C#InsertTemplate("cp
  noremap    <buffer>  <silent>  <LocalLeader>tK      :call C#InsertTemplate("cpp.template-class-using-new-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tK <Esc>:call C#InsertTemplate("cpp.template-class-using-new-implementation")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>tx       :call C#InsertTemplate("cpp.template-method-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tx  <Esc>:call C#InsertTemplate("cpp.template-method-implementation")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>ta       :call C#InsertTemplate("cpp.template-accessor-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>ta  <Esc>:call C#InsertTemplate("cpp.template-accessor-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tW       :call C#InsertTemplate("cpp.template-method-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tW  <Esc>:call C#InsertTemplate("cpp.template-method-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tA       :call C#InsertTemplate("cpp.template-accessor-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tA  <Esc>:call C#InsertTemplate("cpp.template-accessor-implementation")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>tf        :call C#InsertTemplate("cpp.template-function")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tf   <Esc>:call C#InsertTemplate("cpp.template-function")<CR>
@@ -418,10 +418,23 @@ inoremap    <buffer>  <silent>  <LocalLeader>t{   <Esc>:call C#InsertTemplate("c
 vnoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("cpp.catch-points", "v")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>c.   <Esc>:call C#InsertTemplate("cpp.catch-points")<CR>
 "
- noremap    <buffer>  <silent>  <LocalLeader>tw        :call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tw   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>tW        :call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tW   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
+" EDAnalyzer
+ noremap    <buffer>  <silent>  <LocalLeader>ty        :call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>ty   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tY        :call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tY   <Esc>:call C#InsertTemplate("cpp.EDAnalyzer-inplementation")<CR>
+
+" EDFilter
+ noremap    <buffer>  <silent>  <LocalLeader>tx        :call C#InsertTemplate("cpp.EDFilter-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tx   <Esc>:call C#InsertTemplate("cpp.EDFilter-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tX        :call C#InsertTemplate("cpp.EDFilter-inplementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tX   <Esc>:call C#InsertTemplate("cpp.EDFilter-inplementation")<CR>
+
+" EDProducer
+ noremap    <buffer>  <silent>  <LocalLeader>tu        :call C#InsertTemplate("cpp.EDProducer-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tu   <Esc>:call C#InsertTemplate("cpp.EDProducer-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tU        :call C#InsertTemplate("cpp.EDProducer-inplementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tU   <Esc>:call C#InsertTemplate("cpp.EDProducer-inplementation")<CR>
 " ---------- run menu --------------------------------------------------------
 "
  map    <buffer>  <silent>  <LocalLeader>rc         :call C#Compile()<CR>:call C#HlMessage()<CR>
