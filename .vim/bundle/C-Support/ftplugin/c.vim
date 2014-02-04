@@ -368,26 +368,26 @@ inoremap    <buffer>  <silent>  <LocalLeader>t/   <Esc>:call C#InsertTemplate("c
 "
  noremap    <buffer>  <silent>  <LocalLeader>tg        :call C#InsertTemplate("cpp.class-definition")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tg   <Esc>:call C#InsertTemplate("cpp.class-definition")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>th        :call C#InsertTemplate("cpp.class-using-new-definition")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>th   <Esc>:call C#InsertTemplate("cpp.class-using-new-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tj        :call C#InsertTemplate("cpp.class-using-new-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tj   <Esc>:call C#InsertTemplate("cpp.class-using-new-definition")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>tG        :call C#InsertTemplate("cpp.class-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tG   <Esc>:call C#InsertTemplate("cpp.class-implementation")<CR>
- noremap    <buffer>  <silent>  <LocalLeader>tH        :call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tH   <Esc>:call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tJ        :call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tJ   <Esc>:call C#InsertTemplate("cpp.class-using-new-implementation")<CR>
 
  noremap    <buffer>  <silent>  <LocalLeader>tw        :call C#InsertTemplate("cpp.method-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tw   <Esc>:call C#InsertTemplate("cpp.method-implementation")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>ta        :call C#InsertTemplate("cpp.accessor-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>ta  <Esc>:call C#InsertTemplate("cpp.accessor-implementation")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>tj        :call C#InsertTemplate("cpp.template-class-definition")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tj   <Esc>:call C#InsertTemplate("cpp.template-class-definition")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>th        :call C#InsertTemplate("cpp.template-class-definition")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>th   <Esc>:call C#InsertTemplate("cpp.template-class-definition")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>tk       :call C#InsertTemplate("cpp.template-class-using-new-definition")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tk  <Esc>:call C#InsertTemplate("cpp.template-class-using-new-definition")<CR>
 
- noremap    <buffer>  <silent>  <LocalLeader>tJ       :call C#InsertTemplate("cpp.template-class-implementation")<CR>
-inoremap    <buffer>  <silent>  <LocalLeader>tJ  <Esc>:call C#InsertTemplate("cpp.template-class-implementation")<CR>
+ noremap    <buffer>  <silent>  <LocalLeader>tH       :call C#InsertTemplate("cpp.template-class-implementation")<CR>
+inoremap    <buffer>  <silent>  <LocalLeader>tH  <Esc>:call C#InsertTemplate("cpp.template-class-implementation")<CR>
  noremap    <buffer>  <silent>  <LocalLeader>tK      :call C#InsertTemplate("cpp.template-class-using-new-implementation")<CR>
 inoremap    <buffer>  <silent>  <LocalLeader>tK <Esc>:call C#InsertTemplate("cpp.template-class-using-new-implementation")<CR>
 

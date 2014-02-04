@@ -1,4 +1,4 @@
-$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $
 == cpp.cin ==
 std::cin >> <CURSOR>;
@@ -315,10 +315,16 @@ class |CLASSNAME|
 
 	|CLASSNAME|& operator = ( const |CLASSNAME| &other ); // assignment operator
 
+	// ====================  DATA MEMBERS  ===============================
+
     protected:
+    // ====================  METHODS       ===============================
+
 	// ====================  DATA MEMBERS  ===============================
 
     private:
+    // ====================  METHODS       ===============================
+
 	// ====================  DATA MEMBERS  ===============================
 
 }; // -----  end of template class |CLASSNAME|  -----
@@ -528,6 +534,7 @@ DEFINE_FWK_MODULE(|CLASSNAME|);
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-inplementation  ==
+#include "|CMSSW|"
 //
 // constructors and destructor
 //
@@ -608,7 +615,8 @@ void
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+{
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
@@ -762,7 +770,8 @@ bool
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+{
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;
@@ -931,7 +940,8 @@ void
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+{
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
   edm::ParameterSetDescription desc;

@@ -314,8 +314,3 @@ set tags+=~/.vim/ftplugin/cpp/root_tags
 if executable("root-config")
   let g:clang_user_options = split(system("root-config --cflags"))[-1]
 endif
-
-if exists("$CMSSW_BASE") && match(expand("%:p:h"), expand("$CMSSW_BASE")) != -1 
-  let b:clang_user_options = " -I".expand("$CMSSW_BASE") . "/src"
-  "let b:clang_user_options = split(system("root-config --cflags"))[-1]
-endif
