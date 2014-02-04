@@ -1,9 +1,11 @@
 #!/bin/tcsh
 
-scramv1 runtime -csh
+cmsenv
 set cdpath=($CMSSW_BASE/src ~/)
 setenv LANG en_US.UTF8
 set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"
+
+## Setup clang_complete
 if (! -e $CMSSW_BASE/src/.clang_complete) then
   touch $CMSSW_BASE/src/.clang_complete
   echo -I$CMSSW_BASE/src >> $CMSSW_BASE/src/.clang_complete
@@ -13,9 +15,14 @@ if (! -e $CMSSW_BASE/src/.clang_complete) then
       echo $cmd >> $CMSSW_BASE/src/.clang_complete
     end
   endif
-  #foreach fwlite (`echo $CMSSW_FWLITE_INCLUDE_PATH | tr ':' '\n'`)
-    #echo -I$fwlite >> $CMSSW_BASE/src/.clang_complete
-  #end
+  ## Nbay04 can handle large loading
+  if (  $SHORT_HOST =~ nbay04 ) then 
+    foreach fwlite (`echo $CMSSW_FWLITE_INCLUDE_PATH | tr ':' '\n'`)
+      echo -I$fwlite >> $CMSSW_BASE/src/.clang_complete
+    end
+  endif
 endif
 
-
+## Setup command completion
+#complete gzcat	c/--/"(force help license quiet version)"/ \
+  #c/-/"(f h L q V -)"/ n/*/f:*.{gz,Z,z,zip}/
