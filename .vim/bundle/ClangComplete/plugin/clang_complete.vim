@@ -211,7 +211,11 @@ function! s:parseConfig()
   let l:root = substitute(fnamemodify(l:local_conf, ':p:h'), '\', '/', 'g')
 
   let l:opts = readfile(l:local_conf)
+
   for l:opt in l:opts
+    if match(l:opt, '^#.*') != -1
+      continue
+    endif
     " Use forward slashes only
     let l:opt = substitute(l:opt, '\', '/', 'g')
     " Handling of absolute path
@@ -225,7 +229,12 @@ function! s:parseConfig()
       let l:opt = substitute(l:opt, '\C-I\s*\(\%(\w\|\.\|/\|\\\s\)*\)',
             \ '-I' . l:root . '/\1', 'g')
     endif
-    let b:clang_user_options .= ' ' . l:opt
+    if match(l:opt, '^%.*') != -1
+      let l:opt = substitute(l:opt, '^%', '', 'g')
+      execute l:opt
+    else
+      let b:clang_user_options .= ' ' . l:opt
+    endif
   endfor
 endfunction
 
