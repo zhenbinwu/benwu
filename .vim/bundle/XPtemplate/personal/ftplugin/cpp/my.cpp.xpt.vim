@@ -5,6 +5,20 @@ if exists("b:__MY_CPP_XPT_VIM__")
 endif
 let b:__MY_CPP_XPT_VIM__ = 1
 
+let s:f = g:XPTfuncs()
+
+function! s:f.endofHandler(...)
+  let cline = getpos('.')[1]
+  exe s:hdlcline. ", " . cline."g/iConfig.getParameter/m".cline
+  exe s:hdlcline. ", " . cline."g/iEvent.getByLabel/m".cline
+  exe s:hdlcline. ", " . cline."g/cms.InputTag/m".cline
+  return ""
+endfunction
+
+function! s:f.beginHandler(...)
+  let s:hdlcline = getpos('.')[1]
+  return "Begin Handler"
+endfunction
 
 XPT try hint=Try/catch\ block
 try
@@ -68,3 +82,22 @@ for(unsigned int `i^=0; `i^ < `class^`opt^size(); `i^++)
     `type^ `var^ = `class^`opt^at(`i^);
     `cursor^
 }
+
+XPT handler hint=CMSSW\ Handler
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `beginHandler()^ ~~~~~
+edm::InputTag `CMSObject^Tag_;
+edm::Handle<`CMSObjectCollection^>  `CMSObject^Hdl;
+CMSObjectTag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
+iEvent.getByLabel(`CMSObject^Tag_, `CMSObject^Hdl); 
+//`CMSObject^Tag = cms.InputTag("<+tagname+>"),
+`...^
+edm::InputTag `CMSObject^Tag_;
+edm::Handle<`CMSObjectCollection^>  `CMSObject^Hdl;
+CMSObjectTag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
+iEvent.getByLabel(`CMSObject^Tag_, `CMSObject^Hdl); 
+//`CMSObject^Tag = cms.InputTag("<+tagname+>"), 
+`...^
+XSET Handler|post=endofHandler()
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End of `Handler^ ~~~~~
+..XPT
+
