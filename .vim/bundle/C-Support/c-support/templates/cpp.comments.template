@@ -35,7 +35,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // 
 //        Version:  1.0
 //        Created:  |DATE| |TIME|
-//       Compiler:  g++
+//       Compiler:  g++ -std=c++11
 // 
 //         Author:  |AUTHOR| (|AUTHORREF|)
 //          Email:  |EMAIL|

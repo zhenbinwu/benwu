@@ -42,55 +42,55 @@
 let s:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 let s:UNIX	= has("unix")  || has("macunix") || has("win32unix")
 "
-let s:installation				= 'local'
-let s:vimfiles						= $VIM
-let	s:sourced_script_file	= expand("<sfile>")
-let s:C_GlobalTemplateFile= ''
-let s:C_GlobalTemplateDir	= ''
+let s:installation         = 'local'
+let s:vimfiles             = $VIM
+let s:sourced_script_file  = expand("<sfile>")
+let s:C_GlobalTemplateFile = ''
+let s:C_GlobalTemplateDir  = ''
 
 if	s:MSWIN
   " ==========  MS Windows  ======================================================
 	"
 	if match( s:sourced_script_file, escape( s:vimfiles, ' \' ) ) == 0
 		" system wide installation
-		let s:installation					= 'system'
-		let s:plugin_dir						= $VIM.'/vimfiles'
-		let s:C_GlobalTemplateDir		= s:plugin_dir.'/c-support/templates'
-		let s:C_GlobalTemplateFile  = s:C_GlobalTemplateDir.'/Templates'
-	else
-		" user installation assumed
-		let s:plugin_dir  						= expand('<sfile>:p:h:h')
+		let s:installation         = 'system'
+		let s:plugin_dir           = $VIM.'/vimfiles'
+		let s:C_GlobalTemplateDir  = s:plugin_dir.'/c-support/templates'
+		let s:C_GlobalTemplateFile = s:C_GlobalTemplateDir.'/Templates'
+    else
+        " user installation assumed
+		let s:plugin_dir           = expand('<sfile>:p:h:h')
 	endif
 	"
-	let s:C_CodeSnippets  				= s:plugin_dir.'/c-support/codesnippets/'
-	let s:C_IndentErrorLog				= $HOME.'/_indent.errorlog'
-	"
-  let s:escfilename 	= ''
-	let s:C_Display     = ''
+    let s:C_CodeSnippets   = s:plugin_dir.'/c-support/codesnippets/'
+    let s:C_IndentErrorLog = $HOME.'/_indent.errorlog'
+    "
+    let s:escfilename      = ''
+    let s:C_Display        = ''
 	"
 else
   " ==========  Linux/Unix  ======================================================
 	"
 	if match( expand("<sfile>"), expand("$HOME") ) == 0
 		" user installation assumed
-		let s:plugin_dir 						= expand('<sfile>:p:h:h')
-		let s:C_LocalTemplateFile		= s:plugin_dir.'/c-support/templates/Templates'
-		let s:C_LocalTemplateDir		= fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
-	else
-		" system wide installation
-		let s:installation         = 'system'
-		let s:plugin_dir           = $VIM.'/vimfiles'
-		let s:C_GlobalTemplateDir  = s:plugin_dir.'/c-support/templates'
-		let s:C_GlobalTemplateFile = s:C_GlobalTemplateDir.'/Templates'
-		let s:C_LocalTemplateFile  = $HOME.'/.vim/bundle/C-Support/c-support/templates/Templates'
-		let s:C_LocalTemplateDir   = fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
+        let s:plugin_dir           = expand('<sfile>:p:h:h')
+        let s:C_LocalTemplateFile  = s:plugin_dir.'/c-support/templates/Templates'
+        let s:C_LocalTemplateDir   = fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
+    else
+        " system wide installation
+        let s:installation         = 'system'
+        let s:plugin_dir           = $VIM.'/vimfiles'
+        let s:C_GlobalTemplateDir  = s:plugin_dir.'/c-support/templates'
+        let s:C_GlobalTemplateFile = s:C_GlobalTemplateDir.'/Templates'
+        let s:C_LocalTemplateFile  = $HOME.'/.vim/bundle/C-Support/c-support/templates/Templates'
+        let s:C_LocalTemplateDir   = fnamemodify( s:C_LocalTemplateFile, ":p:h" ).'/'
 	endif
 	"
-	let s:C_CodeSnippets  				= s:plugin_dir.'/c-support/codesnippets/'
-	let s:C_IndentErrorLog				= $HOME.'/.indent.errorlog'
-	"
-  let s:escfilename 	= ' \%#[]'
-	let s:C_Display			= $DISPLAY
+	let s:C_CodeSnippets   = s:plugin_dir.'/c-support/codesnippets/'
+	let s:C_IndentErrorLog = $HOME.'/.indent.errorlog'
+    "
+	let s:escfilename      = ' \%#[]'
+	let s:C_Display        = $DISPLAY
 	"
 endif
 "
@@ -119,33 +119,30 @@ else
 	let s:C_ObjExtension        = '.o'       " file extension for objects (leading point required)
 	let s:C_Man                 = 'man'      " the manual program
 endif
-let s:C_VimCompilerName				= 'gcc'      " the compiler name used by :compiler
-"
-let s:C_CExtension     				= 'c'                    " C file extension; everything else is C++
-let s:C_CFlags         				= '-Wall -g -O0 -c'      " compiler flags: compile, don't optimize
-let s:C_CodeCheckExeName      = 'check'
-let s:C_CodeCheckOptions      = '-K13'
-let s:C_LFlags         				= '-Wall -g -O0'         " compiler flags: link   , don't optimize
-let s:C_Libs           				= '-lm'                  " libraries to use
-let s:C_LineEndCommColDefault = 49
-let s:C_LoadMenus      				= 'yes'
-let s:C_MenuHeader     				= 'yes'
-let s:C_OutputGvim            = 'vim'
-let s:C_Printheader           = "%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N"
-let s:C_Root  	       				= '&C\/C\+\+.'           " the name of the root menu of this plugin
-let s:C_TypeOfH               = 'cpp'
-let s:C_Wrapper               = s:plugin_dir.'/c-support/scripts/wrapper.sh'
-let s:C_XtermDefaults         = '-fa courier -fs 12 -geometry 80x24'
-let s:C_GuiSnippetBrowser     = 'gui'										" gui / commandline
-let s:C_GuiTemplateBrowser    = 'gui'										" gui / explorer / commandline
-"
-let s:C_TemplateOverwrittenMsg= 'yes'
-let s:C_Ctrl_j								= 'on'
-"
-let s:C_FormatDate						= '%x'
-let s:C_FormatTime						= '%X'
-let s:C_FormatYear						= '%Y'
-let s:C_SourceCodeExtensions  = 'c cc cp cxx cpp CPP c++ C i ii'
+let s:C_VimCompilerName        = 'gcc'      " the compiler name used by :compiler
+let s:C_CExtension             = 'c'                    " C file extension; everything else is C++
+let s:C_CFlags                 = '-Wall -g -O0 -c'      " compiler flags: compile, don't optimize
+let s:C_CodeCheckExeName       = 'check'
+let s:C_CodeCheckOptions       = '-K13'
+let s:C_LFlags                 = '-Wall -g -O0'         " compiler flags: link   , don't optimize
+let s:C_Libs                   = '-lm'                  " libraries to use
+let s:C_LineEndCommColDefault  = 49
+let s:C_LoadMenus              = 'yes'
+let s:C_MenuHeader             = 'yes'
+let s:C_OutputGvim             = 'vim'
+let s:C_Root                   = '&C\/C\+\+.'           " the name of the root menu of this plugin
+let s:C_TypeOfH                = 'cpp'
+let s:C_Wrapper                = s:plugin_dir.'/c-support/scripts/wrapper.sh'
+let s:C_XtermDefaults          = '-fa courier -fs 12 -geometry 80x24'
+let s:C_GuiSnippetBrowser      = 'gui'                                       " gui / commandline
+let s:C_GuiTemplateBrowser     = 'gui'                                      " gui / explorer / commandline
+let s:C_TemplateOverwrittenMsg = 'yes'
+let s:C_Ctrl_j                 = 'on'
+let s:C_FormatDate             = '%x'
+let s:C_FormatTime             = '%X'
+let s:C_FormatYear             = '%Y'
+let s:C_SourceCodeExtensions   = 'c cc cp cxx cpp CPP c++ C i ii'
+let s:C_Printheader            = "%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N"
 "
 "------------------------------------------------------------------------------
 "
@@ -233,19 +230,19 @@ let s:C_ExpansionLimit         = 10
 let s:C_FileVisited            = []
 "
 let s:C_MacroNameRegex         = '\([a-zA-Z][a-zA-Z0-9_]*\)'
-let s:C_MacroLineRegex				 = '^\s*|'.s:C_MacroNameRegex.'|\s*=\s*\(.*\)'
-let s:C_MacroCommentRegex			 = '^\$'
-let s:C_ExpansionRegex				 = '|?'.s:C_MacroNameRegex.'\(:\a\)\?|'
-let s:C_NonExpansionRegex			 = '|'.s:C_MacroNameRegex.'\(:\a\)\?|'
+let s:C_MacroLineRegex	       = '^\s*|'.s:C_MacroNameRegex.'|\s*=\s*\(.*\)'
+let s:C_MacroCommentRegex	   = '^\$'
+let s:C_ExpansionRegex		   = '|?'.s:C_MacroNameRegex.'\(:\a\)\?|'
+let s:C_NonExpansionRegex	   = '|'.s:C_MacroNameRegex.'\(:\a\)\?|'
 "
 let s:C_TemplateNameDelimiter  = '-+_,\. '
-let s:C_TemplateLineRegex			 = '^==\s*\([a-zA-Z][0-9a-zA-Z'.s:C_TemplateNameDelimiter
-let s:C_TemplateLineRegex			.= ']\+\)\s*==\s*\([a-z]\+\s*==\)\?'
-let s:C_TemplateIf						 = '^==\s*IF\s\+|STYLE|\s\+IS\s\+'.s:C_MacroNameRegex.'\s*=='
-let s:C_TemplateEndif					 = '^==\s*ENDIF\s*=='
+let s:C_TemplateLineRegex      = '^==\s*\([a-zA-Z][0-9a-zA-Z'.s:C_TemplateNameDelimiter
+let s:C_TemplateLineRegex	  .= ']\+\)\s*==\s*\([a-z]\+\s*==\)\?'
+let s:C_TemplateIf			   = '^==\s*IF\s\+|STYLE|\s\+IS\s\+'.s:C_MacroNameRegex.'\s*=='
+let s:C_TemplateEndif		   = '^==\s*ENDIF\s*=='
 "
-let s:C_Com1          				 = '/*'     " C-style : comment start
-let s:C_Com2          				 = '*/'     " C-style : comment end
+let s:C_Com1          		   = '/*'     " C-style : comment start
+let s:C_Com2          		   = '*/'     " C-style : comment end
 "
 let s:C_ExpansionCounter       = {}
 let s:C_TJT										 = '[ 0-9a-zA-Z_]*'
@@ -259,17 +256,17 @@ let s:C_Macro                  = {'|AUTHOR|'         : 'first name surname',
 											\						'|COPYRIGHTHOLDER|': '',
 											\						'|STYLE|'          : ''
 											\						}
-let	s:C_MacroFlag								= {	':l' : 'lowercase'			,
+let	s:C_MacroFlag			   = {	':l' : 'lowercase'			,
 											\							':u' : 'uppercase'			,
 											\							':c' : 'capitalize'		,
 											\							':L' : 'legalize name'	,
 											\						}
-let s:C_ActualStyle					= 'default'
-let s:C_ActualStyleLast			= s:C_ActualStyle
-let s:C_Template            = { 'default' : {} }
-let s:C_TemplatesLoaded			= 'no'
+let s:C_ActualStyle		       = 'default'
+let s:C_ActualStyleLast		   = s:C_ActualStyle
+let s:C_Template               = { 'default' : {} }
+let s:C_TemplatesLoaded		   = 'no'
 
-let s:C_ForTypes     = [
+let s:C_ForTypes               = [
     \ 'char'                  ,
     \ 'int'                   ,
     \ 'long'                  ,
@@ -290,7 +287,7 @@ let s:C_ForTypes     = [
     \ 'unsigned short int'    ,
     \ ]
 
-let s:C_ForTypes_Check_Order     = [
+let s:C_ForTypes_Check_Order   = [
     \ 'char'                  ,
     \ 'int'                   ,
     \ 'long long int'         ,
@@ -311,8 +308,8 @@ let s:C_ForTypes_Check_Order     = [
     \ 'unsigned'              ,
     \ ]
 
-let s:MsgInsNotAvail	= "insertion not available for a fold" 
-let s:MenuRun         = s:C_Root.'&Run'
+let s:MsgInsNotAvail	       = "insertion not available for a fold" 
+let s:MenuRun                  = s:C_Root.'&Run'
 
 "------------------------------------------------------------------------------
 
@@ -3439,6 +3436,7 @@ function! C#ExpandUserMacros ( key )
   let s:C_Macro['|DATE|']  		= C#DateAndTime('d')
   let s:C_Macro['|FILENAME|'] = expand("%:t")
   let s:C_Macro['|PATH|']  		= expand("%:p:h")
+  let s:C_Macro['|CMSSW|']  	= C#CMSSWInclude()
   let s:C_Macro['|SUFFIX|'] 	= expand("%:e")
   let s:C_Macro['|TIME|']  		= C#DateAndTime('t')
   let s:C_Macro['|YEAR|']  		= C#DateAndTime('y')
@@ -4009,3 +4007,10 @@ function! C#RTTIListInsert ( arg )
 		echomsg "entry '".a:arg."' does not exist"
 	endif
 endfunction    " ----------  end of function C#SpecialCommentListInsert  ----------
+
+fun! C#CMSSWInclude() "{{{
+  if !exists("$CMSSW_BASE")
+    return ""
+  endif
+  return expand("%:p:h")
+endfunction "}}}

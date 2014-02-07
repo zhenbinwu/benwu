@@ -43,12 +43,17 @@ pick up by the locator.
 [*] startify: add fortune in the head when open up
 
 [*] Gitlog syntax
+
+[*] C-support: add the macros to include the header files in CMSSW
+
+[*] C-support: Enable cppman from https://github.com/aitjcize/cppman
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
 <leader>: u, i
 gr gz
 zp zq zy
+mb mg mj mn mq mu mx mz
 
 [h2]Free mapping in insert mode[/h2]
 <leader>: d, g, q, (r), s, t, v, x, y, z

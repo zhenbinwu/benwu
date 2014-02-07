@@ -534,7 +534,8 @@ DEFINE_FWK_MODULE(|CLASSNAME|);
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-inplementation  ==
-#include "|CMSSW|"
+|CMSSW|
+
 //
 // constructors and destructor
 //
@@ -689,6 +690,8 @@ DEFINE_FWK_MODULE(|CLASSNAME|);
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDFilter-inplementation  ==
+|CMSSW|
+
 //
 // constructors and destructor
 //
@@ -846,6 +849,8 @@ DEFINE_FWK_MODULE(|CLASSNAME|);
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDProducer-inplementation  ==
+|CMSSW|
+
 //
 // constructors and destructor
 //
