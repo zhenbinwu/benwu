@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
-# 
-# cppman.py 
+#
+# cppman.py
 #
 # Copyright (C) 2010 -  Wei-Ning Huang (AZ) <aitjcize@gmail.com>
 # All Rights reserved.
@@ -214,24 +214,27 @@ class cppman(Crawler):
                         % pattern).fetchone()
                 except TypeError:
                     raise RuntimeError('No manual entry for ' + pattern)
+
         finally:
             conn.close()
 
         page_name = page_name.replace('/', '_')
-        if page_name + '.3.gz' not in avail or self.forced:
-            self.cache_man_page(url, page_name)
-            self.update_mandb()
+        #if page_name + '.3.gz' not in avail or self.forced:
+            #self.cache_man_page(url, page_name)
+            #self.update_mandb()
 
-        pager = Environ.pager if sys.stdout.isatty() else Environ.renderer
+        pager = Environ.pager if hasattr(sys.stdout, 'isatty') and sys.stdout.isatty() else Environ.renderer
 
         # Call viewer
-        pid = os.fork()
-        if pid == 0:
-            os.execl('/bin/sh', '/bin/sh', pager,
-                     Environ.man_dir + page_name + '.3.gz',
-                     str(Formatter.get_width()), Environ.pager_config,
-                     page_name)
-        return pid
+        #pid = os.fork()
+        #if pid == 0:
+            #out = os.execl('/bin/sh', '/bin/sh', pager,
+                           #page_name + '.3.gz',
+                           #str(Formatter.get_width()), Environ.pager_config,
+                           #page_name)
+        p = subprocess.Popen([pager, page_name + '.3.gz', str(Formatter.get_width()), Environ.pager_config, page_name], stdout=subprocess.PIPE)
+        return {'page':page_name, 'out':p.stdout.read()}
+        #return p.stdout.read()
 
     def find(self, pattern):
         """Find pages in database."""
@@ -248,10 +251,10 @@ class cppman(Crawler):
 
         if selected:
             for name, url in selected:
-                if os.isatty(sys.stdout.fileno()):
-                    print pat.sub(r'\033[1;31m\1\033[0m', name)
-                else:
-                    print name
+                #if os.isatty(sys.stdout.fileno()):
+                    #print pat.sub(r'\033[1;31m\1\033[0m', name)
+                #else:
+                print name
         else:
             raise RuntimeError('%s: nothing appropriate.' % pattern)
 

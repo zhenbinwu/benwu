@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-# 
+#
 # Formatter.py - format html from cplusplus.com to groff syntax
 #
 # Copyright (C) 2010 -  Wei-Ning Huang (AZ) <aitjcize@gmail.com>

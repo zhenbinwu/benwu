@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-# 
+#
 # Environ.py
 #
 # Copyright (C) 2010 -  Wei-Ning Huang (AZ) <aitjcize@gmail.com>
@@ -29,7 +29,7 @@ import sys
 from os.path import expanduser, abspath, normpath, dirname, exists, join
 
 import Config
-from . import get_lib_path
+from __init__ import get_lib_path
 
 HOME = expanduser('~')
 
@@ -45,7 +45,7 @@ except: pass
 
 index_db_re = normpath(join(config_dir, 'index.db'))
 
-index_db = index_db_re if exists(index_db_re) else get_lib_path('lib/index.db')
+index_db = get_lib_path('index.db')
 
 pager_config = get_lib_path('lib/cppman.vim')
 
@@ -54,7 +54,7 @@ if config.pager == 'vim':
 else:
     pager = get_lib_path('lib/pager_less.sh')
 
-renderer = get_lib_path('lib/render.sh')
+renderer = get_lib_path('render.sh')
 
 # Add ~/.local/share/man to $HOME/.manpath
 def mandb_changed():

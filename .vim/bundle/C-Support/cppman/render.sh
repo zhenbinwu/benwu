@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# pager_vim.sh
+# render.sh
 #
 # Copyright (C) 2010 - 2013  Wei-Ning Huang (AZ) <aitjcize@gmail.com>
 # All Rights reserved.
@@ -26,5 +26,7 @@
 # settings
 #
 
+BASEDIR=$(dirname $0)
 escape=$(echo -e '\033')
-cat "$1" | gunzip | groff -t -c -m man -Tascii -rLL=$2n -rLT=$2n 2> /dev/null | sed "s/$escape\[[^m]*m//g" | col -x -b | vim -R -c "let g:page_name=\"$4\"" -S $3 -
+tar -xOf $BASEDIR/cplusplus.tgz "$1" | gunzip | groff -t -c -m man -Tascii -rLL=$2n -rLT=$2n 2> /dev/null | sed "s/$escape\[[^m]*m//g" | col -x -b
+#cat "$1" | gunzip | groff -t -c -m man -Tascii -rLL=$2n -rLT=$2n 2> /dev/null | sed "s/$escape\[[^m]*m//g" | col -x -b

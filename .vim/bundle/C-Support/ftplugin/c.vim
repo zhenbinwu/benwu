@@ -490,14 +490,28 @@ endif
 "
  map    <buffer>  <silent>  <LocalLeader>hp         :call C#HelpCsupport()<CR>
 imap    <buffer>  <silent>  <LocalLeader>hp    <C-C>:call C#HelpCsupport()<CR>
-nmap    <buffer>  <silent>  <LocalLeader>hr   :call CRV#STLRefVim(expand("<cword>"))<CR>   
-vmap    <buffer>  <silent>  <LocalLeader>hr    y:call CRV#STLRefVim('<c-r>"')<CR>
+"============================================================================"
+"                                   STL Ref                                  "
+"============================================================================"
+"nmap    <buffer>  <silent>  <LocalLeader>hr   :call CRV#STLRefVim(expand("<cword>"))<CR>   
+"vmap    <buffer>  <silent>  <LocalLeader>hr    y:call CRV#STLRefVim('<c-r>"')<CR>
+""
+"vmap    <buffer>  <silent>  <LocalLeader>he   y:call CRV#StlRefVimExample('<c-r>"')<CR>
+"nmap    <buffer>  <silent>  <LocalLeader>he   :call CRV#StlRefVimExample(expand("<cword>"))<CR>
+""
+"map  <silent> <script> <Plug>StlRefVimAsk      :call CRV#STLRefVimAskForWord()<CR>
+"nmap    <buffer>  <silent>  <LocalLeader>hm   <Plug>StlRefVimAsk
+"============================================================================"
+"                                   CppMan                                   "
+"============================================================================"
+nmap    <buffer>  <silent>  <LocalLeader>hr   :call cppman#FindCppman(expand("<cword>"), 0)<CR>
+vmap    <buffer>  <silent>  <LocalLeader>hr  y:call cppman#FindCppman('<c-r>"', 0)<CR>
 "
-vmap    <buffer>  <silent>  <LocalLeader>he   y:call CRV#StlRefVimExample('<c-r>"')<CR>
-nmap    <buffer>  <silent>  <LocalLeader>he   :call CRV#StlRefVimExample(expand("<cword>"))<CR>
+nmap    <buffer>  <silent>  <LocalLeader>he   :call cppman#FindCppman(expand("<cword>"), 1)<CR>
+vmap    <buffer>  <silent>  <LocalLeader>he  y:call cppman#FindCppman('<c-r>"', 1)<CR>
 "
-map  <silent> <script> <Plug>StlRefVimAsk      :call CRV#STLRefVimAskForWord()<CR>
-nmap    <buffer>  <silent>  <LocalLeader>hm   <Plug>StlRefVimAsk
+map     <silent>  <script>  <Plug>CppManAsk   :call cppman#CppManAskForWord()<CR>
+nmap    <buffer>  <silent>  <LocalLeader>hm   <Plug>CppManAsk
 "-------------------------------------------------------------------------------
 " additional mapping : complete a classical C comment: '/*' => '/* | */'
 "-------------------------------------------------------------------------------
