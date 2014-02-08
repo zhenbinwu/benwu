@@ -477,6 +477,9 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
+#ifndef  __EDAnalyzer_|CLASSNAME:u|_INC__
+#define  __EDAnalyzer_|CLASSNAME:u|_INC__
+
 // system include files
 #include <memory>
 #include <string>
@@ -495,9 +498,6 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // class declaration
 //
-
-#ifndef  __EDAnalyzer_|CLASSNAME:u|_INC__
-#define  __EDAnalyzer_|CLASSNAME:u|_INC__
 
 class |CLASSNAME| : public edm::EDAnalyzer {
    public:
@@ -634,6 +634,9 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
+#ifndef  __EDFilter_|CLASSNAME:u|_INC__
+#define  __EDFilter_|CLASSNAME:u|_INC__
+
 // system include files
 #include <memory>
 #include <string>
@@ -652,9 +655,6 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // class declaration
 //
-
-#ifndef  __EDFilter_|CLASSNAME:u|_INC__
-#define  __EDFilter_|CLASSNAME:u|_INC__
 
 class |CLASSNAME| : public edm::EDFilter {
    public:
@@ -792,6 +792,9 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
+#ifndef  __EDProducer_|CLASSNAME:u|_INC__
+#define  __EDProducer_|CLASSNAME:u|_INC__
+
 // system include files
 #include <memory>
 #include <string>
@@ -810,9 +813,6 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // class declaration
 //
-
-#ifndef  __EDProducer_|CLASSNAME:u|_INC__
-#define  __EDProducer_|CLASSNAME:u|_INC__
 
 class |CLASSNAME| : public edm::EDProducer {
    public:

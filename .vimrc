@@ -1083,9 +1083,9 @@ fun! ToggleProject() "{{{
   endif
 endfunction "}}}
 nmap <silent> <leader>x :call ToggleProject()<CR>
-let g:proj_flags  = 'imstbLS'
-let g:proj_igndir = "CVS, objects, obj, dict"
-let g:proj_filter = "*.vim *.C *.cc *.hh"
+let g:proj_flags  = 'mstbLS'
+let g:proj_igndir = "CVS, objects, obj, dict, doc"
+let g:proj_filter = "*.vim *.C *.cc *.hh *.h *.py *.xml"
 let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1123,7 +1123,7 @@ let g:clang_snippets             = 1
 let g:clang_use_library          = 1
 let g:clang_snippets_engine      = 'clang_complete'
 let g:clang_complete_copen       = 1
-let g:clang_complete_auto        = 1
+let g:clang_complete_auto        = 0
 let g:clang_trailing_placeholder = 1
 if( match(hostname(), 'nbay04') >=0 )
   let g:clang_library_path="/home/benwu/BenSys/lib/"
@@ -1143,5 +1143,5 @@ let g:pymode_rope = 0
 " => DoxygenToolkit
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au Syntax {cpp,c,idl} runtime syntax/doxygen.vim
-let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_commentType   = "C++"
 let g:DoxygenToolkit_briefTag_post = "<++>"

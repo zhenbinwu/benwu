@@ -23,7 +23,8 @@ function s:SetProj() "<<<
     endif
     return s:temppath
   else
-    return "~/.vimprojects"
+    return ".vimproject"
+    "return "~/.vimprojects"
   endif
 endfunction ">>>
 
@@ -373,9 +374,8 @@ function! s:Project(filename) " <<<
             let fname='.'
         endif
         let infoline = s:RecursivelyConstructDirectives(a:line)
-        let retval=s:OpenEntry2(a:line, infoline, fname, a:editcmd)
         call s:DisplayInfo()
-        return retval
+        return s:OpenEntry2(a:line, infoline, fname, a:editcmd)
     endfunction
     ">>>
     " s:OpenEntry2(line, infoline, precmd, editcmd) <<<
@@ -1042,16 +1042,19 @@ function! s:Project(filename) " <<<
         cclose " Make sure grep window is closed
         call s:DoSetupAndSplit()
         if match(g:proj_flags, '\Cv') == -1
-            silent! exec 'silent! grep '.pattern.' '.fnames
+            silent! exec 'silent! lgrep '.pattern.' '.fnames
             if v:shell_error != 0
                 echo 'GREP error. Perhaps there are too many filenames.'
             else
-                copen
+                "copen
+                lwindow
             endif
         else
-            silent! exec 'silent! vimgrep '.pattern.' '.fnames
-            copen
+            silent! exec 'silent! lvimgrep '.pattern.' '.fnames
+            "copen
+            lwindow
         endif
+        redraw!
     endfunction ">>>
     " GetXXX Functions <<<
     function! s:GetHome(info, parent_home)
@@ -1258,7 +1261,7 @@ function! s:Project(filename) " <<<
                 only
                 Project
                 if !empty(getqflist())
-                  cc
+                  cwindow
                 endif
                 if tagbarwinnr != -1
                   TagbarOpen

@@ -36,7 +36,19 @@ catch (`Exception^& e...^)
 ..XPT
 
 XPT sp hint=Smart\ pointer\ usage
-`const ^std::tr1::shared_ptr<`type^>& `cursor^
+`const ^std::shared_ptr<`type^> `cursor^
+..XPT
+
+XPT wp hint=Wake\ pointer\ usage
+`const ^std::wake_ptr<`type^> `cursor^
+..XPT
+
+XPT up hint=Unique\ pointer\ usage
+`const ^std::unique_ptr<`type^> `cursor^
+..XPT
+
+XPT ss hint=stringstream
+`const ^std::stringstream `cursor^
 ..XPT
 
 XPT css hint=const\ std::string&
@@ -63,6 +75,7 @@ XSET class|post=S(V(), '.*[^:]', '&::', '')
 
 XPT << hint=<<""
 << "`content^" `cursor^
+..XPT
 
 XPT bf wrap " BOOST_FOREACH
 BOOST_FOREACH(`content^, `sequence^)

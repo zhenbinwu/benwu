@@ -170,11 +170,11 @@ XPT usens hint=using\ namespace
 using namespace `name^;
 
 XPT tsp hint=Typedef\ of\ a\ smart\ pointer
-typedef std::tr1::shared_ptr<`type^> `type^Ptr;
+typedef std::shared_ptr<`type^> `type^Ptr;
 
 
 XPT tcsp hint=Typedef\ of\ a\ smart\ const\ pointer
-typedef std::tr1::shared_ptr<const `type^> `type^CPtr;
+typedef std::shared_ptr<const `type^> `type^CPtr;
 
 
 "XPT fullmain hint=C++\ main\ including\ #includes

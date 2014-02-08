@@ -110,9 +110,9 @@ FORTUNE = False
 ### Define the C++ compiler to be used
 CXX           = 'g++'
 ### Define the C++ flags
-CXXFLAGS      = '-g -Wall -fpic'
+CXXFLAGS      = '-std=c++0x -Wall -fpic'
 ### Define the C++ flags
-LDFLAGS      = '-g -O -Wall'
+LDFLAGS      = '-O -Wall'
 
 ## Additional file path beside from g:alternateSearchPath
 FILE_PATH = ''
@@ -710,9 +710,8 @@ EOF
     echo g:AutoMake
     5sleep
   endtry
-
+  cwindow
   cd -
-
 endfunction "}}}
 
 map <buffer> <F4> :call MapAutoMake()<CR>
