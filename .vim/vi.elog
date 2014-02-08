@@ -46,7 +46,9 @@ pick up by the locator.
 
 [*] C-support: add the macros to include the header files in CMSSW
 
-[*] C-support: Enable cppman from https://github.com/aitjcize/cppman
+[*] CppMan: better handle of the expection from cppman
+-> Extend the search with ctags information, like with the type
+of current variable?
 [/list]
 
 [h2]Free mapping in normal mode[/h2]

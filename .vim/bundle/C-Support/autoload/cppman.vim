@@ -1,8 +1,5 @@
 " cppman.vim
 "
-" Copyright (C) 2010 -  Wei-Ning Huang (AZ) <aitjcize@gmail.com>
-" All Rights reserved.
-"
 " This program is free software; you can redistribute it and/or modify
 " it under the terms of the GNU General Public License as published by
 " the Free Software Foundation; either version 2 of the License, or
@@ -21,21 +18,12 @@
 " Vim syntax file
 " Language:	Man page
 " Maintainer:	SungHyun Nam <goweol@gmail.com>
-" Modified:	Wei-Ning Huang <aitjcize@gmail.com>
+" Origianl Modified:	Wei-Ning Huang <aitjcize@gmail.com>
 " Previous Maintainer:	Gautam H. Mudunuri <gmudunur@informatica.com>
 " Version Info:
-" Last Change:	2008 Sep 17
-
-" Additional highlighting by Johannes Tanzler <johannes.tanzler@aon.at>:
-"	* manSubHeading
-"	* manSynopsis (only for sections 2 and 3)
-
-" For version 5.x: Clear all syntax items
-" For version 6.x: Quit when a syntax file was already loaded
-
+" Current Modified: Zhenbin Wu 
 
 let s:old_col = &co
-
 autocmd VimResized * call s:Rerender()
 let s:stack = []
 let s:sfile = resolve(expand("<sfile>:p:h"))
@@ -65,7 +53,6 @@ EOF
 endfunction "}}}
 
 fun! s:SetLocal() "{{{
-
   setlocal nonu
   setlocal iskeyword+=:,=,~,[,],>,*
   setlocal keywordprg=cppman
@@ -87,26 +74,17 @@ fun! s:SetLocal() "{{{
   syntax region manSynopsis start="^EXAMPLE"hs=s+7 end="^       [^ ]"he=s-1 keepend contains=manSectionHeading,@cppCode,manCFuncDefinition
 
   " Define the default highlighting.
-  " For version 5.7 and earlier: only when not done already
-  " For version 5.8 and later: only when an item doesn't have highlighting yet
-  if version >= 508 || !exists("did_man_syn_inits")
-    if version < 508
-      let did_man_syn_inits = 1
-      command -nargs=+ HiLink hi link <args>
-    else
-      command -nargs=+ HiLink hi def link <args>
-    endif
+  command -nargs=+ HiLink hi def link <args>
 
-    HiLink manTitle	    Title
-    HiLink manSectionHeading  Statement
-    HiLink manOptionDesc	    Constant
-    HiLink manLongOptionDesc  Constant
-    HiLink manReference	    PreProc
-    HiLink manSubHeading      Function
-    HiLink manCFuncDefinition Function
+  HiLink manTitle           Title
+  HiLink manSectionHeading  Statement
+  HiLink manOptionDesc      Constant
+  HiLink manLongOptionDesc  Constant
+  HiLink manReference       PreProc
+  HiLink manSubHeading      Function
+  HiLink manCFuncDefinition Function
 
-    delcommand HiLink
-  endif
+  delcommand HiLink
 
   """ Vim Viewer
   setlocal mouse=a
@@ -170,9 +148,6 @@ out = cm.man(vim.eval("a:word"))
 vim.command("let s:page_name = '"+ str(out['page'] +"'"))
 for line in out['out'].split('\n'):
     vim.current.buffer.append(line)
-#outline = out['out'].split('\n')
-#for i in range(1, len(outline)):
-#    vim.current.buffer.append(outline[i])
 EOF
 endfunction "}}}
 
@@ -213,17 +188,13 @@ fun! cppman#FindCppman(word, mode) "{{{
   set filetype=man
   call s:SetLocal()
   if a:mode == 0
-    ""let g:temp = getpos('.')
-    "normal gg
-    "let g:temp =  search("^TYPE", 'cn')
-    "normal gg
     call search('^NAME')
   else
     call search('^EXAMPLE')
   endif
 endfunction "}}}
 
-function cppman#CppManAskForWord()"{{{
+function cppman#CppManAskForWord() "{{{
     let l:strng = input("What to lookup: ")
     call cppman#FindCppman(l:strng, "")
-endfunction"}}}
+endfunction "}}}
