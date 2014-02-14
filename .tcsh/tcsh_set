@@ -227,6 +227,11 @@ if ( ($?TERM)) then  ##For at which doesn't define TERM
            set tperiod = 2
            alias periodic 'setenv DISPLAY `cat ~/.screen/X11`'
                breaksw;
+        case "screen-bce":
+           set tperiod = 2
+           echo "\033k${SHORT_HOST}\033\\"
+           alias periodic 'setenv DISPLAY `cat ~/.screen/X11`'
+               breaksw;
        default:
                alias seticon echo -n ""
                alias sethead echo -n ""
