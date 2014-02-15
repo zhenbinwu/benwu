@@ -67,6 +67,19 @@ function! asynchandler#qf(command, list, format, title)
             silent! wincmd p
         finally
             let &errorformat = errorformat
+            cwindow
+            let errorcout = 0
+            for d in getqflist()
+                if d.valid
+                    errorcout=errorcout+1
+                endif
+            endfor
+            if errorcout == 0
+                hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen
+                echohl GreenBar
+                echomsg "Compile Successfully!"
+                echohl None
+            endif
         endtry
     endfunction
     return asynccommand#tab_restore(env)

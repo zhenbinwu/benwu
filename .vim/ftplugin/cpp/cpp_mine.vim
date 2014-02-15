@@ -307,10 +307,11 @@ fun! s:SyntasticCppC_Boost(mode) "{{{
   endif
 endfunction "}}}
 
-set tags+=~/.vim/ftplugin/cpp/cpp_tags
-set tags+=~/.vim/ftplugin/cpp/root_tags
+"set tags+=~/.vim/ftplugin/cpp/cpp_tags
+"set tags+=~/.vim/ftplugin/cpp/root_tags
 "set tags+=~/.vim/ftplugin/cpp/boost_tags
-"
 "if executable("root-config")
   "let g:clang_user_options = split(system("root-config --cflags"))[-1]
 "endif
+
+set errorformat+=collect2:\ %m

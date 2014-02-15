@@ -2725,10 +2725,10 @@ endfunction    " ----------  end of function C#RemoveGuiMenus  ----------
 "  rebuild commands and the menu from the (changed) template file
 "------------------------------------------------------------------------------
 function! C#RereadTemplates ( msg )
-		let s:style						= 'default'
-    let s:C_Template     	= { 'default' : {} }
-    let s:C_FileVisited  	= []
-		let	messsage					= ''
+		let s:style         = 'default'
+		let s:C_Template    = { 'default' : {} }
+		let s:C_FileVisited = []
+		let messsage        = ''
 		"
 		if s:installation == 'system'
 			"
@@ -3720,6 +3720,7 @@ let s:KeywordComment	= {
 	\	'TRICKY'       : 'keyword-tricky',
 	\	'WARNING'      : 'keyword-warning',
 	\	'WORKAROUND'   : 'keyword-workaround',
+	\	'FIXME'        : 'keyword-fixme',
 	\	'new\ keyword' : 'keyword-keyword',
 	\ }
 
@@ -3745,7 +3746,7 @@ endfunction    " ----------  end of function C#KeywordCommentListInsert  -------
 let s:SpecialComment	= { 
 	\	'EMPTY'                                    : 'special-empty' ,
 	\	'FALL\ THROUGH'                            : 'special-fall-through' ,
-	\	'IMPL\.\ TYPE\ CONV'                       : 'special-implicit-type-conversion")' ,
+	\	'IMPL\.\ TYPE\ CONV'                       : 'special-implicit-type-conversion' ,
 	\	'NO\ RETURN'                               : 'special-no-return' ,
 	\	'NOT\ REACHED'                             : 'special-not-reached' ,
 	\	'TO\ BE\ IMPL\.'                           : 'special-remains-to-be-implemented' ,

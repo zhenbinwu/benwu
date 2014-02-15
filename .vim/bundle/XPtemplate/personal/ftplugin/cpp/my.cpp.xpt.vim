@@ -9,6 +9,8 @@ let s:f = g:XPTfuncs()
 
 function! s:f.endofHandler(...)
   let cline = getpos('.')[1]
+  let cline = eval(cline -1)
+  exe cline.", ".cline."d"
   exe s:hdlcline. ", " . cline."g/iConfig.getParameter/m".cline
   exe s:hdlcline. ", " . cline."g/iEvent.getByLabel/m".cline
   exe s:hdlcline. ", " . cline."g/cms.InputTag/m".cline
@@ -39,8 +41,8 @@ XPT sp hint=Smart\ pointer\ usage
 `const ^std::shared_ptr<`type^> `cursor^
 ..XPT
 
-XPT wp hint=Wake\ pointer\ usage
-`const ^std::wake_ptr<`type^> `cursor^
+XPT wp hint=Weak\ pointer\ usage
+`const ^std::weak_ptr<`type^> `cursor^
 ..XPT
 
 XPT up hint=Unique\ pointer\ usage
@@ -68,9 +70,10 @@ XSET class|post=S(V(), '.*[^:]', '&::', '')
 //         Name:  `class^`name^
 //  Description:  `cursor^
 // ===========================================================================
-`int^ `class^`name^(`param^`...^, `param^`...^)` const^
+`bool^ `class^`name^(`param^`...^, `param^`...^)` const^
 {
-    <+code+>
+    <+CURSOR+>
+    return `true^;
 }       // -----  end of function `class^`name^  -----
 
 XPT << hint=<<""
@@ -97,20 +100,20 @@ for(unsigned int `i^=0; `i^ < `class^`opt^size(); `i^++)
 }
 
 XPT handler hint=CMSSW\ Handler
+XSET Handler|post=endofHandler()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ `beginHandler()^ ~~~~~
 edm::InputTag `CMSObject^Tag_;
 edm::Handle<`CMSObjectCollection^>  `CMSObject^Hdl;
-CMSObjectTag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
+`CMSObject^Tag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
 iEvent.getByLabel(`CMSObject^Tag_, `CMSObject^Hdl); 
 //`CMSObject^Tag = cms.InputTag("<+tagname+>"),
 `...^
 edm::InputTag `CMSObject^Tag_;
 edm::Handle<`CMSObjectCollection^>  `CMSObject^Hdl;
-CMSObjectTag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
+`CMSObject^Tag_ = iConfig.getParameter<edm::InputTag>("`CMSObject^Tag");
 iEvent.getByLabel(`CMSObject^Tag_, `CMSObject^Hdl); 
 //`CMSObject^Tag = cms.InputTag("<+tagname+>"), 
 `...^
-XSET Handler|post=endofHandler()
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ End of `Handler^ ~~~~~
 ..XPT
 

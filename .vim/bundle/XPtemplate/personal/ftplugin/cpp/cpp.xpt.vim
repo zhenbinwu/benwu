@@ -152,7 +152,7 @@ public:
 CPPUNIT_TEST_SUITE_REGISTRATION(`fileRoot()^);
 
 
-XPT tf hint=Test\ function\ definition
+XPT test hint=Test\ function\ definition
 void test`Name^()
 {
     `cursor^

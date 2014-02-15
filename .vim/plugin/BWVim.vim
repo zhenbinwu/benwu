@@ -81,7 +81,7 @@ nmap <silent> <leader>tt :call <sid>LastTab()<CR>
 
 "" Re-define make
 let g:make_target = "%:r"
-fun! MapMake(output) "{{{
+fun! MapMake(output, asyn) "{{{
   silent %s/<##>//eg
   if exists("g:syntastic_enable") 
     let syntastic_temp = g:syntastic_enable
@@ -96,24 +96,45 @@ fun! MapMake(output) "{{{
     endif
   endif
 
-  w
-  if a:output == 0
-    silent make
-  elseif a:output == 1
-    execute "silent make " . g:make_target
+  update
+
+  if a:asyn == 0 "Defualt make
+    if a:output == 0
+      silent make
+    elseif a:output == 1
+      execute "silent make " . g:make_target
+    endif
+    botright cwindow
+    cc
+  else "" Use Asynmake
+    if exists('g:loaded_asynccommand') && has('clientserver')
+      cclose
+      call setqflist([])
+      if a:output == 0
+        execute "silent AsyncMake"
+      elseif a:output == 1
+        execute "silent AsyncMake " . g:make_target
+      endif
+    endif
   endif
-  botright cwindow
-  cc
+
   if exists("g:syntastic_enable") && exists("syntastic_temp")
     let g:syntastic_enable = syntastic_temp
   endif
   redraw!
 endfunction "}}}
 
-map <F2> <Esc>:call MapMake(0)<CR>
-map <F3> <Esc>:call MapMake(1)<CR>
-imap <F2> <Esc>:call MapMake(0)<CR>
-imap <F3> <Esc>:call MapMake(1)<CR>
+map <F2> <Esc>:call MapMake(0, 0)<CR>
+map <F3> <Esc>:call MapMake(1, 0)<CR>
+imap <F2> <Esc>:call MapMake(0, 0)<CR>
+imap <F3> <Esc>:call MapMake(1, 0)<CR>
+
+set <S-F2>=O1;2Q
+set <S-F3>=O1;2R
+map <S-F2> <Esc>:call MapMake(0, 1)<CR>
+map <S-F3> <Esc>:call MapMake(1, 1)<CR>
+imap <S-F2> <Esc>:call MapMake(0, 1)<CR>
+imap <S-F3> <Esc>:call MapMake(1, 1)<CR>
 
 "" Automatic select local list or quickfix depending 
 fun! QLstep(direction) "{{{
@@ -324,8 +345,7 @@ function! s:OnlineDoc(word) "{{{
 endfunction "}}}
 
 fun! s:OnlineWord(word) "{{{
-  let s:browser = "opera"
-  "let s:browser = "gnome-open"
+  let s:browser = "gnome-open"
   "
   let s:word = substitute(a:word, " ", "+", "g")
   let s:word = substitute(s:word, "+*$", "", "g")
@@ -616,5 +636,5 @@ function! s:UpdateScreenlog(filename) "{{{
 endfunction "}}}
 
 if match($TERM, "screen") != -1
-  nmap <silent> <leader>sr :call ScreenRunFunc()<CR>
+  nmap <silent> <leader>sr :call ScreenRunFunc()<CR>:redraw!<CR>
 endif

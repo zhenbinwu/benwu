@@ -61,15 +61,15 @@ endif
 "
 " ---------- alternate file plugin (a.vim) ----------------------
 "
-if exists("loaded_alternateFile")
-  map  <buffer>  <silent>  <S-F2>       :A<CR>
-  imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
-endif
+"if exists("loaded_alternateFile")
+  "map  <buffer>  <silent>  <S-F2>       :A<CR>
+  "imap  <buffer>  <silent>  <S-F2>  <C-C>:A<CR>
+"endif
 "
 "command! -nargs=1 -complete=customlist,C#CFileSectionList        CFileSection       call C#CFileSectionListInsert     (<f-args>) // :BUG:05/22/2013 09:43:22 PM:benwu: 
 "command! -nargs=1 -complete=customlist,C#HFileSectionList        HFileSection       call C#HFileSectionListInsert     (<f-args>)
 command! -nargs=1 -complete=customlist,C#KeywordCommentList      KeywordComment     call C#KeywordCommentListInsert   (<f-args>)
-"command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert   (<f-args>)
+command! -nargs=1 -complete=customlist,C#SpecialCommentList      SpecialComment     call C#SpecialCommentListInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#StdLibraryIncludesList  IncludeStdLibrary  call C#StdLibraryIncludesInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#C99LibraryIncludesList  IncludeC99Library  call C#C99LibraryIncludesInsert   (<f-args>)
 command! -nargs=1 -complete=customlist,C#CppLibraryIncludesList  IncludeCppLibrary  call C#CppLibraryIncludesInsert   (<f-args>)
@@ -130,12 +130,12 @@ vnoremap    <buffer>  <silent>  <LocalLeader>ct   s<Esc>:call C#InsertDateAndTim
  "noremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
  "noremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
  noremap    <buffer>            <LocalLeader>ck   <Esc>:KeywordComment<Space>
- "noremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
+ noremap    <buffer>            <LocalLeader>cp   <Esc>:SpecialComment<Space>
 "
 "inoremap    <buffer>            <LocalLeader>ce   <Esc>:CFileSection<Space>
 "inoremap    <buffer>            <LocalLeader>ch   <Esc>:HFileSection<Space>
 inoremap    <buffer>            <LocalLeader>ck   <Esc>:KeywordComment<Space>
-"inoremap    <buffer>            <LocalLeader>cx   <Esc>:SpecialComment<Space>
+inoremap    <buffer>            <LocalLeader>cp   <Esc>:SpecialComment<Space>
 " 
 " ---------- statements menu  ------------------------------------------------
 "

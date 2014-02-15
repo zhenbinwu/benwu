@@ -383,7 +383,7 @@ void<CURSOR> |?TEMPALTE_FUNCTION_NAME| ( <+argument list+> )
 }		// -----  end of template function |?TEMPALTE_FUNCTION_NAME| - 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.operator-in ==
-ostream &
+std::ostream &
 operator << ( ostream & os, const |?CLASSNAME| & obj )
 {
 	os << obj.<CURSOR> ;
@@ -391,7 +391,7 @@ operator << ( ostream & os, const |?CLASSNAME| & obj )
 }		// -----  end of function operator <<  -----
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.operator-out ==
-istream &
+std::istream &
 operator >> ( istream & is, |?CLASSNAME| & obj )
 {
 	is >> obj.<CURSOR> ;
