@@ -46,7 +46,6 @@ altscreen on
 # ------------------------------------------------------------------------------
 # SCREEN KEYBINDINGS
 # ------------------------------------------------------------------------------
-#  
 escape z
 
 bind s split
@@ -60,6 +59,10 @@ bind - resize -1
 bind _ resize max
 bind } resize +4
 bind { resize -4
+bind g select 10
+bind j select 11
+bind ; select 12
+bind / windowlist -b
 
 
 bind  eval split focus next
@@ -78,31 +81,27 @@ bindkey ^[[1;5B focus down
 # ------------------------------------------------------------------------------
 # TERMINAL Display
 # ------------------------------------------------------------------------------
-backtick 0 0 0 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -f 2 -d. | xargs -I STY echo "STY@${SHORT_HOST}"'
+backtick 0 0 0 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -f 2 -d. '
 backtick 3 90  90   $HOME/.screen/load
 backtick 1 300 300  $HOME/.screen/gcalendar
 backtick 2 300 300  $HOME/.screen/mail
 
 # turn sending of screen messages to hardstatus off
-hardstatus alwayslastline
+hardstatus off
 # use this for the hard status string 
 # It seems the maximum changes of color is 16 in GNU screen
 # The backtick only executes when the screen is attached.
+hardstatus string "%0`@%H : %t"
 
-hardstatus string '%{= kg}[ %` %3` %{g}]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
-
-# Set the caption 
-caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+## Set the caption 
+caption always
+caption string '%{= kg}[ %{m}%0`%{g}@%H %3` ]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
 
 # emulate .logout message
 pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 
 # Make screen messages stand out a little more - black on bright green.
 sorendition "+b kc"
-# ------------------------------------------------------------------------------
-# TERMINAL SETTINGS
-# ------------------------------------------------------------------------------
-defhstatus "screen | $USER@H"
 
 # ------------------------------------------------------------------------------
 # SCREENS CONTROL
