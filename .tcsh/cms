@@ -1,20 +1,38 @@
 #!/bin/tcsh
 
+if ( !($?VO_CMS_SW_DIR) &&  -e $HOME/setup.csh) then 
+  source $HOME/setup.csh
+endif
+
+
 cmsenv
 set cdpath=($CMSSW_BASE/src ~/)
 setenv LANG en_US.UTF8
 set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"
 
+## Don't create clang_complete in empty src 
+## This is for the git
+if ( -d $CMSSW_BASE/src ) then
+  set c = `ls -a $CMSSW_BASE/src | wc | awk '{print $1}'`
+  if ( ${c} == 2 ) then
+    exit
+  endif
+endif
+
 ## Setup clang_complete
 if (! -e $CMSSW_BASE/src/.clang_complete) then
   touch $CMSSW_BASE/src/.clang_complete
+  ### CMSSW Internal
   echo -I$CMSSW_BASE/src >> $CMSSW_BASE/src/.clang_complete
   echo -I$CMSSW_RELEASE_BASE/src >> $CMSSW_BASE/src/.clang_complete
+
+  ### Root
   if (`which root-config >& /dev/null ; echo $?`  == 0 ) then
     foreach cmd (`root-config --cflags`)
       echo $cmd >> $CMSSW_BASE/src/.clang_complete
     end
   endif
+
   ## Nbay04 can handle large loading
   if (  $SHORT_HOST =~ nbay04 ) then 
     foreach fwlite (`echo $CMSSW_FWLITE_INCLUDE_PATH | tr ':' '\n'`)
