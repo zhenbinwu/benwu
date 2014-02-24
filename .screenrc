@@ -24,7 +24,7 @@ startup_message off
 vbell off
 
 # define a bigger scrollback, default is 100 lines
-defscrollback 20000
+defscrollback 10000
 
 #defflow on # will force screen to process ^S/^Q
 deflogin off
@@ -95,7 +95,7 @@ hardstatus string "%0`@%H : %t"
 
 ## Set the caption 
 caption always
-caption string '%{= kg}[ %{m}%0`%{g}@%H %3` ]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
+caption string '%{= kg}[ %{m}%0`%{g}@%H %3` %{g}]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
 
 # emulate .logout message
 pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
@@ -119,3 +119,6 @@ attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 # use current bg color for erased chars
 defbce on    
+
+windowlist string "%{r}%3n%{d} %t%=%f "
+windowlist title "%{b}%H %{w}[ %l ] %= %{g}%Y %M %d, %c"
