@@ -480,11 +480,16 @@ imap    <buffer>  <silent>  <LocalLeader>ro    <C-C>:call C#Toggle_Gvim_Xterm()<
 "
 " Abraxas CodeCheck (R)
 "
-if executable("check") 
-  map    <buffer>  <silent>  <LocalLeader>rk         :call C#CodeCheck()<CR>:call C#HlMessage()<CR>
-  map    <buffer>  <silent>  <LocalLeader>re         :call C#CodeCheckArguments()<CR>
- imap    <buffer>  <silent>  <LocalLeader>rk    <C-C>:call C#CodeCheck()<CR>:call C#HlMessage()<CR>
- imap    <buffer>  <silent>  <LocalLeader>re    <C-C>:call C#CodeCheckArguments()<CR>
+if executable("cppcheck") 
+  "map    <buffer>  <silent>  <LocalLeader>rk         :call C#CodeCheck()<CR>:call C#HlMessage()<CR>
+  "map    <buffer>  <silent>  <LocalLeader>re         :call C#CodeCheckArguments()<CR>
+ "imap    <buffer>  <silent>  <LocalLeader>rk    <C-C>:call C#CodeCheck()<CR>:call C#HlMessage()<CR>
+ "imap    <buffer>  <silent>  <LocalLeader>re    <C-C>:call C#CodeCheckArguments()<CR>
+  noremap <buffer>  <silent>  <LocalLeader>rk       :call C#CppcheckCheck()<CR>:call C#HlMessage()<CR>:botright cwindow<CR>:cc<CR>
+ inoremap <buffer>  <silent>  <LocalLeader>rk  <C-C>:call C#CppcheckCheck()<CR>:call C#HlMessage()<CR>:botright cwindow<CR>:cc<CR>
+  noremap <buffer>  <silent>  <LocalLeader>re       :call C#CppcheckSeverityInput()<CR>
+ inoremap <buffer>  <silent>  <LocalLeader>re  <C-C>:call C#CppcheckSeverityInput()<CR>
+
 endif
 " ---------- plugin help -----------------------------------------------------
 "

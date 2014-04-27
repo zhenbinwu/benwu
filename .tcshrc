@@ -10,26 +10,23 @@
 
 #############################################################################
 
-if ($LOGNAME == "benwu") then
-	#        aliases   for interactive shells
-	source $HOME/.tcsh/tcsh_aliases
+#        aliases   for interactive shells
+source $HOME/.tcsh/tcsh_aliases
 
-	#        settings  for interactive shells
-	source $HOME/.tcsh/tcsh_set
+#        settings  for interactive shells
+source $HOME/.tcsh/tcsh_set
 
-	#        bindkeys   for interactive shells
-	source $HOME/.tcsh/tcsh_bindkey
+#        bindkeys   for interactive shells
+source $HOME/.tcsh/tcsh_bindkey
 
-	#        completions for interactive shells
-	source $HOME/.tcsh/tcsh_complete
+#        completions for interactive shells
+source $HOME/.tcsh/tcsh_complete
 
-	#        special   for cdf interactive shells
-	source $HOME/.tcsh/tcsh_cdf
+#        special   for cdf interactive shells
+source $HOME/.tcsh/tcsh_cdf
 
-	#        special   for root
-    source $HOME/.tcsh/mythisroot.csh
-
-endif
+#        special   for root
+source $HOME/.tcsh/mythisroot.csh
 
 
 if (-f ~/.tcsh/tcsh_color) then
