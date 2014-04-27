@@ -112,12 +112,14 @@ if	s:MSWIN
 	let s:C_ExeExtension        = '.exe'     " file extension for executables (leading point required)
 	let s:C_ObjExtension        = '.obj'     " file extension for objects (leading point required)
 	let s:C_Man                 = 'man.exe'  " the manual program
+    let s:C_FilenameEscChar		= ''
 else
 	let s:C_CCompiler           = 'gcc'      " the C   compiler
 	let s:C_CplusCompiler       = 'g++'      " the C++ compiler
 	let s:C_ExeExtension        = ''         " file extension for executables (leading point required)
 	let s:C_ObjExtension        = '.o'       " file extension for objects (leading point required)
 	let s:C_Man                 = 'man'      " the manual program
+    let s:C_FilenameEscChar 	= ' \%#[]'
 endif
 let s:C_VimCompilerName        = 'gcc'      " the compiler name used by :compiler
 let s:C_CExtension             = 'c'                    " C file extension; everything else is C++
@@ -211,15 +213,9 @@ let s:C_HlMessage    = ""
 let s:C_If0_Counter   = 0
 let s:C_If0_Txt		 		= "If0Label_"
 "
-let s:C_SplintIsExecutable	= 0
-if executable( "splint" )
-	let s:C_SplintIsExecutable	= 1
-endif
-"
-let s:C_CodeCheckIsExecutable	= 0
-if executable( s:C_CodeCheckExeName )
-	let s:C_CodeCheckIsExecutable	= 1
-endif
+let s:C_SplintIsExecutable		= executable( "splint" )
+let s:C_CppcheckIsExecutable	= executable( "cppcheck" )
+let s:C_CodeCheckIsExecutable	= executable( s:C_CodeCheckExeName )
 "
 "------------------------------------------------------------------------------
 "  Control variables (not user configurable)
@@ -316,6 +312,8 @@ let s:MenuRun                  = s:C_Root.'&Run'
 let s:C_SourceCodeExtensionsList	= split( s:C_SourceCodeExtensions, '\s\+' )
 
 "------------------------------------------------------------------------------
+let s:CppcheckSeverity	            = [ "all", "error", "warning", "style", "performance", "portability", "information" ]
+let s:C_CppcheckSeverity			= 'all'
 
 "------------------------------------------------------------------------------
 "  C : C#InitMenus                              {{{1
@@ -952,6 +950,20 @@ function! C#InitMenus ()
 		exe "amenu  <silent>  ".s:MenuRun.'.cmd\.\ line\ arg\.\ for\ spl&int<Tab>\\rpa      :call C#SplintArguments()<CR>'
 		exe "imenu  <silent>  ".s:MenuRun.'.cmd\.\ line\ arg\.\ for\ spl&int<Tab>\\rpa <C-C>:call C#SplintArguments()<CR>'
 		exe "amenu  <silent>  ".s:MenuRun.'.-SEP2-                          :'
+	endif
+    "
+	if s:C_CppcheckIsExecutable==1
+		exe ahead.'cppcheck<Tab>'.esc_mapl.'rk                            :call C#CppcheckCheck()<CR>:call C#HlMessage()<CR>'
+		exe ihead.'cppcheck<Tab>'.esc_mapl.'rk                       <C-C>:call C#CppcheckCheck()<CR>:call C#HlMessage()<CR>'
+		"
+		if s:C_MenuHeader == 'yes'
+			exe ahead.'cppcheck\ severity<Tab>'.esc_mapl.'re.cppcheck\ severity     :call C_MenuTitle()<CR>'
+			exe ahead.'cppcheck\ severity<Tab>'.esc_mapl.'re.-Sep5-                 :'
+		endif
+
+		for level in s:CppcheckSeverity
+			exe ahead.'cppcheck\ severity<Tab>'.esc_mapl.'re.&'.level.'   :call C#GetCppcheckSeverity("'.level.'")<CR>'
+		endfor
 	endif
 	"
 	if s:C_CodeCheckIsExecutable==1
@@ -2338,6 +2350,111 @@ function! C#SplintCheck ()
 endfunction    " ----------  end of function C#SplintCheck ----------
 "
 "------------------------------------------------------------------------------
+"  C#CppcheckCheck : run cppcheck(1)        {{{1
+"------------------------------------------------------------------------------
+let s:C_saved_global_option				= {}
+"------------------------------------------------------------------------------
+"  C_SaveGlobalOption   
+"  param 1 : option name
+"  param 2 : characters to be escaped (optional)
+"------------------------------------------------------------------------------
+function! s:C_SaveGlobalOption ( option, ... )
+	exe 'let escaped =&'.a:option
+	if a:0 == 0
+		let escaped	= escape( escaped, ' |"\' )
+	else
+		let escaped	= escape( escaped, ' |"\'.a:1 )
+	endif
+	let s:C_saved_global_option[a:option]	= escaped
+endfunction    " ----------  end of function C_SaveGlobalOption  ----------
+"
+"------------------------------------------------------------------------------
+"  C_RestoreGlobalOption   
+"------------------------------------------------------------------------------
+function! s:C_RestoreGlobalOption ( option )
+	exe ':set '.a:option.'='.s:C_saved_global_option[a:option]
+endfunction    " ----------  end of function C_RestoreGlobalOption  ----------
+"
+"
+function! C#CppcheckCheck ()
+	if s:C_CppcheckIsExecutable==0
+		let s:C_HlMessage = ' Cppcheck is not executable or not installed! '
+		return
+	endif
+	let	l:currentbuffer=bufname("%")
+	if &filetype != "c" && &filetype != "cpp"
+		let s:C_HlMessage = ' "'.l:currentbuffer.'" seems not to be a C/C++ file '
+		return
+	endif
+	let s:C_HlMessage = ""
+	exe	":cclose"
+	silent exe	":update"
+	call s:C_SaveGlobalOption('makeprg')
+	"
+	" Windows seems to need this:
+	if	s:MSWIN
+		:compiler cppcheck
+	endif
+	:setlocal makeprg=cppcheck
+	"
+    silent exe	"make --std=c++11 --template=gcc -q --enable=".s:C_CppcheckSeverity.' '.escape(l:currentbuffer,s:C_FilenameEscChar)
+	call s:C_RestoreGlobalOption('makeprg')
+	exe	":botright cwindow"
+	"
+	" message in case of success
+	"
+	if l:currentbuffer == bufname("%")
+		let s:C_HlMessage = " Cppcheck --- no warnings for : ".l:currentbuffer
+	endif
+endfunction    " ----------  end of function C#CppcheckCheck ----------
+
+"===  FUNCTION  ================================================================
+"          NAME:  C#CppcheckSeverityList     {{{1
+"   DESCRIPTION:  cppcheck severity : callback function for completion
+"    PARAMETERS:  ArgLead - 
+"                 CmdLine - 
+"                 CursorPos - 
+"       RETURNS:  
+"===============================================================================
+function!	C#CppcheckSeverityList ( ArgLead, CmdLine, CursorPos )
+	return filter( copy( s:CppcheckSeverity ), 'v:val =~ "\\<'.a:ArgLead.'\\w*"' )
+endfunction    " ----------  end of function C_CppcheckSeverityList  ----------
+
+"===  FUNCTION  ================================================================
+"          NAME:  C#GetCppcheckSeverity     {{{1
+"   DESCRIPTION:  cppcheck severity : used in command definition
+"    PARAMETERS:  severity - cppcheck severity
+"       RETURNS:  
+"===============================================================================
+function! C#GetCppcheckSeverity ( severity )
+	let	sev	= a:severity
+	let sev	= substitute( sev, '^\s\+', '', '' )  	     			" remove leading whitespaces
+	let sev	= substitute( sev, '\s\+$', '', '' )	       			" remove trailing whitespaces
+	"
+	if index( s:CppcheckSeverity, tolower(sev) ) >= 0
+		let s:C_CppcheckSeverity = sev
+		echomsg "cppcheck severity is set to '".s:C_CppcheckSeverity."'"
+	else
+		let s:C_CppcheckSeverity = 'all'			                        " the default
+		echomsg "wrong argument '".a:severity."' / severity is set to '".s:C_CppcheckSeverity."'"
+	endif
+	"
+endfunction    " ----------  end of function C#GetCppcheckSeverity  ----------
+"
+"===  FUNCTION  ================================================================
+"          NAME:  C#CppcheckSeverityInput
+"   DESCRIPTION:  read cppcheck severity from the command line
+"    PARAMETERS:  -
+"       RETURNS:  
+"===============================================================================
+function! C#CppcheckSeverityInput ()
+		let retval = input( "cppcheck severity  (current = '".s:C_CppcheckSeverity."' / tab exp.): ", '', 'customlist,C#CppcheckSeverityList' )
+		redraw!
+		call C#GetCppcheckSeverity( retval )
+	return
+endfunction    " ----------  end of function C#CppcheckSeverityInput  ----------
+"
+"------------------------------------------------------------------------------
 "  C#CodeCheckArguments : CodeCheck command line arguments       {{{1
 "------------------------------------------------------------------------------
 function! C#CodeCheckArguments ()
@@ -2496,6 +2613,10 @@ function! C#Settings ()
 			let ausgabe = ""
 		endif
 		let txt = txt."        splint options(s) :  ".ausgabe."\n"
+	endif
+	" ----- cppcheck ------------------------------
+	if s:C_CppcheckIsExecutable==1
+		let txt = txt."        cppcheck severity :  ".s:C_CppcheckSeverity."\n"
 	endif
 	" ----- code check --------------------------
 	if s:C_CodeCheckIsExecutable==1

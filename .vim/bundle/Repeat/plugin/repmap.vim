@@ -147,6 +147,8 @@ fun! s:MapArg(key) "{{{
     let l:mapflag .= b:repmo_maparg[a:key]['expr'] ? "<expr>" : ''
   endif
   let b:repmo_maparg[a:key]['flag'] = l:mapflag
+
+  let b:repmo_maparg[a:key]['rhs'] = substitute(b:repmo_maparg[a:key]['rhs'], '|', '\\|', 'g')
 endfunction "}}}
 
 func! s:RepmoMap(key, revkey, ...) abort "{{{
