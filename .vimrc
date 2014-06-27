@@ -76,7 +76,7 @@
 "     > Repeat           ( V1.1        2013_05_24 )
 "     > Surrond          ( V2.0        2013_05_24 )
 "     > Tagbar           ( V2.5        2013_05_24 )
-"     > Fugitive         ( V1.2        2012_06_18 )
+"     > Fugitive         ( V2.1        2014_06_27 )
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
 "     > RelOps           ( V1.0        2012_09_13 )  " 
@@ -113,7 +113,6 @@ endif
 if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
-
 
 "" Limitation of Python
 if has('python')
@@ -1134,10 +1133,14 @@ set concealcursor=inv
 set conceallevel=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Python-Mode
+" => Python-Mode and Jedi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map keys for autocompletion
-let g:pymode_rope = 0
+let g:pymode_rope                   = 0
+let g:pymode_breakpoint_key         = '<leader>tb'
+let g:jedi#rename_command           = '<leader>tr'
+let g:jedi#usages_command           = '<leader>tu'
+let g:jedi#goto_assignments_command = '<leader>ta'
+let g:jedi#goto_definitions_command = '<leader>td'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DoxygenToolkit
