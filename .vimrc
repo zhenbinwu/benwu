@@ -87,7 +87,6 @@
 "     > Project          ( V1.4.1      2012_12_22 )
 "     > AsyncCommand     ( V4.0        2012_12_27 )
 "     > R-plugin         ( V0.9.9.1    2013_01_29 )
-"     > PSeach           ( V0.3        2013_02_28 )
 "     > Startify         ( V1.3        2013_05_01 )
 "     > ClangComplete    ( V2.0        2013_05_24 )
 
@@ -1103,12 +1102,6 @@ let vimrplugin_objbr_w        = 30
 let vimrplugin_vimpager       = "horizontal"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => PSearch
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pse_max_height = 8
-let g:pse_prompt='☻  '
- 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:startify_bookmarks = [ '~/.vimrc', '~/.vim/vi.elog' ]
@@ -1127,6 +1120,10 @@ let g:clang_trailing_placeholder = 1
 if( match(hostname(), 'nbay04') >=0 )
   let g:clang_library_path="/home/benwu/BenSys/lib/"
 endif
+if( match(hostname(), 'Aspire') >=0 )
+  let g:clang_library_path="/usr/lib/llvm-3.4/lib"
+endif
+
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
