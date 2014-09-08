@@ -50,6 +50,7 @@ alias quota 'quota -s'
 alias df    'df -h'
 alias top   'top -i'
 alias ssh   'ssh -X'
+alias mutt  'setenv TERM xterm-256color; \mutt'
 	
 ## For ctags 
 alias ctags 'ctags --extra=+q *'
