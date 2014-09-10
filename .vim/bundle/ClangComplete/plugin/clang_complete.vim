@@ -399,6 +399,7 @@ function! ClangComplete(findstart, base)
 
     inoremap <expr> <buffer> <C-Y> <SID>HandlePossibleSelectionCtrlY()
     inoremap <expr> <buffer> <CR> <SID>HandlePossibleSelectionEnter()
+    inoremap <silent> <buffer> <c-k> <ESC>:python updateSnips()<CR>
     augroup ClangComplete
       au CursorMovedI <buffer> call <SID>TriggerSnippet()
     augroup end

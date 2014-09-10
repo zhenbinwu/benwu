@@ -39,6 +39,7 @@ pick up by the locator.
 [*] Locator: it picks up too many braskets
 
 [*] Quickfix: link error
+http://stackoverflow.com/questions/14707586/vim-error-format-for-gfortran-compiler
 
 [*] startify: add fortune in the head when open up
 
@@ -49,6 +50,8 @@ pick up by the locator.
 [*] CppMan: better handle of the expection from cppman
 -> Extend the search with ctags information, like with the type
 of current variable?
+
+[*] Calendar: update support for weather extraction from google
 [/list]
 
 [h2]Free mapping in normal mode[/h2]
