@@ -16,6 +16,7 @@ alias ls 	'ls --color=auto'
 alias la 	'ls --color=auto -a'
 alias ll 	'ls --color=auto -hl'
 alias du 	'du -h --max-depth=1'
+alias sls   "screen -ls | grep --color -E '^|Attached|'"
 
 # To be used as in "cp /etc/inetd.conf /etc/inetd.conf.`today`"
 alias today 	"date '+%d%h%y'"
