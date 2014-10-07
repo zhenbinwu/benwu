@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/Gist"]
 	path = .vim/bundle/Gist
 	url = https://github.com/mattn/gist-vim
+[submodule ".vim/bundle/Linediff"]
+	path = .vim/bundle/Linediff
+	url = git://github.com/AndrewRadev/linediff.vim.git
