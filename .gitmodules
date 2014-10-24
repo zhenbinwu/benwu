@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/Linediff"]
 	path = .vim/bundle/Linediff
 	url = git://github.com/AndrewRadev/linediff.vim.git
+[submodule ".vim/bundle/Exchange"]
+	path = .vim/bundle/Exchange
+	url = https://github.com/tommcdo/vim-exchange.git
