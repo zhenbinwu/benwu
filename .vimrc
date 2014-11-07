@@ -89,6 +89,7 @@
 "     > R-plugin         ( V0.9.9.1    2013_01_29 )
 "     > Startify         ( V1.3        2013_05_01 )
 "     > ClangComplete    ( V2.0        2013_05_24 )
+"     > Gist             ( V7.1        2014_09_22 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -753,11 +754,12 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
-let g:fuf_modesDisable = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem  = 400
-let g:fuf_previewHeight   = 10
-let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/media\/)'
+let g:fuf_modesDisable        = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
+let g:fuf_mrufile_switchOrder = 20
+let g:fuf_mrufile_maxItem     = 100
+let g:fuf_mrucmd_maxItem      = 100
+let g:fuf_previewHeight       = 10
+let g:fuf_mrufile_exclude     = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/media\/)'
 nnoremap <silent> gnb :FufBuffer<CR>
 nnoremap <silent> gnf :FufFile<CR>
 nnoremap <silent> gnd :FufDir<CR>
@@ -1118,7 +1120,7 @@ let g:clang_complete_copen       = 1
 let g:clang_complete_auto        = 0
 let g:clang_trailing_placeholder = 1
 if( match(hostname(), 'nbay04') >=0 )
-  let g:clang_library_path="/home/benwu/BenSys/lib/"
+  let g:clang_library_path     = "/data/nbay04/a/benwu/BenSys/lib/"
 endif
 if( match(hostname(), 'Aspire') >=0 )
   let g:clang_library_path="/usr/lib/llvm-3.4/lib"
@@ -1133,6 +1135,7 @@ set conceallevel=2
 " => Python-Mode and Jedi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:pymode_rope                   = 0
+let g:pymode_lint_write             = 0
 let g:pymode_breakpoint_key         = '<leader>tb'
 let g:jedi#rename_command           = '<leader>tr'
 let g:jedi#usages_command           = '<leader>tu'
@@ -1145,3 +1148,10 @@ let g:jedi#goto_definitions_command = '<leader>td'
 au Syntax {cpp,c,idl} runtime syntax/doxygen.vim
 let g:DoxygenToolkit_commentType   = "C++"
 let g:DoxygenToolkit_briefTag_post = "<++>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gist_detect_filetype = 1
+let g:gist_show_privates   = 1
+let g:gist_post_private    = 1

@@ -68,11 +68,11 @@ alias tb    'source $HOME/.tcsh/tb'
 
 if (  $SHORT_HOST =~ nbay04 ) then 
     setenv PYTHONPATH /home/benwu/BenSys/lib/python2.6/site-packages/
-	setenv PATH /home/benwu/BenSys/bin:${PATH};
+	setenv PATH /home/benwu/BenSys/bin:/usr/sbin:${PATH}
 	setenv CVSEIDTOR vim74
 	setenv GTK2_RC_FILES /etc/gtk-2.0/gtkrc
-    alias vi  '$CVSEIDTOR -X'
-    #alias vi  'source $HOME/.tcsh/vitex';
+    #alias vi  '$CVSEIDTOR -X'
+    alias vi  'source $HOME/.tcsh/vitex';
     #source $HOME/.tcsh/mythisroot.csh
     if ( ! ($?LD_LIBRARY_PATH)) then 
       setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib64/:/home/benwu/BenSys/lib/
@@ -197,6 +197,6 @@ endif
 #============================================================================#
 #--------------------------------   Aspire   --------------------------------#
 #============================================================================#
-if (  $SHORT_HOST =~ vmps* ) then 
+if (  $SHORT_HOST =~ Aspire ) then 
 setenv PYTHONPATH /usr/share/python-support/root
 endif
