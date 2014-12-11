@@ -365,7 +365,6 @@ vmap gO :call <SID>OnlineDoc(expand("<C-R>*"))<CR>
 "============================================================================"
 "                        Run command using Asyncommand                       "
 "============================================================================"
-
 let g:AsynRun_path = "."
 let g:AsynRun_comd = ""
 
@@ -450,10 +449,8 @@ endif
 "============================================================================"
 let g:ScreenRun_winu = '1'
 let g:ScreenRun_path = '.'
-"let g:ScreenRun_comd = 'ls'
-let g:ScreenRun_comd = 'ping gogle.com'
+let g:ScreenRun_comd = '\\!\\!'
 let g:ScreenRun_logp = '.'
-"let g:ScreenRun_logp = '/home/benwu/temp/automake/'
 "let g:ScreenRun_comd = '$LASTJOB'
 
 fun! ScreenRunFunc() "{{{
@@ -492,39 +489,32 @@ fun! ScreenRunFunc() "{{{
 "                          Clean the screenlog first                         "
 "============================================================================"
   "" Start to constuct the command to run on
-  if !exists("g:ScreenRun_first") || g:ScreenRun_first != 1
-    let cmd = "setenv LASTJOB \\\!\\\!"
-    let g:ScreenRun_first = 1
-  else
-    let cmd = ""
-  endif
+  "if filereadable(g:ScreenRun_path . "/screenlog" . "." . g:ScreenRun_winu)
+    "|| filereadable(g:ScreenRun_logp . "/screenlog" . "." . g:ScreenRun_winu)
+    "let cmd = ""
+    "if g:ScreenRun_path != './' && g:ScreenRun_path != '.'
+      "let cmd .= '; cd ' . g:ScreenRun_path
+    "endif
 
-  if g:ScreenRun_path != './' && g:ScreenRun_path != '.'
-    let cmd .= '; cd ' . g:ScreenRun_path
-  endif
-
-  let cmd .= '; rm -f screenlog.' . g:ScreenRun_winu
-  let cmd .= '; ls'
+    "let cmd .= '; rm -f screenlog.' . g:ScreenRun_winu
+    "let cmd .= '; ls'
 
 
-  let g:torun = "screen -p " . g:ScreenRun_winu . " -X stuff \'" . cmd . "\'" . enter
-  
-  "echo "silent! !". g:torun
-  execute "silent! !". g:torun
+    "let g:torun = "screen -p " . g:ScreenRun_winu . " -X stuff \'" . cmd . "\'" . enter
 
+    "execute "silent! !". g:torun
+  "endif
 
 "============================================================================"
 "                       Send the real command to screen                      "
 "============================================================================"
   "" Start to constuct the command to run on
-  let cmd = ''
-  "let cmd = 'screen -X msgwait 0; screen -X log '
-  let cmd .= ';' .  g:ScreenRun_comd
+  let cmd   = ''
+  let cmd  .= '' .  g:ScreenRun_comd
   "let cmd .= '; echo "Job is done\!" '
   "let cmd .= '; screen -X log ; screen -X msgwait 4'
   let g:torun = "screen -p " . g:ScreenRun_winu . " -X stuff \'" . cmd . "\'" . enter
   
-  "echo "silent! !". g:torun
   execute "silent! !". g:torun
 
 "============================================================================"
@@ -540,58 +530,58 @@ fun! ScreenRunFunc() "{{{
   endif
 
   if !exists("s:logfile")
+    redraw!
     return
   endif
 
+  if bufwinnr(bufnr(expand(s:logfile))) != -1
+    exec bufwinnr(bufnr(expand(s:logfile))) . "wincmd w" 
+    setlocal autoread
+    redir => s:sy
+    silent! syntax list
+    redir END
+    echo len(s:sy)
+  else
+    " open the file in a split
+    exec 10 . "split " . expand(s:logfile)
 
-    if bufwinnr(bufnr(expand(s:logfile))) != -1
-      exec bufwinnr(bufnr(expand(s:logfile))) . "wincmd w" 
-      setlocal autoread
-      redir => s:sy
-      silent! syntax list
-      redir END
-      echo len(s:sy)
-    else
-      " open the file in a split
-      exec 10 . "split " . expand(s:logfile)
-
-      if exists("g:loaded_AnsiEscPlugin") && !exists("b:AnsiEsc")
-        setlocal conceallevel=3 
-        AnsiEsc
-        syntax match ansiConceal "" conceal cchar=3
-      endif
-
-      nnoremap <buffer> <silent> x  \|:silent exec 'resize '.( winheight('.') > 10 ? 10 : (winheight('.') + 100))<CR>
-      nnoremap <buffer> <silent> q  :bwipeout % <CR>
-      nnoremap <buffer> <silent> r  :checktime<CR>G
-
-      setlocal autoread
-
-      "setlocal buftype=nofile
-      "setlocal bufhidden=hide
-      "setlocal winfixheight
-      "setlocal noswapfile
-      "setlocal nobuflisted
-
+    if exists("g:loaded_AnsiEscPlugin") && !exists("b:AnsiEsc")
+      setlocal conceallevel=3 
+      AnsiEsc
+      syntax match ansiConceal "" conceal cchar=3
     endif
-    " remove boring build output
-    "%s/^\[xslt\].*$/
-    execute "silent! %s/]2;/[31;4mENV[m /g"
-    execute "silent! %s//\r/g"
-    setlocal number
-    setlocal nowrap
-    setlocal nomodified
-    setlocal nomodifiable
-    "
 
-    autocmd CursorHold     * call s:UpdateScreenlog(s:logfile)
-    autocmd CursorHoldI    * call s:UpdateScreenlog(s:logfile)
-    autocmd BufEnter       * call s:UpdateScreenlog(s:logfile)
-    
-    " go back to the previous window
-    wincmd p
+    nnoremap <buffer> <silent> x  \|:silent exec 'resize '.( winheight('.') > 10 ? 10 : (winheight('.') + 100))<CR>
+    nnoremap <buffer> <silent> q  :bwipeout % <CR>
+    nnoremap <buffer> <silent> r  :checktime<CR>G
 
-    redraw!
+    setlocal autoread
+
+    "setlocal buftype=nofile
+    "setlocal bufhidden=hide
+    "setlocal winfixheight
+    "setlocal noswapfile
+    "setlocal nobuflisted
+
+  endif
+  " remove boring build output
+  "%s/^\[xslt\].*$/
+  execute "silent! %s/]2;/[31;4mENV[m /g"
+  execute "silent! %s//\r/g"
+  setlocal number
+  setlocal nowrap
+  setlocal nomodified
+  setlocal nomodifiable
+  "
+
+  autocmd CursorHold     * call s:UpdateScreenlog(s:logfile)
+  autocmd CursorHoldI    * call s:UpdateScreenlog(s:logfile)
+  autocmd BufEnter       * call s:UpdateScreenlog(s:logfile)
+
+  " go back to the previous window
+  wincmd p
+
+  redraw!
 
 endfunction "}}}
 "
