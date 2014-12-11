@@ -110,6 +110,8 @@ fun! MapMake(output, asyn) "{{{
     if exists('g:loaded_asynccommand') && has('clientserver')
       cclose
       call setqflist([])
+      let g:asyncmake_buffer = bufnr('%')
+      setlocal nomodifiable
       if a:output == 0
         execute "silent AsyncMake"
       elseif a:output == 1
@@ -556,6 +558,7 @@ fun! ScreenRunFunc() "{{{
       exec 10 . "split " . expand(s:logfile)
 
       if exists("g:loaded_AnsiEscPlugin") && !exists("b:AnsiEsc")
+        setlocal fileformat=dos
         setlocal conceallevel=3 
         AnsiEsc
         syntax match ansiConceal "" conceal cchar=3
@@ -565,7 +568,7 @@ fun! ScreenRunFunc() "{{{
       nnoremap <buffer> <silent> q  :bwipeout % <CR>
       nnoremap <buffer> <silent> r  :checktime<CR>G
 
-      setlocal autoread
+      "setlocal autoread
 
       "setlocal buftype=nofile
       "setlocal bufhidden=hide
@@ -624,6 +627,9 @@ function! s:UpdateScreenlog(filename) "{{{
 
     checktime
     normal G
+    setlocal modifiable
+    execute "silent! %s//\r/g"
+    setlocal nomodifiable
 
     " Go back to the original window
     if org_winnr != winnum
