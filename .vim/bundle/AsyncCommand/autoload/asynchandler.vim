@@ -59,7 +59,7 @@ function! asynchandler#qf(command, list, format, title)
         let &errorformat=self.format
         try
             exe 'botright ' . self.mode . "open"
-            let cmd = self.command . ' ' . a:temp_file_name
+            let cmd = self.command . ' ' . a:temp_file_name . ' '
             exe cmd
             if type(self.title) == type("") && self.title != ""
                 let w:quickfix_title = printf(self.title, len(self.mode == 'c' ? getqflist() : getloclist()))
@@ -75,6 +75,7 @@ function! asynchandler#qf(command, list, format, title)
                 endif
             endfor
             if errorcout == 0
+                redraw!
                 hi GreenBar term=reverse ctermfg=white ctermbg=darkgreen guifg=white guibg=darkgreen
                 echohl GreenBar
                 echomsg "Compile Successfully!"

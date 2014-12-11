@@ -32,8 +32,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! AsyncCommandDone(file, return_code)
-    call asynccommand#done(a:file, a:return_code)
-    return ""
+
+    try
+        call asynccommand#done(a:file, a:return_code)
+    catch /.*/
+    finally
+        return ""
+    endtry
 endfunction
 
 command! -nargs=+ -complete=shellcmd AsyncCommand call asynccommand#run(<q-args>)
