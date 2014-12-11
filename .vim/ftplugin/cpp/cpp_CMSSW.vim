@@ -6,17 +6,14 @@ if match(expand("%:p:h"), expand("$CMSSW_BASE")) == -1
   finish
 endif
 
-"" What is the format to check the external executable?
-"if !exists("scram")
-  "finish
-"endif
-
 "" Set the makeprg for the scram
 fun! SetMakeprg() "{{{
   "" Setup for CMSSW
-  "let tempcxx=split(system("scram build echo_CXX"), '')[-1]
   "execute "set makeprg=scram\\ build\\ -j\\ 8\\ CXX='~/.vim/bundle/ClangComplete/bin/cc_args.py\\\\\\ ".tempcxx."'"
+  let b:tempdir = getcwd()
+  Glcd
   execute "set makeprg=scram\\ build\\ -j\\ 8"
+  lcd b:tempdir
   let g:UpdateMake = 1
 endfunction "}}}
 
@@ -35,6 +32,8 @@ endfunction "}}}
 autocmd BufWinEnter * call s:PreviewSyn()
 
 set completeopt+=preview
+
+map <F4> <Esc>:call MapMake(0, 1)<CR>
 
 "" Setup clang library
 "" BUG: The CMSSW libclang will crash the clang_complete
