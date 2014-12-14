@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"a"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: Zhenbin Wu <benwu@fnal.gov>
 " 
 " Annoucement: In this vimrc, I got lots of ideas from different places. 
@@ -599,7 +599,7 @@ nmap <silent> <Leader>cah <Plug>CalendarH
 """"""""""""""""""""""""""""""""""""""""
 " WinManager Setting
 """"""""""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout = 'TagList,NERDTree|BufExplorer'
+let g:winManagerWindowLayout = 'NERDTree,TagList|BufExplorer'
 let g:winManagerWidth        = 30
 let g:persistentBehaviour    = 0
 let g:defaultExplorer        = 0
@@ -872,7 +872,7 @@ endfunction "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:DirDiffExcludes   = "CVS,objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
+let g:DirDiffExcludes   = "CVS,objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,*.pyc,.*.swp, *~"
 let g:DirDiffIgnore     = "Id:,Revision:,Date:"
 let g:DirDiffWindowSize = 14
 
@@ -1092,7 +1092,7 @@ let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
 " => AsyncCommand
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if( match(hostname(), 'nbay') >=0 )
-  let g:asynccommand_prg = 'vim73'
+  let g:asynccommand_prg = 'vim74'
 endif
 let g:cscope_database = "cscope.out"
 
@@ -1155,3 +1155,5 @@ let g:DoxygenToolkit_briefTag_post = "<++>"
 let g:gist_detect_filetype = 1
 let g:gist_show_privates   = 1
 let g:gist_post_private    = 1
+" Only :w! updates a gist.
+let g:gist_update_on_write = 2
