@@ -88,6 +88,9 @@ function! startify#insane_in_the_membrane() abort
   if special
     call append('$', ['', '   [c]  <Calendar>'])
     call append('$', ['   [t]  <Task>'])
+    if exists('g:loaded_gist_vim') && g:loaded_gist_vim
+      call append('$', ['   [l]  <Gist>'])
+    endif
     call append('$', ['   [g]  <Gstatus>'])
     call append('$', ['   [p]  <Project>'])
     call append('$', ['', '   [q]  <quit>'])
@@ -103,6 +106,9 @@ function! startify#insane_in_the_membrane() abort
   nnoremap <buffer>         <cr>    :call <SID>open_buffers(expand('<cword>'))<cr>
   nnoremap <buffer>         <2-LeftMouse> :execute 'normal '. matchstr(getline('.'), '\w\+')<cr>
   nnoremap <buffer><silent> g       :Gstatus<cr>
+  if exists('g:loaded_gist_vim') && g:loaded_gist_vim
+    nnoremap <buffer><silent> l       :Gist -l<cr>
+  endif
   nnoremap <buffer><silent> p       :Project<cr>
   nnoremap <buffer><silent> c       :CalendarH<cr>
   nnoremap <buffer><silent> t       :Task<cr>
