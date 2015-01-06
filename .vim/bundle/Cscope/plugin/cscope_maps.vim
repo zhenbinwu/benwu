@@ -76,9 +76,6 @@ endfunction "}}}
 
     """"""""""""" Standard cscope/vim boilerplate
 
-if( match(hostname(), 'nbay') >=0 )
-    set csprg=/mnt/autofs/misc/nbay05.a/benwu/BenSys/bin/cscope
-endif
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set nocscopetag
 

@@ -31,7 +31,6 @@ end
 
 
 ${CVSEIDTOR} --servername $USER $targs
-
 #if ($texfile == 1) then
   #${CVSEIDTOR} --servername $USER $targs
 #else

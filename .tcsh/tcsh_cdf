@@ -57,8 +57,8 @@ alias proj      'ssh -t fcdflnx5.fnal.gov " cd /cdf/proj/302.higgs/WHAM/CatoTree
 alias spool     'ssh -t fcdflnx2.fnal.gov " cd /cdf/spool/benwu/; tcsh" '
 
 # SSH aliases for my account (for CMS)
-alias lpc        'ssh -X cmslpc-sl5.fnal.gov'
-alias lxplus     'ssh -X lxplus5.cern.ch'
+alias lpc        'ssh -X cmslpc-sl6.fnal.gov'
+alias lxplus     'ssh -X lxplus6.cern.ch'
 alias kodiak     'ssh -X kodiak.baylor.edu'
 alias vanderbilt 'ssh -X wuz4@vmplogin.accre.vanderbilt.edu'
 
