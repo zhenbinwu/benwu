@@ -379,10 +379,10 @@ endfun"}}}
 
 "This allows for change paste motion cp{motion}
 noremap <silent> cp :set opfunc=ChangePaste<CR>g@
-function! ChangePaste(type, ...)"{{{
+function! ChangePaste(type, ...) "{{{
   silent exe "normal! `[v`]\"_c"
   silent exe "normal! p"
-endfunction"}}}
+endfunction "}}}
 
 "Inserting word quickly in normal mode
 "Same keystroke as i<ESC>, but saving the movement to <ESC>
@@ -569,7 +569,7 @@ let g:SuperTabRetainCompletionDuration = 'completion'
 inoremap <expr> <C-f>  pumvisible()?"\<PageDown>\<C-N><C-P>":"\<C-f>"
 inoremap <expr> <C-b>  pumvisible()?"\<PageUp>\<C-N><C-P>":"\<C-b>"
 au CursorMovedI,InsertLeave * if pumvisible()==0| silent! pclose |endif
-set completeopt-=preview
+"set completeopt-=preview
 set include="#include \\(<boost\\)\\@!"
 
 """""""""""""""""""""""""""""""""
