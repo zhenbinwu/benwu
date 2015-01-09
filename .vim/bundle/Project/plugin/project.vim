@@ -15,7 +15,6 @@ let g:project_powerline=''
 
 function s:SetProj() "<<<
   let s:temppath = SearchFile(".vimproject")
-  let g:temp = s:temppath
 
   if s:temppath != ""
     if filereadable( fnamemodify(s:temppath, ':p:h') . "/.lvimrc")
@@ -23,7 +22,8 @@ function s:SetProj() "<<<
     endif
     return s:temppath
   else
-    return ".vimproject"
+    return ""
+    "return ".vimproject"
     "return "~/.vimprojects"
   endif
 endfunction ">>>
@@ -1310,7 +1310,7 @@ function! s:Project(filename) " <<<
         nmap     <buffer> <silent> <2-RightMouse> <space>
         nmap     <buffer> <silent> <3-RightMouse> <space>
         nmap     <buffer> <silent> <4-RightMouse> <space>
-        nnoremap <buffer> <silent> <space>  \|:silent exec 'vertical resize '.(match(g:proj_flags, '\Ct')!=-1 && winwidth('.') > g:proj_window_width?(g:proj_window_width):(winwidth('.') + g:proj_window_increment))<CR>
+        nnoremap <buffer> <silent> x  \|:silent exec 'vertical resize '.(match(g:proj_flags, '\Ct')!=-1 && winwidth('.') > g:proj_window_width?(g:proj_window_width):(winwidth('.') + g:proj_window_increment))<CR>
         nmap     <buffer> <silent> q  <ESC>:bwipeout<CR>
         nnoremap <buffer> <silent> gj   \|:silent call <SID>MoveUp()<CR>
         nnoremap <buffer> <silent> gk   \|:silent call <SID>MoveDown()<CR>
@@ -1452,7 +1452,5 @@ endfunction "}}}
 au BufNewFile .lvimrc  silent! call s:Editlvimrc()
 
 finish
-
-
 
 " vim600: set foldmethod=marker foldmarker=<<<,>>> foldlevel=1:
