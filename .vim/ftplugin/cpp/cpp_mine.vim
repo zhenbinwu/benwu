@@ -8,8 +8,9 @@ nnoremap <buffer> <silent> ]/  :call search('^.*//.*$', 'W')<CR>zvz.
 nnoremap <buffer> <silent> [/ 0:call search('^.*//.*$', 'bW')<CR>zvz.
 
 fun! Runexe() "{{{
-  if exists("g:cpp_run") && g:cpp_run != "" && executable("./".g:cpp_run)
-    exe "!./".g:cpp_run
+  "if exists("g:cpp_run") && g:cpp_run != "" && executable("./".g:cpp_run)
+  if exists("g:cpp_run") && g:cpp_run != "" 
+    exe "!".g:cpp_run
     return 
   endif
 

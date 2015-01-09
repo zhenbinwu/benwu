@@ -450,6 +450,9 @@ endif
 "                        Run command in another screen window                "
 "============================================================================"
 let g:ScreenRun_winu = '1'
+if exists("$WINDOW")
+  let g:ScreenRun_winu = eval($WINDOW+1)
+endif
 let g:ScreenRun_path = '.'
 let g:ScreenRun_comd = '\\!\\!'
 let g:ScreenRun_logp = '.'

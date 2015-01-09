@@ -34,7 +34,7 @@ $-------------------------------------------------------------------------
 #endif     // -----  not |CONDITION|  -----
 $-------------------------------------------------------------------------
 == preprocessor.ifndef-def-endif ==
-#ifndef  __|?BASENAME:L|_INC__
+#ifndef  __|?BASENAME:u|_INC__
 #define  __|BASENAME|_INC__
 <CURSOR><SPLIT>
 #endif   // ----- #ifndef __|BASENAME|_INC__  -----
