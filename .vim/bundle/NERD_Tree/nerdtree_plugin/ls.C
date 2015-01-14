@@ -1,0 +1,3 @@
+{
+  gDirectory->ls();
+}
