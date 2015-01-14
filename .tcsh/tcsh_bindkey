@@ -20,6 +20,21 @@
 
 switch ( $OSTYPE )
       case "linux*":         # Linux
+	# DELETE : delete word at cursor position.
+	bindkey    ^W  backward-delete-word
+    bindkey    ^G  forward-word
+	bindkey    ^K  backward-word
+	bindkey    ^^  change-case
+	bindkey    ^Xf expand-glob
+	bindkey    ^XF expand-glob
+	bindkey    ^X^f expand-glob
+	bindkey    ^X^F expand-glob
+	bindkey    ^Xv expand-variables
+	bindkey    ^XV expand-variables
+	bindkey    ^X^v expand-variables
+	bindkey    ^X^V expand-variables
+    
+
 	# INSERT : toggles overwrite or insert mode.
 	bindkey    ^[[2~  overwrite-mode 
 
@@ -77,22 +92,21 @@ switch ( $OSTYPE )
 
 	# F6 : check current word for spelling and make changes.
 	# same in both console and X modes
-	bindkey    ^[[17~  spell-word
+	bindkey    ^[[17~  which-command
 
 	# F7 : insert last item of previous command.
 	bindkey    ^[[18~  insert-last-word
 
 	# F8 : search in history backwards for line beginning as current.
-	bindkey   ^[[19~  history-search-backward
+	bindkey   ^[[19~  complete-word-fwd
 
 	# F9 : clear screen.
 	# You may be in the middle of a command when you use this.
 	# Does not affect what you are writing at the moment.
-	bindkey    ^[[20~  clear-screen
+	bindkey    ^[[20~  complete-word-back
 
-	# F10 : do an 'ls -l'.    (\16 is Ctrl-U on Linux(and Sun?))
-	# Does not work on some xterm* (gnome-terminal).
-	bindkey -s ^[[21~  "\16ls -l\n"
+	# F10 : clear screen.
+	bindkey -s ^[[21~ clear-screen
 
 	# F11 : display load average and current process status.
 	# Does not work on Linux. Perhaps bug in tcsh?
@@ -456,4 +470,4 @@ switch ( $OSTYPE )
 	breaksw;
 endsw
 
-
+vim:tw=78:ft=tcsh:
