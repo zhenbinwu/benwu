@@ -153,12 +153,22 @@ if (  $SHORT_HOST =~ TOSHIBA ) then
 endif
 
 
-if (  $SHORT_HOST =~ cmslpc* ) then 
+if (  $SHORT_HOST =~ cmslpc* ||  $SHORT_HOST =~ lpcdt* ) then 
 	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
     setenv VIM $HOME/BenSys/share/vim/vim74/
-    setenv PYTHONPATH $HOME/BenSys/python/
-	setenv CVSEIDTOR vim74
+    if ( ! ($?PYTHONPATH)) then 
+        setenv PYTHONPATH $HOME/BenSys/python/
+    else
+        setenv PYTHONPATH $HOME/BenSys/python/:$PYTHONPATH
+    endif
+    if (  `uname -r | cut -d '.' -f 4` =~ el6 ) then
+        setenv CVSEIDTOR vim74_SL6
+        setenv GIT_EDITOR vim74_SL6
+    else
+        setenv CVSEIDTOR vim74
+        setenv GIT_EDITOR vim74
+    endif
     alias vi  'source $HOME/.tcsh/vitex';
     alias cms 'source $HOME/.tcsh/cms'
 endif
@@ -175,7 +185,6 @@ if (  $SHORT_HOST =~ lxplus* ) then
     #alias vi  'source $HOME/.tcsh/vitex';
     alias cms 'source $HOME/.tcsh/cms'
 endif
-
 
 #============================================================================#
 #------------------------------   Vanderbilt   -----------------------------#
