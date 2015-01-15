@@ -61,6 +61,7 @@ alias lpc        'ssh -X cmslpc-sl6.fnal.gov'
 alias lxplus     'ssh -X lxplus6.cern.ch'
 alias kodiak     'ssh -X kodiak.baylor.edu'
 alias vanderbilt 'ssh -X wuz4@vmplogin.accre.vanderbilt.edu'
+alias tl         'ssh -X taylor-lpc.fnal.gov'
 
 # Command alias
 alias tb    'source $HOME/.tcsh/tb'

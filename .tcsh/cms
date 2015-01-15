@@ -4,10 +4,9 @@ if ( !($?VO_CMS_SW_DIR) &&  -e $HOME/setup.csh) then
   source $HOME/setup.csh
 endif
 
-
 cmsenv
 set cdpath=($CMSSW_BASE/src ~/)
-setenv LANG en_US.UTF8
+setenv LANG en_US.UTF-8
 set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"
 
 ## Don't create clang_complete in empty src 
