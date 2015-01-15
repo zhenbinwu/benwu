@@ -44,3 +44,5 @@ endif
 ## Setup command completion
 #complete gzcat	c/--/"(force help license quiet version)"/ \
   #c/-/"(f h L q V -)"/ n/*/f:*.{gz,Z,z,zip}/
+
+alias scramb 'scram build -j 8'
