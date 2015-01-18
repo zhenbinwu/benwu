@@ -70,9 +70,9 @@ bind x  eval split focus next
 bind  lockscreen
 
 # control + left; previous screen window
-bindkey ^[[1;5D prev
+bindkey ^[[1;5D focus left
 # control + right; next screen window
-bindkey ^[[1;5C next
+bindkey ^[[1;5C focus right
 # control + up; previous split screen
 bindkey ^[[1;5A focus up
 # control + down; next split screen
@@ -82,9 +82,10 @@ bindkey ^[[1;5B focus down
 # TERMINAL Display
 # ------------------------------------------------------------------------------
 backtick 0 0 0 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -f 2 -d. '
-backtick 3 90  90   $HOME/.screen/load
 backtick 1 300 300  $HOME/.screen/gcalendar
 backtick 2 300 300  $HOME/.screen/mail
+backtick 3 90  90   $HOME/.screen/load
+backtick 4 2 2   $HOME/.screen/host
 
 # turn sending of screen messages to hardstatus off
 hardstatus off
@@ -95,7 +96,8 @@ hardstatus string "%0`@%H : %t"
 
 ## Set the caption 
 caption always
-caption string '%{= kg}[ %{m}%0`%{g}@%H %3` %{g}]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
+caption string '%{= kg}[ %{m}%0`%{g}@%4` %3` %{g}]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
+#caption string '%{= kg}[ %{m}%0`%{g}@%H %3` %{g}]%2`[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{C} %m/%d %{W}%0c %1`%{g}]'
 
 # emulate .logout message
 pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."

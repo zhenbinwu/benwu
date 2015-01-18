@@ -62,14 +62,16 @@ alias lxplus     'ssh -X lxplus6.cern.ch'
 alias kodiak     'ssh -X kodiak.baylor.edu'
 alias vanderbilt 'ssh -X wuz4@vmplogin.accre.vanderbilt.edu'
 alias tl         'ssh -X taylor-lpc.fnal.gov'
+alias wisc       'ssh -X login.hep.wisc.edu'
 
 # Command alias
 alias tb    'source $HOME/.tcsh/tb'
 ########################## Setup Environment ###############################
+setenv PATH $HOME/BenSys/bin:${PATH};
 
 if (  $SHORT_HOST =~ nbay04 ) then 
     setenv PYTHONPATH /home/benwu/BenSys/lib/python2.6/site-packages/
-	setenv PATH /home/benwu/BenSys/bin:/usr/sbin:${PATH}
+	setenv PATH /usr/sbin:${PATH}
 	setenv CVSEIDTOR vim74
 	setenv GTK2_RC_FILES /etc/gtk-2.0/gtkrc
     #alias vi  '$CVSEIDTOR -X'
@@ -107,7 +109,6 @@ else if (  $SHORT_HOST =~ nbay0[1-5] ) then
 endif
 
 if (  $SHORT_HOST =~ ThinkPad ) then 
-	setenv PATH $HOME/BenSys/bin:${PATH};
     if ( ! ($?LD_LIBRARY_PATH)) then 
         setenv LD_LIBRARY_PATH $HOME/BenSys/lib/
 	endif
@@ -117,7 +118,6 @@ if (  $SHORT_HOST =~ ThinkPad ) then
 endif
 
 if (  $SHORT_HOST =~ hep0[1-4] ) then 
-	setenv PATH /home/benwu/BenSys/bin:${PATH};
     setenv PYTHONPATH /home/benwu/BenSys/lib/python/
     #if ( ! ($?LD_LIBRARY_PATH)) then 
         setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib/:/home/benwu/BenSys/boost/stage/lib/
@@ -130,7 +130,6 @@ if (  $SHORT_HOST =~ hep0[1-4] ) then
 endif
 
 if (  $SHORT_HOST =~ TOSHIBA ) then 
-	setenv PATH $HOME/BenSys/bin:${PATH};
     #if ( ! ($?LD_LIBRARY_PATH)) then 
         setenv LD_LIBRARY_PATH $HOME/BenSys/lib/:$HOME/BenSys/boost/stage/lib/
 	#endif
@@ -154,7 +153,6 @@ endif
 
 
 if (  $SHORT_HOST =~ cmslpc* ||  $SHORT_HOST =~ lpcdt* ) then 
-	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
     setenv VIM $HOME/BenSys/share/vim/vim74/
     if ( ! ($?PYTHONPATH)) then 
@@ -175,7 +173,6 @@ endif
 
 
 if (  $SHORT_HOST =~ lxplus* ) then 
-	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
     setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
     setenv PYTHONPATH $HOME/BenSys/python/
@@ -190,7 +187,6 @@ endif
 #------------------------------   Vanderbilt   -----------------------------#
 #============================================================================#
 if (  $SHORT_HOST =~ vmps* ) then 
-	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
     setenv VIM $HOME/BenSys/share/vim/vim74/
 	setenv CVSEIDTOR vim74
@@ -205,5 +201,5 @@ endif
 #--------------------------------   Aspire   --------------------------------#
 #============================================================================#
 if (  $SHORT_HOST =~ Aspire ) then 
-setenv PYTHONPATH /usr/share/python-support/root
+    setenv PYTHONPATH /usr/share/python-support/root
 endif
