@@ -22,6 +22,11 @@ switch ( $OSTYPE )
       case "linux*":         # Linux
 	# DELETE : delete word at cursor position.
 	bindkey    ^W  backward-delete-word
+	bindkey    ^L  insert-last-word
+    bindkey    ^O  copy-prev-word
+    bindkey    ^R  run-fg-editor
+    bindkey    ^_  normalize-command
+    bindkey      i-search-back
     bindkey    ^G  forward-word
 	bindkey    ^K  backward-word
 	bindkey    ^^  change-case
@@ -53,18 +58,6 @@ switch ( $OSTYPE )
 	# PAGE DOWN : search in history forwards for line beginning as current.
 	bindkey    ^[[6~   history-search-forward
 
-	# ESC-left-arrow : go to beginning of left word.        
-	# The second version is used to fix a strange bug where the binding
-	# stops working after some usage. Did not manage to recreate.
-	bindkey    ^[^[[D vi-word-back
-	bindkey	   OD vi-word-back
-
-	# ESC-right-arrow : go to beginning of right word.
-	# The second version is used to fix a strange bug where the binding
-	# stops working after some usage. Did not manage to recreate.
-	bindkey    ^[^[[C vi-word-fwd
-	bindkey	   OC vi-word-fwd
-
 	# F1 : help on command currently typed(if 'ls passwd', help on 'ls').
 	# first: while in console mode, second: while in X
 	bindkey    ^[[[A   run-help
@@ -80,15 +73,15 @@ switch ( $OSTYPE )
 	bindkey   ^[[[C   exchange-point-and-mark 
 	bindkey   OR    exchange-point-and-mark 
 
-	# F4 : --empty--
-	# first: while in console mode, second: while in X
-	bindkey   ^[[[D   undefined-key
-	bindkey   OS   undefined-key
+	## F4 : --empty--
+	## first: while in console mode, second: while in X
+	#bindkey   ^[[[D   undefined-key
+	#bindkey   OS   undefined-key
 
-	# F5 : check line for spelling and make changes.
-	# first: while in console mode, second: while in X
-	bindkey    ^[[[E   spell-line
-	bindkey    [15~   spell-line
+	## F5 : check line for spelling and make changes.
+	## first: while in console mode, second: while in X
+	#bindkey    ^[[[E   spell-line
+	#bindkey    [15~   spell-line
 
 	# F6 : check current word for spelling and make changes.
 	# same in both console and X modes
@@ -129,7 +122,8 @@ switch ( $OSTYPE )
 
 	# Thanks to Carlos Duarte <cgd@teleweb.pt>
 	# Eazy edit of path, type Ctrl-X p
-	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+	#bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+	bindkey -s '^Xp'        '. `echo $cdpath`^X*)^A^Dset cdpath = ( $PWD'
 
 	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
 	# default behaviour
@@ -137,6 +131,7 @@ switch ( $OSTYPE )
 	# Ctrl-X $   Expand variables. example: $TERM<^X$> with give  vt100
 	# default behaviour
    	breaksw;
+
       case "freebsd*":       # FreeBSD, by scott <stock@fishcracker.com>
       case "FreeBSD*":       # FreeBSD, by scott <stock@fishcracker.com>
 	# INSERT : toggles overwrite or insert mode.
@@ -460,7 +455,7 @@ switch ( $OSTYPE )
 
 	# Thanks to Carlos Duarte <cgd@teleweb.pt>
 	# Eazy edit of path, type Ctrl-X p
-	bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
+    bindkey -s '^Xp'        '. `echo $path`^X*)^A^Dset path = ( '
 
 	# Ctrl-X *   Expand glob. example: ls *<^X*>  will expand the line
 	# default behaviour
