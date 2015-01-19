@@ -26,7 +26,7 @@ switch ( $OSTYPE )
     bindkey    ^O  dabbrev-expand
     bindkey    ^R  run-fg-editor
     bindkey    ^_  normalize-command
-    bindkey      i-search-back
+    bindkey      expand-history
     bindkey    ^G  forward-word
 	bindkey    ^K  backward-word
 	bindkey    ^^  change-case
