@@ -23,7 +23,7 @@ switch ( $OSTYPE )
 	# DELETE : delete word at cursor position.
 	bindkey    ^W  backward-delete-word
 	bindkey    ^L  insert-last-word
-    bindkey    ^O  copy-prev-word
+    bindkey    ^O  dabbrev-expand
     bindkey    ^R  run-fg-editor
     bindkey    ^_  normalize-command
     bindkey      i-search-back
@@ -38,7 +38,17 @@ switch ( $OSTYPE )
 	bindkey    ^XV expand-variables
 	bindkey    ^X^v expand-variables
 	bindkey    ^X^V expand-variables
-    
+	bindkey    ^Xh expand-history
+	bindkey    ^XH expand-history
+	bindkey    ^X^h expand-history
+	bindkey    ^X^H expand-history
+	bindkey    ^Xl expand-line
+	bindkey    ^XL expand-line
+	bindkey    ^X^l expand-line
+	bindkey    ^X^L expand-line
+	bindkey    ^X^g list-glob
+	bindkey    ^X^G list-glob
+    bindkey    c copy-prev-word
 
 	# INSERT : toggles overwrite or insert mode.
 	bindkey    ^[[2~  overwrite-mode 
