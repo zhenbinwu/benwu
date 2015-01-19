@@ -125,14 +125,31 @@ endfunction
 function! asynccommand#done(temp_file_name, return_code)
     " Called on completion of the task
     let r = s:receivers[a:temp_file_name]
-    if type(r.dict) == type({})
-        let r.dict.return_code = a:return_code
-        call call(r.func, [a:temp_file_name], r.dict)
-    else
-        call call(r.func, [a:temp_file_name])
+    if exists('g:asyncmake_buffer')
+        let temp = bufnr('%')
+        let g:temp = 3
+        silent! execute ":buffer ".g:asyncmake_buffer
+        silent! execute ":setlocal modifiable"
+        silent! execute ":unlet g:asyncmake_buffer"
+        let g:temp = 4
+        silent! execute ":buffer ".temp
     endif
-    unlet s:receivers[a:temp_file_name]
-    delete a:temp_file_name
+
+    try
+        if type(r.dict) == type({})
+            let r.dict.return_code = a:return_code
+            call call(r.func, [a:temp_file_name], r.dict)
+        else
+            call call(r.func, [a:temp_file_name])
+        endif
+    catch /.*/
+    finally 
+        let g:temp = 2
+        unlet s:receivers[a:temp_file_name]
+        let g:temp = 1
+        let g:temp = 0
+        delete a:temp_file_name
+    endtry
 endfunction
 
 function! asynccommand#tab_restore(env)
@@ -170,6 +187,7 @@ function! asynccommand#tab_restore(env)
 endfunction
 
 function! asynccommand#powerline()
+    let g:receivers = s:receivers
     if len(s:receivers) == 0
         return ''
     else

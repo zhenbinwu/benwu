@@ -58,8 +58,8 @@ const std::string& `cursor^
 ..XPT
 
 XPT ft wrap " for (iterator = begin; !=;++)
-for(`type^::iterator `i^=`class^.begin();
-    `i^!=`class^.end(); `i^++)
+for(`type^::const_iterator `i^=`class^.begin();
+    `i^!=`class^.end(); ++`i^)
 {
     `cursor^
 }
@@ -87,13 +87,13 @@ BOOST_FOREACH(`content^, `sequence^)
 }
 
 XPT fa wrap " for (auto = begin; !=;++)
-for(auto `i^=`class^.begin(); `i^!=`class^.end(); `i^++)
+for(auto `i^=`class^.begin(); `i^!=`class^.end(); ++`i^)
 {
     `cursor^
 }
 
 XPT fs wrap " for (unsigned = 0; < size;++)
-for(unsigned int `i^=0; `i^ < `class^`opt^size(); `i^++)
+for(unsigned int `i^=0; `i^ < `class^`opt^size(); ++`i^)
 {
     `type^ `var^ = `class^`opt^at(`i^);
     `cursor^

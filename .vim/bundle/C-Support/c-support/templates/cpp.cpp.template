@@ -469,7 +469,7 @@ $
 dynamic_cast<<CURSOR>>(<-SPLIT->)<++>
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-definition  ==
-/**\class |?CLASSNAME|
+/**\class |?EDANALYZER|
 
  Description: <+one line class summary+>
 
@@ -477,8 +477,8 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
-#ifndef  __EDAnalyzer_|CLASSNAME:u|_INC__
-#define  __EDAnalyzer_|CLASSNAME:u|_INC__
+#ifndef  __EDAnalyzer_|EDANALYZER:u|_INC__
+#define  __EDAnalyzer_|EDANALYZER:u|_INC__
 
 // system include files
 #include <memory>
@@ -499,10 +499,10 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // class declaration
 //
 
-class |CLASSNAME| : public edm::EDAnalyzer {
+class |EDANALYZER| : public edm::EDAnalyzer {
    public:
-      explicit |CLASSNAME|(const edm::ParameterSet&);
-      ~|CLASSNAME|();
+      explicit |EDANALYZER|(const edm::ParameterSet&);
+      ~|EDANALYZER|();
 
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
@@ -529,8 +529,8 @@ class |CLASSNAME| : public edm::EDAnalyzer {
 //
 
 //define this as a plug-in
-DEFINE_FWK_MODULE(|CLASSNAME|);
-#endif   // ----- #ifndef __EDAnalyzer_|CLASSNAME:u|_INC__  -----
+DEFINE_FWK_MODULE(|EDANALYZER|);
+#endif   // ----- #ifndef __EDAnalyzer_|EDANALYZER:u|_INC__  -----
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDAnalyzer-inplementation  ==
@@ -539,13 +539,13 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // constructors and destructor
 //
-|?CLASSNAME|::|CLASSNAME|(const edm::ParameterSet& iConfig)
+|?EDANALYZER|::|EDANALYZER|(const edm::ParameterSet& iConfig)
 {
    //now do what ever initialization is needed
 
 }
 
-|CLASSNAME|::~|CLASSNAME|()
+|EDANALYZER|::~|EDANALYZER|()
 {
  
    // do anything here that needs to be done at desctruction time
@@ -560,7 +560,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // ------------ method called for each event  ------------
 void
-|CLASSNAME|::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
+|EDANALYZER|::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 
@@ -580,43 +580,43 @@ void
 
 // ------------ method called once each job just before starting event loop  ------------
 void 
-|CLASSNAME|::beginJob()
+|EDANALYZER|::beginJob()
 {
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
 void 
-|CLASSNAME|::endJob() 
+|EDANALYZER|::endJob() 
 {
 }
 
 // ------------ method called when starting to processes a run  ------------
 void 
-|CLASSNAME|::beginRun(edm::Run const&, edm::EventSetup const&)
+|EDANALYZER|::beginRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when ending the processing of a run  ------------
 void 
-|CLASSNAME|::endRun(edm::Run const&, edm::EventSetup const&)
+|EDANALYZER|::endRun(edm::Run const&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when starting to processes a luminosity block  ------------
 void 
-|CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+|EDANALYZER|::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when ending the processing of a luminosity block  ------------
 void 
-|CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+|EDANALYZER|::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
 {
 }
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+|EDANALYZER|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
 {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
@@ -626,7 +626,7 @@ void
 }
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDFilter-definition  ==
-/**\class |?CLASSNAME|
+/**\class |?EDFILTER|
 
  Description: <+one line class summary+>
 
@@ -634,8 +634,8 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
-#ifndef  __EDFilter_|CLASSNAME:u|_INC__
-#define  __EDFilter_|CLASSNAME:u|_INC__
+#ifndef  __EDFilter_|EDFILTER:u|_INC__
+#define  __EDFilter_|EDFILTER:u|_INC__
 
 // system include files
 #include <memory>
@@ -656,10 +656,10 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // class declaration
 //
 
-class |CLASSNAME| : public edm::EDFilter {
+class |EDFILTER| : public edm::EDFilter {
    public:
-      explicit |CLASSNAME|(const edm::ParameterSet&);
-      ~|CLASSNAME|();
+      explicit |EDFILTER|(const edm::ParameterSet&);
+      ~|EDFILTER|();
 
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
@@ -685,8 +685,8 @@ class |CLASSNAME| : public edm::EDFilter {
 //
 
 //define this as a plug-in
-DEFINE_FWK_MODULE(|CLASSNAME|);
-#endif   // ----- #ifndef __EDFilter_|CLASSNAME:u|_INC__  -----
+DEFINE_FWK_MODULE(|EDFILTER|);
+#endif   // ----- #ifndef __EDFilter_|EDFILTER:u|_INC__  -----
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDFilter-inplementation  ==
@@ -695,14 +695,14 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // constructors and destructor
 //
-|CLASSNAME|::|CLASSNAME|(const edm::ParameterSet& iConfig)
+|EDFILTER|::|EDFILTER|(const edm::ParameterSet& iConfig)
 {
    //now do what ever initialization is needed
 
 }
 
 
-|CLASSNAME|::~|CLASSNAME|()
+|EDFILTER|::~|EDFILTER|()
 {
  
    // do anything here that needs to be done at desctruction time
@@ -717,7 +717,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // ------------ method called on each new Event  ------------
 bool
-|CLASSNAME|::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
+|EDFILTER|::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 #ifdef THIS_IS_AN_EVENT_EXAMPLE
@@ -734,46 +734,46 @@ bool
 
 // ------------ method called once each job just before starting event loop  ------------
 void 
-|CLASSNAME|::beginJob()
+|EDFILTER|::beginJob()
 {
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
 void 
-|CLASSNAME|::endJob() {
+|EDFILTER|::endJob() {
 }
 
 // ------------ method called when starting to processes a run  ------------
 bool 
-|CLASSNAME|::beginRun(edm::Run&, edm::EventSetup const&)
+|EDFILTER|::beginRun(edm::Run&, edm::EventSetup const&)
 { 
   return true;
 }
 
 // ------------ method called when ending the processing of a run  ------------
 bool 
-|CLASSNAME|::endRun(edm::Run&, edm::EventSetup const&)
+|EDFILTER|::endRun(edm::Run&, edm::EventSetup const&)
 {
   return true;
 }
 
 // ------------ method called when starting to processes a luminosity block  ------------
 bool 
-|CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+|EDFILTER|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
 {
   return true;
 }
 
 // ------------ method called when ending the processing of a luminosity block  ------------
 bool 
-|CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+|EDFILTER|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
 {
   return true;
 }
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+|EDFILTER|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
 {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters
@@ -784,7 +784,7 @@ void
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDProducer-definition  ==
-/**\class |?CLASSNAME|
+/**\class |?EDPRODUCER|
 
  Description: <+one line class summary+>
 
@@ -792,8 +792,8 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
      <+Notes on implementation+>
 */
 
-#ifndef  __EDProducer_|CLASSNAME:u|_INC__
-#define  __EDProducer_|CLASSNAME:u|_INC__
+#ifndef  __EDProducer_|EDPRODUCER:u|_INC__
+#define  __EDProducer_|EDPRODUCER:u|_INC__
 
 // system include files
 #include <memory>
@@ -814,10 +814,10 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // class declaration
 //
 
-class |CLASSNAME| : public edm::EDProducer {
+class |EDPRODUCER| : public edm::EDProducer {
    public:
-      explicit |CLASSNAME|(const edm::ParameterSet&);
-      ~|CLASSNAME|();
+      explicit |EDPRODUCER|(const edm::ParameterSet&);
+      ~|EDPRODUCER|();
 
       static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
 
@@ -844,8 +844,8 @@ class |CLASSNAME| : public edm::EDProducer {
 //
 
 //define this as a plug-in
-DEFINE_FWK_MODULE(|CLASSNAME|);
-#endif   // ----- #ifndef __EDProducer_|CLASSNAME:u|_INC__  -----
+DEFINE_FWK_MODULE(|EDPRODUCER|);
+#endif   // ----- #ifndef __EDProducer_|EDPRODUCER:u|_INC__  -----
 
 $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 == cpp.EDProducer-inplementation  ==
@@ -854,7 +854,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //
 // constructors and destructor
 //
-|?CLASSNAME|::|CLASSNAME|(const edm::ParameterSet& iConfig)
+|?EDPRODUCER|::|EDPRODUCER|(const edm::ParameterSet& iConfig)
 {
    //register your products
 /* Examples
@@ -871,7 +871,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 }
 
 
-|CLASSNAME|::~|CLASSNAME|()
+|EDPRODUCER|::~|EDPRODUCER|()
 {
  
    // do anything here that needs to be done at desctruction time
@@ -886,7 +886,7 @@ $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // ------------ method called to produce the data  ------------
 void
-|CLASSNAME|::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
+|EDPRODUCER|::produce(edm::Event& iEvent, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 /* This is an event example
@@ -910,42 +910,42 @@ void
 
 // ------------ method called once each job just before starting event loop  ------------
 void 
-|CLASSNAME|::beginJob()
+|EDPRODUCER|::beginJob()
 {
 }
 
 // ------------ method called once each job just after ending the event loop  ------------
 void 
-|CLASSNAME|::endJob() {
+|EDPRODUCER|::endJob() {
 }
 
 // ------------ method called when starting to processes a run  ------------
 void 
-|CLASSNAME|::beginRun(edm::Run&, edm::EventSetup const&)
+|EDPRODUCER|::beginRun(edm::Run&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when ending the processing of a run  ------------
 void 
-|CLASSNAME|::endRun(edm::Run&, edm::EventSetup const&)
+|EDPRODUCER|::endRun(edm::Run&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when starting to processes a luminosity block  ------------
 void 
-|CLASSNAME|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+|EDPRODUCER|::beginLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
 {
 }
 
 // ------------ method called when ending the processing of a luminosity block  ------------
 void 
-|CLASSNAME|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
+|EDPRODUCER|::endLuminosityBlock(edm::LuminosityBlock&, edm::EventSetup const&)
 {
 }
 
 // ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
 void
-|CLASSNAME|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
+|EDPRODUCER|::fillDescriptions(edm::ConfigurationDescriptions& descriptions) 
 {
   //The following says we do not know what parameters are allowed so do no validation
   // Please change this to state exactly what you do use, even if it is no parameters

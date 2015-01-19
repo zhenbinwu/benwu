@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"a"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: Zhenbin Wu <benwu@fnal.gov>
 " 
 " Annoucement: In this vimrc, I got lots of ideas from different places. 
@@ -76,7 +76,7 @@
 "     > Repeat           ( V1.1        2013_05_24 )
 "     > Surrond          ( V2.0        2013_05_24 )
 "     > Tagbar           ( V2.5        2013_05_24 )
-"     > Fugitive         ( V1.2        2012_06_18 )
+"     > Fugitive         ( V2.1        2014_06_27 )
 "     > Gitv             ( V1.1        2012_07_14 )
 "     > TextObj          ( V0.3.12     2012_07_15 )
 "     > RelOps           ( V1.0        2012_09_13 )  " 
@@ -87,9 +87,9 @@
 "     > Project          ( V1.4.1      2012_12_22 )
 "     > AsyncCommand     ( V4.0        2012_12_27 )
 "     > R-plugin         ( V0.9.9.1    2013_01_29 )
-"     > PSeach           ( V0.3        2013_02_28 )
 "     > Startify         ( V1.3        2013_05_01 )
 "     > ClangComplete    ( V2.0        2013_05_24 )
+"     > Gist             ( V7.1        2014_09_22 )
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,7 +113,6 @@ endif
 if v:version < '703'
   call add(g:pathogen_disabled, 'Gundo')
 endif
-
 
 "" Limitation of Python
 if has('python')
@@ -380,10 +379,10 @@ endfun"}}}
 
 "This allows for change paste motion cp{motion}
 noremap <silent> cp :set opfunc=ChangePaste<CR>g@
-function! ChangePaste(type, ...)"{{{
+function! ChangePaste(type, ...) "{{{
   silent exe "normal! `[v`]\"_c"
   silent exe "normal! p"
-endfunction"}}}
+endfunction "}}}
 
 "Inserting word quickly in normal mode
 "Same keystroke as i<ESC>, but saving the movement to <ESC>
@@ -570,7 +569,7 @@ let g:SuperTabRetainCompletionDuration = 'completion'
 inoremap <expr> <C-f>  pumvisible()?"\<PageDown>\<C-N><C-P>":"\<C-f>"
 inoremap <expr> <C-b>  pumvisible()?"\<PageUp>\<C-N><C-P>":"\<C-b>"
 au CursorMovedI,InsertLeave * if pumvisible()==0| silent! pclose |endif
-set completeopt-=preview
+"set completeopt-=preview
 set include="#include \\(<boost\\)\\@!"
 
 """""""""""""""""""""""""""""""""
@@ -600,7 +599,7 @@ nmap <silent> <Leader>cah <Plug>CalendarH
 """"""""""""""""""""""""""""""""""""""""
 " WinManager Setting
 """"""""""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout = 'TagList,NERDTree|BufExplorer'
+let g:winManagerWindowLayout = 'NERDTree,TagList|BufExplorer'
 let g:winManagerWidth        = 30
 let g:persistentBehaviour    = 0
 let g:defaultExplorer        = 0
@@ -755,11 +754,12 @@ set grepprg=/bin/grep\ -nH\ $*
 """"""""""""""""""""""""""""""""""""""""""
 " Fuzzyfinder  
 """"""""""""""""""""""""""""""""""""""""""
-let g:fuf_modesDisable = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
-let g:fuf_mrufile_maxItem = 400
-let g:fuf_mrucmd_maxItem  = 400
-let g:fuf_previewHeight   = 10
-let g:fuf_mrufile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/media\/)'
+let g:fuf_modesDisable        = [ 'coveragefile', 'quickfix', 'line', 'help', 'givenfile', 'givendir', 'givencmd', 'callbackfile', 'callbackitem']
+let g:fuf_mrufile_switchOrder = 20
+let g:fuf_mrufile_maxItem     = 100
+let g:fuf_mrucmd_maxItem      = 100
+let g:fuf_previewHeight       = 10
+let g:fuf_mrufile_exclude     = '\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|^(\/\/|\\\\|\/media\/)'
 nnoremap <silent> gnb :FufBuffer<CR>
 nnoremap <silent> gnf :FufFile<CR>
 nnoremap <silent> gnd :FufDir<CR>
@@ -872,7 +872,7 @@ endfunction "}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DirDiff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:DirDiffExcludes   = "CVS,objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,.*.swp, *~"
+let g:DirDiffExcludes   = "CVS,objects,*.root,*Backup*,*.log,*.eps,*.gif,*.class,*.o,*.so,*.d,*.exe,*.pyc,.*.swp, *~"
 let g:DirDiffIgnore     = "Id:,Revision:,Date:"
 let g:DirDiffWindowSize = 14
 
@@ -1092,7 +1092,7 @@ let g:proj_cdfile = "GNUmakefile, makefile, Makefile"
 " => AsyncCommand
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if( match(hostname(), 'nbay') >=0 )
-  let g:asynccommand_prg = 'vim73'
+  let g:asynccommand_prg = 'vim74'
 endif
 let g:cscope_database = "cscope.out"
 
@@ -1103,12 +1103,6 @@ let g:vimrplugin_screenplugin = 0
 let vimrplugin_objbr_w        = 30
 let vimrplugin_vimpager       = "horizontal"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => PSearch
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:pse_max_height = 8
-let g:pse_prompt='☻  '
- 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Startify
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1126,18 +1120,27 @@ let g:clang_complete_copen       = 1
 let g:clang_complete_auto        = 0
 let g:clang_trailing_placeholder = 1
 if( match(hostname(), 'nbay04') >=0 )
-  let g:clang_library_path="/home/benwu/BenSys/lib/"
+  let g:clang_library_path     = "/data/nbay04/a/benwu/BenSys/lib/"
 endif
+if( match(hostname(), 'Aspire') >=0 )
+  let g:clang_library_path="/usr/lib/llvm-3.4/lib"
+endif
+
 " conceal in insert (i), normal (n) and visual (v) modes
 set concealcursor=inv
 " hide concealed text completely unless replacement character is defined
 set conceallevel=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Python-Mode
+" => Python-Mode and Jedi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map keys for autocompletion
-let g:pymode_rope = 0
+let g:pymode_rope                   = 0
+let g:pymode_lint_write             = 0
+let g:pymode_breakpoint_key         = '<leader>tb'
+let g:jedi#rename_command           = '<leader>tr'
+let g:jedi#usages_command           = '<leader>tu'
+let g:jedi#goto_assignments_command = '<leader>ta'
+let g:jedi#goto_definitions_command = '<leader>td'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => DoxygenToolkit
@@ -1145,3 +1148,12 @@ let g:pymode_rope = 0
 au Syntax {cpp,c,idl} runtime syntax/doxygen.vim
 let g:DoxygenToolkit_commentType   = "C++"
 let g:DoxygenToolkit_briefTag_post = "<++>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gist
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gist_detect_filetype = 1
+let g:gist_show_privates   = 1
+let g:gist_post_private    = 1
+" Only :w! updates a gist.
+let g:gist_update_on_write = 2

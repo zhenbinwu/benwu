@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# File        : host
+# Author      : Ben Wu
+# Contact     : benwu@fnal.gov
+# Date        : 2015 Jan 18
+#
+# Description :
+
+import commands
+import os
+capout=commands.getoutput('xset q | grep Caps')
+cap = capout.split()[3]
+host=os.environ.get('SHORT_HOST')
+if cap == 'on':
+    print "\005{= kR}%s\005{-}" % host
+else:
+    print host
+
+
+
+
+
+

@@ -1,3 +1,4 @@
+finish
 fun! AutoMake() "{{{
 
   if g:AutoMake == "compile init"
