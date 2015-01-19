@@ -10,11 +10,12 @@
 
 import commands
 import os
-cap=commands.getoutput('xset q | grep LED')[65]
+capout=commands.getoutput('xset q | grep Caps')
+cap = capout.split()[3]
 host=os.environ.get('SHORT_HOST')
-if cap == '0':
+if cap == 'off':
     print host
-if cap == '1':
+if cap == 'on':
     print "\005{= kR}%s\005{-}" % host
 
 
