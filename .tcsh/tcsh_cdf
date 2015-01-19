@@ -163,7 +163,7 @@ if (  $SHORT_HOST =~ cmslpc* ) then
 endif
 
 
-if (  $SHORT_HOST =~ lxplus* ) then 
+if (  $SHORT_HOST =~ lxplus4* ) then 
 	setenv PATH $HOME/BenSys/bin:${PATH};
     setenv LANG en_US.UTF-8
     setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
@@ -175,6 +175,17 @@ if (  $SHORT_HOST =~ lxplus* ) then
     alias cms 'source $HOME/.tcsh/cms'
 endif
 
+if (  $SHORT_HOST =~ lxplus0* ) then 
+	setenv PATH $HOME/BenSys/bin:${PATH};
+    setenv LANG en_US.UTF-8
+    setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
+    setenv PYTHONPATH $HOME/BenSys/python/
+	setenv CVSEIDTOR vim74
+    alias vi  '$CVSEIDTOR -X'
+    stty erase 
+    #alias vi  'source $HOME/.tcsh/vitex';
+    alias cms 'source $HOME/.tcsh/cms'
+endif
 
 #============================================================================#
 #------------------------------   Vanderbilt   -----------------------------#
