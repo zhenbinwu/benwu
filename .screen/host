@@ -13,11 +13,10 @@ import os
 capout=commands.getoutput('xset q | grep Caps')
 cap = capout.split()[3]
 host=os.environ.get('SHORT_HOST')
-if cap == 'off':
-    print host
 if cap == 'on':
     print "\005{= kR}%s\005{-}" % host
-
+else:
+    print host
 
 
 
