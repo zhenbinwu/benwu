@@ -14,7 +14,7 @@
 #  Aliases for exploring the directory
 alias ls 	'ls --color=auto'
 alias la 	'ls --color=auto -a'
-alias ll 	'ls --color=auto -hl'
+alias ll 	'ls --color=auto -hltr'
 alias du 	'du -h --max-depth=1'
 alias sls   "screen -ls | grep --color -E '^|Attached|'"
 

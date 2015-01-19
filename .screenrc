@@ -70,9 +70,11 @@ bind x  eval split focus next
 bind  lockscreen
 
 # control + left; previous screen window
-bindkey ^[[1;5D focus left
+#bindkey ^[[1;5D focus left
+bindkey ^[[1;5D prev
 # control + right; next screen window
-bindkey ^[[1;5C focus right
+#bindkey ^[[1;5C focus right
+bindkey ^[[1;5C next
 # control + up; previous split screen
 bindkey ^[[1;5A focus up
 # control + down; next split screen
@@ -81,11 +83,11 @@ bindkey ^[[1;5B focus down
 # ------------------------------------------------------------------------------
 # TERMINAL Display
 # ------------------------------------------------------------------------------
-backtick 0 0 0 sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -f 2 -d. '
-backtick 1 300 300  $HOME/.screen/gcalendar
-backtick 2 300 300  $HOME/.screen/mail
-backtick 3 90  90   $HOME/.screen/load
-backtick 4 2 2   $HOME/.screen/host
+backtick 0 0   0   sh -c 'screen -ls | grep --color=no -o "$PPID[^[:space:]]*" | cut -f 2 -d. '
+backtick 1 300 300 $HOME/.screen/gcalendar
+backtick 2 300 300 $HOME/.screen/mail
+backtick 3 90  90  $HOME/.screen/load
+backtick 4 2   2   $HOME/.screen/host
 
 # turn sending of screen messages to hardstatus off
 hardstatus off
