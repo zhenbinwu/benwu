@@ -12,7 +12,15 @@ fun! SetMakeprg() "{{{
   "execute "set makeprg=scram\\ build\\ -j\\ 8\\ CXX='~/.vim/bundle/ClangComplete/bin/cc_args.py\\\\\\ ".tempcxx."'"
   let b:tempdir = getcwd()
   Glcd
-  execute "set makeprg=scram\\ build\\ -j\\ 8"
+  """ Set nice value and get the number of cores with nproc
+  let nicecmd = ""
+  if match("bash", expand("$SHELL")) != -1
+    let nicecmd = "nice\\ -n\\ 19\\ "
+  else
+    let nicecmd = "nice\\ +19\\ "
+  endif
+  let ncores = system("nproc")
+  execute "set makeprg=" . nicecmd . "scram\\ build\\ -j\\ " . ncores
   lcd b:tempdir
   let g:UpdateMake = 1
 endfunction "}}}
