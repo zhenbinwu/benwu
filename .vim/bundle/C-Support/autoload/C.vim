@@ -4134,5 +4134,9 @@ fun! C#CMSSWInclude() "{{{
   if !exists("$CMSSW_BASE")
     return ""
   endif
-  return expand("%:p:h")
+  let cbase = expand("$CMSSW_BASE") . '/src/'
+  let temp = substitute(expand("%:p:h"), cbase , '', 'g')
+  let temp =  substitute(temp, '/src' , '/interface/', 'g')
+  let temp =  substitute(temp, '/plugins' , '/interface/', 'g')
+  return "#include  \"" . temp 
 endfunction "}}}
