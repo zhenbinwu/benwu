@@ -4,10 +4,14 @@ if ( !($?VO_CMS_SW_DIR) &&  -e $HOME/setup.csh) then
   source $HOME/setup.csh
 endif
 
+if ( -d /cvmfs/cms.cern.ch/cmssw.git.daily) then
+  setenv CMSSW_GIT_REFERENCE /cvmfs/cms.cern.ch/cmssw.git.daily
+endif
+
 cmsenv
 set cdpath=($CMSSW_BASE/src ~/)
 setenv LANG en_US.UTF-8
-set __git_cmd_names="cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"
+set __git_cmd_names="cms-init cms-addpkg cms-merge-topic cms-checkdeps $__git_cmd_names"
 
 ## Don't create clang_complete in empty src 
 ## This is for the git

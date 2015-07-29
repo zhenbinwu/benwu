@@ -160,13 +160,8 @@ if (  $SHORT_HOST =~ cmslpc* ||  $SHORT_HOST =~ lpcdt* ) then
     else
         setenv PYTHONPATH $HOME/BenSys/python/:$PYTHONPATH
     endif
-    if (  `uname -r | cut -d '.' -f 4` =~ el6 ) then
-        setenv CVSEIDTOR vim74_SL6
-        setenv GIT_EDITOR vim74_SL6
-    else
-        setenv CVSEIDTOR vim74
-        setenv GIT_EDITOR vim74
-    endif
+    setenv CVSEIDTOR vim74_SL6
+    setenv GIT_EDITOR vim74_SL6
     alias vi  'source $HOME/.tcsh/vitex';
     alias cms 'source $HOME/.tcsh/cms'
 endif
