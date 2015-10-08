@@ -58,21 +58,24 @@ alias spool     'ssh -t fcdflnx2.fnal.gov " cd /cdf/spool/benwu/; tcsh" '
 
 # SSH aliases for my account (for CMS)
 alias lpc        'ssh -X cmslpc-sl6.fnal.gov'
+alias l41        'ssh -X cmslpc41.fnal.gov'
 alias lxplus     'ssh -X lxplus6.cern.ch'
 alias kodiak     'ssh -X kodiak.baylor.edu'
 alias vanderbilt 'ssh -X wuz4@vmplogin.accre.vanderbilt.edu'
 alias tl         'ssh -X taylor-lpc.fnal.gov'
 alias wisc       'ssh -X login.hep.wisc.edu'
+alias p5tunnel   'ssh -t -L 9999:localhost:11010 lxplus.cern.ch ssh -ND 11010 cmsusr' 
 
 # Command alias
 alias tb    'source $HOME/.tcsh/tb'
 ########################## Setup Environment ###############################
-setenv PATH $HOME/BenSys/bin:${PATH};
+#setenv PATH $HOME/BenSys/bin:${PATH};
 
 if (  $SHORT_HOST =~ nbay04 ) then 
     setenv PYTHONPATH /home/benwu/BenSys/lib/python2.6/site-packages/
 	setenv PATH /usr/sbin:${PATH}
 	setenv CVSEIDTOR vim74
+    setenv GIT_EDITOR vim74
 	setenv GTK2_RC_FILES /etc/gtk-2.0/gtkrc
     #alias vi  '$CVSEIDTOR -X'
     alias vi  'source $HOME/.tcsh/vitex';
@@ -98,6 +101,7 @@ else if (  $SHORT_HOST =~ nbay0[1-5] ) then
         setenv LD_LIBRARY_PATH /mnt/autofs/misc/nbay05.a/benwu/BenSys/lib/
 	endif
 	setenv CVSEIDTOR vim73
+    setenv GIT_EDITOR vim73
     alias vi  'source $HOME/.tcsh/vitex';
     # Setup Root 5.26 from Sam
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
@@ -113,6 +117,7 @@ if (  $SHORT_HOST =~ ThinkPad ) then
         setenv LD_LIBRARY_PATH $HOME/BenSys/lib/
 	endif
 	setenv CVSEIDTOR vim
+    setenv GIT_EDITOR vim
     alias vi  '$CVSEIDTOR --servername $USER';
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
 endif
@@ -123,6 +128,7 @@ if (  $SHORT_HOST =~ hep0[1-4] ) then
         setenv LD_LIBRARY_PATH /home/benwu/BenSys/lib/:/home/benwu/BenSys/boost/stage/lib/
     #endif
 	setenv CVSEIDTOR vim73
+    setenv GIT_EDITOR vim73
     alias vi  'source $HOME/.tcsh/vitex';
     alias gdb 'gdb74';
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
@@ -178,6 +184,7 @@ if (  $SHORT_HOST =~ lxplus4* ) then
     setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
     setenv PYTHONPATH $HOME/BenSys/python/
 	setenv CVSEIDTOR vim73
+    setenv GIT_EDITOR vim73
     alias vi  '$CVSEIDTOR -X'
     stty erase 
     #alias vi  'source $HOME/.tcsh/vitex';
@@ -190,6 +197,7 @@ if (  $SHORT_HOST =~ lxplus0* ) then
     setenv VIM /afs/cern.ch/user/b/benwu/BenSys/share/vim/vim73/
     setenv PYTHONPATH $HOME/BenSys/python/
 	setenv CVSEIDTOR vim74
+    setenv GIT_EDITOR vim74
     alias vi  '$CVSEIDTOR -X'
     stty erase 
     #alias vi  'source $HOME/.tcsh/vitex';
@@ -203,6 +211,7 @@ if (  $SHORT_HOST =~ vmps* ) then
     setenv LANG en_US.UTF-8
     setenv VIM $HOME/BenSys/share/vim/vim74/
 	setenv CVSEIDTOR vim74
+    setenv GIT_EDITOR vim74
     alias vi  '$CVSEIDTOR -X'
     stty erase 
     source /cvmfs/cms.cern.ch/cmsset_default.csh
@@ -215,4 +224,16 @@ endif
 #============================================================================#
 if (  $SHORT_HOST =~ Aspire ) then 
     setenv PYTHONPATH /usr/share/python-support/root
+endif
+
+
+#============================================================================#
+#--------------------------------   Macbook   -------------------------------#
+#============================================================================#
+if (  $SHORT_HOST =~ macbook ) then 
+    alias cms 'source $HOME/.tcsh/cms'
+    alias base 'setenv CMSSW_BASE  /Users/benwu/Work/CMSSW_7_3_0/'
+    alias rr  'source $HOME/.tcsh/mythisroot.csh'
+    setenv GIT_EDITOR vim
+    alias vi  'source $HOME/.tcsh/vitex';
 endif

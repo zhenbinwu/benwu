@@ -30,9 +30,8 @@ foreach arg ($*)
 end
 
 
-${CVSEIDTOR} --servername $USER $targs
-#if ($texfile == 1) then
-  #${CVSEIDTOR} --servername $USER $targs
-#else
-  #${CVSEIDTOR} -X $targs
-#endif
+if ($texfile == 1) then
+  ${GIT_EDITOR} --servername $USER $targs
+else
+  ${GIT_EDITOR} -X $targs
+endif
