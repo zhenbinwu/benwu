@@ -90,10 +90,8 @@ fun! MapMake(output, asyn) "{{{
     endif
   endif
 
-  if !exists("g:UpdateMake")
-    if exists("*SetMakeprg")
-      call SetMakeprg()
-    endif
+  if exists("*SetMakeprg")
+    call SetMakeprg()
   endif
 
   update
@@ -636,3 +634,4 @@ endfunction "}}}
 if match($TERM, "screen") != -1
   nmap <silent> <leader>sr :call ScreenRunFunc()<CR>:redraw!<CR>
 endif
+

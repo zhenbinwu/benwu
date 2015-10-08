@@ -6,23 +6,51 @@ if match(expand("%:p:h"), expand("$CMSSW_BASE")) == -1
   finish
 endif
 
+""" Set nice value and get the number of cores with nproc
+let s:nicecmd = ''
+let s:nuse = 0
+
 "" Set the makeprg for the scram
 fun! SetMakeprg() "{{{
-  "" Setup for CMSSW
-  "execute "set makeprg=scram\\ build\\ -j\\ 8\\ CXX='~/.vim/bundle/ClangComplete/bin/cc_args.py\\\\\\ ".tempcxx."'"
   let b:tempdir = getcwd()
-  Glcd
-  """ Set nice value and get the number of cores with nproc
-  let nicecmd = ""
-  if match("bash", expand("$SHELL")) != -1
-    let nicecmd = "nice\\ -n\\ 19\\ "
-  else
-    let nicecmd = "nice\\ +19\\ "
+
+  execute "lcd " . expand("%:p:h")
+  "" Check local Makefile
+  let mkfile	= SearchFile("Makefile")  " try to find a Makefile
+  if mkfile == ''
+    let mkfile  = SearchFile("makefile") " try to find a makefile
   endif
-  let ncores = system("nproc")
-  execute "set makeprg=" . nicecmd . "scram\\ build\\ -j\\ " . ncores
+  
+  if s:nicecmd == ''
+    if match("bash", expand("$SHELL")) != -1
+      let s:nicecmd = "nice\\ -n\\ 19\\ "
+    else
+      let s:nicecmd = "nice\\ +19\\ "
+    endif
+  endif
+
+  if s:nuse == 0
+    let s:uname = system("uname")[:-2]
+    let s:ncores = 0
+    if !v:shell_error && s:uname == "Linux"
+      let s:ncores = system("nproc")[:-2]
+    elseif !v:shell_error && s:uname == "Darwin"
+      let s:ncores = system("sysctl -n hw.ncpu")[:-2]
+    endif
+    let s:nuse = eval(s:ncores."/2")
+  endif
+
+  if mkfile != ''
+    execute "lcd " . fnamemodify(mkfile, ":p:h")
+    "execute "set makeprg=make"
+    execute "set makeprg=". s:nicecmd . "make\\ -j\\ ". s:nuse
+  else
+    Glcd
+    "execute "set makeprg=scram\\ build\\ -j\\ 4"
+    execute "set makeprg=". s:nicecmd. "scram\\ build\\ -j\\ ".s:nuse
+  endif
+
   lcd b:tempdir
-  let g:UpdateMake = 1
 endfunction "}}}
 
 "" Preview syntax for Clang
