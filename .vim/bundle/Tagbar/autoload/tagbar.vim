@@ -175,6 +175,7 @@ function! s:InitTypes() abort
         \ {'short' : 'd', 'long' : 'macros',      'fold' : 1, 'stl' : 0},
         \ {'short' : 'p', 'long' : 'prototypes',  'fold' : 1, 'stl' : 0},
         \ {'short' : 'g', 'long' : 'enums',       'fold' : 0, 'stl' : 1},
+        \ {'short' : 'c', 'long' : 'classes',     'fold' : 0, 'stl' : 1},
         \ {'short' : 'e', 'long' : 'enumerators', 'fold' : 0, 'stl' : 0},
         \ {'short' : 't', 'long' : 'typedefs',    'fold' : 0, 'stl' : 0},
         \ {'short' : 's', 'long' : 'structs',     'fold' : 0, 'stl' : 1},

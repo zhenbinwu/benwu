@@ -10,8 +10,8 @@ let s:f = g:XPTfuncs()
 XPTvar $PYTHON_EXC    /usr/bin/env python
 
 " 3 single quotes quoted by single quote
-XPTvar $PYTHON_DOC_MARK '''''
-" XPTvar $PYTHON_DOC_MARK '"""'
+"XPTvar $PYTHON_DOC_MARK '''''
+ XPTvar $PYTHON_DOC_MARK '"""'
 
 " for python 2.5 and older
 XPTvar $PYTHON_EXP_SYM ', '
@@ -56,9 +56,9 @@ XPTinclude
 
 
 XPTvar $CS    #
-XPTvar $CL    '''''
+XPTvar $CL    '"""'
 XPTvar $CM    ''
-XPTvar $CR    '''''
+XPTvar $CR    '"""'
 
 XPTinclude
     \ _comment/singleDouble
