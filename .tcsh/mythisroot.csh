@@ -11,6 +11,10 @@
 #set ARGS=($_)
 #set THIS="`dirname ${ARGS[2]}`"
 #setenv ROOTSYS "`(cd ${THIS}/..;pwd)`"
+if (`where root` != "") then
+  exit 1
+endif
+
 setenv ROOTSYS "${HOME}/BenSys/root/"
 
 set path = ($ROOTSYS/bin $path)
