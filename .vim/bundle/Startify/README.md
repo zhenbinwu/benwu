@@ -1,83 +1,52 @@
-vim-startify
-------------
+[![Build Status](https://travis-ci.org/mhinz/vim-startify.svg?branch=master)](https://travis-ci.org/mhinz/vim-startify)
 
-Startify basically provides two things:
+![vim-startify](https://raw.githubusercontent.com/mhinz/vim-startify/master/pictures/startify-logo.png)
 
-_1)_ If you start Vim without giving any filenames to it (or pipe stuff to it so
-   it reads from STDIN), startify will show a small but pretty start screen
-   which shows recently used files (using viminfo) and sessions by default.
+---
 
-   Additionally, you can define bookmarks, thus entries for files that always
-   should be available in the start screen.
+This plugin provides a start screen for Vim and Neovim.
 
-   You can either navigate to a certain menu entry or you just key in whatever
-   is written between the square brackets on that line. You can even
-   double-click anywhere on the line now.
+It provides **dynamically created headers or footers** and uses configurable
+lists to show **recently used or bookmarked files** and **persistent sessions**.
+All of this can be accessed in a **simple to use menu** that even allows to
+**open multiple entries** at once.
 
-   Per default the startify buffer gets closed automatically, if an entry was
-   selected.
+Startify doesn't get in your way and works out-of-the-box, but provides many
+options for fine-grained customization.
 
-   You can reopen the screen via :Startify.
+---
 
-   Moreover, 'e' creates an empty buffer, 'i' creates an empty buffers and
-   jumps into insert mode, 'q' quits.
+- [Installation & Documentation](#installation-and-documentation)
+- [Plugin features in detail](https://github.com/mhinz/vim-startify/wiki/Plugin-features-in-detail)
+- [Screenshot](#screenshot)
+- [Author & Feedback](#author-and-feedback)
 
-_2)_ It eases handling of loading and saving sessions by only working with a
-   certain directory. These commands are used for convenience:
+---
 
-      :SLoad    load a session
-      :SSave    save a session
-      :SDelete  delete a session
+## Installation and Documentation
 
-_NOTE_: These commands can also take session names directly as an argument. You can
-also make use of completion via `<c-d>` and `<tab>`.
+Use your favorite plugin manager.
 
-The default settings are pretty sane, so it should work without any
-configuration.
+Using [vim-plug](https://github.com/junegunn/vim-plug):
 
-![Example:startify in action](https://github.com/mhinz/vim-startify/raw/master/startify.png)
+    Plug 'mhinz/vim-startify'
 
-_NOTE_: The colors shown in the screenshot are not the default. If you want to
-tune the default colors, you can overwrite the highlight groups used by startify
-in your vimrc. Have a look at `:h startify-colors`, after installing the plugin.
-Moreover, g:startify_enable_special is set to 0.
+It works without any configuration, but you might want to look into the
+documentation for further customization:
 
-Feedback, please!
------------------
+    :h startify
+    :h startify-faq
 
-If you like any of my plugins, star it on github. This is a great way of getting
-feedback! Same for issues or feature requests.
+## Screenshot
 
-Thank you for flying mhi airlines. Get the Vim on!
+![Startify in action!](https://github.com/mhinz/vim-startify/blob/master/pictures/startify-menu.png)
+That's it. A fancy start screen for Vim.  _(almost all visible features enabled - freely customizable)_
 
-Installation
-------------
+## Author and Feedback
 
-If you have no preferred installation method, I suggest using tpope's pathogen:
+If you like my plugins, please star them on Github. It's a great way of getting
+feedback. Same goes for issues reports or feature requests.
 
-1. git clone https://github.com/tpope/vim-pathogen ~/.vim/bundle/vim-pathogen
-1. mkdir -p ~/.vim/autoload && cd ~/.vim/autoload
-1. ln -s ../bundle/vim-pathogen/autoload/pathogen.vim
+Contact: [Twitter](https://twitter.com/_mhinz_)
 
-Afterwards installing vim-startify is as easy as pie:
-
-2. git clone https://github.com/mhinz/vim-startify ~/.vim/bundle/vim-startify
-2. start Vim
-2. :Helptags
-2. :h startify
-
-Documentation
--------------
-
-`:h startify`
-
-Author
-------
-
-Marco Hinz `<mh.codebro@gmail.com>`
-
-License
--------
-
-Copyright © Marco Hinz. Distributed under the same terms as Vim itself. See
-`:help license`.
+_Get your Vim on!_
