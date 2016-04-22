@@ -77,4 +77,7 @@ map <F4> <Esc>:call MapMake(0, 1)<CR>
 if( match(hostname(), 'cmslpc') >=0 )
   let s:clang=substitute(split(system("scram tool info llvm-ccompiler"))[-2], "CC=", "","")
   let g:clang_library_path=substitute(s:clang, "bin/clang", "lib","")
+  if !isdirectory(g:clang_library_path)
+    let g:clang_library_path=substitute(s:clang, "bin/clang", "lib64","")
+  endif
 endif
