@@ -69,4 +69,4 @@ alias ctags 'ctags --extra=+q *'
 ## Make colorful grep output
 setenv GREP_COLORS 'fn=1;32'
 alias grep 	'grep --color=auto'
-alias giff "cd  `git rev-parse --show-toplevel` ; vi  -p  `git status --porcelain | sed -ne 's/^ M //p'` ; cd -"
+alias gdiff 'source $HOME/.tcsh/gdiff'

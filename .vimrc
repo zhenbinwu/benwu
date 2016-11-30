@@ -137,6 +137,7 @@ if sys.version_info[:2] < (2, 5):
 if sys.version_info[:2] < (2, 3):
     ToDis.append('Pydiction')
 
+ToDis.append('VimIM')
 ## Limitation of Clang
 if vim.eval("executable('clang')") == '1':
     ToDis.append('OmniCppComplete')
@@ -879,7 +880,7 @@ let g:DirDiffWindowSize = 14
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pythoncomplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd filetype python set omnifunc=pythoncomplete#Complete
+"autocmd filetype python set omnifunc=pythoncomplete#Complete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Inccomplete
