@@ -6,6 +6,7 @@
 
 !.tcshrc
 !.tcsh/*
+!.tcsh/bin/*
 
 !.screenrc
 !.screen/*

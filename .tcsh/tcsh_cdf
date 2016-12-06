@@ -66,10 +66,7 @@ alias tl         'ssh -X taylor-lpc.fnal.gov'
 alias wisc       'ssh -X login.hep.wisc.edu'
 alias p5tunnel   'ssh -t -L 9999:localhost:11010 lxplus.cern.ch ssh -ND 11010 cmsusr' 
 
-# Command alias
-alias tb    'source $HOME/.tcsh/tb'
 ########################## Setup Environment ###############################
-#setenv PATH $HOME/BenSys/bin:${PATH};
 
 if (  $SHORT_HOST =~ nbay04 ) then 
     setenv PYTHONPATH /home/benwu/BenSys/lib/python2.6/site-packages/
