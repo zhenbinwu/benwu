@@ -28,6 +28,7 @@ source $HOME/.tcsh/tcsh_cdf
 #        special   for root
 source $HOME/.tcsh/mythisroot.csh
 
+setenv PATH $HOME/.tcsh/bin:${PATH}
 
 if (-f ~/.tcsh/tcsh_color) then
    set color

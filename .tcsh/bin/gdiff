@@ -1,1 +1,1 @@
-cd  `git rev-parse --show-toplevel` ; vi  -p  `git status --porcelain | sed -ne 's/^ M //p'` ; cd -
+cd  `git rev-parse --show-toplevel` ; vim  -p  `git status --porcelain | sed -ne 's/^ M //p'` ; cd -
