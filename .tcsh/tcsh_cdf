@@ -65,6 +65,7 @@ alias vanderbilt 'ssh -X wuz4@vmplogin.accre.vanderbilt.edu'
 alias tl         'ssh -X taylor-lpc.fnal.gov'
 alias wisc       'ssh -X login.hep.wisc.edu'
 alias p5tunnel   'ssh -t -L 9999:localhost:11010 lxplus.cern.ch ssh -ND 11010 cmsusr' 
+alias connect    'ssh -X login.uscms.org'
 
 # Command alias
 alias tb    'source $HOME/.tcsh/tb'
@@ -230,5 +231,14 @@ if (  $SHORT_HOST =~ macbook ) then
     alias base 'setenv CMSSW_BASE  /Users/benwu/Work/CMSSW_7_3_0/'
     alias rr  'source $HOME/.tcsh/mythisroot.csh'
     setenv GIT_EDITOR vim
+    setenv SVN_EDITOR vim
     alias vi  'source $HOME/.tcsh/vitex';
+    setenv PATH ~/BenSys/bin:/Developer/NVIDIA/CUDA-7.5/bin/:$PATH
+	setenv HOMEBREW_GITHUB_API_TOKEN 2fab79ac8342da4f4422e9dec43c1b00aec0d242
+
+    if ( ! ($?LD_LIBRARY_PATH)) then 
+      setenv LD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.5/lib/
+    else
+      setenv LD_LIBRARY_PATH /Developer/NVIDIA/CUDA-7.5/lib/:$LD_LIBRARY_PATH
+    endif
 endif
