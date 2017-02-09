@@ -1,0 +1,37 @@
+#! /bin/sh
+
+rm  -f cscope.files
+if [ $# -lt 1 ]; then
+  find  $PWD \
+  -path $PWD/external/boost/boost -prune \
+  -type f -name '*.py' \
+  -o -name '*.java' \
+  -o -name '*.cpp' \
+  -o -name '*.c' \
+  -o -name '*.C' \
+  -o -name '*.cc' \
+  -o -name '*.hpp' \
+  -o -name '*.hh' \
+  -o -name '*.h' \
+  > cscope.files
+else 
+  find  . \
+  -path $PWD/external/boost/boost -prune \
+  -type f -name '*.py' \
+  -o -name '*.java' \
+  -o -name '*.cpp' \
+  -o -name '*.c' \
+  -o -name '*.C' \
+  -o -name '*.cc' \
+  -o -name '*.hpp' \
+  -o -name '*.hh' \
+  > cscope.files
+fi
+
+
+#ctags --c++-kinds=+p --fields=+iaS --extra=+q --sort=foldcase -L cscope.files
+ctags --sort=foldcase --c++-kinds=+p --fields=+iaSm --extra=+q -L cscope.files
+cscope -bqPk
+
+rm  -f cscope.files
+

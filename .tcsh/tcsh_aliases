@@ -69,4 +69,3 @@ alias ctags 'ctags --extra=+q *'
 ## Make colorful grep output
 setenv GREP_COLORS 'fn=1;32'
 alias grep 	'grep --color=auto'
-alias gdiff 'source $HOME/.tcsh/gdiff'
