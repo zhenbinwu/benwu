@@ -71,11 +71,13 @@ set completeopt+=preview
 
 map <F4> <Esc>:call MapMake(0, 1)<CR>
 
-"" Setup clang library
-"" BUG: The CMSSW libclang will crash the clang_complete
-"
-let s:clang=substitute(split(system("scram tool info llvm-ccompiler"))[-2], "CC=", "","")
-let g:clang_library_path=substitute(s:clang, "bin/clang", "lib","")
-if !isdirectory(g:clang_library_path)
-  let g:clang_library_path=substitute(s:clang, "bin/clang", "lib64","")
+""" Setup clang library
+if exists("$CLANGPATH")
+    let g:clang_library_path=expand("$CLANGPATH")
+else
+    let s:clang=substitute(split(system("scram tool info llvm-ccompiler"))[-2], "CC=", "","")
+    let g:clang_library_path=substitute(s:clang, "bin/clang", "lib","")
+    if !isdirectory(g:clang_library_path)
+        let g:clang_library_path=substitute(s:clang, "bin/clang", "lib64","")
+    endif
 endif
