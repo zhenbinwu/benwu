@@ -1123,7 +1123,6 @@ function! BufExplorer_ReSize()
     " the lines are pushed up and we see some lagging '~'s.
     let pres = getpos(".")
 
-    execute $
 
     let _scr = &scrolloff
     let &scrolloff = 0
